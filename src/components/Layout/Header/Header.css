@@ -1,0 +1,60 @@
+.headerDiv{
+background: #0A0A0D;
+padding: 12px 6vw;
+position: sticky;
+top: 0;
+z-index: 10;
+}
+
+.HeadermainDiv{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1600px;
+}
+
+.Logoclass{
+    width: 75px;
+    height: auto;
+}
+
+.HeaderOptionsDiv{
+    display: flex;
+    align-items: center;
+}
+
+.notifyDiv{
+   display: flex;
+   position: relative;
+   margin: 0px 16px;
+}
+.notifitionCount{
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+    background-color: #FF6464;
+    color: white;
+    border-radius: 50%;
+    top: -10px;
+    left: 20px;
+    font-size: 16px;
+}
+
+.Loginbtn{
+    width: 100px;
+    height: 40px;
+    background: #FFFFFF;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 0px 0px 10px;
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+}

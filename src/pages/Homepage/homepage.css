@@ -1,0 +1,138 @@
+.BannerDiv{
+    width: 100%;
+    height: 70vh;
+    position: relative;
+
+}
+
+.mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 1.2), transparent);
+    z-index: 1;
+  }
+
+.BannerDiv img {
+    width: 100%;
+    height: auto;
+}
+
+.bannercontDiv{
+    position: absolute;
+    top: 10vh;
+    left: 8vw;
+    z-index: 2;
+    width: 40vw;
+}
+
+ .usernameDiv{
+    display: flex;
+    align-items: center;
+    margin: 0px 0px 14px 0px ;
+ }
+
+ .usernameDiv img {
+   width: 50px;
+   height: 50px;
+   border-radius: 50%; 
+   background-size: cover;
+}
+
+
+.usernameDiv h4 {
+    font-size: 22px;
+    margin: 0px 12px 0px 12px ;
+    color: #FFFFFF;
+}
+
+.usernameDiv button {
+    width: 85px;
+    height: 34px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(3px);
+    border-radius: 5px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+}
+
+
+.titlename{
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 34px;
+    line-height: 46px;
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+}
+
+
+.catagoryDiv{
+    display: flex;
+    align-items: center;
+}
+
+.catagoryDiv div {
+    border-right: 1px solid #FFFFFF;
+    padding: 0px 10px;
+    color: #FFFFFF;
+}
+
+.description{
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+    color: #C5C5C5;
+    margin-top: 16px;
+}
+
+.playbtnDiv{
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.playbtnDiv button {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(3px);
+    border-radius: 5px;
+    margin-right: 20px;
+    color: #FFFFFF;
+    width:130px;
+    height:45px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 27px;
+}
+
+.playbtnDiv div{
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(3px);
+    border-radius: 5px;
+    width:50px;
+    height:45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
