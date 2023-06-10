@@ -11,6 +11,7 @@ import {
     Routes,
   } from "react-router-dom";
 import HomePage from './pages/Homepage/HomePage';
+import Indivialpage from './pages/IndivialVideopage/Indivialpage';
 
 function Markup() {
   return (
@@ -18,6 +19,8 @@ function Markup() {
         <BrowserRouter basename='/'>
            <Routes>
               <Route exact path='/' element={< HomePage />}/>
+              <Route exact path='/video/:id' element={< Indivialpage />}/>
+
            </Routes>
         </BrowserRouter>
     </div>
