@@ -1,12 +1,15 @@
 import React from 'react'
 import "./homepagecard.css"
 import { thumbsdown, thumbsup } from '../../../Assests/Svg/Commonsvg'
+import { Link } from 'react-router-dom'
 function Homepagecard({item}) {
 
 
   return (
     <div className='homepagecardDiv'>
-        <img src={item?.img} alt={item.title} />
+       <Link to={`/video/${1}/${item.title}`}>
+        <img className="homepagecardimg"  src={item?.img} alt={item.title} />
+      </Link>
         <div className=' d-flex align-items-center justify-content-between my-2'>
         <div>
           <span className='homepgecrdTitle'>{item.title}</span>

@@ -19,7 +19,7 @@ function Markup() {
         <BrowserRouter basename='/'>
            <Routes>
               <Route exact path='/' element={< HomePage />}/>
-              <Route exact path='/video/:id' element={< Indivialpage />}/>
+              <Route exact path='/video/:id/:name' element={< Indivialpage />}/>
 
            </Routes>
         </BrowserRouter>

@@ -1,8 +1,16 @@
 import React from 'react'
+import Header from '../../components/Layout/Header/Header'
+import Videoplayer from '../../components/videplayer/videoplayer'
 
 function Indivialpage() {
+
   return (
-    <div >Indivialpage</div>
+    <>
+    <Header/>
+    <div className='indivialpage-main-Div'>
+        <Videoplayer />
+    </div>
+    </>
   )
 }
 
