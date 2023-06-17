@@ -1,5 +1,78 @@
 .indivialpage-main-Div{
-    padding: 7vw;
+    padding: 2vh 7vw;
     display: flex;
     flex-direction: column;
+}
+ 
+.vid-topDiv{
+ display: flex;
+ justify-content: space-between;
+ margin-top: 20px;
+}
+
+.vid-topleft{
+   display: flex;
+   gap: 25px;
+}
+
+.vid-topleft h1{
+    color: #fff;
+}
+
+.options_div{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.options_div div{
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(3px);
+    border-radius: 5px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.vid-topright{
+   display: flex;
+   align-items: center;
+   gap: 20px;
+}
+
+.likesDiv{
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(3px);
+    border-radius: 15px;
+    padding: 4px;
+}
+
+.share_text{
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+}
+
+.likesDiv{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(3px);
+    border-radius: 15px;
+}
+
+.likesDiv div{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
 }
