@@ -13,11 +13,14 @@ function Loginpage() {
     return(
         <div className="loginMainDiv">
         <div className="log_leftside">
-
+        <div class="text-container">
+            <h1>TheWeedoc</h1>
+            <h2>Short Film Platform</h2>
+        </div>
         </div>
         <div className="log_rightside">
                 <div className="WeeDocTxt_div">
-                    <img src={WeeDoc} alt="TheWeeDoc" />
+                    {/* <img src={WeeDoc} alt="TheWeeDoc" /> */}
                     <h1>TheWeedoc</h1>
                 </div>
 

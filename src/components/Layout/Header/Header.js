@@ -2,12 +2,13 @@ import React,{useEffect,useState} from 'react'
 import  "./Header.css"
 import Logo from "../../../Assests/Images/theweedocLogo.png"
 import { notificationicon,uploadicon,SearchIcon } from '../../../Assests/Svg/Commonsvg';
+import { Link } from 'react-router-dom';
 function Header() {
   return (
     <div className="headerDiv">
       <nav className="HeadermainDiv">
         <div>
-             <img src={Logo} className="Logoclass"  alt='Theweedoc'/>
+            <Link to="/"> <img src={Logo} className="Logoclass"  alt='Theweedoc'/></Link>
         </div>
         <div className="HeaderOptionsDiv">
           <div>{SearchIcon}</div>
@@ -17,7 +18,7 @@ function Header() {
             <div className="notifitionCount">2</div>
            </div>
            <div>
-            <button className="Loginbtn">Login</button> 
+           <Link to="/login" style={{textDecoration:"none"}}><button className="Loginbtn">Login</button></Link> 
           </div>
         </div>
       </nav>

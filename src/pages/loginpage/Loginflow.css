@@ -121,3 +121,32 @@ color: #FAFBFF;
     border-radius: 10px;
     margin-top: 20px;
 }
+
+.text-container h1{
+    font-size: 90px;
+    color: rgba(225,225,225, .1);
+    background-image: url("https://img.freepik.com/vector-premium/cartel-cine-o-diseno-banner_1302-12573.jpg?w=360");
+    background-repeat: repeat-x;
+    background-position: bottom;
+    background-sizxe: cover;
+    -webkit-background-clip:text;
+    animation: animate 15s linear infinite;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 900;
+  }
+  
+    @keyframes animate {
+      0%{
+        background-position: left 0px top 10px;
+      }
+      40%{
+        background-position: left 800px top 10px;
+    }
+}
+
+.text-container h2{
+ color: #FAFBFF;
+ text-align: center;
+
+}
