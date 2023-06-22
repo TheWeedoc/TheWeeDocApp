@@ -1,0 +1,209 @@
+.loginMainDiv{
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.log_leftside{
+    width: 45vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.log_rightside{
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+}
+
+.WeeDocTxt_div{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 10vh;
+}
+
+.WeeDocTxt_div img {
+    width: 90px;
+    height: 60px;
+}
+
+.WeeDocTxt_div h1 {
+    font-family: 'Georgia';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 41px;
+    display: flex;
+    align-items: center;
+    color: #FAFBFF;
+}
+
+.form_Div span{
+font-family: 'Noto Sans';
+font-style: normal;
+font-weight: 600;
+font-size: 24px;
+line-height: 33px;
+display: flex;
+align-items: center;
+color: #FAFBFF;
+
+}
+
+.form_Div .ant-input-password {
+    width:320px;
+    margin-top: 20px;
+    background-color: transparent;
+    border: 1px solid #4A4949;
+
+
+}
+
+.form_Div .ant-input-password input{
+    
+    height: 40px;
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 16px;
+    background-color: transparent;
+    color: #FFFFFF;
+}
+
+.form_Div .ant-input-password input::placeholder{
+ color: #C5C5C5;
+}
+
+.form_inputfields{
+    width:320px;
+    height: 45px;
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 16px;
+    margin-top: 25px;
+    background-color: transparent;
+    color: #FFFFFF;
+    border: 1px solid #4A4949;
+}
+
+.form_inputfields::placeholder{
+  color: #C5C5C5;
+}
+
+.log_btm-sec{
+    width: 28vw;
+}
+
+.log_btm-sec p {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    color: #8C8E8F;
+}
+
+.log_btm-sec p b{
+    color: #FAFBFF;
+}
+
+.forgetpswrd{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.forgetpswrd a {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 16px;
+    color: #FAFBFF;
+}
+
+.loginbtn{
+    width: 100%;
+    height: 40px;
+    background: #FFFFFF;
+    border-radius: 10px;
+    margin-top: 20px;
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 27px;
+    text-align: center;
+    color: #111111;
+    border: none;
+    margin-bottom: 4px;
+}
+
+.text-container h1{
+    font-size: 90px;
+    color: rgba(225,225,225, .1);
+    background-image: url("https://c4.wallpaperflare.com/wallpaper/928/527/680/triangle-abstract-hd-colorful-wallpaper-preview.jpg");
+    background-repeat: repeat-x;
+    background-position: bottom;
+    background-sizxe: cover;
+    -webkit-background-clip:text;
+    animation: animate 15s linear infinite;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 900;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+    @keyframes animate {
+      0%{
+        background-position: left 0px top 10px;
+      }
+      40%{
+        background-position: left 800px top 10px;
+    }
+}
+
+.text-container h2{
+ color: #FAFBFF;
+ text-align: center;
+
+}
+
+.newuser_txt{
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+    color: #C5C5C5;
+}
+
+.newuser_txt a{
+    text-decoration: none;
+    font-size: 22px;
+    color: #FFFFFF;
+}
+
+.newuser_txt a:hover{
+    text-decoration: underline;
+}
+
+
+.form_Div .ant-input-affix-wrapper .anticon.ant-input-password-icon {
+    color: #FFFFFF;
+}
+
+.form_Div .ant-input-affix-wrapper .anticon.ant-input-password-icon:hover {
+    color: #FFFFFF;
+}
