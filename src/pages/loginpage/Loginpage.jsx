@@ -11,11 +11,11 @@ function Loginpage() {
     console.log('Failed:', errorInfo);
     };
     return(
-        <div className="loginMainDiv">
+    <div className="loginMainDiv">
         <div className="log_leftside">
         <div class="text-container">
-            <h1>TheWeedoc</h1>
-            <h2>Short Film Platform</h2>
+            <h2>TheWeedoc</h2>
+            <h1>Short Film Platform</h1>
         </div>
         </div>
         <div className="log_rightside">
@@ -54,7 +54,7 @@ function Loginpage() {
                         },
                     ]}
                     >
-                    <Input placeholder="Enter your email" className="form_inputfields"/>
+                    <Input placeholder="Enter your email *" className="form_inputfields"/>
                     </Form.Item>
 
                     <Form.Item
@@ -90,7 +90,9 @@ function Loginpage() {
                     </button>
                     
                 </Form>
+                <p className="newuser_txt">New User? <Link to="/signup">Signup</Link></p>
                 </div>
+
 
                 <div className="log_btm-sec">
                         <p>
