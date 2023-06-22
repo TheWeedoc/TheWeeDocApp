@@ -76,3 +76,25 @@
     gap: 10px;
     color: #fff;
 }
+
+.details-div{
+margin: 20px 0px;
+}
+.details-div ul{
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.details-div ul li{
+   color: #fff;
+   padding: 1px 10px;
+   border-right: 1px solid #fff;
+   font-size: 16px;
+}
+
+.profilepic{
+    
+}

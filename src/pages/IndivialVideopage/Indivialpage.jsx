@@ -40,7 +40,33 @@ function Indivialpage() {
             </div>
         </div>
 
-        <div className=''>
+        <div className='details-div'>
+          <ul>
+            <li style={{padding:"2px 10px 2px 0px"}}>2022</li>
+            <li>1h 59m</li>
+            <li>Tamil</li>
+            <li>Action</li>
+            <li>Triller</li>
+            <li>Fantasy</li>
+            <li style={{border:"none"}}>U/A 13+</li>
+          </ul>
+
+        </div>
+
+        <div className='userprofileSec'>
+              <div>
+                  <img src="https://media.licdn.com/dms/image/C5603AQGIYT25qdyUmQ/profile-displayphoto-shrink_800_800/0/1637938260330?e=2147483647&v=beta&t=bga--I_pyA8FUDbHvJb92QCuuhiPJnYViXPt4Kmp2Zk"
+                  className='profilepic'
+                  alt="Nirmal" />
+              </div>
+              <div>
+
+              </div>
+              <button>Follow</button>
+        </div>
+
+
+        <div>
 
         </div>
     </div>
