@@ -11,13 +11,24 @@ export const getMycourse = async () => {
     return MyLearning;
   };
 
-  export const signup = async () => {
-    const MyLearning = await get("register/")
+  export const signup = async (data) => {
+    const signup = await post("register/",data)
       .then((resp) => {
         return resp.data;
       })
       .catch((error) => {
         return error.response;
       });
-    return MyLearning;
+    return signup;
+  };
+
+  export const getlogin = async (data) => {
+    const login = await post("login/",data)
+      .then((resp) => {
+        return resp.data;
+      })
+      .catch((error) => {
+        return error.response;
+      });
+    return login;
   };

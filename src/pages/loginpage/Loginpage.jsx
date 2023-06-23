@@ -3,9 +3,19 @@ import "./Loginflow.css"
 import { Button, Checkbox, Form, Input } from 'antd';
 import { Link } from "react-router-dom";
 import WeeDoc from "../../Assests/Images/theweedocLogo.png"
+import { getlogin } from "../../Api/Fetchclient";
 function Loginpage() {
-    const onFinish = (values) => {
-    console.log('Success:', values);
+
+    const onFinish = async(values) => {
+        console.log('Success:', values);
+        let data = {
+            "username":values?.username,
+            "password":values?.password,
+        }
+            const respon = await getlogin(data).then((resp)=>{
+                console.log("Signup response",resp);
+            })
+        
     };
     const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
@@ -14,7 +24,7 @@ function Loginpage() {
     <div className="loginMainDiv">
         <div className="log_leftside">
         <div class="text-container">
-            <h2>TheWeedoc</h2>
+            <h2>Clumsycloverclowns </h2>
             <h1>Short Film Platform</h1>
         </div>
         </div>
@@ -54,7 +64,7 @@ function Loginpage() {
                         },
                     ]}
                     >
-                    <Input placeholder="Enter your email *" className="form_inputfields"/>
+                    <Input placeholder="Username *" className="form_inputfields"/>
                     </Form.Item>
 
                     <Form.Item
@@ -85,7 +95,7 @@ function Loginpage() {
                     </Form.Item> */}
 
                   
-                    <button className="loginbtn">
+                    <button className="loginbtn" onClick={onFinish}>
                       Login
                     </button>
                     

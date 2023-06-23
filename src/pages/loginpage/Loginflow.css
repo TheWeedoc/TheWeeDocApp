@@ -1,10 +1,11 @@
 .loginMainDiv{
     display: flex;
+    justify-content: space-between;
     align-items: center;
     height: 100%;
 }
 .log_leftside{
-    width: 45vw;
+    width: 50vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,7 +13,7 @@
 }
 
 .log_rightside{
-    width: 55%;
+    width: 40vw;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -60,8 +61,14 @@ color: #FAFBFF;
     margin-top: 20px;
     background-color: transparent;
     border: 1px solid #4A4949;
+}
 
+.form_Div .ant-input-password:hover {
+    border: 1.3px solid #FAFBFF;
+}
 
+.form_Div .ant-input-password:focus {
+    border: 1.3px solid #FAFBFF;
 }
 
 .form_Div .ant-input-password input{
@@ -94,9 +101,18 @@ color: #FAFBFF;
     border: 1px solid #4A4949;
 }
 
+.form_inputfields:hover{
+    border:1.3px solid #FAFBFF;
+}
+
+.form_inputfields:focus{
+    border:1.3px solid #FAFBFF;
+}
+
 .form_inputfields::placeholder{
   color: #C5C5C5;
 }
+
 
 .log_btm-sec{
     width: 28vw;

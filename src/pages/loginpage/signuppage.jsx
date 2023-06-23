@@ -1,13 +1,26 @@
-import react from "react"
+import React from "react"
 import "./Loginflow.css"
 import WeeDoc from "../../Assests/Images/theweedocLogo.png"
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Form, Input } from 'antd';
 import { Link } from "react-router-dom";
+import { signup } from "../../Api/Fetchclient";
 
 function Signuppage() {
-    const onFinish = (values) => {
+
+    const onFinish = async(values) => {
         console.log('Success:', values);
-        };
+        let data = {
+            "username":values?.username,
+            "email":values?.email,
+            "phone_number":9876656544,
+            "password":values?.password,
+            "password2":values?.password,
+        }
+            const respon = await signup(data).then((resp)=>{
+                console.log("Signup response",resp);
+            })
+        
+    };
         const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
         };
@@ -15,7 +28,7 @@ function Signuppage() {
         <div className="loginMainDiv">
         <div className="log_leftside">
         <div class="text-container">
-            <h2>TheWeedoc</h2>
+            <h2>Clumsycloverclowns </h2>
             <h1>Short Film Platform</h1>
         </div>
         </div>
@@ -55,13 +68,17 @@ function Signuppage() {
                         },
                     ]}
                     >
-                    <Input placeholder="Enter your email" className="form_inputfields"/>
+                    <Input placeholder="Enter your username" className="form_inputfields"/>
                     </Form.Item>
 
                     <Form.Item
                     
-                    name="username"
+                    name="email"
                     rules={[
+                        {
+                            type: 'email',
+                            message: 'The input is not valid E-mail!',
+                          },
                         {
                         required: true,
                         message: 'Please input your email or phone number!',
@@ -97,7 +114,7 @@ function Signuppage() {
                     </Form.Item> */}
 
                   
-                    <button className="loginbtn">
+                    <button className="loginbtn" onClick={onFinish}>
                       Login
                     </button>
                     
