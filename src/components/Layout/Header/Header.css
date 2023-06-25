@@ -62,3 +62,11 @@ z-index: 10;
     font-size: 18px;
     border: none;
 }
+
+
+.ant-popover .ant-popover-inner{
+    background-color: #16181F;
+}
+.ant-popover .ant-popover-arrow:before{
+    background-color: #16181F;
+}
