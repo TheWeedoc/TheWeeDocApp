@@ -1,0 +1,26 @@
+.searchmain{
+    padding: 2vh 7vw;
+}
+.searchTop-Div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.searchTop-Div h2{
+    color: #fff;
+    font-size: 30px;
+    font-family: Noto Sans;
+    font-weight: 700;
+    line-height: 28px;
+}
+
+.searchTop-Div div{
+color: #C5C5C5;
+font-size: 18px;
+font-family: Noto Sans;
+font-weight: 700;
+line-height: 28px;
+display:flex;
+align-items: center;
+gap: 10px;
+}

@@ -12,7 +12,7 @@ function Signuppage() {
         let data = {
             "username":values?.username,
             "email":values?.email,
-            "phone_number":9876656544,
+            "phone_number":"",
             "password":values?.password,
             "password2":values?.password,
         }
@@ -115,7 +115,7 @@ function Signuppage() {
 
                   
                     <button className="loginbtn" onClick={onFinish}>
-                      Login
+                      Signup
                     </button>
                     
                 </Form>

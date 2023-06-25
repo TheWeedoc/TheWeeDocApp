@@ -52,3 +52,4 @@ export const starbtn = <svg width="20" height="20" viewBox="0 0 20 20" fill="non
 export const sharebtn = <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M5.04698 8.93515L18.0372 4.13697C19.7481 3.50499 21.413 5.16983 20.781 6.88078L15.9828 19.871C15.4889 21.2081 13.6259 21.2828 13.0265 19.9896L11.6607 17.0425C11.3442 16.3597 10.91 15.738 10.3779 15.2059L9.71205 14.5401C9.17992 14.008 8.55823 13.5737 7.87546 13.2573L4.92841 11.8914C3.63518 11.2921 3.70991 9.42902 5.04698 8.93515Z" stroke="white" stroke-width="1.00607" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
+

@@ -11,7 +11,7 @@ function Header() {
             <Link to="/"> <img src={Logo} className="Logoclass"  alt='Theweedoc'/></Link>
         </div>
         <div className="HeaderOptionsDiv">
-          <div>{SearchIcon}</div>
+          <div><Link to="/search">{SearchIcon}</Link></div>
            <div>{uploadicon}</div>
            <div className="notifyDiv">
             <div>{notificationicon}</div>
