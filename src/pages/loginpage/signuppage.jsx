@@ -1,29 +1,50 @@
-import React from "react"
+import React, { useState } from "react"
 import "./Loginflow.css"
 import WeeDoc from "../../Assests/Images/theweedocLogo.png"
-import { Form, Input } from 'antd';
+import { Form, Input,notification } from 'antd';
 import { Link } from "react-router-dom";
 import { signup } from "../../Api/Fetchclient";
 
 function Signuppage() {
 
-    const onFinish = async(values) => {
-        console.log('Success:', values);
-        let data = {
-            "username":values?.username,
-            "email":values?.email,
-            "phone_number":"",
-            "password":values?.password,
-            "password2":values?.password,
+    const [formErrors, setFormErrors] = useState({});
+
+    
+    const onFinish = async (values) => {
+      console.log('Success:', values);
+      let data = {
+        username: values?.username,
+        email: values?.email,
+        phone_number: "",
+        password: values?.password,
+        password2: values?.password,
+      };
+    
+      try {
+        const response = await signup(data);
+        if (response?.status === 200) {
+          console.log("Signup response", response);
         }
-            const respon = await signup(data).then((resp)=>{
-                console.log("Signup response",resp);
-            })
+        if (response?.status === 400) {
+            const errorData = response.data;
+            setFormErrors(errorData);
+          }
+      } catch (error) {
         
+      }
     };
-        const onFinishFailed = (errorInfo) => {
+
+
+      const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
-        };
+        setFormErrors(errorInfo.errorFields.reduce((errors, item) => {
+          errors[item.name[0]] = item.errors[0];
+          return errors;
+        }, {}));
+      };
+      
+
+
     return(
         <div className="loginMainDiv">
         <div className="log_leftside">
@@ -59,48 +80,51 @@ function Signuppage() {
                     autoComplete="off"
                     >
                     <Form.Item
-                    
-                    name="username"
-                    rules={[
-                        {
-                        required: true,
-                        message: 'Please input your username!',
-                        },
-                    ]}
-                    >
-                    <Input placeholder="Enter your username" className="form_inputfields"/>
-                    </Form.Item>
+                        name="username"
+                        rules={[
+                            {
+                            required: true,
+                            message: 'Please input your username!',
+                            },
+                        ]}
+                        validateStatus={formErrors.username ? "error" : ""}
+                        help={formErrors.username}
+                        >
+                        <Input placeholder="Enter your username" className="form_inputfields" />
+                        </Form.Item>
 
-                    <Form.Item
-                    
-                    name="email"
-                    rules={[
-                        {
+                        <Form.Item
+                        name="email"
+                        rules={[
+                            {
                             type: 'email',
-                            message: 'The input is not valid E-mail!',
-                          },
-                        {
-                        required: true,
-                        message: 'Please input your email or phone number!',
-                        },
-                    ]}
-                    >
-                    <Input placeholder="Enter your email or phone number" className="form_inputfields"/>
-                    </Form.Item>
+                            message: 'The input is not a valid email!',
+                            },
+                            {
+                            required: true,
+                            message: 'Please input your email or phone number!',
+                            },
+                        ]}
+                        validateStatus={formErrors.email ? "error" : ""}
+                        help={formErrors.email}
+                        >
+                        <Input placeholder="Enter your email or phone number" className="form_inputfields" />
+                        </Form.Item>
 
+                        <Form.Item
+                        name="password"
+                        rules={[
+                            {
+                            required: true,
+                            message: 'Please input your password!',
+                            },
+                        ]}
+                        validateStatus={formErrors.password ? "error" : ""}
+                        help={formErrors.password}
+                        >
+                        <Input.Password placeholder="Password *" />
+                        </Form.Item>
 
-                    <Form.Item
-                   
-                    name="password"
-                    rules={[
-                        {
-                        required: true,
-                        message: 'Please input your password!',
-                        },
-                    ]}
-                    >
-                    <Input.Password  placeholder="Password *"/>
-                    </Form.Item>
                     
                     {/* <Form.Item
                     name="remember"

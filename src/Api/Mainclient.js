@@ -2,7 +2,7 @@ import axios from "axios";
 
   
   const  instance = axios.create({ 
-      baseURL: "http://139.59.35.43/api/"
+      baseURL: "http://www.theweedoc.info/api/"
     })
   
      

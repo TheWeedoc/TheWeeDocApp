@@ -1,22 +1,41 @@
-import react from "react";
+import react,{useState} from "react";
 import "./Loginflow.css"
 import { Button, Checkbox, Form, Input } from 'antd';
 import { Link } from "react-router-dom";
 import WeeDoc from "../../Assests/Images/theweedocLogo.png"
 import { getlogin } from "../../Api/Fetchclient";
 function Loginpage() {
+    
+    const [formErrors, setFormErrors] = useState({});
+    const [formErrors2,setFormErrors2] = useState({})
 
-    const onFinish = async(values) => {
+    const onFinish = async (values) => {
         console.log('Success:', values);
         let data = {
-            "username":values?.username,
-            "password":values?.password,
+          "username": values?.username,
+          "password": values?.password,
+        };
+      
+        try {
+          const response = await getlogin(data);
+          console.log("Login response", response);
+          if (response?.status===404) {
+            const errorData = response.data;
+            console.log("Error:", errorData.error);
+             setFormErrors(errorData);
+          }
+          if (response?.status===401) {
+            setFormErrors2(response.data)
+          }
+        } catch (error) {
+          if (error && error.data) {
+            const errorData = error.data;
+            console.log("Error:", errorData.error);
+             setFormErrors(errorData);
+          }
         }
-            const respon = await getlogin(data).then((resp)=>{
-                console.log("Signup response",resp);
-            })
-        
-    };
+      };
+      
     const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
     };
@@ -63,6 +82,8 @@ function Loginpage() {
                         message: 'Please input your username!',
                         },
                     ]}
+                    validateStatus={formErrors.error ? 'error' : ''}
+                    help={formErrors.error}
                     >
                     <Input placeholder="Username *" className="form_inputfields"/>
                     </Form.Item>
@@ -76,6 +97,8 @@ function Loginpage() {
                         message: 'Please input your password!',
                         },
                     ]}
+                    validateStatus={formErrors2.error ? 'error' : ''}
+                    help={formErrors2.error}
                     >
                     <Input.Password  placeholder="Password *"/>
                     </Form.Item>
