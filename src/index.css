@@ -50,3 +50,7 @@ code {
 .my-2{
   margin: 20px 0px;
 }
+
+.w-100{
+  width: 100% !important;
+}

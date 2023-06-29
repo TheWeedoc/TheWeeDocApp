@@ -15,7 +15,8 @@ import Indivialpage from './pages/IndivialVideopage/Indivialpage';
 import Signuppage from './pages/loginpage/signuppage';
 import Loginpage from './pages/loginpage/Loginpage';
 import Searchpage from './pages/searchpage/Searchpage';
-
+import Resetpage from './pages/loginpage/Resetpage';
+import NewPasswordPage from './pages/loginpage/NewPasswordPage';
 function Markup() {
   return (
     <div>
@@ -26,6 +27,9 @@ function Markup() {
               <Route exact path='/signup' element={<Signuppage/>}/>
               <Route exact path='/login' element={<Loginpage/>}/>
               <Route exact path='/search' element={<Searchpage/>} />
+              <Route exact path='/reset_password' element={<Resetpage/>} />
+              <Route exact path='/change_password' element={<NewPasswordPage/>} />
+
            </Routes>
         </BrowserRouter>
     </div>
