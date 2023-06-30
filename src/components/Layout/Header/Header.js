@@ -14,7 +14,7 @@ function Header() {
         </div>
         <div className="HeaderOptionsDiv">
           <div><Link to="/search">{SearchIcon}</Link></div>
-           <div>{uploadicon}</div>
+           <div><Link to="/upload">{uploadicon}</Link></div>
            <div className="notifyDiv">
             <div>
            <Popover placement="bottom"  content={<Notification/>} trigger="click">

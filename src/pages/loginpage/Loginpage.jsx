@@ -104,7 +104,7 @@ function Loginpage() {
                     </Form.Item>
                     
                     <div className="forgetpswrd">
-                        <Link to="/">Forgot Password?</Link>
+                        <Link to="/reset_password">Forgot Password?</Link>
                     </div>
                     {/* <Form.Item
                     name="remember"

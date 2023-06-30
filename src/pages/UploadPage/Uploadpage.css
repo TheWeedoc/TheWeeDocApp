@@ -1,0 +1,12 @@
+.uploadMainDiv{
+    padding: 4vh 7vw;
+}
+
+.uploadMainDiv h2{
+    color: #FFF;
+    font-size: 32px;
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}

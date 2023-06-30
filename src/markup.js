@@ -17,6 +17,7 @@ import Loginpage from './pages/loginpage/Loginpage';
 import Searchpage from './pages/searchpage/Searchpage';
 import Resetpage from './pages/loginpage/Resetpage';
 import NewPasswordPage from './pages/loginpage/NewPasswordPage';
+import Uploadpage from './pages/UploadPage/Uploadpage';
 function Markup() {
   return (
     <div>
@@ -29,6 +30,7 @@ function Markup() {
               <Route exact path='/search' element={<Searchpage/>} />
               <Route exact path='/reset_password' element={<Resetpage/>} />
               <Route exact path='/change_password' element={<NewPasswordPage/>} />
+              <Route exact path='/upload' element={<Uploadpage/>} />
 
            </Routes>
         </BrowserRouter>
