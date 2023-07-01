@@ -3,31 +3,26 @@ import "./Loginflow.css"
 import { Button, Checkbox, Form, Input } from 'antd';
 import { Link } from "react-router-dom";
 import WeeDoc from "../../Assests/Images/theweedocLogo.png"
-import { getlogin } from "../../Api/Fetchclient";
+import { getlogin, resetpassword } from "../../Api/Fetchclient";
 
 function Resetpage() {
     const [formErrors, setFormErrors] = useState({});
-    const [formErrors2,setFormErrors2] = useState({})
 
     const onFinish = async (values) => {
         console.log('Success:', values);
         let data = {
-          "username": values?.username,
-          "password": values?.password,
+          "email": values?.email,
         };
       
         try {
-          const response = await getlogin(data);
+          const response = await resetpassword(data);
           console.log("Login response", response);
           if (response?.status===404) {
             const errorData = response.data;
             console.log("Error:", errorData.error);
              setFormErrors(errorData);
           }
-          if (response?.status===401) {
-            setFormErrors2(response.data)
-          }
-        } catch (error) {
+        }catch (error) {
           if (error && error.data) {
             const errorData = error.data;
             console.log("Error:", errorData.error);
@@ -89,8 +84,8 @@ function Resetpage() {
                         message: 'Please input your email or phone number!',
                         },
                     ]}
-                    validateStatus={formErrors.error ? 'error' : ''}
-                    help={formErrors.error}
+                    validateStatus={formErrors.detail ? 'error' : ''}
+                    help={"This email id not registered"}
                     >
                     <Input placeholder="Enter your Email *" className="form_inputfields reset_input"/>
                     </Form.Item>

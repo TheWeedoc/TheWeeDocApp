@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { signup } from "../../Api/Fetchclient";
 
 function Signuppage() {
-
+    const [form] = Form.useForm();
     const [formErrors, setFormErrors] = useState({});
 
     
@@ -20,18 +20,15 @@ function Signuppage() {
         password2: values?.password,
       };
     
-      try {
         const response = await signup(data);
-        if (response?.status === 200) {
+        if (response?.status === 201) {
+          form.resetFields();
           console.log("Signup response", response);
         }
         if (response?.status === 400) {
             const errorData = response.data;
             setFormErrors(errorData);
           }
-      } catch (error) {
-        
-      }
     };
 
 
@@ -63,6 +60,7 @@ function Signuppage() {
                    <span>Signup</span>
                    <Form
                     name="basic"
+                    form={form}
                     labelCol={{
                     span: 8,
                     }}
@@ -124,21 +122,8 @@ function Signuppage() {
                         >
                         <Input.Password placeholder="Password *" />
                         </Form.Item>
-
-                    
-                    {/* <Form.Item
-                    name="remember"
-                    valuePropName="checked"
-                    wrapperCol={{
-                        offset: 8,
-                        span: 16,
-                    }}
-                    >
-                    <Checkbox>Remember me</Checkbox>
-                    </Form.Item> */}
-
                   
-                    <button className="loginbtn" onClick={onFinish}>
+                    <button className="loginbtn" >
                       Signup
                     </button>
                     

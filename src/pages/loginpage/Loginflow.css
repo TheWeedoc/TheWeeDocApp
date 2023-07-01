@@ -170,7 +170,7 @@ color: #FAFBFF;
     background-image: url("https://c4.wallpaperflare.com/wallpaper/928/527/680/triangle-abstract-hd-colorful-wallpaper-preview.jpg");
     background-repeat: repeat-x;
     background-position: bottom;
-    background-sizxe: cover;
+    background-size: cover;
     -webkit-background-clip:text;
     animation: animate 15s linear infinite;
     text-align: center;

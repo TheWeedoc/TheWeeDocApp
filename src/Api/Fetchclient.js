@@ -1,15 +1,5 @@
 import { get,post,put,del } from "./Mainclient";
 
-export const getMycourse = async () => {
-    const MyLearning = await get("enrolled/course/")
-      .then((resp) => {
-        return resp.data;
-      })
-      .catch((error) => {
-        return error.response;
-      });
-    return MyLearning;
-  };
 
   export const signup = async (data) => {
     const signup = await post("register/",data)
@@ -24,6 +14,18 @@ export const getMycourse = async () => {
 
   export const getlogin = async (data) => {
     const login = await post("login/",data)
+      .then((resp) => {
+        return resp;
+      })
+      .catch((error) => {
+        return error.response;
+      });
+    return login;
+  };
+
+
+  export const resetpassword = async (data) => {
+    const login = await post("password-reset/",data)
       .then((resp) => {
         return resp.data;
       })

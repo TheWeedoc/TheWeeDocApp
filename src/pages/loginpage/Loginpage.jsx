@@ -1,16 +1,32 @@
 import react,{useState} from "react";
 import "./Loginflow.css"
-import { Button, Checkbox, Form, Input } from 'antd';
+import {Form, Input } from 'antd';
 import { Link } from "react-router-dom";
-import WeeDoc from "../../Assests/Images/theweedocLogo.png"
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin } from 'antd';
 import { getlogin } from "../../Api/Fetchclient";
+import { useNavigate } from 'react-router-dom';
 function Loginpage() {
-    
+
+    const navigate = useNavigate();
+    const [load,setLoad] = useState(false)
     const [formErrors, setFormErrors] = useState({});
     const [formErrors2,setFormErrors2] = useState({})
 
+
+    const antIcon = (
+      <LoadingOutlined
+        style={{
+          fontSize: 20,
+          color:"black"
+        }}
+        spin
+      />
+    );
+
+
     const onFinish = async (values) => {
-        console.log('Success:', values);
+        setLoad(true)
         let data = {
           "username": values?.username,
           "password": values?.password,
@@ -19,9 +35,14 @@ function Loginpage() {
         try {
           const response = await getlogin(data);
           console.log("Login response", response);
+          setLoad(false)
+          if(response?.status===200){
+          localStorage.setItem('token', response?.data?.token);
+          navigate('/')
+          console.log("Response", response);
+          }
           if (response?.status===404) {
             const errorData = response.data;
-            console.log("Error:", errorData.error);
              setFormErrors(errorData);
           }
           if (response?.status===401) {
@@ -30,7 +51,6 @@ function Loginpage() {
         } catch (error) {
           if (error && error.data) {
             const errorData = error.data;
-            console.log("Error:", errorData.error);
              setFormErrors(errorData);
           }
         }
@@ -39,6 +59,16 @@ function Loginpage() {
     const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
     };
+
+
+    const handleUsernameFocus = () => {
+      setFormErrors({});
+    };
+  
+    const handlePasswordFocus = () => {
+      setFormErrors2({});
+    };
+
     return(
     <div className="loginMainDiv">
         <div className="log_leftside">
@@ -74,7 +104,6 @@ function Loginpage() {
                     autoComplete="off"
                     >
                     <Form.Item
-                    
                     name="username"
                     rules={[
                         {
@@ -85,11 +114,10 @@ function Loginpage() {
                     validateStatus={formErrors.error ? 'error' : ''}
                     help={formErrors.error}
                     >
-                    <Input placeholder="Username *" className="form_inputfields"/>
+                    <Input placeholder="Username *" className="form_inputfields" onFocus={handleUsernameFocus}/>
                     </Form.Item>
 
                     <Form.Item
-                   
                     name="password"
                     rules={[
                         {
@@ -100,33 +128,19 @@ function Loginpage() {
                     validateStatus={formErrors2.error ? 'error' : ''}
                     help={formErrors2.error}
                     >
-                    <Input.Password  placeholder="Password *"/>
+                    <Input.Password  placeholder="Password *" onFocus={handlePasswordFocus}/>
                     </Form.Item>
                     
                     <div className="forgetpswrd">
                         <Link to="/reset_password">Forgot Password?</Link>
                     </div>
-                    {/* <Form.Item
-                    name="remember"
-                    valuePropName="checked"
-                    wrapperCol={{
-                        offset: 8,
-                        span: 16,
-                    }}
-                    >
-                    <Checkbox>Remember me</Checkbox>
-                    </Form.Item> */}
-
-                  
-                    <button className="loginbtn" onClick={onFinish}>
-                      Login
+                    <button className="loginbtn" >{load?<Spin indicator={antIcon} />:
+                      "Login"}
                     </button>
                     
                 </Form>
                 <p className="newuser_txt">New User? <Link to="/signup">Signup</Link></p>
                 </div>
-
-
                 <div className="log_btm-sec">
                         <p>
                         By logging In, you accept The Wee Doc’s <br/><b>Terms & Conditions</b> and <b>Privacy Policy</b>

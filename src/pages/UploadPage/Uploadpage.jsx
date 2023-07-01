@@ -7,6 +7,7 @@ function Uploadpage() {
     <Header/>
     <div className='uploadMainDiv'>
         <h2>Uploads & status</h2>
+        
     </div>
     </>
   )

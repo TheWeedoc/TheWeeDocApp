@@ -5,7 +5,11 @@ import Logo from "../../../Assests/Images/theweedocLogo.png"
 import { notificationicon,uploadicon,SearchIcon } from '../../../Assests/Svg/Commonsvg';
 import { Link } from 'react-router-dom';
 import Notification from '../../Notification/Notification';
+import useIsLoggedIn from '../../../Hooks/useIsLoggedIn';
+
 function Header() {
+  const userpro = "https://www.pngall.com/wp-content/uploads/5/Profile-PNG-Images.png"
+  const isLoggedIn = useIsLoggedIn();
   return (
     <div className="headerDiv">
       <nav className="HeadermainDiv">
@@ -23,9 +27,18 @@ function Header() {
               </div>
             <div className="notifitionCount">2</div>
            </div>
-           <div>
-           <Link to="/login" style={{textDecoration:"none"}}><button className="Loginbtn">Login</button></Link> 
-          </div>
+           {isLoggedIn ? (
+            <div >
+              <img src={userpro} alt="Profile Picture" className="profilePictureDiv" />
+            </div>
+          ) : (
+            <div>
+              <Link to="/login" style={{ textDecoration: "none" }}>
+                <button className="Loginbtn">Login</button>
+              </Link>
+            </div>
+          )}
+
         </div>
       </nav>
     </div>
