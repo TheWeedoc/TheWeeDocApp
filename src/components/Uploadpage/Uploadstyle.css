@@ -1,0 +1,49 @@
+.uploadDiv{
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    margin: 5vh 0;
+}
+
+.uploadBox{
+    border-radius: 2px;
+    border: 1px dashed #929292;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width: 100%;
+    background-color: #16181F;
+    cursor: pointer;
+}
+
+.uploadboxText{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.uploadboxText span{
+    color: #FAFBFF;
+    font-size: 18px;
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.verifiedHeadin{
+    color: #FFF;
+    font-size: 24px;
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.home-CardsSection{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));;
+    gap: 25px;
+    padding: 8vh 0;
+}

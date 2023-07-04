@@ -2,7 +2,9 @@ import React from 'react'
 import "./Uploadpage.css"
 import Header from '../../components/Layout/Header/Header'
 import { Tabs } from 'antd';
-
+import VerificationSection from '../../components/Uploadpage/VerificationSection';
+import RejectedSection from '../../components/Uploadpage/RejectedSection';
+import ApprovedSection from '../../components/Uploadpage/ApprovedSection';
 function Uploadpage() {
 
   const onChange = (key) => {
@@ -12,17 +14,17 @@ function Uploadpage() {
     {
       key: '1',
       label: `Verification`,
-      children: `Content of Tab Verification`,
+      children: <VerificationSection/>,
     },
     {
       key: '2',
       label: `Rejected`,
-      children: `Content of Tab Rejected`,
+      children: <RejectedSection/>,
     },
     {
       key: '3',
       label: `Approved`,
-      children: `Content of Tab Approved`,
+      children: <ApprovedSection/>,
     },
   ];
 
