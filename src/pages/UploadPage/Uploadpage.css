@@ -9,4 +9,32 @@
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+    margin-bottom: 25px;
+}
+
+.uploadMainDiv .ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn{
+    color: #FFF;
+    font-size: 20px;
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.uploadMainDiv .ant-tabs-top >.ant-tabs-nav .ant-tabs-ink-bar{
+    height: 3.2px;
+    background-color: #FFF;
+}
+
+.uploadMainDiv .ant-tabs-top >.ant-tabs-nav::before{
+    border-bottom: 1px solid #4A4949;
+}
+
+.ant-tabs {
+    color: #8C8E8F;
+    font-size: 20px;
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
 }

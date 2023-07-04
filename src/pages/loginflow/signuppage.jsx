@@ -1,16 +1,27 @@
 import React, { useState } from "react"
 import "./Loginflow.css"
-import WeeDoc from "../../Assests/Images/theweedocLogo.png"
-import { Form, Input,notification } from 'antd';
-import { Link } from "react-router-dom";
+import { Form, Input} from 'antd';
+import { Link, useNavigate } from "react-router-dom";
 import { signup } from "../../Api/Fetchclient";
-
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin } from 'antd';
 function Signuppage() {
     const [form] = Form.useForm();
     const [formErrors, setFormErrors] = useState({});
+    const [load,setLoad] = useState(false)
 
-    
+    const navigate = useNavigate();
+    const antIcon = (
+      <LoadingOutlined
+        style={{
+          fontSize: 20,
+          color:"black"
+        }}
+        spin
+      />
+    );
     const onFinish = async (values) => {
+      setLoad(true)
       console.log('Success:', values);
       let data = {
         username: values?.username,
@@ -21,9 +32,10 @@ function Signuppage() {
       };
     
         const response = await signup(data);
+        setLoad(false)
         if (response?.status === 201) {
+          navigate("/Verify_mail")
           form.resetFields();
-          console.log("Signup response", response);
         }
         if (response?.status === 400) {
             const errorData = response.data;
@@ -33,7 +45,6 @@ function Signuppage() {
 
 
       const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
         setFormErrors(errorInfo.errorFields.reduce((errors, item) => {
           errors[item.name[0]] = item.errors[0];
           return errors;
@@ -123,8 +134,8 @@ function Signuppage() {
                         <Input.Password placeholder="Password *" />
                         </Form.Item>
                   
-                    <button className="loginbtn" >
-                      Signup
+                    <button className="loginbtn" >{load?<Spin indicator={antIcon} />:
+                      "Signup"}
                     </button>
                     
                 </Form>
