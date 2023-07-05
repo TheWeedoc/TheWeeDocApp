@@ -1,8 +1,13 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import "./Uploadstyle.css"
 import { Addvideoicon } from '../../Assests/Svg/Commonsvg'
 import Homepagecard from '../cards/Hompage/Homepagecard'
+import {Modal} from 'antd';
+import UploadShortFlim from './Uploadshortfilm/UploadShortFlim';
 function VerificationSection() {
+ 
+  const [filmopen, setflimOpen] = useState(false);
+  const [adsopen, setadsOpen] = useState(false);
 
   const cardarr = [
     {
@@ -19,13 +24,13 @@ function VerificationSection() {
   return (
     <>
        <div className='uploadDiv'>
-           <div className='uploadBox'>
+           <div className='uploadBox' onClick={()=>setflimOpen(true)}>
                   <div className='uploadboxText'>
                      <div>{Addvideoicon}</div>
                      <span>Upload & Verify the <b>Short Film</b></span>
                   </div>
            </div>
-           <div className='uploadBox'>
+           <div className='uploadBox' onClick={()=>setadsOpen(true)}>
                   <div className='uploadboxText' >
                      <div>{Addvideoicon}</div>
                      <span>Upload & Verify your <b>Advertisment</b></span>
@@ -42,6 +47,29 @@ function VerificationSection() {
           )
         })}
       </div>
+      
+      <Modal
+        title="Upload a short film"
+        centered
+        open={filmopen}
+        onCancel={() => setflimOpen(false)}
+        width="70%"
+        footer={null}
+      >
+        <UploadShortFlim/>
+      </Modal>
+
+      <Modal
+        title="Upload a Advertisement"
+        centered
+        open={adsopen}
+        onCancel={() => setadsOpen(false)}
+        width="70%"
+        footer={null}
+
+      >
+        <h1>Ads upload</h1>
+      </Modal>
 
     </>
   )

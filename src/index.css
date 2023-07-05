@@ -54,3 +54,60 @@ code {
 .w-100{
   width: 100% !important;
 }
+
+.ant-modal .ant-modal-content {
+  background-color: #16181F;
+  border-radius: 10px;
+}
+
+.ant-modal .ant-modal-close{
+  color: #fff;
+}
+
+.ant-modal .ant-modal-close:hover{
+  color: #fff;
+}
+
+.ant-modal .ant-modal-header{
+  background-color: #16181F;
+  color: #fff;
+  border-bottom: 1px solid #e4e1e1e7;
+}
+
+.ant-modal .ant-modal-title{
+  color: #FFF;
+  font-size: 24px;
+  font-family: Noto Sans;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  padding-bottom: 10px;
+}
+
+.ant-steps .ant-steps-item-finish>.ant-steps-item-container>.ant-steps-item-content>.ant-steps-item-title{
+ color: #fff;
+ font-size: 18px;
+}
+
+.ant-steps .ant-steps-item-process>.ant-steps-item-container>.ant-steps-item-content>.ant-steps-item-title {
+  color: #fff;
+ font-size: 18px;
+}
+
+.ant-steps .ant-steps-item-wait>.ant-steps-item-container>.ant-steps-item-content>.ant-steps-item-title{
+  color: #f4f4f4e6;
+}
+
+.ant-steps .ant-steps-item-process .ant-steps-item-icon {
+  background-color: #FFF;
+  border-color: #fff;
+}
+
+.ant-steps .ant-steps-item-process .ant-steps-item-icon >.ant-steps-icon{
+  color: #090909;
+  font-size: 18px;
+}
+
+.ant-steps .ant-steps-item-finish>.ant-steps-item-container>.ant-steps-item-content>.ant-steps-item-title::after{
+  background-color: rgb(255, 255, 255);
+}
