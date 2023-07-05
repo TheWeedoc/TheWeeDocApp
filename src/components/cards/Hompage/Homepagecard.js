@@ -20,7 +20,6 @@ function Homepagecard({item}) {
         </div>
         </div>
         <span className='crdbtmsec-text'>Action | Tamil | U/A 14+</span>
-
     </div>
   )
 }

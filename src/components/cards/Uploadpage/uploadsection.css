@@ -1,0 +1,109 @@
+.verifycardDiv{
+    display: flex;
+    flex-direction: column; 
+    width: 380px;
+ }
+ 
+ .verifycardimg{
+    max-width: 380px;
+    height: auto;
+    border-radius: 10px;
+ }
+ 
+ 
+ .verifycrdTitle{
+     font-family: 'Noto Sans';
+     font-style: normal;
+     font-weight: 600;
+     font-size: 22px;
+     line-height: 30px;
+     display: flex;
+     align-items: center;
+     color: #FFFFFF;
+ }
+ 
+ .thumbsDiv{
+     display: flex;
+     align-items: center;
+     gap: 25px;
+ }
+ 
+ .thumbsDiv div {
+     font-family: 'Noto Sans';
+     font-style: normal;
+     font-weight: 400;
+     font-size: 16px;
+     line-height: 24px;
+     display: flex;
+     align-items: center;
+     color: rgba(225, 230, 240, 0.9);
+     gap: 10px;
+ }
+ .crdbtmsec-text{
+     font-family: 'Noto Sans';
+     font-style: normal;
+     font-weight: 400;
+     font-size: 16px;
+     line-height: 24px;
+     display: flex;
+     align-items: center;
+     color: #E1E6F0;
+ }
+
+.rejectpagemainDiv{
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    margin: 5vh 0;
+}
+
+.rejectedmainDiv{
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.reject_reason_div{
+    border-radius: 10px;
+    background: #0F1015;
+    width: 100%;
+    min-height: 210px; 
+    padding: 15px;
+}
+
+.reject_reason_div b{
+    color: #FFF;
+    font-size: 18px;
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.reject_reason_lists li{
+  font-size: 16px;
+  line-height: 24px;
+  margin-top: 12px;
+}
+
+
+/* ==========Approve Section=======>>> */
+
+.Appro_uploadbtn{
+    border-radius: 5px;
+    background: #FFF;
+    padding: 0px 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    height: 35px;
+    cursor: pointer;
+    color: #212121;
+    text-align: center;
+    font-size: 20px;
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}

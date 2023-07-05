@@ -35,14 +35,13 @@ function VerificationSection() {
 
        <h3 className='verifiedHeadin'>Uploaded Films for Verification</h3>
 
-       <div className='home-CardsSection'>
+       <div className='verifiy-CardsSection'>
         {cardarr?.map((item,id)=>{
           return(
-            <Homepagecard item={item}/>
+            <Homepagecard item={item}  />
           )
-        })
-        }
-  </div>
+        })}
+      </div>
 
     </>
   )
