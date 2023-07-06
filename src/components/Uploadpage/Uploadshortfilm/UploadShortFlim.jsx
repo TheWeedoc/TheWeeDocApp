@@ -1,19 +1,23 @@
 import React from 'react'
-import { Button, message, Steps, theme } from 'antd';
+import {Steps, theme } from 'antd';
 import { useState } from 'react';
+import "./uploadShortFilm.css"
+import UploadDetails from './UploadDetails';
+import UploadVideo from './UploadVideo';
+import Uploadcast from './Uploadcast';
 function UploadShortFlim() {
     const steps = [
         {
-          title: 'First',
-          content: 'First-content',
+          title: 'Details',
+          content: <UploadDetails/>,
         },
         {
-          title: 'Second',
-          content: 'Second-content',
+          title: 'Images & video',
+          content: <UploadVideo/>,
         },
         {
-          title: 'Last',
-          content: 'Last-content',
+          title: 'Cast & Crew',
+          content: <Uploadcast/>,
         },
       ];
       const { token } = theme.useToken();
@@ -38,32 +42,39 @@ function UploadShortFlim() {
         marginTop: 16,
       };
       return (
-        <>
+        <div className='uploadSec_popup'>
           <Steps current={current} items={items} />
-          <div style={contentStyle}>{steps[current].content}</div>
+          <div>{steps[current].content}</div>
           <div
             style={{
               marginTop: 24,
             }}
           >
-            {current < steps.length - 1 && (
-              <Button  onClick={() => next()}>
-                Next
-              </Button>
-            )}
             
+          <div className='uploadpopup_btm'>
             {current > 0 && (
-              <Button
-                style={{
-                  margin: '0 8px',
-                }}
+              <button
                 onClick={() => prev()}
               >
                 Previous
-              </Button>
+              </button>
+            )}
+
+        {current === steps.length - 1 && (
+          <button >
+            Done
+          </button>
+        )}
+
+            {current < steps.length - 1 && (
+              <button  onClick={() => next()}>
+                Next
+              </button>
             )}
           </div>
-        </>
+
+          </div>
+        </div>
       );
     };
 
