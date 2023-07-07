@@ -19,7 +19,7 @@ function UploadDetails() {
 
         <div className="label-float">
         <input type="text" placeholder=" " required/>
-        <label>Username*</label>
+        <label>Title Name*</label>
         </div>
 
         <div className="label-float">
