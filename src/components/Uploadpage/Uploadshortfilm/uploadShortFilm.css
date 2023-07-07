@@ -37,8 +37,19 @@
 
 .upload_popup_inside{
     margin: 4% 2%;
+    height: 60vh;
+    overflow-y: auto;
 }
 
+.upload_popup_inside::-webkit-scrollbar{
+  width: 6px;
+}
+.upload_popup_inside::-webkit-scrollbar-thumb {
+  background-color: rgb(185, 184, 184);
+  outline: 1px solid rgba(222, 222, 222, 0.644);
+  border-radius: 4px;
+
+}
 .upload_popup_inside b{
     color: #FFF;
     font-family: Noto Sans;
@@ -182,4 +193,13 @@
   .uplod_genre_div .ant-select-multiple .ant-select-selection-item-remove{
     color: #FFF;
     
+  }
+  .div_checkbox{    
+    color: #FFF;
+    font-family: Noto Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 4px 0;
   }

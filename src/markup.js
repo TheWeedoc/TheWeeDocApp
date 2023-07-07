@@ -8,7 +8,7 @@ import HomePage from './pages/Homepage/HomePage';
 import Indivialpage from './pages/IndivialVideopage/Indivialpage';
 import Signuppage from './pages/loginflow/signuppage';
 import Loginpage from './pages/loginflow/Loginpage';
-import Searchpage from './pages/Searchpage/Searchpage';
+import Searchpage from './pages/searchpage/Searchpage';
 import Resetpage from './pages/loginflow/Resetpage';
 import NewPasswordPage from './pages/loginflow/NewPasswordPage';
 import Uploadpage from './pages/UploadPage/Uploadpage';

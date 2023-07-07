@@ -20,7 +20,7 @@ function UploadShortFlim() {
           content: <Uploadcast/>,
         },
       ];
-      const { token } = theme.useToken();
+  
       const [current, setCurrent] = useState(0);
       const next = () => {
         setCurrent(current + 1);
@@ -32,15 +32,7 @@ function UploadShortFlim() {
         key: item.title,
         title: item.title,
       }));
-      const contentStyle = {
-        lineHeight: '260px',
-        textAlign: 'center',
-        color: token.colorTextTertiary,
-        backgroundColor: token.colorFillAlter,
-        borderRadius: token.borderRadiusLG,
-        border: `1px dashed ${token.colorBorder}`,
-        marginTop: 16,
-      };
+  
       return (
         <div className='uploadSec_popup'>
           <Steps current={current} items={items} />

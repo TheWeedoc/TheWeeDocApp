@@ -42,9 +42,33 @@ function UploadDetails() {
                 value: item,
                 label: item,
               }))}
-            />
-      
-          
+            />    
+        </div>
+
+        <div className='uplod_genre_div'>
+          <label>Language* </label>
+        
+          <Select
+              mode="multiple"
+              placeholder="Inserted are removed"
+              value={selectedItems}
+              onChange={setSelectedItems}
+              style={{
+                width: '100%',
+              }}
+              options={filteredOptions.map((item) => ({
+                value: item,
+                label: item,
+              }))}
+            />    
+        </div>
+
+        <div className='uplod_genre_div'>
+          <label>Age Barrier*</label>
+         <div className='div_checkbox'><input type='radio' name='a'/> <span>Below 13 years</span> </div>
+         <div className='div_checkbox'><input type='radio'name='a'/> <span>Above 13 years</span> </div>
+         <div className='div_checkbox'><input type='radio' name='a'/> <span>Above 18 years</span> </div>
+
         </div>
 
     </div>
