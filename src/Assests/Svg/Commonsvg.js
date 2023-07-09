@@ -71,3 +71,8 @@ export const Addvideoicon = <svg width="40" height="40" viewBox="0 0 40 40" fill
 </clipPath>
 </defs>
 </svg>
+
+
+export const AddUploadBtn = <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M10 0C4.47998 0 0 4.47998 0 10C0 15.52 4.47998 20 10 20C15.52 20 20 15.52 20 10C20 4.47998 15.52 0 10 0ZM10.5 5C10.7761 5 11 5.22388 11 5.5V9H14.5C14.7761 9 15 9.22388 15 9.5V10.5C15 10.7761 14.7761 11 14.5 11H11V14.5C11 14.7761 10.7761 15 10.5 15H9.5C9.22388 15 9 14.7761 9 14.5V11H5.5C5.22388 11 5 10.7761 5 10.5V9.5C5 9.22388 5.22388 9 5.5 9H9V5.5C9 5.22388 9.22388 5 9.5 5H10.5Z" fill="white" fill-opacity="0.95"/>
+</svg>

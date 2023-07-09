@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import "./uploadShortFilm.css"
-import { Select, Space,Tag } from 'antd';
+import { Select } from 'antd';
 function UploadDetails() {
 
   const options = [

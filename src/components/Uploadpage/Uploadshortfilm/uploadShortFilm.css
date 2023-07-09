@@ -36,9 +36,10 @@
 
 
 .upload_popup_inside{
-    margin: 4% 2%;
+    padding: 3% 2%;
     height: 60vh;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .upload_popup_inside::-webkit-scrollbar{
@@ -59,8 +60,6 @@
     line-height: normal;
 }
 
-
-
 /* ===========Input Fileds======>> */
 
 
@@ -68,14 +67,14 @@
     position: relative;
     padding-top: 13px;
     background-color: transparent;
-    margin: 2.5% 0;
+    margin: 2.5% 0%;
   }
   
   .label-float input{
     border: 1px solid lightgrey;
     border-radius: 5px;
     outline: none;
-    min-width: 95%;
+    width: 95%;
     padding: 15px 20px;
     font-size: 16px;
     transition: all .1s linear;
@@ -202,4 +201,93 @@
     font-weight: 400;
     line-height: normal;
     margin: 4px 0;
+  }
+
+  .ant-upload-text{
+    color: #FFF !important;
+    font-family: Noto Sans;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  .image_upload_instr{
+    text-align: start;
+    color: #E1E6F0;
+    font-family: Noto Sans;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+  }
+
+  .upld_img {
+    margin-top: 25px;
+  }
+  
+  .upload_img_txt{
+    color: #FFF;
+    font-family: Noto Sans;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom:20px;
+  }
+
+  .ant-upload-wrapper .ant-upload-drag{
+    margin-top: 20px;
+  }
+
+  .ant-upload-drag-icon img {
+    width: 85px;
+    height: 85px;
+  }
+
+  .rolecastDiv{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 25px 0;
+  }
+
+  .rolecastDiv input{
+    border-radius: 5px;
+    border: 1px solid #4A4949;
+    width: 25vw;
+    background-color: transparent;
+    padding:0 10px;
+    height: 35px;
+    color: #FFF;
+
+  }
+
+  .castAddBtn{
+    border-radius: 5px;
+    border: 1px solid #fff;
+    padding: 5px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100px;
+    height: 40px;
+    background-color: transparent;
+    color: #FFF;
+    font-family: Noto Sans;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    cursor: pointer;
+  }
+
+  .upld_rolecast_list li{
+    color: #FFF;
+    font-family: Noto Sans;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
   }
