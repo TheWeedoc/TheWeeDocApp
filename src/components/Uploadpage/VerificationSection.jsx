@@ -4,6 +4,7 @@ import { Addvideoicon } from '../../Assests/Svg/Commonsvg'
 import Homepagecard from '../cards/Hompage/Homepagecard'
 import {Modal} from 'antd';
 import UploadShortFlim from './Uploadshortfilm/UploadShortFlim';
+import AdsUploadShortFlim from '../AdsUpload/Uploadshortfilm/AdsUploadShortFlim';
 function VerificationSection() {
  
   const [filmopen, setflimOpen] = useState(false);
@@ -66,9 +67,8 @@ function VerificationSection() {
         onCancel={() => setadsOpen(false)}
         width="70%"
         footer={null}
-
       >
-        <h1>Ads upload</h1>
+        <AdsUploadShortFlim/>
       </Modal>
 
     </>

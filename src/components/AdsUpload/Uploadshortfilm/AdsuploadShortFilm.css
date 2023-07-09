@@ -1,0 +1,325 @@
+.uploadSec_popup{
+  margin: 4vh 0 0 0 ;
+}
+.uploadpopup_btm{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+}
+
+.uploadpopup_btm button{
+  border-radius: 10px;
+  background: #FFF;
+  width: 140px;
+  height: 40px;
+  color: #212121;
+  font-family: Noto Sans;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.uploadSec_popup .ant-steps .ant-steps-item-finish .ant-steps-item-icon >.ant-steps-icon {
+ color: #ffffff;
+ font-size: larger;
+}
+
+.ant-steps .ant-steps-item-finish .ant-steps-item-icon {
+  background-color: #04b504ee;
+}
+
+.ant-steps .ant-steps-item-process>.ant-steps-item-container>.ant-steps-item-content>.ant-steps-item-title::after {
+  background-color: #fdfdfd66;
+}
+
+
+.upload_popup_inside{
+  padding: 3% 2%;
+  height: 60vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.upload_popup_inside::-webkit-scrollbar{
+width: 6px;
+}
+.upload_popup_inside::-webkit-scrollbar-thumb {
+background-color: rgb(185, 184, 184);
+outline: 1px solid rgba(222, 222, 222, 0.644);
+border-radius: 4px;
+
+}
+.upload_popup_inside b{
+  color: #FFF;
+  font-family: Noto Sans;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+/* ===========Input Fileds======>> */
+
+
+.label-float{
+  position: relative;
+  padding-top: 13px;
+  background-color: transparent;
+  margin: 2.5% 0%;
+}
+
+.label-float input{
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  outline: none;
+  width: 95%;
+  padding: 15px 20px;
+  font-size: 16px;
+  transition: all .1s linear;
+  -webkit-transition: all .1s linear;
+  -moz-transition: all .1s linear;
+  -webkit-appearance:none;
+  background-color: transparent;
+  color: #ffffff;
+}
+
+.label-float input:focus{
+  border: 2px solid #3951b2;
+}
+  
+.label-float label{
+  pointer-events: none;
+  position: absolute;
+  top: calc(50% - 8px);
+  left: 15px;
+  transition: all .1s linear;
+  -webkit-transition: all .1s linear;
+  -moz-transition: all .1s linear;
+  background-color: #16181f;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.label-float input:required:invalid + label{
+  color: white;
+}
+.label-float input:focus:required:invalid{
+  border: 2px solid #3951b2;
+}
+
+.label-float input:focus + label,
+.label-float input:not(:placeholder-shown) + label{
+  font-size: 13px;
+  top: 0;
+  color: #3951b2;
+}
+
+/* ======text area======>>>> */
+.label-float textarea{
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  outline: none;
+  min-width: 95%;
+  max-width: 95%;
+  padding: 15px 20px;
+  font-size: 16px;
+  transition: all .1s linear;
+  -webkit-transition: all .1s linear;
+  -moz-transition: all .1s linear;
+  -webkit-appearance:none;
+  background-color: transparent;
+  color: #ffffff;
+  min-height: 60px;
+  max-height: 100px;
+}
+
+.label-float textarea:focus{
+  border: 2px solid #3951b2;
+}
+  
+.label-float label{
+  pointer-events: none;
+  position: absolute;
+  top: calc(50% - 8px);
+  left: 15px;
+  transition: all .1s linear;
+  -webkit-transition: all .1s linear;
+  -moz-transition: all .1s linear;
+  background-color: #16181f;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.label-float textarea:required:invalid + label{
+  color: white;
+}
+.label-float textarea:focus:required:invalid{
+  border: 2px solid #3951b2;
+}
+.label-float textarea:focus + label,
+.label-float textarea:not(:placeholder-shown) + label{
+  font-size: 13px;
+  top: 0;
+  color: #3951b2;
+}
+
+
+.uplod_genre_div{
+  margin-bottom: 4%;
+}
+
+.uplod_genre_div label{
+  color: #FFF;
+  font-size: 18px;
+  font-family: Noto Sans;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 40px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+.uplod_genre_div input{
+ background-color: transparent;
+ width: 95%;
+ height: 45px;
+ border-radius: 5px;
+ border: 1px solid lightgrey;
+ padding: 0px 12px;
+ color: #fff;
+ font-size: 16px;
+}
+
+.uplod_genre_div .ant-select:not(.ant-select-customize-input) .ant-select-selector{
+ background-color: transparent;
+ min-height: 45px;
+}
+
+.uplod_genre_div .ant-select-multiple .ant-select-selection-item{
+   background-color: #363A48;
+   color: #FFF;
+}
+
+.uplod_genre_div .ant-select-multiple .ant-select-selection-item-remove{
+  color: #FFF;
+  
+}
+.div_checkbox{    
+  color: #FFF;
+  font-family: Noto Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 4px 0;
+}
+
+.ant-upload-text{
+  color: #FFF !important;
+  font-family: Noto Sans;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.image_upload_instr{
+  text-align: start;
+  color: #E1E6F0;
+  font-family: Noto Sans;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px;
+}
+
+.upld_img {
+  margin-top: 25px;
+}
+
+.upload_img_txt{
+  color: #FFF;
+  font-family: Noto Sans;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom:20px;
+}
+
+.ant-upload-wrapper .ant-upload-drag{
+  margin-top: 20px;
+}
+
+.ant-upload-drag-icon img {
+  width: 85px;
+  height: 85px;
+}
+
+.rolecastDiv{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 25px 0;
+}
+
+.rolecastDiv input{
+  border-radius: 5px;
+  border: 1px solid #4A4949;
+  width: 25vw;
+  background-color: transparent;
+  padding:0 10px;
+  height: 35px;
+  color: #FFF;
+
+}
+
+.castAddBtn{
+  border-radius: 5px;
+  border: 1px solid #fff;
+  padding: 5px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100px;
+  height: 40px;
+  background-color: transparent;
+  color: #FFF;
+  font-family: Noto Sans;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  cursor: pointer;
+}
+
+.upld_rolecast_list li{
+  color: #FFF;
+  font-family: Noto Sans;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.instr_ads_upload{
+  margin: 25px 0px;
+
+}
+
+.instr_ads_upload li{
+  color: #C5C5C5;
+  font-family: Noto Sans;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 45px;
+}
+
+.instr_ads_upload li b{
+  color: #fff;
+}
