@@ -6,7 +6,12 @@ import { closeicons, searchicon } from '../../Assests/Svg/Commonsvg';
 function Searchpage() {
 
   const navigate = useNavigate();
-  
+  const Genrelist = [
+    "Action",
+    "Drama",
+    "Thirller",
+    "Romance",
+    "Comedy",  ];
   
     
     
@@ -19,6 +24,13 @@ function Searchpage() {
 
         <div className='searchbar-Div'>
         <Input size="large" placeholder="Search short films, uploader’s name, etc...  " prefix={searchicon} />
+        <select className='search_genre'>
+        {Genrelist?.map((item,id)=>{
+              return(
+                <option key={id}>{item}</option>
+              )
+            })}
+        </select>
         </div>
     </div>
   )

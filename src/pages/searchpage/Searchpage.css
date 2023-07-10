@@ -25,3 +25,28 @@ align-items: center;
 gap: 10px;
 cursor: pointer;
 }
+
+.searchbar-Div{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.search_genre{
+    border-radius: 10px;
+    border: 1px solid #4A4949;
+    width: 16vw;
+    height: 45px;
+    background-color: transparent;
+    color: #FFF;
+    font-family: Noto Sans;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    padding: 0px 4px;
+}
+.search_genre option{
+    background-color: #363A48;
+    padding: 4px 5px;
+}

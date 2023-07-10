@@ -182,7 +182,7 @@
   }
 
 
-  .uplod_genre_div input{
+  .uplod_genre_div select{
    background-color: transparent;
    width: 95%;
    height: 45px;
@@ -191,6 +191,9 @@
    padding: 0px 12px;
    color: #fff;
    font-size: 16px;
+  }
+  .uplod_genre_div select option{
+    background-color: #363A48;
   }
 
   .uplod_genre_div .ant-select:not(.ant-select-customize-input) .ant-select-selector{

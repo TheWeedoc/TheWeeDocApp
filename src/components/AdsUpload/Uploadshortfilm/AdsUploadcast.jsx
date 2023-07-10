@@ -2,16 +2,9 @@ import React,{useState,useEffect} from 'react'
 import "./AdsuploadShortFilm.css"
 import { AddUploadBtn } from '../../../Assests/Svg/Commonsvg';
 function AdsUploadcast() {
-  const [data, setData] = useState([]);
-  const [userId, setUserId] = useState('');
-  const [role, setRole] = useState('');
+ const [count,setCount] = useState()
 
-  const handleAdd = () => {
-    const newData = [...data, { userId, role }];
-    setData(newData);
-    setUserId('');
-    setRole('');
-  };
+ const total = count * 5
 
   return (
     <div className='upload_popup_inside'>
@@ -24,8 +17,17 @@ function AdsUploadcast() {
     </ul>
     <b>Enter the number of persons you want to view your advertisement </b>
 
-    <div>
-      <input style={{width:"100%",marginTop:"20px"}} type="range" name="" id="" />
+    <div className='price_amount'>
+      <div className='count_priceDiv'>
+          <div>
+            <input type='number' className='pricecount_input' onChange={e=>setCount(e.target.value)} value={count}/>
+            <span>Viewer</span>
+          </div>
+          <div>
+            <b>Estimated amount : ₹ {total}.00</b>
+          </div>
+      </div>
+      <input style={{width:"100%",marginTop:"20px"}} value={count} onChange={e=>setCount(e.target.value)} min="50" max="1000" type="range" name="" id="" />
     </div>
    
     </div>

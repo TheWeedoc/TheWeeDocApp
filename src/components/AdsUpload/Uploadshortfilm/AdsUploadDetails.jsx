@@ -47,7 +47,7 @@ function AdsUploadDetails() {
 
         <div className='uplod_genre_div'>
         <label style={{fontSize:"15px"}}>Your website link or the page link you want to take your users when clicked on the ad </label>
-        <input type="url" placeholder='Enter your website link' />
+        <input type="url" className="upload_web_url" placeholder='Enter your website link' />
         </div>
 
     </div>

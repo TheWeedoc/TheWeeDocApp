@@ -10,6 +10,10 @@ function UploadDetails() {
      "Romance",
      "Comedy",  ];
 
+ const Languagelist = [
+  "Tamil","English","Hindi","Gujarati", "Urdu", "Kannada", "Odia", "Malayalam", "Bengali", "Marathi", "Telugu" 
+ ]
+
   const [selectedItems, setSelectedItems] = useState([]);
   const filteredOptions = options.filter((o) => !selectedItems.includes(o))
 
@@ -47,20 +51,15 @@ function UploadDetails() {
 
         <div className='uplod_genre_div'>
           <label>Language* </label>
-        
-          <Select
-              mode="multiple"
-              placeholder="Inserted are removed"
-              value={selectedItems}
-              onChange={setSelectedItems}
-              style={{
-                width: '100%',
-              }}
-              options={filteredOptions.map((item) => ({
-                value: item,
-                label: item,
-              }))}
-            />    
+          <select placeholder='Select your Language'>
+            {Languagelist?.map((item,id)=>{
+              return(
+                <option key={id}>{item}</option>
+              )
+            })}
+          </select>
+             
+                
         </div>
 
         <div className='uplod_genre_div'>
