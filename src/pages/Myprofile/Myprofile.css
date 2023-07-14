@@ -1,0 +1,33 @@
+.myprofile_page{
+    padding: 2vh 7vw;
+}
+
+.myprofile_header_div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: 0.6px solid var(--line, #4A4949);
+    background: rgba(22, 24, 31, 0.90);
+    backdrop-filter: blur(20px);
+    min-height: 200px;
+}
+
+.myprofile_img{
+    border-radius: 183px;
+    border: 2px solid #FFF;
+    width: 175px;
+    height: 175px;
+    border-radius: 50%;
+}
+
+.profile_name{
+    color:  #FAFBFF;
+    font-family: Noto Sans;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 28px;
+    margin: 0px;
+}

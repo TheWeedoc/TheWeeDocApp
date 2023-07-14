@@ -76,3 +76,25 @@ export const Addvideoicon = <svg width="40" height="40" viewBox="0 0 40 40" fill
 export const AddUploadBtn = <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M10 0C4.47998 0 0 4.47998 0 10C0 15.52 4.47998 20 10 20C15.52 20 20 15.52 20 10C20 4.47998 15.52 0 10 0ZM10.5 5C10.7761 5 11 5.22388 11 5.5V9H14.5C14.7761 9 15 9.22388 15 9.5V10.5C15 10.7761 14.7761 11 14.5 11H11V14.5C11 14.7761 10.7761 15 10.5 15H9.5C9.22388 15 9 14.7761 9 14.5V11H5.5C5.22388 11 5 10.7761 5 10.5V9.5C5 9.22388 5.22388 9 5.5 9H9V5.5C9 5.22388 9.22388 5 9.5 5H10.5Z" fill="white" fill-opacity="0.95"/>
 </svg>
+
+
+export const EditprofileIcon = <svg width="55" height="50" viewBox="0 0 70 69" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_bd_464_429)">
+<rect x="10" width="50" height="50" rx="25" fill="#222222" fill-opacity="0.7" shape-rendering="crispEdges"/>
+</g>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M44.0148 15.3967C43.1141 14.496 41.9155 14 40.6387 14C39.3643 14 38.1633 14.496 37.2614 15.3991L24.9093 27.7512C24.7574 27.9031 24.6494 28.093 24.5971 28.3018L24.0025 34.7654C23.9992 34.8016 23.9992 34.8379 24.0025 34.8741C24.0325 35.2004 24.3213 35.4406 24.6477 35.4106L31.1133 34.8167C31.3209 34.7657 31.5119 34.6565 31.6639 34.5046L44.016 22.1525C44.9178 21.2506 45.4138 20.0497 45.4138 18.7752C45.4138 17.4995 44.9178 16.2986 44.0148 15.3967ZM41.4279 21.3841L42.3378 20.4743C42.7936 20.0184 43.0406 19.4216 43.0406 18.7752C43.0406 18.1278 42.7938 17.5315 42.3366 17.0749C41.8812 16.6195 41.2864 16.3734 40.6387 16.3734C39.9925 16.3734 39.3963 16.6202 38.9397 17.0773L38.0304 17.9866L41.4279 21.3841ZM26.7568 29.26L26.4292 32.9839L30.1545 32.6576L39.7496 23.0624L36.3521 19.6648L26.7568 29.26Z" fill="white" fill-opacity="0.95"/>
+<defs>
+<filter id="filter0_bd_464_429" x="0.853659" y="-3.65854" width="68.2927" height="71.9512" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feGaussianBlur in="BackgroundImageFix" stdDeviation="1.82927"/>
+<feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_464_429"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="9.14634"/>
+<feGaussianBlur stdDeviation="4.57317"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="effect1_backgroundBlur_464_429" result="effect2_dropShadow_464_429"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_464_429" result="shape"/>
+</filter>
+</defs>
+</svg>

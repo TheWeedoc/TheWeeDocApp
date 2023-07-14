@@ -29,8 +29,6 @@ import { get,post,put,del } from "./Mainclient";
       .then((resp) => {
         return resp.data;
       })
-      .catch((error) => {
-        return error.response;
-      });
+     
     return login;
   };

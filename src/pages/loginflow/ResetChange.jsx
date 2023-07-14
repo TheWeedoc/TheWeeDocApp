@@ -22,7 +22,11 @@ function ResetChange() {
                         You will be receiving an email soon allowing to rest your password. Please make sure to check your spam if not received.
                         </span>
                 </div>    
-            
+                <a target="_blank" href="https://mail.google.com/mail/u/0/#inbox" rel="noopener noreferrer" >
+                <button htmlType="submit" className="loginbtn">
+                     check mail
+                </button>
+                </a>
             </div>
 
 
