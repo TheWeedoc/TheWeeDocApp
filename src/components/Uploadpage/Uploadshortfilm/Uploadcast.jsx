@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import "./uploadShortFilm.css"
 import { AddUploadBtn } from '../../../Assests/Svg/Commonsvg';
-function Uploadcast() {
+function Uploadcast({current,onNext,onPrev}) {
   const [data, setData] = useState([]);
   const [userId, setUserId] = useState('');
   const [role, setRole] = useState('');
@@ -41,7 +41,18 @@ function Uploadcast() {
           </li>
         ))}
       </ol>
+      <div className='uploadpopup_btm'>
+          {current > 0 && (
+            <button onClick={onPrev}>
+              Previous
+            </button>
+          )}
 
+            <button>
+              Upload Video
+            </button>
+       
+        </div>
     </div>
   )
 }

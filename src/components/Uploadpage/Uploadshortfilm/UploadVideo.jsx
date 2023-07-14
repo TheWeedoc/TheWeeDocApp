@@ -2,7 +2,7 @@ import React from 'react'
 import "./uploadShortFilm.css"
 import { message, Upload } from 'antd';
 import UploadIcon from "../../../Assests/Images/UploadIcon.png"
-function UploadVideo() {
+function UploadVideo({current,onNext,onPrev}) {
 
   const { Dragger } = Upload;
 const props = {
@@ -58,6 +58,20 @@ const props = {
           </ul> */}
       </Dragger>  
       </div>
+
+      <div className='uploadpopup_btm'>
+          {current > 0 && (
+            <button onClick={onPrev}>
+              Previous
+            </button>
+          )}
+
+          {current === 1 && (
+            <button  onClick={onNext}>
+              Next
+            </button>
+          )}
+        </div>
     </div>
   )  
 }

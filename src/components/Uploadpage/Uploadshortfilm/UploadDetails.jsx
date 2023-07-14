@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import "./uploadShortFilm.css"
 import { Select } from 'antd';
-function UploadDetails() {
+function UploadDetails({onNext}) {
 
   const options = [
      "Action",
@@ -69,7 +69,9 @@ function UploadDetails() {
          <div className='div_checkbox'><input type='radio' name='a'/> <span>Above 18 years</span> </div>
 
         </div>
-
+        <div className='uploadpopup_btm'>
+           <button onClick={onNext}>Next</button>
+          </div>
     </div>
   )
 }
