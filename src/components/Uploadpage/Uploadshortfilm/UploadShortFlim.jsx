@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
-import { Steps, theme } from 'antd';
+import { Steps } from 'antd';
 import "./uploadShortFilm.css";
 import UploadDetails from './UploadDetails';
 import UploadVideo from './UploadVideo';
 import Uploadcast from './Uploadcast';
+import { AddProduct } from '../../../Api/Fetchclient';
 
 function UploadShortFlim() {
 
   const [current, setCurrent] = useState(0);
   const [stepCompletion, setStepCompletion] = useState([false, false, false]);
+  
+  const [formData, setFormData] = useState({});
   
   const next = () => {
     setCurrent(current + 1);
@@ -18,19 +21,26 @@ function UploadShortFlim() {
     setCurrent(current - 1);
   };
 
+
+  const postProduct = async()=>{
+        const add = await AddProduct().then((res)=>{
+        console.log(res,"addvideodata");
+       })
+  }
+
   
   const steps = [
     {
       title: 'Details',
-      content: <UploadDetails onNext={next} />,
+      content: <UploadDetails onNext={next} formData={formData} setFormData={setFormData}/>,
     },
     {
       title: 'Images & video',
-      content: <UploadVideo onNext={next} current={current} onPrev={prev}/>,
+      content: <UploadVideo onNext={next} current={current} onPrev={prev} formData={formData} setFormData={setFormData}/>,
     },
     {
       title: 'Cast & Crew',
-      content: <Uploadcast onNext={next} current={current} onPrev={prev} />,
+      content: <Uploadcast onNext={next} current={current} onPrev={prev} formData={formData} setFormData={setFormData}/>,
     },
   ];
 
@@ -55,25 +65,6 @@ function UploadShortFlim() {
     <div className='uploadSec_popup'>
       <Steps current={current} items={items} />
       <div>{steps[current].content}</div>
-      {/* <div style={{ marginTop: 24 }}>
-        <div className='uploadpopup_btm'>
-          {current > 0 && (
-            <button onClick={prev}>
-              Previous
-            </button>
-          )}
-
-          {current === steps.length - 1 ? (
-            <button disabled={isNextDisabled} onClick={next}>
-              Done
-            </button>
-          ) : (
-            <button disabled={isNextDisabled} onClick={next}>
-              Next
-            </button>
-          )}
-        </div>
-      </div> */}
     </div>
   );
 }

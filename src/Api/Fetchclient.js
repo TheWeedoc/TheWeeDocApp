@@ -32,3 +32,15 @@ import { get,post,put,del } from "./Mainclient";
      
     return login;
   };
+
+
+
+  export const AddProduct = async(data) => {
+     const add = await post("/products/create/",data)
+     .then((resp)=>{
+        return resp.data
+     }).catch((error) => {
+      return error.response;
+    });
+    return add
+  }

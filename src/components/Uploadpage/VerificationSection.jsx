@@ -31,12 +31,12 @@ function VerificationSection() {
                      <span>Upload & Verify the <b>Short Film</b></span>
                   </div>
            </div>
-           <div className='uploadBox' onClick={()=>setadsOpen(true)}>
+           {/* <div className='uploadBox' onClick={()=>setadsOpen(true)}>
                   <div className='uploadboxText' >
                      <div>{Addvideoicon}</div>
                      <span>Upload & Verify your <b>Advertisment</b></span>
                   </div>
-           </div>
+           </div> */}
        </div>
 
        <h3 className='verifiedHeadin'>Uploaded Films for Verification</h3>

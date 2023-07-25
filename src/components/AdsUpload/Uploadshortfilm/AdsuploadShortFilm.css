@@ -67,7 +67,7 @@ border-radius: 4px;
   position: relative;
   padding-top: 13px;
   background-color: transparent;
-  margin: 2.5% 0%;
+  margin: 2.5% 0 5px 0;
 }
 
 .label-float input{
@@ -142,7 +142,7 @@ border-radius: 4px;
 .label-float label{
   pointer-events: none;
   position: absolute;
-  top: calc(50% - 8px);
+  top: calc(50% - 18px);
   left: 15px;
   transition: all .1s linear;
   -webkit-transition: all .1s linear;
@@ -167,7 +167,7 @@ border-radius: 4px;
 
 
 .uplod_genre_div{
-  margin-bottom: 4%;
+  margin-bottom: 2%;
 }
 
 .uplod_genre_div label{
