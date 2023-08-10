@@ -98,3 +98,41 @@ export const EditprofileIcon = <svg width="55" height="50" viewBox="0 0 70 69" f
 </filter>
 </defs>
 </svg>
+
+
+export const Profileicon = <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="18" cy="18" r="18" fill="url(#paint0_linear_1165_25683)"/>
+<g clip-path="url(#clip0_1165_25683)">
+<mask id="mask0_1165_25683" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="37" height="36">
+<circle cx="18.001" cy="18" r="18" fill="#1EAE7A"/>
+</mask>
+<g mask="url(#mask0_1165_25683)">
+<g style="mix-blend-mode:hard-light">
+<path d="M18.1782 25.3984C24.5239 25.3984 29.7382 31.0268 29.7382 38.0692C29.7382 38.5144 29.4176 38.7984 29.1126 38.7984H7.24376C6.9387 38.7984 6.61816 38.5144 6.61816 38.0692C6.61816 31.0268 11.8324 25.3984 18.1782 25.3984Z" fill="url(#paint1_linear_1165_25683)"/>
+<path d="M18.1782 25.3984C24.5239 25.3984 29.7382 31.0268 29.7382 38.0692C29.7382 38.5144 29.4176 38.7984 29.1126 38.7984H7.24376C6.9387 38.7984 6.61816 38.5144 6.61816 38.0692C6.61816 31.0268 11.8324 25.3984 18.1782 25.3984Z" stroke="white"/>
+</g>
+<g style="mix-blend-mode:hard-light">
+<path d="M24.6071 15.2191C24.6071 18.7703 21.7283 21.6491 18.1771 21.6491C14.6259 21.6491 11.7471 18.7703 11.7471 15.2191C11.7471 11.6679 14.6259 8.78906 18.1771 8.78906C21.7283 8.78906 24.6071 11.6679 24.6071 15.2191Z" fill="url(#paint2_linear_1165_25683)"/>
+<path d="M24.6071 15.2191C24.6071 18.7703 21.7283 21.6491 18.1771 21.6491C14.6259 21.6491 11.7471 18.7703 11.7471 15.2191C11.7471 11.6679 14.6259 8.78906 18.1771 8.78906C21.7283 8.78906 24.6071 11.6679 24.6071 15.2191Z" stroke="white"/>
+</g>
+</g>
+</g>
+<defs>
+<linearGradient id="paint0_linear_1165_25683" x1="8.63999" y1="1.98001" x2="37.5273" y2="32.3892" gradientUnits="userSpaceOnUse">
+<stop stop-color="#FFB13C"/>
+<stop offset="0.990467" stop-color="#D08515"/>
+</linearGradient>
+<linearGradient id="paint1_linear_1165_25683" x1="6.11816" y1="33.8584" x2="31.4472" y2="33.9721" gradientUnits="userSpaceOnUse">
+<stop stop-color="#FFB13C"/>
+<stop offset="1" stop-color="#D08515"/>
+</linearGradient>
+<linearGradient id="paint2_linear_1165_25683" x1="11.2471" y1="16.9131" x2="25.802" y2="16.9521" gradientUnits="userSpaceOnUse">
+<stop stop-color="#FFB13C"/>
+<stop offset="1" stop-color="#D08515"/>
+</linearGradient>
+<clipPath id="clip0_1165_25683">
+<rect width="27.72" height="27.72" fill="white" transform="translate(4.32129 8.28125)"/>
+</clipPath>
+</defs>
+</svg>
+
