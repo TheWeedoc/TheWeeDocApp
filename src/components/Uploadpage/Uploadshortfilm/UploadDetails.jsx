@@ -1,15 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import "./uploadShortFilm.css";
-import { Select } from 'antd';
+import { Select } from "antd";
 
-function UploadDetails({ onNext, formData, setFormData }) {
-  const options = [
-    "Action",
-    "Drama",
-    "Thriller",
-    "Romance",
-    "Comedy",
-  ];
+function  UploadDetails({ onNext, formData, setFormData }) {
+  const options = ["Action", "Drama", "Thriller", "Romance", "Comedy"];
 
   const Languagelist = [
     "Tamil",
@@ -26,19 +20,19 @@ function UploadDetails({ onNext, formData, setFormData }) {
   ];
 
   const [selectedItems, setSelectedItems] = useState([]);
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [age, setAge] = useState('');
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [age, setAge] = useState("");
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
   useEffect(() => {
     // Update the form data in the parent component
     const updatedFormData = {
       ...formData,
-      "title": title,
-      "description": description,
-      "cast": selectedItems,
-      "age": age
+      title: title,
+      description: description,
+      cast: selectedItems,
+      age: age,
     };
     setFormData(updatedFormData);
   }, [title, description, selectedItems, age]);
@@ -55,7 +49,13 @@ function UploadDetails({ onNext, formData, setFormData }) {
     setIsFormSubmitted(true);
 
     // If any of the required fields are empty, prevent moving to the next step
-    if (!isTitleValid || !isDescriptionValid || !isGenreValid || !isLanguageValid || !isAgeValid) {
+    if (
+      !isTitleValid ||
+      !isDescriptionValid ||
+      !isGenreValid ||
+      !isLanguageValid ||
+      !isAgeValid
+    ) {
       return;
     }
 
@@ -64,10 +64,10 @@ function UploadDetails({ onNext, formData, setFormData }) {
   };
 
   return (
-    <div className='upload_popup_inside'>
+    <div className="upload_popup_inside">
       <b>Details</b>
 
-      <div className={`label-float ${isFormSubmitted && !title && 'error'}`}>
+      <div className={`label-float ${isFormSubmitted && !title && "error"}`}>
         <input
           type="text"
           placeholder=" "
@@ -76,10 +76,14 @@ function UploadDetails({ onNext, formData, setFormData }) {
           required
         />
         <label>Title Name*</label>
-        {isFormSubmitted && !title && <span className='error-message'>Title is required</span>}
+        {isFormSubmitted && !title && (
+          <span className="error-message">Title is required</span>
+        )}
       </div>
 
-      <div className={`label-float ${isFormSubmitted && !description && 'error'}`}>
+      <div
+        className={`label-float ${isFormSubmitted && !description && "error"}`}
+      >
         <textarea
           type="text"
           placeholder="Write an attractive description about the short film..."
@@ -88,10 +92,12 @@ function UploadDetails({ onNext, formData, setFormData }) {
           required
         />
         <label>Description*</label>
-        {isFormSubmitted && !description && <span className='error-message'>Description is required</span>}
+        {isFormSubmitted && !description && (
+          <span className="error-message">Description is required</span>
+        )}
       </div>
 
-      <div className='uplod_genre_div'>
+      <div className="uplod_genre_div">
         <label>Genre* </label>
 
         <Select
@@ -100,40 +106,63 @@ function UploadDetails({ onNext, formData, setFormData }) {
           value={selectedItems}
           onChange={setSelectedItems}
           style={{
-            width: '100%',
+            width: "100%",
           }}
           options={options.map((item) => ({
             value: item,
             label: item,
           }))}
         />
-        {isFormSubmitted && selectedItems.length === 0 && <span className='error-message'>Genre is required</span>}
+        {isFormSubmitted && selectedItems.length === 0 && (
+          <span className="error-message">Genre is required</span>
+        )}
       </div>
 
-      <div className='uplod_genre_div'>
+      <div className="uplod_genre_div">
         <label>Language* </label>
-        <select placeholder='Select your Language'>
+        <select placeholder="Select your Language">
           {Languagelist?.map((item, id) => {
-            return (
-              <option key={id}>{item}</option>
-            )
+            return <option key={id}>{item}</option>;
           })}
         </select>
       </div>
 
-      <div className='uplod_genre_div'>
+      <div className="uplod_genre_div">
         <label>Age Barrier*</label>
-        <div className='div_checkbox'><input type='radio' name='a' onChange={() => setAge("Below 13 years")} /> <span>Below 13 years</span> </div>
-        <div className='div_checkbox'><input type='radio' name='a' onChange={() => setAge("Above 13 years")} /> <span>Above 13 years</span> </div>
-        <div className='div_checkbox'><input type='radio' name='a' onChange={() => setAge("Above 18 years")} /> <span>Above 18 years</span> </div>
+        <div className="div_checkbox">
+          <input
+            type="radio"
+            name="a"
+            onChange={() => setAge("Below 13 years")}
+          />{" "}
+          <span>Below 13 years</span>{" "}
+        </div>
+        <div className="div_checkbox">
+          <input
+            type="radio"
+            name="a"
+            onChange={() => setAge("Above 13 years")}
+          />{" "}
+          <span>Above 13 years</span>{" "}
+        </div>
+        <div className="div_checkbox">
+          <input
+            type="radio"
+            name="a"
+            onChange={() => setAge("Above 18 years")}
+          />{" "}
+          <span>Above 18 years</span>{" "}
+        </div>
       </div>
-      {isFormSubmitted && !age && <span className='error-message'>Age is required</span>}
+      {isFormSubmitted && !age && (
+        <span className="error-message">Age is required</span>
+      )}
 
-      <div className='uploadpopup_btm'>
+      <div className="uploadpopup_btm">
         <button onClick={handleNext}>Next</button>
       </div>
     </div>
-  )
+  );
 }
 
 export default UploadDetails;

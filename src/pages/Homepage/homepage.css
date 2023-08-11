@@ -1,171 +1,172 @@
-.BannerDiv{
-    width: 100%;
-    height: 72vh;
-    position: relative;
-
+.BannerDiv {
+  width: 100%;
+  height: 72vh;
+  position: relative;
 }
 
 .mask {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* background: linear-gradient(to right, rgba(0, 0, 0, 1.2), transparent); */
-    background: linear-gradient(90deg, #0A0A0D 27.44%, rgba(10, 10, 13, 0.00) 93.46%, rgba(10, 10, 13, 0.95) 100%);
-    z-index: 1;
-    opacity: 1;
-  }
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background: linear-gradient(to right, rgba(0, 0, 0, 1.2), transparent); */
+  background: linear-gradient(
+    90deg,
+    #0a0a0d 27.44%,
+    rgba(10, 10, 13, 0) 93.46%,
+    rgba(10, 10, 13, 0.95) 100%
+  );
+  z-index: 1;
+  opacity: 1;
+}
 
 .BannerDiv img {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 
-.bannercontDiv{
-    position: absolute;
-    top: 10vh;
-    left: 8vw;
-    z-index: 2;
-    width: 35vw;
+.bannercontDiv {
+  position: absolute;
+  top: 10vh;
+  left: 8vw;
+  z-index: 2;
+  width: 35vw;
 }
 
- .usernameDiv{
-    display: flex;
-    align-items: center;
-    margin: 0px 0px 14px 0px ;
- }
-
- .usernameDiv img {
-   width: 50px;
-   height: 50px;
-   border-radius: 50%; 
-   background-size: cover;
+.usernameDiv {
+  display: flex;
+  align-items: center;
+  margin: 0px 0px 14px 0px;
 }
 
+.usernameDiv img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-size: cover;
+}
 
 .usernameDiv h4 {
-    font-family: 'Noto Sans';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 22px;
-    margin: 0px 12px 0px 12px ;
-    color: #FFFFFF;
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  margin: 0px 12px 0px 12px;
+  color: #ffffff;
 }
 
 .usernameDiv button {
-    width: 85px;
-    height: 34px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(3px);
-    border-radius: 5px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #FFFFFF;
-    border: none;
-    cursor: pointer;
+  width: 85px;
+  height: 34px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(3px);
+  border-radius: 5px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
 }
 
-
-.titlename{
-    font-family: 'Noto Sans';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 34px;
-    line-height: 46px;
-    display: flex;
-    align-items: center;
-    color: #FFFFFF;
+.titlename {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 46px;
+  display: flex;
+  align-items: center;
+  color: #ffffff;
 }
 
-
-.catagoryDiv{
-    display: flex;
-    align-items: center;
+.catagoryDiv {
+  display: flex;
+  align-items: center;
 }
 
 .catagoryDiv div {
-    border-right: 1px solid #FFFFFF;
-    padding: 0px 10px;
-    color: #FFFFFF;
+  border-right: 1px solid #ffffff;
+  padding: 0px 10px;
+  color: #ffffff;
 }
 
-.description{
-    font-family: 'Noto Sans';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 28px;
-    display: flex;
-    align-items: center;
-    color: #C5C5C5;
-    margin-top: 16px;
+.description {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+  display: flex;
+  align-items: center;
+  color: #c5c5c5;
+  margin-top: 16px;
 }
 
-.playbtnDiv{
-    display: flex;
-    align-items: center;
-    margin-top: 30px;
+.playbtnDiv {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
 }
 
 .playbtnDiv button {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(3px);
-    border-radius: 5px;
-    margin-right: 20px;
-    color: #FFFFFF;
-    width:130px;
-    height:45px;
-    border: none;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(3px);
+  border-radius: 5px;
+  margin-right: 20px;
+  color: #ffffff;
+  width: 130px;
+  height: 45px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 27px;
+}
+
+.playbtnDiv div {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(3px);
+  border-radius: 5px;
+  width: 50px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-CardsSection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(390px, 1fr));
+  gap: 35px;
+  padding: 8vh 6vw;
+}
+
+@media screen and (max-width: 820px) {
+  .BannerDiv {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  .mask {
+    width: 60%;
+    height: 100%;
+  }
+
+  .bannercontDiv {
+    width: 65vw;
+  }
+  .home-CardsSection {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 27px;
-}
-
-.playbtnDiv div{
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(3px);
-    border-radius: 5px;
-    width:50px;
-    height:45px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.home-CardsSection{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(390px, 1fr));;
-    gap: 35px;
-    padding: 8vh 6vw;
-}
-
-@media screen and (max-width:820px){
-    .BannerDiv{
-        width: 100%;
-        height: 100%;
-        position: relative;
-    }
-    .mask {
-        width: 60%;
-        height: 100%;
-      }
-
-    .bannercontDiv{
-      width: 65vw;
-    }
-    .home-CardsSection{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+  }
 }

@@ -129,3 +129,14 @@ code {
 .ant-steps .ant-steps-item-wait .ant-steps-item-icon{
   background-color: #c0c0c0e6 ;
 }
+
+
+/*upload section css starts*/
+
+.ant-upload-wrapper .ant-upload-list .ant-upload-list-item-error .ant-upload-list-item-name{
+  color: #15892f;
+}
+.ant-upload-wrapper .ant-upload-list .ant-upload-list-item-error .ant-upload-list-item-actions .anticon{
+  color: #15892f;
+}
+/*upload section css ends*/
