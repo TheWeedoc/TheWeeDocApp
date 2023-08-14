@@ -15,7 +15,7 @@ function Indivialpage() {
       <Header />
       <div className="indivialpage-main-Div">
         <Videoplayer />
-        <div className="vid-topDiv">
+        <div className="vid-topDiv flex flex-col space-y-2 md:space-y-0 md:flex-row">
           <div className="vid-topleft">
             <h1>Left Right Left</h1>
             <div className="options_div">

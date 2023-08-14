@@ -19,6 +19,9 @@ const VerifyPage = React.lazy(() => import("./pages/loginflow/VerifyPage"));
 const ResetChange = React.lazy(() => import("./pages/loginflow/ResetChange"));
 const Myprofile = React.lazy(() => import("./pages/Myprofile/Myprofile"));
 const Editprofile = React.lazy(() => import("./pages/Myprofile/Editprofile"));
+const PrivacyPolicy = React.lazy(() =>
+  import("./pages/PrivacyPolicy/PrivacyPolicy")
+);
 
 function Markup() {
   const isLoggedIn = useIsLoggedIn();
@@ -33,6 +36,7 @@ function Markup() {
             <Route exact path="/upload" element={<Uploadpage />} />
             <Route exact path="/myprofile" element={<Myprofile />} />
             <Route exact path="/edit_profile" element={<Editprofile />} />
+            <Route exact path="/privacypolicy" element={<PrivacyPolicy />} />
 
             {/* <<<<=====================Login Auth Flow========================>>> */}
             {!isLoggedIn ? (

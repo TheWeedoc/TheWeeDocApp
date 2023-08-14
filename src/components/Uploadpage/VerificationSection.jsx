@@ -22,7 +22,7 @@ function VerificationSection() {
     },
   ];
   return (
-    <>
+    <div className="mx-2 md:px-0 ">
       <div className="uploadDiv">
         <div className="uploadBox" onClick={() => setflimOpen(true)}>
           <div className="uploadboxText">
@@ -42,7 +42,7 @@ function VerificationSection() {
 
       <h3 className="verifiedHeadin">Uploaded Films for Verification</h3>
 
-      <div className="verifiy-CardsSection">
+      <div className="verifiy-CardsSection p-2">
         {cardarr?.map((item, id) => {
           return <Homepagecard item={item} />;
         })}
@@ -53,7 +53,7 @@ function VerificationSection() {
         centered
         open={filmopen}
         onCancel={() => setflimOpen(false)}
-        width="70%"
+        width={window.innerWidth < 768 ? "100%" : "70%"}
         footer={null}
       >
         <UploadShortFlim />
@@ -64,12 +64,12 @@ function VerificationSection() {
         centered
         open={adsopen}
         onCancel={() => setadsOpen(false)}
-        width="70%"
+        width={window.innerWidth < 768 ? "100%" : "70%"}
         footer={null}
       >
         <AdsUploadShortFlim />
       </Modal>
-    </>
+    </div>
   );
 }
 

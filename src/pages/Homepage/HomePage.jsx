@@ -214,9 +214,9 @@ function HomePage() {
 
       {/* <<<<<<=================== Cards Sections ===================>>>>>> */}
 
-      <div className="home-CardsSection">
+      <div className="home-CardsSection px-3">
         {cardarr?.map((item, id) => {
-          return <Homepagecard item={item} />;
+          return <Homepagecard key={id} item={item} />;
         })}
       </div>
     </>

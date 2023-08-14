@@ -30,7 +30,7 @@ function Uploadpage() {
   return (
     <>
       <Header />
-      <div className="uploadMainDiv">
+      <div className="uploadMainDiv  ">
         <h2>Uploads & status</h2>
         <Tabs defaultActiveKey="1" items={items} onChange={onChange} />;
       </div>

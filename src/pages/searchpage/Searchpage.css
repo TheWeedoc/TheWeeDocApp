@@ -48,5 +48,5 @@ cursor: pointer;
 }
 .search_genre option{
     background-color: #363A48;
-    padding: 4px 5px;
+    /* padding: 4px 5px; */
 }

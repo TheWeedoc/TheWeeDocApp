@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import "./Loginflow.css";
-import {Form, Input, Spin } from "antd";
+import { Form, Input, Spin } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { LoadingOutlined } from "@ant-design/icons";
 import { resetpassword } from "../../Api/Fetchclient";
 
 function Resetpage() {
-
   const [formErrors, setFormErrors] = useState({});
   const [load, setLoad] = useState(false);
 
@@ -31,8 +30,8 @@ function Resetpage() {
       const response = await resetpassword(data);
       console.log("Reset response", response);
       setLoad(false);
-      if (response.detail ==="Password reset email has been sent") {
-        navigate("/reset_mail_sent")
+      if (response.detail === "Password reset email has been sent") {
+        navigate("/reset_mail_sent");
       }
     } catch (error) {
       if (error.response && error.response.status === 404) {
@@ -43,28 +42,24 @@ function Resetpage() {
       setLoad(false);
     }
   };
-  
-  
-  
 
   const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
+    console.log("Failed:", errorInfo);
     const formErrors = {};
     errorInfo.errorFields.forEach((field) => {
       formErrors[field.name[0]] = field.errors[0];
     });
     setFormErrors(formErrors);
   };
-  
 
   return (
     <div className="loginMainDiv">
-      <div className="log_leftside">
+      {/* <div className="log_leftside">
         <div className="text-container">
           <h2>Clumsycloverclowns</h2>
           <h1>Short Film Platform</h1>
         </div>
-      </div>
+      </div> */}
       <div className="log_rightside">
         <div className="WeeDocTxt_div">
           {/* <img src={WeeDoc} alt="TheWeeDoc" /> */}
@@ -98,25 +93,26 @@ function Resetpage() {
             onFinishFailed={onFinishFailed}
             autoComplete="off"
           >
-                       <Form.Item
-                          name="email"
-                          rules={[
-                            {
-                              type: "email",
-                              message: "The input is not a valid email!",
-                            },
-                            {
-                              required: true,
-                              message: "Please input your email",
-                            },
-                            ]}
-                            validateStatus={formErrors.email  ? "error" : ""}
-                            help={formErrors.email  ? formErrors.email : ""}
-                          >
-                          <Input placeholder="Enter your email or phone number" className="form_inputfields" />
-                        </Form.Item>
-
-
+            <Form.Item
+              name="email"
+              rules={[
+                {
+                  type: "email",
+                  message: "The input is not a valid email!",
+                },
+                {
+                  required: true,
+                  message: "Please input your email",
+                },
+              ]}
+              validateStatus={formErrors.email ? "error" : ""}
+              help={formErrors.email ? formErrors.email : ""}
+            >
+              <Input
+                placeholder="Enter your email or phone number"
+                className="form_inputfields"
+              />
+            </Form.Item>
 
             <button htmlType="submit" className="loginbtn">
               {load ? <Spin indicator={antIcon} /> : "Send Link"}
@@ -127,7 +123,10 @@ function Resetpage() {
         <div className="log_btm-sec">
           <p>
             By logging In, you accept The Wee Doc’s <br />
-            <b>Terms & Conditions</b> and <b>Privacy Policy</b>
+            <b>Terms & Conditions</b> and{" "}
+            <b>
+              <Link to="/privacypolicy">Privacy Policy</Link>
+            </b>
           </p>
         </div>
       </div>
