@@ -88,7 +88,7 @@ function Header() {
           )} */}
         </div>
 
-        <div className="md:hidden flex items-center gap-3 ">
+        <div className="md:hidden flex items-center gap-3 z-10">
           <div>
             <Link to="/search">{SearchIcon}</Link>
           </div>
@@ -98,7 +98,7 @@ function Header() {
           <div
             className={
               menuOpen
-                ? "block absolute w-screen h-screen z-100 top-0 left-0 bg-headerBackground flex flex-col justify-evenly text-white items-start space-y-2 pl-3"
+                ? "block absolute w-screen h-screen z-10 top-0 left-0 bg-headerBackground flex flex-col justify-evenly text-white items-start space-y-2 pl-3"
                 : "hidden"
             }
           >

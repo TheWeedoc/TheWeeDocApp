@@ -133,6 +133,29 @@ color: #FAFBFF;
     color: #FAFBFF;
 }
 
+/* Media Query for Mobile */
+@media (max-width: 767px) {
+    .log_btm-sec {
+      width: 100%; /* Full width on mobile */
+    }
+  
+    .log_btm-sec p {
+        font-family: 'Noto Sans';
+        font-style: normal;
+      font-size: 14px; 
+      line-height: 20px;
+    text-align: center;
+    color: #8C8E8F;
+
+      
+    }
+  
+    .log_btm-sec p b {
+        color: #FAFBFF;
+    }
+  }
+
+  
 .forgetpswrd{
     display: flex;
     justify-content: end;

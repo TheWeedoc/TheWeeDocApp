@@ -6,7 +6,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 20px;
+    /* padding: 4px 12px; */
     border-radius: 10px;
     border: 0.6px solid var(--line, #4A4949);
     background: rgba(22, 24, 31, 0.90);
@@ -31,3 +31,39 @@
     line-height: 28px;
     margin: 0px;
 }
+@media (max-width: 767px) {
+.profile_name{
+    color:  #FAFBFF;
+    font-family: Noto Sans;
+    font-size: 29px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 28px;
+    margin: 0px;
+}}
+
+
+
+  .uplod_genre_div select{
+    background-color: transparent;
+    width:100%;
+    /* height: 45px; */
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+    padding: 0px 12px;
+    color: #fff;
+    font-size: 16px;
+   }
+   .uplod_genre_div select option{
+     background-color: #363A48;
+   }
+ 
+   .uplod_genre_div .ant-select:not(.ant-select-customize-input) .ant-select-selector{
+    background-color: transparent;
+    min-height: 45px;
+   }
+ 
+   .uplod_genre_div .ant-select-multiple .ant-select-selection-item{
+      background-color: #363A48;
+      color: #FFF;
+   }
