@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Carousel } from "antd";
 import Header from "../../components/Layout/Header/Header";
 import "./homepage.css";
 import { bannerplayicon, bannersave } from "../../Assests/Svg/Commonsvg";
 import Homepagecard from "../../components/cards/Hompage/Homepagecard";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../../store/Home/productReducer";
 function HomePage() {
   const img1 = "https://i.ytimg.com/vi/YwDZMgIImSg/maxresdefault.jpg";
   const img2 = "https://i.ytimg.com/vi/OG0gxFIOqGI/maxresdefault.jpg";
@@ -96,6 +98,14 @@ function HomePage() {
       like: "34.01K",
     },
   ];
+  const { products } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (products.length === 0) dispatch(getProducts());
+    console.log("first");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -106,7 +116,7 @@ function HomePage() {
           <div className="mask"></div>
           <div className="bannercontDiv">
             <div className="usernameDiv">
-              <img src={userimg1} alt="user" />
+              <img src={userimg1} alt="user" className="w-full" />
               <h4>Wilson Andrew</h4>
               <button>Follow</button>
             </div>
@@ -215,8 +225,8 @@ function HomePage() {
       {/* <<<<<<=================== Cards Sections ===================>>>>>> */}
 
       <div className="home-CardsSection px-3">
-        {cardarr?.map((item, id) => {
-          return <Homepagecard key={id} item={item} />;
+        {products?.map((item) => {
+          return <Homepagecard key={item.id} item={item} />;
         })}
       </div>
     </>

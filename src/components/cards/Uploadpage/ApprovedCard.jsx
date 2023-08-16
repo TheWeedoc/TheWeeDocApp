@@ -16,9 +16,9 @@ function ApprovedCard({ item }) {
         <div>
           <span className="verifycrdTitle">{item.title}</span>
         </div>
-        <div className="thumbsDiv">
+        {/* <div className="thumbsDiv">
           <button className="Appro_uploadbtn">Upload</button>
-        </div>
+        </div> */}
       </div>
       <span className="crdbtmsec-text">Action | Tamil | U/A 14+</span>
     </div>

@@ -9,6 +9,9 @@ module.exports = {
       fontFamily: {
         notosans: ["Noto Sans"],
       },
+      screens: {
+        "custom-lg": "1500px", // Define a custom large screen breakpoint at 1200px
+      },
     },
   },
   plugins: [],

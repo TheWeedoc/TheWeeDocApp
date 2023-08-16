@@ -7,7 +7,7 @@ function PrivacyPolicy() {
     <>
       <Header />
       <div className="text-white font-notosans p-4 md:p-24">
-        <div className="flex flex-col space-y-2 justify-center items-center text-center">
+        <div className="flex flex-col space-y-2  ">
           <h1>Privacy Policy</h1>
           <p>
             TheWeedoc built the TheWeedoc app as [open

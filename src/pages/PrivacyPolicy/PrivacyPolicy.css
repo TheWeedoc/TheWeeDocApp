@@ -3,12 +3,14 @@ h1 {
     font-size: 32px;
     font-weight: bold;
     color: white;
+    text-align: center;
   }
   
   h2 {
     font-size: 24px;
     font-weight: 600; /* semibold */
     color: white;
+    text-align: center;
   }
   
   /* Paragraph styles */
@@ -17,4 +19,5 @@ h1 {
     font-weight: normal;
     line-height: 24px;
     color: #c5c5c5;
+    align-items: start;
   }

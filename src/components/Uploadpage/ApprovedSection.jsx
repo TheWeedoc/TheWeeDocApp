@@ -1,5 +1,6 @@
 import React from "react";
 import ApprovedCard from "../cards/Uploadpage/ApprovedCard";
+import ApprovedAdsCard from "../cards/Uploadpage/ApprovedAdsCard";
 
 function ApprovedSection() {
   const cardarr = [
@@ -20,10 +21,24 @@ function ApprovedSection() {
     },
   ];
   return (
-    <div className="verifiy-CardsSection">
-      {cardarr?.map((item, id) => {
-        return <ApprovedCard item={item} />;
-      })}
+    <div className="flex flex-col">
+      <h3 className="verifiedHeadin pt-2">Approved Films</h3>
+
+      <div className="flex justify-center py-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 custom-lg:grid-cols-3 gap-4 custom-lg:gap-x-4 lg:gap-y-8 grid-rows-auto">
+          {cardarr?.map((item, id) => {
+            return <ApprovedCard item={item} key={id} />;
+          })}
+        </div>
+      </div>
+      <h3 className="verifiedHeadin pt-2">Approved Advertisements</h3>
+      <div className="flex justify-center py-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 custom-lg:grid-cols-3 gap-4 custom-lg:gap-x-4 lg:gap-y-8 grid-rows-auto">
+          {cardarr?.map((item, id) => {
+            return <ApprovedAdsCard item={item} key={id} />;
+          })}
+        </div>
+      </div>
     </div>
   );
 }

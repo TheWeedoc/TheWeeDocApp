@@ -9,7 +9,141 @@ import {
   thumbsup,
   thumbsdown,
 } from "../../Assests/Svg/Commonsvg";
+
+import CastAndCrewSlider from "../../components/cards/IndividualVideoPage/CastAndCrewSlider";
+
+import { Input } from "antd";
+const { TextArea } = Input;
+
 function Indivialpage() {
+  const cardarr = [
+    {
+      id: "1",
+      image:
+        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
+      name: "Nirmal",
+      role: "Director",
+    },
+    {
+      id: "2",
+      image:
+        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
+      name: "Nirmal",
+      role: "Director",
+    },
+    {
+      id: "3",
+      image:
+        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
+      name: "Nirmal",
+      role: "Director",
+    },
+    {
+      id: "4",
+      image:
+        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
+      name: "Nirmal",
+      role: "Director",
+    },
+    {
+      id: "5",
+      image:
+        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
+      name: "Nirmal",
+      role: "Director",
+    },
+    {
+      id: "6",
+      image:
+        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
+      name: "Nirmal",
+      role: "Director",
+    },
+    {
+      id: "7",
+      image:
+        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
+      name: "Nirmal",
+      role: "Director",
+    },
+    {
+      id: "8",
+      image:
+        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
+      name: "Nirmal",
+      role: "Director",
+    },
+    {
+      id: "9",
+      image:
+        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
+      name: "Nirmal",
+      role: "Director",
+    },
+    {
+      id: "10",
+      image:
+        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
+      name: "Nirmal",
+      role: "Director",
+    },
+    {
+      id: "11",
+      image:
+        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
+      name: "Nirmal",
+      role: "Director",
+    },
+    {
+      id: "12",
+      image:
+        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
+      name: "Nirmal",
+      role: "Director",
+    },
+    {
+      id: "200",
+      image:
+        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
+      name: "Nirmal",
+      role: "Director",
+    },
+    {
+      id: "13",
+      image:
+        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
+      name: "Nirmal",
+      role: "Director",
+    },
+    {
+      id: "14",
+      image:
+        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
+      name: "Nirmal",
+      role: "Director",
+    },
+    {
+      id: "15",
+      image:
+        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
+      name: "Nirmal",
+      role: "Director",
+    },
+    {
+      id: "16",
+      image:
+        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
+      name: "Nirmal",
+      role: "Director",
+    },
+    {
+      id: "17",
+      image:
+        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
+      name: "Nirmal",
+      role: "Director",
+    },
+  ];
   return (
     <>
       <Header />
@@ -46,15 +180,30 @@ function Indivialpage() {
             <li style={{ border: "none" }}>U/A 13+</li>
           </ul>
         </div>
+        <div className="flex flex-col w-full py-6 space-y-4">
+          <div className="w-full">
+            <TextArea
+              className="bg-[#0a0a0d] text-white placeholder:text-gray-400"
+              rows={4}
+              placeholder="Write the films's review"
+            />
+          </div>
+          <div className="flex justify-center md:justify-end">
+            <button className="bg-white text-black font-notosans  justify-center rounded-lg px-4 py-1">
+              Post Review
+            </button>
+          </div>
+        </div>
 
         <div className="userprofileSec">
           <div className="pro_imgDiv">
             <img
-              src="https://media.licdn.com/dms/image/C5603AQGIYT25qdyUmQ/profile-displayphoto-shrink_800_800/0/1637938260330?e=2147483647&v=beta&t=bga--I_pyA8FUDbHvJb92QCuuhiPJnYViXPt4Kmp2Zk"
+              src="https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI="
               className="profilepic"
               alt="Nirmal"
             />
           </div>
+
           <div className="pro_textDiv">
             <b>Nirmal kumar</b>
             <small>167 Followers</small>
@@ -62,7 +211,7 @@ function Indivialpage() {
           <button className="invid_page_followbtn">Follow</button>
         </div>
 
-        <div className="indivl_page_cnt">
+        <div className="indivl_page_cnt py-6">
           <p>
             The show is based on Kanchanjunga Military Academy where soldiers
             are trained to serve the nation. Naveen Singh Ahluwalia, who is the
@@ -90,6 +239,12 @@ function Indivialpage() {
             into a strong willed, anti-social, aggressive, angry young woman
             from a bubbly girl she once was.
           </p>
+        </div>
+        <div className="flex flex-col justify-center items-center py-6 space-y-6">
+          <h1 className="font-semibold text-white font-notosans text-lg text-left w-full md:px-10">
+            Cast & Crew{" "}
+          </h1>
+          <CastAndCrewSlider castAndCrewData={cardarr} />
         </div>
       </div>
     </>

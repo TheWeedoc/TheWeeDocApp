@@ -11,16 +11,20 @@ function Uploadpage() {
   };
   const items = [
     {
+      id: "1",
       key: "1",
       label: `Verification`,
       children: <VerificationSection />,
     },
     {
+      id: "2",
       key: "2",
       label: `Rejected`,
       children: <RejectedSection />,
     },
     {
+      id: "3",
+
       key: "3",
       label: `Approved`,
       children: <ApprovedSection />,

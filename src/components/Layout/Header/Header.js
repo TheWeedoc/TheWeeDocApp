@@ -14,6 +14,7 @@ import {
 import { Link } from "react-router-dom";
 import Notification from "../../Notification/Notification";
 import useIsLoggedIn from "../../../Hooks/useIsLoggedIn";
+import Profile from "../../Notification/Profile";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -37,7 +38,7 @@ function Header() {
   };
 
   return (
-    <div className="bg-headerBackground py-2 py-4 sticky top-0 z-10">
+    <div className="bg-headerBackground py-2 px-4 sticky top-0 z-10">
       <nav className="flex justify-between px-2">
         <div>
           <Link to="/">
@@ -64,11 +65,7 @@ function Header() {
             </div>
             <div className="notifitionCount">2</div>
           </div>
-          <Popover
-            placement="bottom"
-            content={<Notification />}
-            trigger="click"
-          >
+          <Popover placement="bottom" content={<Profile />} trigger="click">
             <img
               src={profile}
               alt="Profile Picture"
