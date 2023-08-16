@@ -19,15 +19,23 @@ function UploadVideo({ current, onNext, onPrev, formData, setFormData }) {
     setFormData(updatedFormData);
   }, []);
 
+  const customRequestUpload = (options) => {
+    setTimeout(() => {
+      const { onSuccess, onError } = options;
+      if (Math.random() > 0.5) {
+        onSuccess("Upload successfully");
+      } else {
+        onError("Upload failed");
+      }
+    }, 1000);
+  };
+
   const props = {
     name: "file",
     multiple: false,
-    action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
     onChange(info) {
-      console.log(info?.file, "info");
-      const { status, name, type } = info.file;
-      if (status === "uploading") {
-       
+      const { name, type } = info.file;
+      if (info.file.status === "uploading") {
         // Check if the file is an image
         if (type.startsWith("image/")) {
           const updatedFormData = {
@@ -36,6 +44,7 @@ function UploadVideo({ current, onNext, onPrev, formData, setFormData }) {
           };
           setFormData(updatedFormData);
           setImageError(false);
+          setVideoError(false); // Reset video error if image is being uploaded
         }
         // Check if the file is a video
         else if (type.startsWith("video/")) {
@@ -45,13 +54,13 @@ function UploadVideo({ current, onNext, onPrev, formData, setFormData }) {
           };
           setFormData(updatedFormData);
           setVideoError(false);
+          setImageError(false); // Reset image error if video is being uploaded
         }
-      }else{
+      } else if (info.file.status === "error") {
+        message.error(`${name} file upload failed.`);
+      } else {
         message.success(`${name} file uploaded successfully.`);
       }
-      //  else if (status === "error") {
-      //   message.error(`${name} file upload failed.`);
-      // }
     },
     onDrop(e) {
       console.log("Dropped files", e.dataTransfer.files);
@@ -75,18 +84,32 @@ function UploadVideo({ current, onNext, onPrev, formData, setFormData }) {
 
       <div className="upld_img">
         <span className="upload_img_txt">Thumbnail Image*</span>
-        <Dragger {...props} accept="image/*">
-          <p className="ant-upload-drag-icon">
-            <img src={UploadIcon} alt="upload" />
-          </p>
-          <p className="ant-upload-text">Drag and drop image files to upload</p>
-          <ul className="image_upload_instr">
-            <li>Image should be in HD quality.</li>
-            <li>Image Dimension: 210*275</li>
-            <li>
-              Please be sure not to violate others' copyright or privacy rights.
-            </li>
-          </ul>
+        <Dragger
+          {...props}
+          accept="image/*"
+          customRequest={customRequestUpload}
+        >
+          <div className="flex flex-col justify-center items-center py-4 px-6">
+            <img src={UploadIcon} alt="upload" className="w-20" />
+            <div className=" flex flex-col justify-center items-center text-left py-4">
+              <p className="ant-upload-text">
+                Drag and drop image files to upload
+              </p>
+
+              <div className=" px-2 py-1 bg-white  text-black font-semibold rounded-md my-4">
+                Select Files
+              </div>
+
+              <ul className="image_upload_instr">
+                <li>Image should be in HD quality.</li>
+                <li>Image Dimension: 210*275</li>
+                <li>
+                  Please be sure not to violate others' copyright or privacy
+                  rights.
+                </li>
+              </ul>
+            </div>
+          </div>
         </Dragger>
         {imageError && (
           <span className="error-message">Please select an image.</span>
@@ -94,11 +117,31 @@ function UploadVideo({ current, onNext, onPrev, formData, setFormData }) {
       </div>
       <div className="upld_img">
         <span className="upload_img_txt">Video*</span>
-        <Dragger {...props} accept="video/*">
-          <p className="ant-upload-drag-icon">
-            <img src={UploadIcon} alt="upload" />
-          </p>
-          <p className="ant-upload-text">Drag and drop Video files to upload</p>
+        <Dragger
+          {...props}
+          accept="video/*"
+          customRequest={customRequestUpload}
+        >
+          <div className="flex flex-col justify-center items-center py-4">
+            <img src={UploadIcon} alt="upload" className="w-20" />
+
+            <div className=" flex flex-col justify-center items-center text-left py-4">
+              <p className="ant-upload-text">
+                Drag and drop Video files to upload
+              </p>
+              <div className=" px-2 py-1 bg-white text-black font-semibold rounded-md my-4">
+                Select Files
+              </div>
+              <ul className="image_upload_instr">
+                <li>Video should be in HD quality.</li>
+                <li>Video time duration should be 35 - 40 mins maximum</li>
+                <li>
+                  Please be sure not to violate other’s copyright or privacy
+                  rights.
+                </li>
+              </ul>
+            </div>
+          </div>
         </Dragger>
         {videoError && (
           <span className="error-message">Please select a video.</span>

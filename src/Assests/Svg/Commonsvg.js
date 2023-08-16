@@ -269,7 +269,7 @@ export const EditprofileIcon = (
         rx="25"
         fill="#222222"
         fillOpacity="0.7"
-        shape-rendering="crispEdges"
+        shapeRendering="crispEdges"
       />
     </g>
     <path
@@ -287,9 +287,9 @@ export const EditprofileIcon = (
         width="68.2927"
         height="71.9512"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feGaussianBlur in="BackgroundImageFix" stdDeviation="1.82927" />
         <feComposite
           in2="SourceAlpha"

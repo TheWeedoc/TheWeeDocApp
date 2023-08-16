@@ -20,12 +20,12 @@ function UploadShortFlim() {
     setCurrent(current - 1);
   };
 
-  console.log(formData,"inout input data")
-  const postProduct = async () => {
-    const add = await AddProduct().then((res) => {
-      console.log(res, "addvideodata");
-    });
-  };
+  console.log(formData, "inout input data");
+  // const postProduct = async () => {
+  //   const add = await AddProduct().then((res) => {
+  //     console.log(res, "addvideodata");
+  //   });
+  // };
 
   const steps = [
     {

@@ -8,8 +8,10 @@ const OptionButton = ({ options }) => {
     setSelectedOption(option);
   };
 
+  // grid grid-rows-2 grid-cols-4 md:grid-cols-auto md:grid-rows-1 gap-4
+
   return (
-    <div className="flex space-x-4 font-notosans">
+    <div className="flex flex-wrap gap-2  font-notosans  ">
       {options.map((option) => (
         <Button
           key={option}

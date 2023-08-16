@@ -1,5 +1,15 @@
 import { get, post, put, del } from "./Mainclient";
 
+const token = localStorage.getItem("token");
+console.log("Token value", token);
+
+const config = {
+  headers: {
+    Authorization: `Token 06d6b0947b4c1c81f09507da17ff60eb97d19fea`,
+    "Content-Type": "multipart/form-data",
+  },
+};
+
 export const signup = async (data) => {
   const signup = await post("register/", data)
     .then((resp) => {
@@ -31,7 +41,13 @@ export const resetpassword = async (data) => {
 };
 
 export const AddProduct = async (data) => {
-  const add = await post("/products/create/", data)
+  const config = {
+    headers: {
+      Authorization: `04b0e7a7a26ee29285360df0e148110148c3ec32`,
+      "Content-Type": "multipart/form-data",
+    },
+  };
+  const add = await post("/products/create/", data, config)
     .then((resp) => {
       return resp.data;
     })

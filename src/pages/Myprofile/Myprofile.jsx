@@ -168,8 +168,8 @@ function Myprofile() {
             {/* Uploads */}
             {selectTab === "uploads" && (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-6 justify-center items-center">
-                {cardarr.map((i) => (
-                  <Uploads item={i} />
+                {cardarr.map((i, index) => (
+                  <Uploads item={i} key={index} />
                 ))}
               </div>
             )}
@@ -177,8 +177,8 @@ function Myprofile() {
             {/* Saved Films */}
             {selectTab === "savedfilms" && (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-6 justify-center items-center">
-                {cardarr.map((i) => (
-                  <SavedFilms item={i} />
+                {cardarr.map((i, index) => (
+                  <SavedFilms item={i} key={index} />
                 ))}
               </div>
             )}
@@ -207,8 +207,8 @@ function Myprofile() {
                   </div>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4 py-6 justify-center items-center">
-                  {cardarr.map((i) => (
-                    <ReviewsGiven item={i} />
+                  {cardarr.map((i, index) => (
+                    <ReviewsGiven item={i} key={index} />
                   ))}
                 </div>
               </div>

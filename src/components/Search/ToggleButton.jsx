@@ -11,7 +11,7 @@ const ToggleButton = () => {
   return (
     <div className="flex items-center w-4/5 font-notosans border border-[#4a4949] rounded-md">
       <Button
-        className={`w-full  rounded-r-md border-none p-2 ${
+        className={`w-full  rounded-r-md border-none  ${
           selected === "films" ? "bg-[#21222d] text-white " : "text-[#c5c5c5]"
         }`}
         onClick={() => handleToggle("films")}
@@ -19,7 +19,7 @@ const ToggleButton = () => {
         Films
       </Button>
       <Button
-        className={`w-full rounded-l-md p-2 border-none hover:text-white ${
+        className={`w-full rounded-l-md  border-none hover:text-white ${
           selected === "user"
             ? "bg-[#21222d] text-white focus:outline-none "
             : "text-[#c5c5c5]"

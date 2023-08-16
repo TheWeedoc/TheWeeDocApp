@@ -8,7 +8,7 @@ import ToggleSwitch from "../../components/Search/ToggleButton";
 import Homepagecard from "../../components/cards/Hompage/Homepagecard";
 function Searchpage() {
   const navigate = useNavigate();
-  const Genrelist = ["Action", "Drama", "Thirller", "Romance", "Comedy"];
+  const Genrelist = ["Action", "Drama", "Thirller", "Comedy", "Romance"];
 
   const cardarr = [
     {
@@ -92,17 +92,30 @@ function Searchpage() {
   ];
 
   return (
-    <div className="searchmain">
+    <div className="w-full p-4 md:p-10 lg:p-20">
       <div className="flex flex-row justify-between font-notosans items-center text-white">
         <h2>What are you seeking for?</h2>
-        <div onClick={() => navigate(-1)} className="float-right">
-          {closeicons}
+        <div
+          onClick={() => navigate(-1)}
+          className="flex float-right items-center cursor-pointer "
+        >
+          <div
+            style={{
+              display: "inline-block",
+              borderRadius: "50%",
+              backgroundColor: "#1e1f21",
+              padding: "6px",
+            }}
+          >
+            {closeicons}
+          </div>
+          <div className="pl-2">Close</div>
         </div>
       </div>
 
       <div className="flex flex-col">
         <div className="flex flex-col md:flex-row w-full bg-headerBackground text-white space-y-3 md:space-y-0 py-3">
-          <div className="md:w-2/6 md:items-center md:justify-center md:flex">
+          <div className="flex justify-center md:w-2/6 md:items-center md:justify-center md:flex">
             <ToggleSwitch />
           </div>
 

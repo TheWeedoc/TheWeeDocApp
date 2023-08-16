@@ -15,6 +15,9 @@ const NewPasswordPage = React.lazy(() =>
   import("./pages/loginflow/NewPasswordPage")
 );
 const Uploadpage = React.lazy(() => import("./pages/UploadPage/Uploadpage"));
+const Uploadpageads = React.lazy(() =>
+  import("./pages/UploadPage/Uploadpageads")
+);
 const VerifyPage = React.lazy(() => import("./pages/loginflow/VerifyPage"));
 const ResetChange = React.lazy(() => import("./pages/loginflow/ResetChange"));
 const Myprofile = React.lazy(() => import("./pages/Myprofile/Myprofile"));
@@ -34,6 +37,7 @@ function Markup() {
             <Route exact path="/video/:id/:name" element={<Indivialpage />} />
             <Route exact path="/search" element={<Searchpage />} />
             <Route exact path="/upload" element={<Uploadpage />} />
+            <Route exact path="/uploadads" element={<Uploadpageads />} />
             <Route exact path="/myprofile" element={<Myprofile />} />
             <Route exact path="/edit_profile" element={<Editprofile />} />
             <Route exact path="/privacypolicy" element={<PrivacyPolicy />} />
