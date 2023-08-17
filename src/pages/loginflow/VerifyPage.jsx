@@ -6,12 +6,12 @@ import { signup } from "../../Api/Fetchclient";
 function VerifyPage() {
   return (
     <div className="loginMainDiv">
-      <div className="log_leftside">
+      {/* <div className="log_leftside">
         <div class="text-container">
           <h2>Clumsycloverclowns </h2>
           <h1>Short Film Platform</h1>
         </div>
-      </div>
+      </div> */}
       <div className="log_rightside">
         {/* <div className="WeeDocTxt_div">
                 <img src={WeeDoc} alt="TheWeeDoc" />

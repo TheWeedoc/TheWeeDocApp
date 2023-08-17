@@ -5,6 +5,7 @@ import { AddUploadBtn } from "../../../Assests/Svg/Commonsvg";
 import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import axios from "axios";
+import { AddProduct } from "../../../Api/Fetchclient";
 
 function Uploadcast({ current, onNext, onPrev, formData, setFormData }) {
   const [load, setLoad] = useState(false);
@@ -31,33 +32,13 @@ function Uploadcast({ current, onNext, onPrev, formData, setFormData }) {
   };
   // API CALL
 
-  const AddProduct = async (data) => {
-    const config = {
-      headers: {
-        Authorization: `Token 04b0e7a7a26ee29285360df0e148110148c3ec32`,
-        "Content-Type": "multipart/form-data",
-      },
-    };
-    const add = await axios
-      .post("/products/create/", data, config)
-      .then((resp) => {
-        return resp.data;
-      })
-      .catch((error) => {
-        return error.response;
-      });
-    return add;
-  };
-
   const result = async (data) => {
     try {
       const response = await AddProduct(data);
       console.log("Login response", response);
       setLoad(false);
       if (response?.status === 200 || response?.status === 201) {
-        // localStorage.setItem("token", response?.data?.token);
-        // navigate("/");
-        console.log("Response", response);
+        console.log("Response Add Prods", response);
       }
       if (response?.status === 404) {
         const errorData = response.data;
@@ -75,7 +56,8 @@ function Uploadcast({ current, onNext, onPrev, formData, setFormData }) {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     setLoad(true);
     // Update the form data in the parent component
     const updatedFormData = {

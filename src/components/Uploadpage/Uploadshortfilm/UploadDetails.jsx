@@ -1,22 +1,25 @@
 import React, { useState, useEffect } from "react";
 import "./uploadShortFilm.css";
 import { Select } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { getGenres } from "../../../store/Home/adhocReducer";
 
 function UploadDetails({ onNext, formData, setFormData }) {
-  const options = ["Action", "Drama", "Thriller", "Romance", "Comedy"];
+  const { genres } = useSelector((state) => state.adhoc);
+  // const options = ["Action", "Drama", "Thriller", "Romance", "Comedy"];
 
   const Languagelist = [
-    "Tamil",
-    "English",
-    "Hindi",
-    "Gujarati",
-    "Urdu",
-    "Kannada",
-    "Odia",
-    "Malayalam",
-    "Bengali",
-    "Marathi",
-    "Telugu",
+    "tamil",
+    "english",
+    "eindi",
+    "gujarati",
+    "urdu",
+    "kannada",
+    "odia",
+    "malayalam",
+    "bengali",
+    "marathi",
+    "telugu",
   ];
 
   const [selectedItems, setSelectedItems] = useState([]);
@@ -26,6 +29,7 @@ function UploadDetails({ onNext, formData, setFormData }) {
   const [language, setLanguage] = useState("");
 
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     // Update the form data in the parent component
@@ -39,6 +43,11 @@ function UploadDetails({ onNext, formData, setFormData }) {
     };
     setFormData(updatedFormData);
   }, [title, description, selectedItems, age, language]);
+
+  useEffect(() => {
+    if (genres.length === 0) dispatch(getGenres());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleLanguageChange = (event) => {
     setLanguage(event.target.value);
@@ -115,9 +124,9 @@ function UploadDetails({ onNext, formData, setFormData }) {
           style={{
             width: "100%",
           }}
-          options={options.map((item) => ({
-            value: item,
-            label: item,
+          options={genres.map((item) => ({
+            value: item.id,
+            label: item.name,
           }))}
         />
         {isFormSubmitted && selectedItems.length === 0 && (

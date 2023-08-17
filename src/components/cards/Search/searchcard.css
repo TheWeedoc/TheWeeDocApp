@@ -1,0 +1,51 @@
+.homepagecardDiv{
+   display: flex;
+   flex-direction: column; 
+   width: 360px;
+}
+
+.homepagecardimg{
+   max-width: 360px;
+   height: auto;
+   border-radius: 10px;
+}
+
+
+.homepgecrdTitle{
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+}
+
+.thumbsDiv{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.thumbsDiv div {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    color: rgba(225, 230, 240, 0.9);
+    gap: 10px;
+}
+.crdbtmsec-text{
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    color: #E1E6F0;
+}

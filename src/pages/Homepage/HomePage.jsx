@@ -103,7 +103,7 @@ function HomePage() {
 
   useEffect(() => {
     if (products.length === 0) dispatch(getProducts());
-    console.log("first");
+    // console.log("first");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

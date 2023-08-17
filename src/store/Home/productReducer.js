@@ -17,7 +17,7 @@ export const getProducts = createAsyncThunk(
       return result;
     } catch (err) {
       const message =
-        (err.response && err.response.data && err.response.data.message) ||
+        (err.response && err.response.data && err.response.data.detail) ||
         err.message ||
         err.toString();
 
