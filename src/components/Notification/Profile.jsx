@@ -11,7 +11,7 @@ import {
 import useIsLoggedIn from "../../Hooks/useIsLoggedIn";
 
 function Profile() {
-  const isLoggedIn = useIsLoggedIn();
+  const { isLoggedIn, logout } = useIsLoggedIn();
   const navigate = useNavigate();
 
   const profileImage =
@@ -19,6 +19,11 @@ function Profile() {
 
   const handleNavgiation = () => {
     navigate("/myprofile");
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
   };
   return (
     <div className="hidden md:flex md:flex-col md:w-64 text-white font-notosans">
@@ -96,7 +101,7 @@ function Profile() {
         {isLoggedIn && (
           <div className="flex w-full justify-center text-center">
             <Link
-              to="/logout"
+              onClick={handleLogout}
               className="border border-black bg-white text-black  w-full py-2 rounded-md"
             >
               Logout

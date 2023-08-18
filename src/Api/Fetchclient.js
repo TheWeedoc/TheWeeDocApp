@@ -3,11 +3,12 @@ import { get, post, put, del } from "./Mainclient";
 export const signup = async (data) => {
   const signup = await post("register/", data)
     .then((resp) => {
-      return resp.data;
+      return resp;
     })
     .catch((error) => {
       return error.response;
     });
+
   return signup;
 };
 
@@ -23,20 +24,39 @@ export const getlogin = async (data) => {
 };
 
 export const resetpassword = async (data) => {
-  const login = await post("password-reset/", data).then((resp) => {
-    return resp.data;
-  });
+  const login = await post("password-reset/", data)
+    .then((resp) => {
+      return resp.data;
+    })
+    .catch((error) => {
+      return error.response;
+    });
+
+  return login;
+};
+
+export const resetUpdatePassword = async (data) => {
+  console.log(data);
+  const login = await post("password-reset-confirm/", data)
+    .then((resp) => {
+      return resp.response;
+    })
+    .catch((error) => {
+      return error.response;
+    });
 
   return login;
 };
 
 export const AddProduct = async (data) => {
-  const customHeaders = {
-    "content-type": "multipart/form-data",
-  };
+  // const customHeaders = {
+  //   "content-type":
+  // }
+
+  console.log("first API", data);
   const add = await post("products/create/", data)
     .then((resp) => {
-      return resp.data;
+      return resp;
     })
     .catch((error) => {
       return error.response;
@@ -70,7 +90,7 @@ export const GetGenres = async () => {
 export const GetSearchFilms = async (query, signal) => {
   try {
     let url = (query) => {
-      if (query.genre == "") {
+      if (query.genre === "") {
         return `products/?search=${query.searchKey}`;
       } else if (query.genre !== "" && query.searchKey !== "") {
         return `products/?genere=${query.genre}&search=${query.searchKey}`;

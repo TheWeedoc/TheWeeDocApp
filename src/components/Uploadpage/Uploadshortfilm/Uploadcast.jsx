@@ -4,7 +4,6 @@ import { AddUploadBtn } from "../../../Assests/Svg/Commonsvg";
 
 import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
-import axios from "axios";
 import { AddProduct } from "../../../Api/Fetchclient";
 
 function Uploadcast({ current, onNext, onPrev, formData, setFormData }) {
@@ -35,7 +34,7 @@ function Uploadcast({ current, onNext, onPrev, formData, setFormData }) {
   const result = async (data) => {
     try {
       const response = await AddProduct(data);
-      console.log("Login response", response);
+      console.log("Add prod response", response);
       setLoad(false);
       if (response?.status === 200 || response?.status === 201) {
         console.log("Response Add Prods", response);

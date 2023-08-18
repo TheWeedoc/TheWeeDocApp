@@ -8,7 +8,14 @@ function useIsLoggedIn() {
     setIsLoggedIn(!!token);
   }, []);
 
-  return isLoggedIn;
+  const logout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+  };
+
+  return { isLoggedIn, logout };
+
+  // return isLoggedIn;
 }
 
 export default useIsLoggedIn;

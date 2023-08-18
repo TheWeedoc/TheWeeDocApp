@@ -1,33 +1,52 @@
 import React, { useState } from "react";
 import "./Loginflow.css";
-import WeeDoc from "../../Assests/Images/theweedocLogo.png";
-import { Form, Input, notification } from "antd";
-import { Link } from "react-router-dom";
-import { signup } from "../../Api/Fetchclient";
+
+import { Form, Input } from "antd";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { resetUpdatePassword } from "../../Api/Fetchclient";
 
 function NewPasswordPage() {
   const [formErrors, setFormErrors] = useState({});
+  const [apiErr, setAPiErr] = useState("");
+  const [apiSuccess, setApiSuccess] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+
+  const uid = searchParams.get("uid");
+  const token = searchParams.get("token");
 
   const onFinish = async (values) => {
     console.log("Success:", values);
-    let data = {
-      username: values?.username,
-      email: values?.email,
-      phone_number: "",
-      password: values?.password,
-      password2: values?.password,
-    };
+    if (values.password === values.confirmpassword) {
+      let data = {
+        password: values?.password,
+        uid: uid,
+        token: token,
+      };
 
-    try {
-      const response = await signup(data);
-      if (response?.status === 200) {
-        console.log("Signup response", response);
-      }
-      if (response?.status === 400) {
-        const errorData = response.data;
+      try {
+        const response = await resetUpdatePassword(data);
+
+        if (response?.status === 200) {
+          console.log("Signup response", response);
+          setApiSuccess("Successfully Updated, Login to continue");
+          navigate("/login");
+        }
+        if (response?.status === 400) {
+          const errorData = response.data;
+          console.log("Test", response);
+          setFormErrors(errorData);
+          if (response.data.detail) setAPiErr(response.data.detail);
+        }
+      } catch (error) {
+        const errorData = error.response.data;
         setFormErrors(errorData);
+        if (error.response.data.detail) setAPiErr(error.response.data.detail);
       }
-    } catch (error) {}
+    } else {
+      setAPiErr("Password and Confirm password are not matching");
+    }
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -50,8 +69,9 @@ function NewPasswordPage() {
         </div> */}
       <div className="log_rightside">
         <div className="WeeDocTxt_div">
-          {/* <img src={WeeDoc} alt="TheWeeDoc" /> */}
-          <h1>TheWeedoc</h1>
+          <h1>
+            <Link to="/">TheWeedoc</Link>
+          </h1>
         </div>
 
         <div className="form_Div">
@@ -91,7 +111,7 @@ function NewPasswordPage() {
               <Input.Password placeholder="Enter Your New Password" />
             </Form.Item>
             <Form.Item
-              name="confirm password"
+              name="confirmpassword"
               rules={[
                 {
                   required: true,
@@ -103,6 +123,19 @@ function NewPasswordPage() {
             >
               <Input.Password placeholder="Confrim Password" />
             </Form.Item>
+            <div>
+              {apiSuccess !== "" && (
+                <h4 className="text-green-600 text-center font-notosans text-lg">
+                  {apiSuccess}
+                </h4>
+              )}
+
+              {apiErr !== "" && (
+                <h4 className="text-red-600 text-center font-notosans text-lg">
+                  {apiErr}
+                </h4>
+              )}
+            </div>
 
             <button className="loginbtn" onClick={onFinish}>
               Confirm

@@ -11,13 +11,14 @@ import {
   CloseButton,
   EditprofileIcon,
 } from "../../../Assests/Svg/Commonsvg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Notification from "../../Notification/Notification";
 import useIsLoggedIn from "../../../Hooks/useIsLoggedIn";
 import Profile from "../../Notification/Profile";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -27,14 +28,19 @@ function Header() {
     "https://www.pngall.com/wp-content/uploads/5/Profile-PNG-Images.png";
   const profile =
     "https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_1280.png";
-  const isLoggedIn = useIsLoggedIn();
+  const { isLoggedIn, logout } = useIsLoggedIn();
 
-  const profiledropdown = () => {
-    return (
-      <div className="profiledrpdwnDiv">
-        <div className=""></div>
-      </div>
-    );
+  // const profiledropdown = () => {
+  //   return (
+  //     <div className="profiledrpdwnDiv">
+  //       <div className=""></div>
+  //     </div>
+  //   );
+  // };
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
   };
 
   return (
@@ -161,7 +167,7 @@ function Header() {
             {isLoggedIn && (
               <div className="flex w-full justify-center text-center">
                 <Link
-                  to="/logout"
+                  onClick={handleLogout}
                   className="border border-black bg-white text-black  w-4/5 p-3 rounded-md"
                 >
                   Logout

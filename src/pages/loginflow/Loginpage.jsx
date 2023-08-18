@@ -1,4 +1,4 @@
-import react, { useState } from "react";
+import { useState } from "react";
 import "./Loginflow.css";
 import { Form, Input } from "antd";
 import { Link } from "react-router-dom";
@@ -75,8 +75,9 @@ function Loginpage() {
         </div> */}
       <div className="log_rightside">
         <div className="WeeDocTxt_div">
-          {/* <img src={WeeDoc} alt="TheWeeDoc" /> */}
-          <h1>TheWeedoc</h1>
+          <h1>
+            <Link to="/">TheWeedoc </Link>
+          </h1>
         </div>
 
         <div className="form_Div">
@@ -141,7 +142,7 @@ function Loginpage() {
               {load ? <Spin indicator={antIcon} /> : "Login"}
             </button>
           </Form>
-          <p className="newuser_txt">
+          <p className="newuser_txt py-4">
             New User? <Link to="/signup">Signup</Link>
           </p>
         </div>

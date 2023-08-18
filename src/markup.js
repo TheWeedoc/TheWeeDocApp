@@ -8,6 +8,10 @@ const Indivialpage = React.lazy(() =>
   import("./pages/IndivialVideopage/Indivialpage")
 );
 const Signuppage = React.lazy(() => import("./pages/loginflow/signuppage"));
+const SignupQuestions = React.lazy(() =>
+  import("./pages/loginflow/SignupQuestions")
+);
+
 const Loginpage = React.lazy(() => import("./pages/loginflow/Loginpage"));
 const Searchpage = React.lazy(() => import("./pages/searchpage/Searchpage"));
 const Resetpage = React.lazy(() => import("./pages/loginflow/Resetpage"));
@@ -21,13 +25,16 @@ const Uploadpageads = React.lazy(() =>
 const VerifyPage = React.lazy(() => import("./pages/loginflow/VerifyPage"));
 const ResetChange = React.lazy(() => import("./pages/loginflow/ResetChange"));
 const Myprofile = React.lazy(() => import("./pages/Myprofile/Myprofile"));
+const OthersProfile = React.lazy(() =>
+  import("./pages/OthersProfile/OthersProfile")
+);
 const Editprofile = React.lazy(() => import("./pages/Myprofile/Editprofile"));
 const PrivacyPolicy = React.lazy(() =>
   import("./pages/PrivacyPolicy/PrivacyPolicy")
 );
 
 function Markup() {
-  const isLoggedIn = useIsLoggedIn();
+  const { isLoggedIn } = useIsLoggedIn();
   return (
     <div>
       <BrowserRouter basename="/">
@@ -40,6 +47,7 @@ function Markup() {
             <Route exact path="/uploadads" element={<Uploadpageads />} />
             <Route exact path="/myprofile" element={<Myprofile />} />
             <Route exact path="/edit_profile" element={<Editprofile />} />
+            <Route exact path="/profile/:id" element={<OthersProfile />} />
             <Route exact path="/privacypolicy" element={<PrivacyPolicy />} />
 
             {/* <<<<=====================Login Auth Flow========================>>> */}
@@ -47,6 +55,7 @@ function Markup() {
               <>
                 <Route exact path="/signup" element={<Signuppage />} />
                 <Route exact path="/login" element={<Loginpage />} />
+                <Route path="/signupques/:id" element={<SignupQuestions />} />
                 <Route exact path="/reset_password" element={<Resetpage />} />
                 <Route
                   exact
@@ -63,6 +72,8 @@ function Markup() {
             ) : (
               <>
                 <Route path="/signup" element={<Navigate to="/" />} />
+                <Route path="/signupques/:id" element={<SignupQuestions />} />
+
                 <Route path="/login" element={<Navigate to="/" />} />
                 <Route path="/reset_password" element={<Navigate to="/" />} />
                 <Route path="/change_password" element={<Navigate to="/" />} />

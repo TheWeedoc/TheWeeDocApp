@@ -90,7 +90,22 @@ color: #FAFBFF;
 
 .form_inputfields{
     width:320px;
+    /* width: 100%; */
     height: 45px;
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 16px;
+    margin-top: 25px;
+    background-color: transparent;
+    color: #FFFFFF;
+    border: 1px solid #4A4949;
+}
+
+.form_resetinputfields{
+    height: 45px;
+    width: 100%;
     font-family: 'Noto Sans';
     font-style: normal;
     font-weight: 400;
@@ -135,6 +150,16 @@ color: #FAFBFF;
 
 /* Media Query for Mobile */
 @media (max-width: 767px) {
+
+    .log_rightside{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        height: 100vh;
+    }
+
     .log_btm-sec {
       width: 100%; /* Full width on mobile */
     }

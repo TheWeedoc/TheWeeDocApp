@@ -2,12 +2,28 @@ import React, { useState, useEffect } from "react";
 import "./uploadShortFilm.css";
 import { message, Upload } from "antd";
 import UploadIcon from "../../../Assests/Images/UploadIcon.png";
+import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
+import { AddProduct } from "../../../Api/Fetchclient";
 
 function UploadVideo({ current, onNext, onPrev, formData, setFormData }) {
   const { Dragger } = Upload;
 
   const [imageError, setImageError] = useState(false);
   const [videoError, setVideoError] = useState(false);
+
+  const [load, setLoad] = useState(false);
+  const [errMessage, setErrMessage] = useState("");
+
+  const antIcon = (
+    <LoadingOutlined
+      style={{
+        fontSize: 24,
+        color: "black",
+      }}
+      spin
+    />
+  );
 
   useEffect(() => {
     // Update the form data in the parent component
@@ -67,15 +83,104 @@ function UploadVideo({ current, onNext, onPrev, formData, setFormData }) {
     },
   };
 
-  const handleNext = () => {
+  // API CALL
+
+  const result = async (data) => {
+    try {
+      const response = await AddProduct(data);
+      console.log("Login response", response);
+      setLoad(false);
+      if (response?.status === 200 || response?.status === 201) {
+        console.log("Response Add Prods", response);
+        onNext();
+      }
+      if (response?.status === 404) {
+        const errorData = response.data;
+        setErrMessage(errorData);
+        console.log(errorData);
+      }
+      if (response?.status === 401) {
+        setErrMessage(response.data);
+      }
+    } catch (error) {
+      if (error && error.data) {
+        const errorData = error.data;
+        setErrMessage(errorData);
+      }
+    }
+  };
+
+  const handleSubmit = async () => {
+    // e.preventDefault();
+    setLoad(true);
+
+    // const formDataUpload = new FormData();
+    const formDataUpload = jsonToFormData(formData);
+
+    function buildFormData(formData, data, parentKey) {
+      if (
+        data &&
+        typeof data === "object" &&
+        !(data instanceof Date) &&
+        !(data instanceof File) &&
+        !(data instanceof Blob)
+      ) {
+        Object.keys(data).forEach((key) => {
+          buildFormData(
+            formData,
+            data[key],
+            parentKey ? `${parentKey}[${key}]` : key
+          );
+        });
+      } else {
+        const value = data == null ? "" : data;
+
+        formData.append(parentKey, value);
+      }
+    }
+
+    function jsonToFormData(data) {
+      const formData = new FormData();
+
+      buildFormData(formData, data);
+
+      return formData;
+    }
+
+    // for (const key in formData) {
+    //   if (formData.hasOwnProperty(key)) {
+    //     if (Array.isArray(formData[key])) {
+    //       formData[key].forEach((item, index) => {
+    //         for (const prop in item) {
+    //           if (item.hasOwnProperty(prop)) {
+    //             formDataUpload.append(`${key}[${index}].${prop}`, item[prop]);
+    //           }
+    //         }
+    //       });
+    //     } else if (typeof formData[key] === "object") {
+    //       for (const prop in formData[key]) {
+    //         if (formData[key].hasOwnProperty(prop)) {
+    //           formDataUpload.append(`${key}.${prop}`, formData[key][prop]);
+    //         }
+    //       }
+    //     } else {
+    //       formDataUpload.append(key, formData[key]);
+    //     }
+    //   }
+    // }
+
+    // Call API here using the updatedFormData
+    await result(formDataUpload);
+  };
+
+  const handleNext = async () => {
     // Check if both image and video are selected
     if (!formData.image || !formData.video) {
       if (!formData.image) setImageError(true);
       if (!formData.video) setVideoError(true);
       return;
     }
-
-    onNext();
+    await handleSubmit();
   };
 
   return (
@@ -151,7 +256,11 @@ function UploadVideo({ current, onNext, onPrev, formData, setFormData }) {
       <div className="uploadpopup_btm">
         {current > 0 && <button onClick={onPrev}>Previous</button>}
 
-        {current === 1 && <button onClick={handleNext}>Next</button>}
+        {current === 1 && (
+          <button onClick={handleNext} className="loginbtn">
+            {load ? <Spin indicator={antIcon} /> : "Next"}
+          </button>
+        )}
       </div>
     </div>
   );
