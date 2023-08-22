@@ -48,15 +48,15 @@ const CastAndCrewCarousel = ({ castAndCrewData }) => {
           .map((member) => (
             <div key={member.id} className="flex flex-col items-center">
               <img
-                src={member.image}
-                alt={member.name}
+                src={member?.cast_member?.profile_pic}
+                alt={member?.cast_member?.first_name}
                 className="w-20 h-20 rounded-full"
               />
               <p className="text-sm font-semibold mt-1 text-white w-20 text-center font-notosans truncate">
-                {member.name}
+                {member?.cast_member?.first_name}
               </p>
               <p className="text-xs text-gray-500 font-notosans">
-                {member.role}
+                {member?.role}
               </p>
             </div>
           ))}

@@ -116,3 +116,84 @@ export const GetSearchUsers = async (searchKey, signal) => {
     throw Error(err.response.data);
   }
 };
+
+// Get Product Details
+
+export const GetProductDetails = async (id) => {
+  try {
+    const products = await get(`products/${id}/`);
+    return products.data;
+  } catch (err) {
+    throw Error(err.response.data);
+  }
+};
+
+// Get User Details for the Product details
+
+export const GetProductCustomer = async (name, id) => {
+  try {
+    const customerDetails = await get(`user/search/?search=${name}`);
+
+    const savedFilms = await get(`movies/list/saved/`);
+
+    if (customerDetails?.data.count > 0) {
+      const result = customerDetails?.data?.results.find(
+        (user) => user.username === name
+      );
+      result.isSaved = false;
+
+      if (savedFilms.data?.length > 0) {
+        const isSaved = savedFilms.data?.some((obj) => obj?.movie?.id === id);
+        result.isSaved = isSaved;
+      }
+
+      return result;
+    }
+  } catch (err) {
+    throw Error(err.response.data);
+  }
+};
+
+// Save and Unsave Films
+
+export const SaveFilm = async (id) => {
+  try {
+    const result = await post(`movies/save/${id}/`);
+    return result.data;
+  } catch (err) {
+    throw Error(err.response.data);
+  }
+};
+
+// Like and unLike films
+
+export const LikeFilm = async (id) => {
+  try {
+    const result = await post(`product/${id}/like/`);
+    return result.data;
+  } catch (err) {
+    throw Error(err.response.data);
+  }
+};
+
+// DisLike and Remove DisLike Films
+
+export const DisikeFilm = async (id) => {
+  try {
+    const result = await post(`product/${id}/dislike/`);
+    return result.data;
+  } catch (err) {
+    throw Error(err.response.data);
+  }
+};
+
+// Add Reviews
+
+export const AddReview = async (id, review) => {
+  try {
+    const result = await post(`reviews/add/${id}/`, { review_content: review });
+    return result;
+  } catch (err) {
+    throw Error(err.response.data);
+  }
+};

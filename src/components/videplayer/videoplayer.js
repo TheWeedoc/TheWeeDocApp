@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import videojs from "video.js";
 import _ from "videojs-contrib-quality-levels";
 import "video.js/dist/video-js.css";
-import "./videoplayer.css"
+import "./videoplayer.css";
 import "videojs-hotkeys";
 // import { playiconloader } from "../../asset/svg/CommonIcons";
 function Videoplayer({
@@ -22,9 +22,10 @@ function Videoplayer({
   const [callFinishVideoAPI, setCallFinishVideoAPI] = useState(false);
   const [vidDuration, setVidDuration] = useState(50000);
   const videoId = "e2280eeb-4cdb-43e7-a34f-36868326b8cb";
-  const thumbnailURL =
-    "https://vz-a2adf92d-b24.b-cdn.net/e2280eeb-4cdb-43e7-a34f-36868326b8cb/thumbnail.jpg";
-  const liveURL = "https://storage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4";
+  const thumbnailURL = thumbnail;
+  // "https://vz-a2adf92d-b24.b-cdn.net/e2280eeb-4cdb-43e7-a34f-36868326b8cb/thumbnail.jpg";
+  const liveURL = videoUrl;
+  // "https://storage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4";
   // videoFile
   // "https://vz-b4f1e97e-483.b-cdn.net/65c65840-de66-4c27-afd0-a3b5a904b768/playlist.m3u8"
   // "https://fingrad-test.s3.ap-south-1.amazonaws.com/test-video/video-file/fingradintradaytradingcourse-traileredited.m3u8"
@@ -90,7 +91,7 @@ function Videoplayer({
     );
 
     setPlayer(p);
-    console.log(videoJsOptions,"VIDEO SETTING");
+    console.log(videoJsOptions, "VIDEO SETTING");
 
     return () => {
       if (player) player?.dispose();
@@ -131,23 +132,23 @@ function Videoplayer({
   useEffect(() => {
     if (player) {
       player?.qualityLevels();
-    //   player?.hlsQualitySelector({ displayCurrentQuality: true });
+      //   player?.hlsQualitySelector({ displayCurrentQuality: true });
     }
   }, [player]);
 
   return (
     <div style={{ position: "relative" }}>
-        <div data-vjs-player style={{ width: "100%", height: "100%" }}>
-          <video
-            style={{ width: "100%", height: "auto", position: "relative" }}
-            ref={videoRef}
-            // onEnded={onVideoEnd}
-            onLoadedMetadata={(e, px) => {
-              setVidDuration(e.target.duration);
-            }}
-            className="vidPlayer video-js vjs-default-skin vjs-big-play-centered"
-          ></video>
-        </div>
+      <div data-vjs-player style={{ width: "100%", height: "100%" }}>
+        <video
+          style={{ width: "100%", height: "auto", position: "relative" }}
+          ref={videoRef}
+          // onEnded={onVideoEnd}
+          onLoadedMetadata={(e, px) => {
+            setVidDuration(e.target.duration);
+          }}
+          className="vidPlayer video-js vjs-default-skin vjs-big-play-centered"
+        ></video>
+      </div>
     </div>
   );
 }

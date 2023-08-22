@@ -41,7 +41,8 @@ function Markup() {
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
             <Route exact path="/" element={<HomePage />} />
-            <Route exact path="/video/:id/:name" element={<Indivialpage />} />
+            {/* <Route exact path="/video/:id/:name" element={<Indivialpage />} /> */}
+            <Route exact path="/video/:id" element={<Indivialpage />} />
             <Route exact path="/search" element={<Searchpage />} />
             <Route exact path="/upload" element={<Uploadpage />} />
             <Route exact path="/uploadads" element={<Uploadpageads />} />
