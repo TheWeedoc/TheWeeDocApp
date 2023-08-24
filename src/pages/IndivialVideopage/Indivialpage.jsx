@@ -5,8 +5,10 @@ import "./indivialpage.css";
 import {
   sharebtn,
   Savebtn,
-  Thumbsdown,
-  Thumbsup,
+  thumbsup,
+  ThumbsupFilled,
+  thumbsdown,
+  ThumbsdownFill,
 } from "../../Assests/Svg/Commonsvg";
 import { notification } from "antd";
 import CastAndCrewSlider from "../../components/cards/IndividualVideoPage/CastAndCrewSlider";
@@ -19,19 +21,23 @@ import {
   addReview,
   disLikeFilm,
   getProductCustomer,
+  getProductCustomerSaved,
   getProductDetails,
   likeFilm,
   saveFilm,
 } from "../../store/Home/productReducer";
 import Copylink from "../../components/videplayer/Copylink";
-import { clearNotification } from "../../store/Home/notificationReducer";
+import {
+  clearNotification,
+  showNotification,
+} from "../../store/Home/notificationReducer";
 const { TextArea } = Input;
 
 function Indivialpage() {
   const { id } = useParams();
-  const { isLoading, productDetails, productCustomer } = useSelector(
-    (state) => state.products
-  );
+  const { isLoading, productDetails, productCustomer, productCustomerSaved } =
+    useSelector((state) => state.products);
+  const { isLoggedIn } = useSelector((state) => state.auth);
   const { message, type } = useSelector((state) => state.notification);
   const handleNotificationClose = () => {
     dispatch(clearNotification());
@@ -49,20 +55,41 @@ function Indivialpage() {
   );
   let resultString = "";
 
+  const handleLoginMessage = () => {
+    dispatch(
+      showNotification({
+        type: "warning",
+        message: "Login to continue",
+      })
+    );
+  };
+
   // Handles
   const handleSaveFilm = (e) => {
     e.preventDefault();
-    dispatch(saveFilm(productDetails?.id));
+    if (isLoggedIn) {
+      dispatch(saveFilm(productDetails?.id));
+    } else {
+      handleLoginMessage();
+    }
   };
 
   const handleLike = (e) => {
     e.preventDefault();
-    dispatch(likeFilm(productDetails?.id));
+    if (isLoggedIn) {
+      dispatch(likeFilm(productDetails?.id));
+    } else {
+      handleLoginMessage();
+    }
   };
 
   const handleDisLike = (e) => {
     e.preventDefault();
-    dispatch(disLikeFilm(productDetails?.id));
+    if (isLoggedIn) {
+      dispatch(disLikeFilm(productDetails?.id));
+    } else {
+      handleLoginMessage();
+    }
   };
 
   const handleReview = (e) => {
@@ -72,9 +99,12 @@ function Indivialpage() {
 
   const handlePostReview = (e) => {
     e.preventDefault();
-
-    dispatch(addReview({ id: productDetails?.id, review: review }));
-    setReview("");
+    if (isLoggedIn) {
+      dispatch(addReview({ id: productDetails?.id, review: review }));
+      setReview("");
+    } else {
+      handleLoginMessage();
+    }
   };
 
   useEffect(() => {
@@ -86,6 +116,7 @@ function Indivialpage() {
         placement: "bottomRight",
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [message]);
 
   if (productDetails) {
@@ -102,146 +133,17 @@ function Indivialpage() {
         action.payload?.customer !== "" ||
         action.payload?.customer !== null
       ) {
-        dispatch(
-          getProductCustomer({
-            name: action.payload?.customer,
-            id: action.payload?.id,
-          })
-        );
+        dispatch(getProductCustomer(action.payload?.customer));
+        if (isLoggedIn) dispatch(getProductCustomerSaved(action.payload?.id));
       }
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const cardarr = [
-    {
-      id: "1",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-    {
-      id: "2",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-    {
-      id: "3",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-    {
-      id: "4",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-    {
-      id: "5",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-    {
-      id: "6",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-    {
-      id: "7",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-    {
-      id: "8",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-    {
-      id: "9",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-    {
-      id: "10",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-    {
-      id: "11",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-    {
-      id: "12",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-    {
-      id: "200",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-    {
-      id: "13",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-    {
-      id: "14",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-    {
-      id: "15",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-    {
-      id: "16",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-    {
-      id: "17",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-  ];
   return isLoading ? (
-    <Spin indicator={antIcon} />
+    <div className="h-screen w-screen flex justify-center items-center ">
+      <Spin indicator={antIcon} />
+    </div>
   ) : (
     productDetails !== "" && (
       <>
@@ -259,7 +161,7 @@ function Indivialpage() {
                 className="options_div border border-[#545455] p-2 rounded-md"
               >
                 <div>
-                  <Savebtn fill={productCustomer?.isSaved ? "#FFF" : "none"} />
+                  <Savebtn fill={productCustomerSaved ? "#FFF" : "none"} />
                 </div>
               </div>
             </div>
@@ -269,7 +171,7 @@ function Indivialpage() {
 
               <div className="likesDiv">
                 <div className="cursor-pointer" onClick={handleLike}>
-                  <Thumbsup />
+                  {productDetails?.has_liked ? ThumbsupFilled : thumbsup}
 
                   {productDetails?.like_count}
                 </div>
@@ -277,9 +179,7 @@ function Indivialpage() {
                   style={{ borderRight: "1.4px solid #fff", height: "14px" }}
                 />
                 <div className="cursor-pointer" onClick={handleDisLike}>
-                  <Thumbsdown
-                    fill={productDetails?.has_disliked ? "#FFF" : "none"}
-                  />{" "}
+                  {productDetails?.has_disliked ? ThumbsdownFill : thumbsdown}
                   {productDetails?.dislike_count}
                 </div>
               </div>
@@ -312,7 +212,7 @@ function Indivialpage() {
             </div>
           </div>
 
-          {(productCustomer !== "" || productCustomer !== undefined) && (
+          {productCustomer !== "" && productCustomer !== undefined && (
             <div className="userprofileSec">
               <div className="pro_imgDiv">
                 <img

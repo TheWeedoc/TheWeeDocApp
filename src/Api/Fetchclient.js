@@ -53,7 +53,6 @@ export const AddProduct = async (data) => {
   //   "content-type":
   // }
 
-  console.log("first API", data);
   const add = await post("products/create/", data)
     .then((resp) => {
       return resp;
@@ -130,25 +129,43 @@ export const GetProductDetails = async (id) => {
 
 // Get User Details for the Product details
 
-export const GetProductCustomer = async (name, id) => {
+export const GetProductCustomer = async (name) => {
   try {
     const customerDetails = await get(`user/search/?search=${name}`);
+    console.log(customerDetails, "cust");
 
-    const savedFilms = await get(`movies/list/saved/`);
-
-    if (customerDetails?.data.count > 0) {
+    if (customerDetails?.data.count > 1) {
       const result = customerDetails?.data?.results.find(
         (user) => user.username === name
       );
-      result.isSaved = false;
-
-      if (savedFilms.data?.length > 0) {
-        const isSaved = savedFilms.data?.some((obj) => obj?.movie?.id === id);
-        result.isSaved = isSaved;
-      }
-
+      // console.log(result, "Result Cust");
       return result;
     }
+
+    if (customerDetails?.data.count === 1) {
+      const result = customerDetails?.data?.results[0];
+      return result;
+    }
+    return "";
+  } catch (err) {
+    throw Error(err.response.data);
+  }
+};
+
+// Get User Saved Films
+
+export const GetProductCustomerSaved = async (id) => {
+  try {
+    const savedFilms = await get(`movies/list/saved/`);
+
+    const result = { isSaved: false };
+
+    if (savedFilms.data?.length > 0) {
+      const isSaved = savedFilms.data?.some((obj) => obj?.movie?.id === id);
+      result.isSaved = isSaved;
+    }
+
+    return result;
   } catch (err) {
     throw Error(err.response.data);
   }
@@ -192,6 +209,61 @@ export const DisikeFilm = async (id) => {
 export const AddReview = async (id, review) => {
   try {
     const result = await post(`reviews/add/${id}/`, { review_content: review });
+    return result;
+  } catch (err) {
+    throw Error(err.response.data);
+  }
+};
+
+// Add Cast
+
+export const AddCast = async (id, data) => {
+  try {
+    const result = await post(`products/cast/add/${id}/`, data);
+    return result;
+  } catch (err) {
+    throw Error(err.response.data);
+  }
+};
+
+// get User
+
+export const GetUser = async () => {
+  try {
+    const result = await get(`user/profile/`);
+    return result.data;
+  } catch (err) {
+    throw Error(err.response.data);
+  }
+};
+
+// Get All Reviews Given
+
+export const GetAllReviews = async () => {
+  try {
+    const result = await get(`reviews/given/`);
+    return result.data;
+  } catch (err) {
+    throw Error(err.response.data);
+  }
+};
+
+// Get All Saved Films
+
+export const GetAllSavedFilms = async () => {
+  try {
+    const result = await get(`movies/list/saved/`);
+    return result.data;
+  } catch (err) {
+    throw Error(err.response.data);
+  }
+};
+
+// User Update
+
+export const UpdateUser = async (data) => {
+  try {
+    const result = await put(`user/update/`, data);
     return result;
   } catch (err) {
     throw Error(err.response.data);

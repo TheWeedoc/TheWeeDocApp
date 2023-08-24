@@ -37,7 +37,7 @@ function UploadDetails({ onNext, formData, setFormData }) {
       ...formData,
       title: title,
       description: description,
-      genere: selectedItems,
+      genere: selectedItems.join(),
       language: language,
       age: age,
     };
@@ -57,7 +57,9 @@ function UploadDetails({ onNext, formData, setFormData }) {
     // Validate the form fields
     const isTitleValid = !!title;
     const isDescriptionValid = !!description;
-    const isGenreValid = selectedItems.length > 0;
+    const isGenreValid = selectedItems.length > 1;
+    // const isGenreValid = selectedItems != 0;
+
     const isLanguageValid = !!language;
     const isAgeValid = !!age;
 
@@ -129,8 +131,8 @@ function UploadDetails({ onNext, formData, setFormData }) {
             label: item.name,
           }))}
         />
-        {isFormSubmitted && selectedItems.length === 0 && (
-          <span className="error-message">Genre is required</span>
+        {isFormSubmitted && selectedItems.length < 2 && (
+          <span className="error-message">Minimum 2 Genre is required</span>
         )}
       </div>
 

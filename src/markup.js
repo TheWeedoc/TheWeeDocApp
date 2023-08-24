@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
-import useIsLoggedIn from "./Hooks/useIsLoggedIn";
+
+import { useSelector } from "react-redux";
 
 // Use dynamic imports for route components
 const HomePage = React.lazy(() => import("./pages/Homepage/HomePage"));
@@ -34,7 +35,7 @@ const PrivacyPolicy = React.lazy(() =>
 );
 
 function Markup() {
-  const { isLoggedIn } = useIsLoggedIn();
+  const { isLoggedIn } = useSelector((state) => state.auth);
   return (
     <div>
       <BrowserRouter basename="/">
@@ -43,13 +44,54 @@ function Markup() {
             <Route exact path="/" element={<HomePage />} />
             {/* <Route exact path="/video/:id/:name" element={<Indivialpage />} /> */}
             <Route exact path="/video/:id" element={<Indivialpage />} />
-            <Route exact path="/search" element={<Searchpage />} />
-            <Route exact path="/upload" element={<Uploadpage />} />
-            <Route exact path="/uploadads" element={<Uploadpageads />} />
-            <Route exact path="/myprofile" element={<Myprofile />} />
-            <Route exact path="/edit_profile" element={<Editprofile />} />
-            <Route exact path="/profile/:id" element={<OthersProfile />} />
             <Route exact path="/privacypolicy" element={<PrivacyPolicy />} />
+
+            {/* Protected Routes */}
+
+            {isLoggedIn ? (
+              <>
+                <Route exact path="/search" element={<Searchpage />} />
+                <Route exact path="/upload" element={<Uploadpage />} />
+                <Route exact path="/uploadads" element={<Uploadpageads />} />
+                <Route exact path="/myprofile" element={<Myprofile />} />
+                <Route exact path="/edit_profile" element={<Editprofile />} />
+                <Route exact path="/profile/:id" element={<OthersProfile />} />
+              </>
+            ) : (
+              <>
+                {" "}
+                <Route
+                  exact
+                  path="/search"
+                  element={<Navigate to="/login" />}
+                />
+                <Route
+                  exact
+                  path="/upload"
+                  element={<Navigate to="/login" />}
+                />
+                <Route
+                  exact
+                  path="/uploadads"
+                  element={<Navigate to="/login" />}
+                />
+                <Route
+                  exact
+                  path="/myprofile"
+                  element={<Navigate to="/login" />}
+                />
+                <Route
+                  exact
+                  path="/edit_profile"
+                  element={<Navigate to="/login" />}
+                />
+                <Route
+                  exact
+                  path="/profile/:id"
+                  element={<Navigate to="/login" />}
+                />
+              </>
+            )}
 
             {/* <<<<=====================Login Auth Flow========================>>> */}
             {!isLoggedIn ? (
@@ -74,7 +116,6 @@ function Markup() {
               <>
                 <Route path="/signup" element={<Navigate to="/" />} />
                 <Route path="/signupques/:id" element={<SignupQuestions />} />
-
                 <Route path="/login" element={<Navigate to="/" />} />
                 <Route path="/reset_password" element={<Navigate to="/" />} />
                 <Route path="/change_password" element={<Navigate to="/" />} />
@@ -83,6 +124,7 @@ function Markup() {
               </>
             )}
             {/* <<<<=====================Login Auth Flow========================>>> */}
+            <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </Suspense>
       </BrowserRouter>

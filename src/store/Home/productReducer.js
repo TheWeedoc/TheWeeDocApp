@@ -4,6 +4,7 @@ import {
   DisikeFilm,
   GetProduct,
   GetProductCustomer,
+  GetProductCustomerSaved,
   GetProductDetails,
   LikeFilm,
   SaveFilm,
@@ -14,6 +15,7 @@ const INITIAL_STATE = {
   isLoading: false,
   productDetails: "",
   productCustomer: "",
+  productCustomerSaved: false,
   products: [],
   count: "",
   next: "",
@@ -56,9 +58,26 @@ export const getProductDetails = createAsyncThunk(
 
 export const getProductCustomer = createAsyncThunk(
   "products/getProductCustomer",
-  async ({ name, id }, thunkAPI) => {
+  async (name, thunkAPI) => {
     try {
-      const result = await GetProductCustomer(name, id);
+      const result = await GetProductCustomer(name);
+      return result;
+    } catch (err) {
+      const message =
+        (err.response && err.response.data && err.response.data.detail) ||
+        err.message ||
+        err.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const getProductCustomerSaved = createAsyncThunk(
+  "products/getProductCustomerSaved",
+  async (id, thunkAPI) => {
+    try {
+      const result = await GetProductCustomerSaved(id);
       return result;
     } catch (err) {
       const message =
@@ -178,6 +197,17 @@ const productSlice = createSlice({
     builder.addCase(getProductCustomer.fulfilled, (state, action) => {
       state.productCustomer = action.payload;
     });
+    // Saved Films
+    builder.addCase(getProductCustomerSaved.pending, (state) => {
+      state.productCustomerSaved = false;
+    });
+    builder.addCase(getProductCustomerSaved.fulfilled, (state, action) => {
+      state.productCustomerSaved = action.payload.isSaved;
+    });
+    builder.addCase(getProductCustomerSaved.rejected, (state) => {
+      state.productCustomerSaved = false;
+    });
+
     builder.addCase(saveFilm.fulfilled, (state, action) => {
       if (action.payload.sucess === "movie saved sucessfully")
         state.productCustomer.isSaved = true;

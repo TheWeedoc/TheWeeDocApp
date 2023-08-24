@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Myprofile.css";
 import { EditprofileIcon } from "../../Assests/Svg/Commonsvg";
 import Uploads from "../../components/cards/Myprofile/Uploads";
@@ -8,13 +8,36 @@ import { Input } from "antd";
 import ReviewsGiven from "../../components/cards/Myprofile/ReviewsGiven";
 import Header from "../../components/Layout/Header/Header";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getAllReviews,
+  getAllSavedFilms,
+  getUser,
+} from "../../store/Home/userReducer";
 function Myprofile() {
   const [selectTab, setSelectTab] = useState("uploads");
+
+  const { user, reviewsGiven, savedFilms } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const switchTab = (tabName) => {
     setSelectTab(tabName);
   };
 
+  useEffect(() => {
+    if (user === "") dispatch(getUser());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (reviewsGiven.length === 0) dispatch(getAllReviews());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (savedFilms.length === 0) dispatch(getAllSavedFilms());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const cardarr = [
     {
       img: "https://i.ytimg.com/vi/YwDZMgIImSg/maxresdefault.jpg",
@@ -102,18 +125,24 @@ function Myprofile() {
       <Header />
       <div className="p-4 w-full text-[#FAFBFF]">
         <div className="flex flex-col justify-center items-center w-full">
-          <div className="flex flex-col md:flex-row justify-between bg-[#14161c] rounded-md border border-[#4A4949] w-full p-1  md:px-3 md:py-6 md:w-10/12">
+          <div className="flex flex-col md:flex-row justify-between bg-[#14161c] container ellipsis rounded-md border border-[#4A4949] w-full p-1  md:px-3 md:py-6 md:w-10/12">
             <div className="flex justify-center w-full lg:justify-start">
-              <div className="flex flex-row items-center  space-x-8 md:max-w-40 ">
-                <div className="w-24">
+              <div className="flex flex-row items-center  space-x-8 md:max-w-40">
+                <div className="w-24 ">
                   <img
-                    src="https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI="
+                    src={
+                      user?.profile_pic
+                        ? user?.profile_pic
+                        : "https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_1280.png"
+                    }
                     alt="profile"
                     className="w-24 h-24 rounded-full border border-white border-4"
                   />
                 </div>
-                <div className="p-0 ">
-                  <h1 className="profile_name">Nirmal kumar</h1>
+                <div className="p-0 container w-32 md:w-52 lg:w-64">
+                  <p className="font-bold md:text-md lg:text-lg font-notosans ellipsis">
+                    {user?.first_name} {user?.last_name}
+                  </p>
                   <span className="text-gray-400 mt-4">Director</span>
                 </div>
                 <Link to="/edit_profile">
@@ -125,11 +154,11 @@ function Myprofile() {
             {/* Followers */}
             <div className="flex flex-row items-center justify-center space-x-6 py-2 md:w-1/3">
               <div className="flex flex-col space-y-2 justify-center items-center">
-                <h1>200</h1>
+                <h1>{user?.followers_count}</h1>
                 <h1>Followers</h1>
               </div>
               <div className="flex flex-col space-y-2 justify-center items-center">
-                <h1>500</h1>
+                <h1>{user?.following_count}</h1>
                 <h1>Following</h1>
               </div>
             </div>
@@ -175,13 +204,18 @@ function Myprofile() {
             )}
 
             {/* Saved Films */}
-            {selectTab === "savedfilms" && (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-6 justify-center items-center">
-                {cardarr.map((i, index) => (
-                  <SavedFilms item={i} key={index} />
-                ))}
-              </div>
-            )}
+            {selectTab === "savedfilms" &&
+              (savedFilms.length > 0 ? (
+                <div className="py-6">
+                  <h1 className="text-white text-center">No films saved</h1>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-6 justify-center items-center">
+                  {savedFilms.map((i, index) => (
+                    <SavedFilms item={i.movie} key={i.id} />
+                  ))}
+                </div>
+              ))}
 
             {/* Reviews Given */}
             {selectTab === "reviews" && (
@@ -206,11 +240,24 @@ function Myprofile() {
                     </div>
                   </div>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4 py-6 justify-center items-center">
-                  {cardarr.map((i, index) => (
-                    <ReviewsGiven item={i} key={index} />
-                  ))}
-                </div>
+
+                {reviewsGiven.length > 0 ? (
+                  <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4 py-6 justify-center items-center">
+                    {reviewsGiven.map((i, index) => (
+                      <ReviewsGiven
+                        item={i.movie}
+                        key={i.id}
+                        lastUpdate={i.updated_at}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <div className="py-6">
+                    <h1 className="text-white text-center">
+                      No Reviews Given yet
+                    </h1>
+                  </div>
+                )}
               </div>
             )}
           </div>

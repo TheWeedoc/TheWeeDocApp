@@ -4,13 +4,13 @@ import "./uploadShortFilm.css";
 import UploadDetails from "./UploadDetails";
 import UploadVideo from "./UploadVideo";
 import Uploadcast from "./Uploadcast";
-import { AddProduct } from "../../../Api/Fetchclient";
 
 function UploadShortFlim() {
   const [current, setCurrent] = useState(0);
   const [stepCompletion, setStepCompletion] = useState([false, false, false]);
 
   const [formData, setFormData] = useState({});
+  const [result, setResult] = useState({ id: "", name: "", success: false });
 
   const next = () => {
     setCurrent(current + 1);
@@ -19,13 +19,6 @@ function UploadShortFlim() {
   const prev = () => {
     setCurrent(current - 1);
   };
-
-  console.log(formData, "inout input data");
-  // const postProduct = async () => {
-  //   const add = await AddProduct().then((res) => {
-  //     console.log(res, "addvideodata");
-  //   });
-  // };
 
   const steps = [
     {
@@ -47,6 +40,8 @@ function UploadShortFlim() {
           onPrev={prev}
           formData={formData}
           setFormData={setFormData}
+          setResult={setResult}
+          resulted={result}
         />
       ),
     },
@@ -58,7 +53,8 @@ function UploadShortFlim() {
           current={current}
           onPrev={prev}
           formData={formData}
-          setFormData={setFormData}
+          setResult={setResult}
+          resulted={result}
         />
       ),
     },

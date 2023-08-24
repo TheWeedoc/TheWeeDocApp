@@ -8,10 +8,15 @@ import {
   notificationicon,
   privacyPoliciesIcon,
 } from "../../Assests/Svg/Commonsvg";
-import useIsLoggedIn from "../../Hooks/useIsLoggedIn";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../store/Home/authReducer";
 
 function Profile() {
-  const { isLoggedIn, logout } = useIsLoggedIn();
+  const { isLoggedIn } = useSelector((state) => state.auth);
+
+  const { user } = useSelector((state) => state.user);
+
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const profileImage =
@@ -22,8 +27,9 @@ function Profile() {
   };
 
   const handleLogout = () => {
-    logout();
-    navigate("/");
+    dispatch(logout()).then(() => {
+      navigate("/login");
+    });
   };
   return (
     <div className="hidden md:flex md:flex-col md:w-64 text-white font-notosans">
@@ -34,10 +40,16 @@ function Profile() {
             className="w-full bg-[#16181f] h-auto rounded-md items-center cursor-pointer"
             onClick={handleNavgiation}
           >
-            <div className="flex flex-row px-2 py-2 justify-around items-center">
-              <img src={profileImage} className="w-12 h-12 " />
-              <div className="flex flex-col pl-2 justify-center ">
-                <h4 className="text-md font-semibold ">Sarah Williams</h4>
+            <div className="flex flex-row px-2 py-2 justify-around items-center container">
+              <img
+                src={user?.profile_pic ? user?.profile_pic : profileImage}
+                className="w-12 h-12 rounded-full border border-white "
+                alt="profilePic"
+              />
+              <div className="flex flex-col pl-2 justify-center container">
+                <h4 className="text-md font-semibold ellipsis">
+                  {user?.username}
+                </h4>
                 <h5 className="text-md">Director </h5>
               </div>
 

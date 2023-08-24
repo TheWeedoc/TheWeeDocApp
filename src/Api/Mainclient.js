@@ -4,11 +4,37 @@ const instance = axios.create({
   baseURL: "https://www.theweedoc.info/api/",
 });
 
-instance.defaults.headers.common["Authorization"] = localStorage.getItem(
-  "token"
-)
-  ? `Token ${localStorage.getItem("token")}`
-  : "";
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(";");
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) === " ") {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) === 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+export function setAuthorizationHeader() {
+  const token = getCookie("token");
+
+  if (token) {
+    instance.defaults.headers.common["Authorization"] = `Token ${token}`;
+  } else {
+    delete instance.defaults.headers.common["Authorization"];
+  }
+}
+
+setAuthorizationHeader();
+
+// instance.defaults.headers.common["Authorization"] = cookie
+//   ? `Token ${cookie}`
+//   : "";
 
 // export const post = (url, data) => {
 //   return instance.post(url, data);
