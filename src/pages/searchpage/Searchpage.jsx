@@ -24,6 +24,8 @@ function Searchpage() {
     genre: "",
   });
 
+  const [textValue, setTextValue] = useState("");
+
   const handleOptionClick = (option) => {
     setSearch({ ...search, genre: option.id, genreName: option.name });
   };
@@ -34,6 +36,7 @@ function Searchpage() {
 
   const handleSearch = (e) => {
     const newSearchText = e.target.value;
+    setTextValue(newSearchText);
     if (search.type === "films" && newSearchText !== "") {
       let updatedQuery = { ...search, searchKey: newSearchText };
       console.log(updatedQuery);
@@ -47,88 +50,10 @@ function Searchpage() {
     // setSearch({...search,searchKey: searchText})
   };
 
-  // const Genrelist = ["Action", "Drama", "Thirller", "Comedy", "Romance"];
-
-  const cardarr = [
-    {
-      id: "1",
-      image:
-        "https://res.cloudinary.com/dwku5ukpm/image/upload/v1689315175/weedoc/videos/Speak_Out%21/image/osrqoqcx0ujdrj6wlos3.jpg",
-      title: "Pen",
-      likes: ["3.01K"],
-      dislikes: ["3.01K"],
-      age: "13",
-      genere: [
-        {
-          id: 1,
-          name: "Action",
-        },
-        {
-          id: 2,
-          name: "Adventure",
-        },
-      ],
-    },
-    {
-      id: "2",
-
-      image:
-        "https://res.cloudinary.com/dwku5ukpm/image/upload/v1689315175/weedoc/videos/Speak_Out%21/image/osrqoqcx0ujdrj6wlos3.jpg",
-      title: "Iragu",
-      likes: ["3.01K"],
-      dislikes: ["3.01K"],
-      age: "13",
-      genere: [
-        {
-          id: 1,
-          name: "Action",
-        },
-        {
-          id: 2,
-          name: "Adventure",
-        },
-      ],
-    },
-    {
-      id: "3",
-      image:
-        "https://res.cloudinary.com/dwku5ukpm/image/upload/v1689315175/weedoc/videos/Speak_Out%21/image/osrqoqcx0ujdrj6wlos3.jpg",
-      title: "Pen",
-      likes: ["3.01K"],
-      dislikes: ["3.01K"],
-      age: "13",
-      genere: [
-        {
-          id: 1,
-          name: "Action",
-        },
-        {
-          id: 2,
-          name: "Adventure",
-        },
-      ],
-    },
-    {
-      id: "4",
-
-      image:
-        "https://res.cloudinary.com/dwku5ukpm/image/upload/v1689315175/weedoc/videos/Speak_Out%21/image/osrqoqcx0ujdrj6wlos3.jpg",
-      title: "Iragu",
-      likes: ["3.01K"],
-      dislikes: ["3.01K"],
-      age: "13",
-      genere: [
-        {
-          id: 1,
-          name: "Action",
-        },
-        {
-          id: 2,
-          name: "Adventure",
-        },
-      ],
-    },
-  ];
+  const handleRefreshSearch = () => {
+    console.log("Refresh Hit1");
+    if (textValue) dispatch(getSearchUsers(textValue));
+  };
 
   useEffect(() => {
     if (genres.length === 0) dispatch(getGenres());
@@ -261,11 +186,17 @@ function Searchpage() {
             )}
 
             <div className="flex justify-center py-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 custom-lg:grid-cols-3 gap-4 custom-lg:gap-x-4 lg:gap-y-8 grid-rows-auto">
-                {searchUserResults.results?.map((item) => (
-                  <SearchUserCard item={item} key={item.id} />
-                ))}
-              </div>
+              {searchUserResults.count > 0 && (
+                <div className="grid grid-cols-1 md:grid-cols-2 custom-lg:grid-cols-3 gap-4 custom-lg:gap-x-4 lg:gap-y-8 grid-rows-auto">
+                  {searchUserResults.results?.map((item) => (
+                    <SearchUserCard
+                      item={item}
+                      key={item.id}
+                      refreshHandle={handleRefreshSearch}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         )}

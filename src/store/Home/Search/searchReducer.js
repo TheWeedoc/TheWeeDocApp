@@ -90,6 +90,7 @@ const searchSlice = createSlice({
     builder.addCase(getSearchUsers.pending, (state) => {
       state.isLoading = true;
       state.searchUserResults.message = "";
+      state.searchUserResults.count = 0;
     });
     builder.addCase(getSearchUsers.fulfilled, (state, action) => {
       //   state.searchFilmResults = action.payload;

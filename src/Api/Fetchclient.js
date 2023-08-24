@@ -281,3 +281,13 @@ export const UpdateUser = async (data) => {
     throw Error(err.response.data);
   }
 };
+
+// Other User Profile Get
+export const OtherUserProfile = async (id) => {
+  try {
+    const result = await get(`user/${id}/`);
+    return result.data;
+  } catch (err) {
+    throw Error(err.response.data);
+  }
+};

@@ -46,6 +46,7 @@ function Markup() {
             <Route exact path="/video/:id" element={<Indivialpage />} />
             <Route exact path="/privacypolicy" element={<PrivacyPolicy />} />
             <Route exact path="/search" element={<Searchpage />} />
+            <Route exact path="/profile/:id" element={<OthersProfile />} />
 
             {/* Protected Routes */}
 
@@ -55,7 +56,6 @@ function Markup() {
                 <Route exact path="/uploadads" element={<Uploadpageads />} />
                 <Route exact path="/myprofile" element={<Myprofile />} />
                 <Route exact path="/edit_profile" element={<Editprofile />} />
-                <Route exact path="/profile/:id" element={<OthersProfile />} />
               </>
             ) : (
               <>

@@ -32,6 +32,7 @@ import {
   clearNotification,
   showNotification,
 } from "../../store/Home/notificationReducer";
+import { Link } from "react-router-dom";
 const { TextArea } = Input;
 
 function Indivialpage() {
@@ -226,23 +227,25 @@ function Indivialpage() {
           </div>
 
           {productCustomer !== "" && productCustomer !== undefined && (
-            <div className="userprofileSec">
-              <div className="pro_imgDiv">
-                <img
-                  src={productCustomer?.profile_pic}
-                  className="profilepic"
-                  alt="ProfilePicture"
-                />
-              </div>
+            <Link to={`/profile/${productCustomer?.id}`}>
+              <div className="userprofileSec">
+                <div className="pro_imgDiv">
+                  <img
+                    src={productCustomer?.profile_pic}
+                    className="profilepic"
+                    alt="ProfilePicture"
+                  />
+                </div>
 
-              <div className="pro_textDiv">
-                <b>{productDetails?.customer}</b>
-                <small>167 Followers</small>
+                <div className="pro_textDiv">
+                  <b>{productDetails?.customer}</b>
+                  <small>167 Followers</small>
+                </div>
+                <button className="invid_page_followbtn" onClick={handleFollow}>
+                  {productCustomer?.is_following ? "Unfollow" : "Follow"}
+                </button>
               </div>
-              <button className="invid_page_followbtn" onClick={handleFollow}>
-                {productCustomer?.is_following ? "Unfollow" : "Follow"}
-              </button>
-            </div>
+            </Link>
           )}
 
           <div className="indivl_page_cnt py-6">

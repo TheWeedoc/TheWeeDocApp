@@ -3,6 +3,7 @@ import {
   GetAllReviews,
   GetAllSavedFilms,
   GetUser,
+  OtherUserProfile,
   UpdateUser,
 } from "../../Api/Fetchclient";
 import { showNotification } from "./notificationReducer";
@@ -12,6 +13,7 @@ const INITIAL_STATE = {
   user: "",
   reviewsGiven: [],
   savedFilms: [],
+  otherUser: "",
 };
 
 export const getUser = createAsyncThunk("user/getUser", async (_, thunkAPI) => {
@@ -100,6 +102,23 @@ export const updateUser = createAsyncThunk(
   }
 );
 
+export const otherUserProfile = createAsyncThunk(
+  "user/otherUserProfile",
+  async (id, thunkAPI) => {
+    try {
+      const result = await OtherUserProfile(id);
+      return result;
+    } catch (err) {
+      const message =
+        (err.response && err.response.data && err.response.data.detail) ||
+        err.message ||
+        err.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 const userSlice = createSlice({
   name: "user",
   initialState: INITIAL_STATE,
@@ -115,6 +134,17 @@ const userSlice = createSlice({
       state.isLoading = false;
     });
     builder.addCase(getUser.rejected, (state) => {
+      state.isLoading = false;
+    });
+    // Other User Profile get
+    builder.addCase(otherUserProfile.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(otherUserProfile.fulfilled, (state, action) => {
+      state.otherUser = action.payload;
+      state.isLoading = false;
+    });
+    builder.addCase(otherUserProfile.rejected, (state) => {
       state.isLoading = false;
     });
     // Get All Reviews

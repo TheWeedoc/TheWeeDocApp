@@ -1,99 +1,70 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../components/Layout/Header/Header";
-import Uploads from "../../components/cards/Myprofile/Uploads";
 import OthersProfileUploads from "../../components/cards/OtherProfile/OtherProfileUploads";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { otherUserProfile } from "../../store/Home/userReducer";
+import defaultProfile from "../../Assests/Images/Defaultprofile.png";
+import {
+  clearNotification,
+  showNotification,
+} from "../../store/Home/notificationReducer";
+import { followUser } from "../../store/Home/productReducer";
+import { notification } from "antd";
 
 function OthersProfile() {
   const [selectTab, setSelectTab] = useState("uploads");
   const { id } = useParams();
+  const { otherUser } = useSelector((state) => state.user);
+  const { isLoggedIn } = useSelector((state) => state.auth);
+  const { message, type } = useSelector((state) => state.notification);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleNotificationClose = () => {
+    dispatch(clearNotification());
+  };
 
   const switchTab = (tabName) => {
     setSelectTab(tabName);
   };
 
-  const cardarr = [
-    {
-      img: "https://i.ytimg.com/vi/YwDZMgIImSg/maxresdefault.jpg",
-      title: "Pen",
-      reviews: "3.01K",
-    },
-    {
-      img: "https://i.ytimg.com/vi/OG0gxFIOqGI/maxresdefault.jpg",
-      title: "Iragu",
-      reviews: "1.42K",
-    },
-    {
-      img: "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/short-story-thumbnail-design-template-c8d3daba0e4410fb1f3d7876bb2796b3_screen.jpg?ts=1589979453",
-      title: "Animate ShortFilm",
-      reviews: "3.01K",
-    },
-    {
-      img: "https://i.ytimg.com/vi/gZp2x5k_9YI/maxresdefault.jpg",
-      title: "Singsot",
-      reviews: "34.01K",
-    },
-    {
-      img: "https://filmfreeway-production-storage-01-storage.filmfreeway.com/projects/project_stills/002/027/318/original/AALY-Thumbnail-Oct-2020.jpg?1602488049",
-      title: "AALY",
-      reviews: "2.91K",
-    },
-    {
-      img: "https://www.macworld.com/wp-content/uploads/2023/02/fursat-thumbnail-1.jpg?quality=50&strip=all",
-      title: "Pencil",
-      reviews: "3.01K",
-    },
-    {
-      img: "https://i.ytimg.com/vi/YwDZMgIImSg/maxresdefault.jpg",
-      title: "Pen",
-      reviews: "3.01K",
-    },
-    {
-      img: "https://blog.shortfundly.com/wp-content/uploads/2020/07/kannalane-tamil-shortfilm-review-by-shortfundly-1.jpg",
-      title: "Kannalana",
-      reviews: "3.01K",
-    },
-    {
-      img: "https://blog.shortfundly.com/wp-content/uploads/2021/02/Marakkavea-Ninaikiren-_-Tamil-Short-Film-Review-Rating-2.5_5-800x520.png",
-      title: "Marakkavea Ninaikkiren",
-      reviews: "3.01K",
-    },
-    {
-      img: "https://i.ytimg.com/vi/gZp2x5k_9YI/maxresdefault.jpg",
-      title: "Singsot",
-      reviews: "34.01K",
-    },
-    {
-      img: "https://filmfreeway-production-storage-01-storage.filmfreeway.com/projects/project_stills/002/027/318/original/AALY-Thumbnail-Oct-2020.jpg?1602488049",
-      title: "AALY",
-      reviews: "2.91K",
-    },
-    {
-      img: "https://www.macworld.com/wp-content/uploads/2023/02/fursat-thumbnail-1.jpg?quality=50&strip=all",
-      title: "Pencil",
-      reviews: "3.01K",
-    },
-    {
-      img: "https://i.ytimg.com/vi/YwDZMgIImSg/maxresdefault.jpg",
-      title: "Pen",
-      reviews: "3.01K",
-    },
-    {
-      img: "https://i.ytimg.com/vi/OG0gxFIOqGI/maxresdefault.jpg",
-      title: "Iragu",
-      reviews: "1.42K",
-    },
-    {
-      img: "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/short-story-thumbnail-design-template-c8d3daba0e4410fb1f3d7876bb2796b3_screen.jpg?ts=1589979453",
-      title: "Animate ShortFilm",
-      reviews: "3.01K",
-    },
-    {
-      img: "https://i.ytimg.com/vi/gZp2x5k_9YI/maxresdefault.jpg",
-      title: "Singsot",
-      reviews: "34.01K",
-    },
-  ];
+  const handleLoginMessage = () => {
+    dispatch(
+      showNotification({
+        type: "warning",
+        message: "Login to continue",
+      })
+    );
+    navigate("/login");
+  };
+
+  const handleFollow = (e) => {
+    e.preventDefault();
+    if (isLoggedIn) {
+      dispatch(followUser(otherUser?.username));
+    } else {
+      handleLoginMessage();
+    }
+  };
+
+  useEffect(() => {
+    if (otherUser === "") dispatch(otherUserProfile(id));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (message) {
+      notification[type]({
+        message: message,
+        duration: 2, // Display time in seconds
+        onClose: handleNotificationClose,
+        placement: "bottomRight",
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [message]);
+
   return (
     <>
       <Header />
@@ -104,18 +75,32 @@ function OthersProfile() {
               <div className="flex flex-row items-center  space-x-8 md:max-w-40 ">
                 <div className="w-24">
                   <img
-                    src="https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI="
+                    src={
+                      otherUser?.profile_pic
+                        ? otherUser?.profile_pic
+                        : defaultProfile
+                    }
                     alt="profile"
                     className="w-[80px] h-[80px] md:w-24 md:h-24 rounded-full border border-white border-4"
                   />
                 </div>
                 <div className="p-0 ">
-                  <h1 className="profile_name">Nirmal kumar</h1>
-                  <span className="text-gray-400 mt-4">Director</span>
+                  <h1 className="profile_name">
+                    {otherUser?.first_name ? otherUser?.first_name : "No Name"}{" "}
+                    {otherUser?.last_name}
+                  </h1>
+                  <span className="text-gray-400 mt-4">
+                    {otherUser?.designation
+                      ? otherUser?.designation
+                      : "No Designation"}
+                  </span>
                 </div>
                 <div className="flex items-center">
-                  <button className="bg-[#2d2f35] text-white py-1 px-4 rounded-md">
-                    Follow
+                  <button
+                    className="bg-[#2d2f35] text-white py-1 px-4 rounded-md"
+                    onClick={handleFollow}
+                  >
+                    {otherUser?.is_following ? "Unfollow" : "Follow"}
                   </button>
                 </div>
               </div>
@@ -124,11 +109,11 @@ function OthersProfile() {
             {/* Followers */}
             <div className="flex flex-row items-center justify-center space-x-6 py-2 md:w-1/3">
               <div className="flex flex-col space-y-2 justify-center items-center">
-                <h1>200</h1>
+                <h1>{otherUser?.followers_count}</h1>
                 <h1>Followers</h1>
               </div>
               <div className="flex flex-col space-y-2 justify-center items-center">
-                <h1>500</h1>
+                <h1>{otherUser?.following_count}</h1>
                 <h1>Following</h1>
               </div>
             </div>
@@ -147,11 +132,17 @@ function OthersProfile() {
               </h1>
             </div>
             {/* Uploads */}
-            {selectTab === "uploads" && (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-6 justify-center items-center">
-                {cardarr.map((i, index) => (
-                  <OthersProfileUploads item={i} key={index} />
-                ))}
+            {otherUser !== "" && otherUser.user_filims.length > 0 ? (
+              selectTab === "uploads" && (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-6 justify-center items-center">
+                  {otherUser.user_filims.map((i, index) => (
+                    <OthersProfileUploads item={i} key={index} />
+                  ))}
+                </div>
+              )
+            ) : (
+              <div className="py-6 text-center text-white">
+                <h1>No Uploads found</h1>
               </div>
             )}
           </div>
