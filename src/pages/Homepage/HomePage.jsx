@@ -6,6 +6,7 @@ import { bannerplayicon, bannersave } from "../../Assests/Svg/Commonsvg";
 import Homepagecard from "../../components/cards/Hompage/Homepagecard";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../store/Home/productReducer";
+import CarouselHomePage from "./CarouselHomePage";
 function HomePage() {
   const img1 = "https://i.ytimg.com/vi/YwDZMgIImSg/maxresdefault.jpg";
   const img2 = "https://i.ytimg.com/vi/OG0gxFIOqGI/maxresdefault.jpg";
@@ -111,8 +112,17 @@ function HomePage() {
     <>
       <Header />
       <Carousel autoplay>
-        <div className="BannerDiv">
-          <img src={img1} alt="banner" width="100" height="100" />
+        {products?.map((item) => (
+          <CarouselHomePage key={item.id} item={item} />
+        ))}
+
+        {/* <div className="BannerDiv">
+          <img
+            src={img1}
+            alt="banner"
+            //  width="100" height="100"
+            className="w-full"
+          />
           <div className="mask"></div>
           <div className="bannercontDiv">
             <div className="usernameDiv">
@@ -219,7 +229,7 @@ function HomePage() {
               <div>{bannersave}</div>
             </div>
           </div>
-        </div>
+        </div> */}
       </Carousel>
 
       {/* <<<<<<=================== Cards Sections ===================>>>>>> */}

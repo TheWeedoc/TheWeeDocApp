@@ -6,7 +6,6 @@ import {
   notificationicon,
   uploadicon,
   SearchIcon,
-  Profileicon,
   HamburgerMenu,
   CloseButton,
   EditprofileIcon,
@@ -18,6 +17,7 @@ import Profile from "../../Notification/Profile";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../../../store/Home/userReducer";
 import { logout } from "../../../store/Home/authReducer";
+import defaultProfile from "../../../Assests/Images/Defaultprofile.png";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -33,20 +33,8 @@ function Header() {
 
   useEffect(() => {
     if (user === "" && isLoggedIn) dispatch(getUser());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn]);
-
-  const userpro =
-    "https://www.pngall.com/wp-content/uploads/5/Profile-PNG-Images.png";
-  const profile =
-    "https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_1280.png";
-
-  // const profiledropdown = () => {
-  //   return (
-  //     <div className="profiledrpdwnDiv">
-  //       <div className=""></div>
-  //     </div>
-  //   );
-  // };
 
   const handleLogout = () => {
     dispatch(logout()).then(() => {
@@ -84,7 +72,7 @@ function Header() {
           </div>
           <Popover placement="bottom" content={<Profile />} trigger="click">
             <img
-              src={user?.profile_pic ? user?.profile_pic : profile}
+              src={user?.profile_pic ? user?.profile_pic : defaultProfile}
               alt="Profile_Picture"
               className="profilePictureDiv"
             />
@@ -129,7 +117,11 @@ function Header() {
                     <Link to="/myprofile">
                       <div className="flex flex-row px-2 py-2 justify-around">
                         <img
-                          src={user?.profile_pic ? user?.profile_pic : profile}
+                          src={
+                            user?.profile_pic
+                              ? user?.profile_pic
+                              : defaultProfile
+                          }
                           className="w-16 pb-3"
                           alt="ProfilePic"
                         />

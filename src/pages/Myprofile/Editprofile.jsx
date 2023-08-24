@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
-import {
-  EditprofileIcon,
-  backIcon,
-  cameraIcon,
-} from "../../Assests/Svg/Commonsvg";
+import { backIcon, cameraIcon } from "../../Assests/Svg/Commonsvg";
 import { Input, notification } from "antd";
 import Header from "../../components/Layout/Header/Header";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../store/Home/userReducer";
 import { clearNotification } from "../../store/Home/notificationReducer";
+import defaultProfile from "../../Assests/Images/Defaultprofile.png";
 
 function Editprofile() {
   const { user } = useSelector((state) => state.user);
@@ -147,7 +144,7 @@ function Editprofile() {
                           ? userDetails.preview
                           : user?.profile_pic
                           ? user?.profile_pic
-                          : "https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_1280.png"
+                          : defaultProfile
                       }
                       alt="profile"
                       className="w-24 h-24 rounded-full border border-white border-4"

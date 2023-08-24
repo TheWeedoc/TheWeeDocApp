@@ -85,7 +85,7 @@ export const updateUser = createAsyncThunk(
         dispatch(
           showNotification({
             type: "success",
-            message: "Review posted successfully.",
+            message: "Profile information updated successfully.",
           })
         );
       return result.data;
@@ -103,6 +103,9 @@ export const updateUser = createAsyncThunk(
 const userSlice = createSlice({
   name: "user",
   initialState: INITIAL_STATE,
+  reducers: {
+    resetUser: () => INITIAL_STATE,
+  },
   extraReducers: (builder) => {
     builder.addCase(getUser.pending, (state) => {
       state.isLoading = true;
@@ -162,5 +165,7 @@ const userSlice = createSlice({
     });
   },
 });
+
+export const { resetUser } = userSlice.actions;
 
 export const userReducer = userSlice.reducer;

@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import {
   AddReview,
   DisikeFilm,
+  FollowUser,
   GetProduct,
   GetProductCustomer,
   GetProductCustomerSaved,
@@ -164,6 +165,24 @@ export const addReview = createAsyncThunk(
     }
   }
 );
+
+export const followUser = createAsyncThunk(
+  "products/followUser",
+  async (id, thunkAPI) => {
+    try {
+      const result = await FollowUser(id);
+      return result;
+    } catch (err) {
+      const message =
+        (err.response && err.response.data && err.response.data.detail) ||
+        err.message ||
+        err.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 const productSlice = createSlice({
   name: "products",
   initialState: INITIAL_STATE,
@@ -225,6 +244,13 @@ const productSlice = createSlice({
       state.productDetails.has_disliked = action.payload.has_disliked;
       state.productDetails.like_count = action.payload.like_count;
       state.productDetails.dislike_count = action.payload.dislike_count;
+    });
+    builder.addCase(followUser.fulfilled, (state, action) => {
+      if (action.payload?.sucess === "unfollowed") {
+        state.productCustomer.is_following = false;
+      } else if (action.payload?.sucess === "followed") {
+        state.productCustomer.is_following = true;
+      }
     });
   },
 });

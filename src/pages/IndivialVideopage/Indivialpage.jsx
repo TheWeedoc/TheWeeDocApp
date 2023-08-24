@@ -15,11 +15,12 @@ import CastAndCrewSlider from "../../components/cards/IndividualVideoPage/CastAn
 import { LoadingOutlined } from "@ant-design/icons";
 import { Spin } from "antd";
 import { Input } from "antd";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addReview,
   disLikeFilm,
+  followUser,
   getProductCustomer,
   getProductCustomerSaved,
   getProductDetails,
@@ -39,6 +40,7 @@ function Indivialpage() {
     useSelector((state) => state.products);
   const { isLoggedIn } = useSelector((state) => state.auth);
   const { message, type } = useSelector((state) => state.notification);
+  const navigate = useNavigate();
   const handleNotificationClose = () => {
     dispatch(clearNotification());
   };
@@ -62,6 +64,7 @@ function Indivialpage() {
         message: "Login to continue",
       })
     );
+    navigate("/login");
   };
 
   // Handles
@@ -107,6 +110,15 @@ function Indivialpage() {
     }
   };
 
+  const handleFollow = (e) => {
+    e.preventDefault();
+    if (isLoggedIn) {
+      dispatch(followUser(productCustomer?.username));
+    } else {
+      handleLoginMessage();
+    }
+  };
+
   useEffect(() => {
     if (message) {
       notification[type]({
@@ -134,6 +146,7 @@ function Indivialpage() {
         action.payload?.customer !== null
       ) {
         dispatch(getProductCustomer(action.payload?.customer));
+
         if (isLoggedIn) dispatch(getProductCustomerSaved(action.payload?.id));
       }
     });
@@ -226,7 +239,7 @@ function Indivialpage() {
                 <b>{productDetails?.customer}</b>
                 <small>167 Followers</small>
               </div>
-              <button className="invid_page_followbtn">
+              <button className="invid_page_followbtn" onClick={handleFollow}>
                 {productCustomer?.is_following ? "Unfollow" : "Follow"}
               </button>
             </div>

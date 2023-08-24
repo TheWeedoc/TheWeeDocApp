@@ -204,6 +204,18 @@ export const DisikeFilm = async (id) => {
   }
 };
 
+// Follow and Unfollow User
+
+export const FollowUser = async (id) => {
+  try {
+    console.log(id);
+    const result = await post(`follow/`, { username: id });
+    return result.data;
+  } catch (err) {
+    throw Error(err.response.data);
+  }
+};
+
 // Add Reviews
 
 export const AddReview = async (id, review) => {

@@ -14,6 +14,7 @@ import {
   getAllSavedFilms,
   getUser,
 } from "../../store/Home/userReducer";
+import defaultProfile from "../../Assests/Images/Defaultprofile.png";
 function Myprofile() {
   const [selectTab, setSelectTab] = useState("uploads");
 
@@ -130,11 +131,7 @@ function Myprofile() {
               <div className="flex flex-row items-center  space-x-8 md:max-w-40">
                 <div className="w-24 ">
                   <img
-                    src={
-                      user?.profile_pic
-                        ? user?.profile_pic
-                        : "https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_1280.png"
-                    }
+                    src={user?.profile_pic ? user?.profile_pic : defaultProfile}
                     alt="profile"
                     className="w-24 h-24 rounded-full border border-white border-4"
                   />
@@ -205,7 +202,7 @@ function Myprofile() {
 
             {/* Saved Films */}
             {selectTab === "savedfilms" &&
-              (savedFilms.length > 0 ? (
+              (!(savedFilms.length > 0) ? (
                 <div className="py-6">
                   <h1 className="text-white text-center">No films saved</h1>
                 </div>

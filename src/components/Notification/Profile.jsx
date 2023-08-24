@@ -10,6 +10,7 @@ import {
 } from "../../Assests/Svg/Commonsvg";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/Home/authReducer";
+import defaultProfile from "../../Assests/Images/Defaultprofile.png";
 
 function Profile() {
   const { isLoggedIn } = useSelector((state) => state.auth);
@@ -18,9 +19,6 @@ function Profile() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const profileImage =
-    "https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_1280.png";
 
   const handleNavgiation = () => {
     navigate("/myprofile");
@@ -42,7 +40,7 @@ function Profile() {
           >
             <div className="flex flex-row px-2 py-2 justify-around items-center container">
               <img
-                src={user?.profile_pic ? user?.profile_pic : profileImage}
+                src={user?.profile_pic ? user?.profile_pic : defaultProfile}
                 className="w-12 h-12 rounded-full border border-white "
                 alt="profilePic"
               />
@@ -62,7 +60,7 @@ function Profile() {
         ) : (
           <div className="flex flex-row space-x-2  items-center p-4">
             <div>
-              <img src={profileImage} alt="profile" className="w-12 h-12" />
+              <img src={defaultProfile} alt="profile" className="w-12 h-12" />
             </div>
             <div>
               <h4 className="font-notosans font-semibold Capitalize">Guest</h4>
