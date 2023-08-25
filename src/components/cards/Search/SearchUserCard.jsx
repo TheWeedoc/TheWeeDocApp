@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { followUser } from "../../../store/Home/productReducer";
+import defaultProfile from "../../../Assests/Images/Defaultprofile.png";
 
 function SearchUserCard({ item, refreshHandle }) {
   const { isLoggedIn } = useSelector((state) => state.auth);
@@ -25,7 +26,7 @@ function SearchUserCard({ item, refreshHandle }) {
       <div className="flex flex-row space-x-4 items-center w-full ">
         <div className="w-1/4 flex items-center justify-center">
           <img
-            src={item?.profile_pic}
+            src={item?.profile_pic ? item?.profile_pic : defaultProfile}
             alt="profile"
             className="rounded-full w-[80px] h-[80px] object-cover"
           />
