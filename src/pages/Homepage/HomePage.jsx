@@ -6,6 +6,7 @@ import { bannerplayicon, bannersave } from "../../Assests/Svg/Commonsvg";
 import Homepagecard from "../../components/cards/Hompage/Homepagecard";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../store/Home/productReducer";
+import CarouselHomePage from "./CarouselHomePage";
 function HomePage() {
   const img1 = "https://i.ytimg.com/vi/YwDZMgIImSg/maxresdefault.jpg";
   const img2 = "https://i.ytimg.com/vi/OG0gxFIOqGI/maxresdefault.jpg";
@@ -103,7 +104,7 @@ function HomePage() {
 
   useEffect(() => {
     if (products.length === 0) dispatch(getProducts());
-    console.log("first");
+    // console.log("first");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -111,8 +112,17 @@ function HomePage() {
     <>
       <Header />
       <Carousel autoplay>
-        <div className="BannerDiv">
-          <img src={img1} alt="banner" width="100" height="100" />
+        {products?.map((item) => (
+          <CarouselHomePage key={item.id} item={item} />
+        ))}
+
+        {/* <div className="BannerDiv">
+          <img
+            src={img1}
+            alt="banner"
+            //  width="100" height="100"
+            className="w-full"
+          />
           <div className="mask"></div>
           <div className="bannercontDiv">
             <div className="usernameDiv">
@@ -219,15 +229,18 @@ function HomePage() {
               <div>{bannersave}</div>
             </div>
           </div>
-        </div>
+        </div> */}
       </Carousel>
 
       {/* <<<<<<=================== Cards Sections ===================>>>>>> */}
 
-      <div className="home-CardsSection px-3">
-        {products?.map((item) => {
-          return <Homepagecard key={item.id} item={item} />;
-        })}
+      {/* <div className="home-CardsSection px-3"> */}
+      <div className="flex justify-center py-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 custom-lg:grid-cols-3 gap-4 custom-lg:gap-x-4 lg:gap-y-8 grid-rows-auto">
+          {products?.map((item) => {
+            return <Homepagecard key={item.id} item={item} />;
+          })}
+        </div>
       </div>
     </>
   );

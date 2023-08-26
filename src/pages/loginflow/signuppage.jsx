@@ -33,7 +33,7 @@ function Signuppage() {
 
     const response = await signup(data);
     setLoad(false);
-    if (response?.status === 201) {
+    if (response?.status === 201 || response?.status === 200) {
       navigate("/Verify_mail");
       form.resetFields();
     }
@@ -62,8 +62,9 @@ function Signuppage() {
         </div> */}
       <div className="log_rightside">
         <div className="WeeDocTxt_div">
-          {/* <img src={WeeDoc} alt="TheWeeDoc" /> */}
-          <h1>TheWeedoc</h1>
+          <h1>
+            <Link to="/">TheWeedoc </Link>
+          </h1>
         </div>
 
         <div className="form_Div">
@@ -143,7 +144,7 @@ function Signuppage() {
               {load ? <Spin indicator={antIcon} /> : "Signup"}
             </button>
           </Form>
-          <p className="newuser_txt">
+          <p className="newuser_txt py-4">
             Registered User? <Link to="/login">Login</Link>
           </p>
         </div>

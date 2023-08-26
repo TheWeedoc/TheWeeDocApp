@@ -1,4 +1,4 @@
-import react, { useState } from "react";
+import { useState } from "react";
 import "./Loginflow.css";
 import { Form, Input } from "antd";
 import { Link } from "react-router-dom";
@@ -6,11 +6,17 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { Spin } from "antd";
 import { getlogin } from "../../Api/Fetchclient";
 import { useNavigate } from "react-router-dom";
+
+import { useDispatch } from "react-redux";
+import { postLogin } from "../../store/Home/authReducer";
+import { setAuthorizationHeader } from "../../Api/Mainclient";
 function Loginpage() {
   const navigate = useNavigate();
   const [load, setLoad] = useState(false);
   const [formErrors, setFormErrors] = useState({});
   const [formErrors2, setFormErrors2] = useState({});
+
+  const dispatch = useDispatch();
 
   const antIcon = (
     <LoadingOutlined
@@ -29,32 +35,58 @@ function Loginpage() {
       password: values?.password,
     };
 
-    try {
-      const response = await getlogin(data);
-      console.log("Login response", response);
-      setLoad(false);
-      if (response?.status === 200) {
-        localStorage.setItem("token", response?.data?.token);
-        navigate("/");
-        console.log("Response", response);
-      }
-      if (response?.status === 404) {
-        const errorData = response.data;
-        setFormErrors(errorData);
-      }
-      if (response?.status === 401) {
-        setFormErrors2(response.data);
-      }
-    } catch (error) {
-      if (error && error.data) {
-        const errorData = error.data;
-        setFormErrors(errorData);
-      }
-    }
+    dispatch(postLogin(data))
+      .then((action) => {
+        if (action.payload.status === 200) {
+          setAuthorizationHeader();
+          navigate("/");
+        }
+        if (action.payload.status === 404) {
+          const errorData = action.payload.data;
+          setFormErrors(errorData);
+        }
+        if (action.payload.status === 401) {
+          setFormErrors2(action.payload.data);
+        }
+        setLoad(false);
+      })
+      .catch((error) => {
+        console.log("Login Error", error);
+        if (error && error.data) {
+          const errorData = error.data;
+          setFormErrors(errorData);
+        }
+        setLoad(false);
+      });
+
+    // try {
+    //   const response = await getlogin(data);
+    //   console.log("Login response", response);
+    //   setLoad(false);
+    //   if (response?.status === 200) {
+    //     localStorage.setItem("token", response?.data?.token);
+    //     handleLoginStatus(true);
+    //     navigate("/");
+    //     console.log("Response", response);
+    //   }
+    //   if (response?.status === 404) {
+    //     const errorData = response.data;
+    //     setFormErrors(errorData);
+    //   }
+    //   if (response?.status === 401) {
+    //     setFormErrors2(response.data);
+    //   }
+    // } catch (error) {
+    //   if (error && error.data) {
+    //     const errorData = error.data;
+    //     setFormErrors(errorData);
+    //   }
+    // }
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
+    // return;
   };
 
   const handleUsernameFocus = () => {
@@ -75,8 +107,9 @@ function Loginpage() {
         </div> */}
       <div className="log_rightside">
         <div className="WeeDocTxt_div">
-          {/* <img src={WeeDoc} alt="TheWeeDoc" /> */}
-          <h1>TheWeedoc</h1>
+          <h1>
+            <Link to="/">TheWeedoc </Link>
+          </h1>
         </div>
 
         <div className="form_Div">
@@ -141,7 +174,7 @@ function Loginpage() {
               {load ? <Spin indicator={antIcon} /> : "Login"}
             </button>
           </Form>
-          <p className="newuser_txt">
+          <p className="newuser_txt py-4">
             New User? <Link to="/signup">Signup</Link>
           </p>
         </div>

@@ -31,9 +31,7 @@ function PrivacyPolicy() {
             our Terms and Conditions, which are accessible at TheWeedoc unless
             otherwise defined in this Privacy Policy.
           </p>
-          <p>
-            <h2>Information Collection and Use</h2>
-          </p>
+          <h2>Information Collection and Use</h2>
           <p>
             For a better experience, while using our Service, we may require you
             to provide us with certain personally identifiable information,
@@ -62,9 +60,7 @@ function PrivacyPolicy() {
               </li>
             </ul>
           </div>{" "}
-          <p>
-            <h2>Log Data</h2>
-          </p>{" "}
+          <h2>Log Data</h2>
           <p>
             We want to inform you that whenever you use our Service, in a case
             of an error in the app we collect data and information (through
@@ -74,9 +70,7 @@ function PrivacyPolicy() {
             the app when utilizing our Service, the time and date of your use of
             the Service, and other statistics.
           </p>{" "}
-          <p>
-            <h2>Cookies</h2>
-          </p>{" "}
+          <h2>Cookies</h2>
           <p>
             Cookies are files with a small amount of data that are commonly used
             as anonymous unique identifiers. These are sent to your browser from
@@ -111,9 +105,7 @@ function PrivacyPolicy() {
             obligated not to disclose or use the information for any other
             purpose.
           </p>{" "}
-          <p>
-            <h2>Security</h2>
-          </p>{" "}
+          <h2>Security</h2>
           <p>
             We value your trust in providing us your Personal Information, thus
             we are striving to use commercially acceptable means of protecting
@@ -121,9 +113,7 @@ function PrivacyPolicy() {
             or method of electronic storage is 100% secure and reliable, and we
             cannot guarantee its absolute security.
           </p>{" "}
-          <p>
-            <h2>Links to Other Sites</h2>
-          </p>{" "}
+          <h2>Links to Other Sites</h2>
           <p>
             This Service may contain links to other sites. If you click on a
             third-party link, you will be directed to that site. Note that these
@@ -132,9 +122,7 @@ function PrivacyPolicy() {
             control over and assume no responsibility for the content, privacy
             policies, or practices of any third-party sites or services.
           </p>{" "}
-          <p>
-            <h2>Children’s Privacy</h2>
-          </p>{" "}
+          <h2>Children’s Privacy</h2>
           <div>
             <p>
               These Services do not address anyone under the age of 13. We do
@@ -147,19 +135,14 @@ function PrivacyPolicy() {
               do the necessary actions.
             </p>
           </div>
-          <p>
-            <h2>Changes to This Privacy Policy</h2>
-          </p>{" "}
+          <h2>Changes to This Privacy Policy</h2>
           <p>
             We may update our Privacy Policy from time to time. Thus, you are
             advised to review this page periodically for any changes. We will
             notify you of any changes by posting the new Privacy Policy on this
             page.
           </p>{" "}
-          <p>This policy is effective as of 2023-08-05</p>{" "}
-          <p>
-            <h2>Contact Us</h2>
-          </p>{" "}
+          <p>This policy is effective as of 2023-08-05</p> <h2>Contact Us</h2>
           <p>
             If you have any questions or suggestions about our Privacy Policy,
             do not hesitate to contact us at theweedoc@gmail.com.

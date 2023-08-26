@@ -1,14 +1,104 @@
-import React from "react";
-import {
-  EditprofileIcon,
-  backIcon,
-  cameraIcon,
-} from "../../Assests/Svg/Commonsvg";
-import { Input } from "antd";
+import React, { useEffect, useState } from "react";
+import { backIcon, cameraIcon } from "../../Assests/Svg/Commonsvg";
+import { Input, notification } from "antd";
 import Header from "../../components/Layout/Header/Header";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { updateUser } from "../../store/Home/userReducer";
+import { clearNotification } from "../../store/Home/notificationReducer";
+import defaultProfile from "../../Assests/Images/Defaultprofile.png";
 
 function Editprofile() {
+  const { user } = useSelector((state) => state.user);
+  const [userDetails, setUserDetails] = useState({
+    first_name: user?.first_name,
+    last_name: user?.last_name,
+    designation: user?.designation,
+    preview: "",
+    profilePicChange: false,
+  });
+
+  const [profileFile, setProfileFile] = useState(null);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { message, type } = useSelector((state) => state.notification);
+  const handleNotificationClose = () => {
+    dispatch(clearNotification());
+  };
+
+  useEffect(() => {
+    if (message) {
+      notification[type]({
+        message: message,
+        duration: 2, // Display time in seconds
+        onClose: handleNotificationClose,
+        placement: "bottomRight",
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [message]);
+
+  const handleDesignation = (e) => {
+    e.preventDefault();
+    setUserDetails({ ...userDetails, designation: e.target.value });
+  };
+
+  const handleFirstname = (e) => {
+    e.preventDefault();
+    setUserDetails({ ...userDetails, first_name: e.target.value });
+  };
+
+  const handleLastname = (e) => {
+    e.preventDefault();
+    setUserDetails({ ...userDetails, last_name: e.target.value });
+  };
+
+  const handleProfilePic = (e) => {
+    e.preventDefault();
+    const file = e.target.files[0];
+
+    if (file) {
+      setProfileFile(file);
+      setUserDetails({
+        ...userDetails,
+        preview: URL.createObjectURL(file),
+        profilePicChange: true,
+      });
+    }
+  };
+
+  const handleSave = (e) => {
+    e.preventDefault();
+
+    const updatedApiData = new FormData();
+
+    if (
+      userDetails.first_name !== user.first_name &&
+      userDetails.first_name !== ""
+    ) {
+      updatedApiData.append("first_name", userDetails.first_name);
+    }
+    if (
+      userDetails.last_name !== user.last_name &&
+      userDetails.last_name !== ""
+    ) {
+      updatedApiData.append("last_name", userDetails.last_name);
+    }
+    if (
+      userDetails.designation !== user?.designation &&
+      userDetails.designation !== ""
+    ) {
+      updatedApiData.append("designation", userDetails.designation);
+    }
+    if (userDetails.profilePicChange && profileFile !== null) {
+      updatedApiData.append("profile_pic", profileFile);
+    }
+
+    // console.log(updatedApiData);
+    dispatch(updateUser(updatedApiData)).then(() => {
+      navigate("/myprofile");
+    });
+  };
   return (
     <>
       <Header />
@@ -36,41 +126,74 @@ function Editprofile() {
               </Link>
 
               <div className="full">
-                <button className="bg-white px-6 rounded-lg py-2">Save</button>
+                <button
+                  className="bg-white px-6 rounded-lg py-2"
+                  onClick={handleSave}
+                >
+                  Save
+                </button>
               </div>
             </div>
             <div className="text-white w-full ">
               <div className="flex flex-col md:flex-row items-center justify-between md:space-x-8 ">
-                <div className="flex flex-col justify-center items-center md:w-3/6">
+                <div className="flex flex-col justify-center space-y-4 items-center md:w-3/6">
                   <div className="w-26">
                     <img
-                      src="https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI="
+                      src={
+                        userDetails.preview !== ""
+                          ? userDetails.preview
+                          : user?.profile_pic
+                          ? user?.profile_pic
+                          : defaultProfile
+                      }
                       alt="profile"
                       className="w-24 h-24 rounded-full border border-white border-4"
                     />
                   </div>
-                  <div className="flex flex-row items-center   ">
-                    <div
-                      style={{
-                        display: "inline-block",
-                        borderRadius: "50%",
-                        backgroundColor: "#1e1f21",
-                        padding: "4px",
-                      }}
-                    >
-                      {cameraIcon}
+                  <label htmlFor="profilePicInput" className="cursor-pointer">
+                    <div className="flex flex-row items-center">
+                      <input
+                        type="file"
+                        onChange={handleProfilePic}
+                        className="hidden"
+                        id="profilePicInput"
+                        accept="image/*"
+                      />
+                      <div
+                        style={{
+                          display: "inline-block",
+                          borderRadius: "50%",
+                          backgroundColor: "#1e1f21",
+                          padding: "4px",
+                        }}
+                      >
+                        {cameraIcon}
+                      </div>
+                      <span className="shrink-0">Change Profile picture</span>
                     </div>
-                    <span className="shrink-0">Change Profile picture</span>
-                  </div>
+                  </label>
                 </div>
                 <div className="flex flex-col w-full md:3/6 ">
                   <div className="flex flex-col w-full md:w-3/6 justify-center ">
-                    <label htmlFor="username" className="text-gray-400 w-full">
-                      Username:
+                    <label htmlFor="firstname" className="text-gray-400 w-full">
+                      Firstname:
                     </label>
                     <Input
-                      id="username"
-                      value="Nirmal"
+                      id="firstname"
+                      value={userDetails.first_name}
+                      onChange={handleFirstname}
+                      className="bg-black text-white placeholder:text-gray-400"
+                    />
+                  </div>
+
+                  <div className="flex flex-col w-full md:w-3/6 justify-center ">
+                    <label htmlFor="lastname" className="text-gray-400 w-full">
+                      Lastname:
+                    </label>
+                    <Input
+                      id="lastname"
+                      value={userDetails.last_name}
+                      onChange={handleLastname}
                       className="bg-black text-white placeholder:text-gray-400"
                     />
                   </div>
@@ -81,7 +204,8 @@ function Editprofile() {
                     </label>
                     <Input
                       id="role"
-                      value="Director"
+                      value={userDetails.designation}
+                      onChange={handleDesignation}
                       className="bg-black text-white placeholder:text-gray-400"
                     />
                   </div>

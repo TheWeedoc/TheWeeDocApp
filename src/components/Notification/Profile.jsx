@@ -1,6 +1,6 @@
 import React from "react";
 import "./Notification.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   EditprofileIcon,
   advertisementIcon,
@@ -8,37 +8,59 @@ import {
   notificationicon,
   privacyPoliciesIcon,
 } from "../../Assests/Svg/Commonsvg";
-import useIsLoggedIn from "../../Hooks/useIsLoggedIn";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../store/Home/authReducer";
+import defaultProfile from "../../Assests/Images/Defaultprofile.png";
 
 function Profile() {
-  const isLoggedIn = useIsLoggedIn();
+  const { isLoggedIn } = useSelector((state) => state.auth);
 
-  const profileImage =
-    "https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_1280.png";
+  const { user } = useSelector((state) => state.user);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleNavgiation = () => {
+    navigate("/myprofile");
+  };
+
+  const handleLogout = () => {
+    dispatch(logout()).then(() => {
+      navigate("/login");
+    });
+  };
   return (
     <div className="hidden md:flex md:flex-col md:w-64 text-white font-notosans">
       <div className="flex flex-col w-full">
         {/* Image section */}
-        {!isLoggedIn ? (
-          <Link to="/myprofile">
-            <div className="w-full bg-[#16181f] h-auto rounded-md items-center ">
-              <div className="flex flex-row px-2 py-2 justify-around items-center">
-                <img src={profileImage} className="w-12 h-12 " />
-                <div className="flex flex-col pl-2 justify-center ">
-                  <h4 className="text-md font-semibold ">Sarah Williams</h4>
-                  <h5 className="text-md">Director </h5>
-                </div>
+        {isLoggedIn ? (
+          <div
+            className="w-full bg-[#16181f] h-auto rounded-md items-center cursor-pointer"
+            onClick={handleNavgiation}
+          >
+            <div className="flex flex-row px-2 py-2 justify-around items-center container">
+              <img
+                src={user?.profile_pic ? user?.profile_pic : defaultProfile}
+                className="w-12 h-12 rounded-full border border-white "
+                alt="profilePic"
+              />
+              <div className="flex flex-col pl-2 justify-center container">
+                <h4 className="text-md font-semibold ellipsis">
+                  {user?.username}
+                </h4>
+                <h5 className="text-md">Director </h5>
+              </div>
 
-                <Link to="/edit_profile">
-                  <div className="flex items-center">{EditprofileIcon}</div>
-                </Link>
+              <div className="flex items-center">
+                {" "}
+                <Link to="/edit_profile">{EditprofileIcon}</Link>
               </div>
             </div>
-          </Link>
+          </div>
         ) : (
           <div className="flex flex-row space-x-2  items-center p-4">
             <div>
-              <img src={profileImage} alt="profile" className="w-12 h-12" />
+              <img src={defaultProfile} alt="profile" className="w-12 h-12" />
             </div>
             <div>
               <h4 className="font-notosans font-semibold Capitalize">Guest</h4>
@@ -56,7 +78,8 @@ function Profile() {
             <div> {notificationicon}</div> <Link>Notification</Link>
           </div>
           <div className="flex flex-row justify-start items-center space-x-2">
-            <div> {advertisementIcon}</div> <Link>Upload Advertisement</Link>
+            <div> {advertisementIcon}</div>{" "}
+            <Link to="/uploadads">Upload Advertisement</Link>
           </div>
           <div className="flex flex-row justify-start items-center space-x-2">
             <div> {informationIcon}</div> <Link>About </Link>
@@ -64,29 +87,31 @@ function Profile() {
         </div>
       </div>
       <div className="pt-10">
-        <div className="flex flex-col w-full space-y-2">
-          <div className="flex w-full justify-center text-center">
-            <Link
-              to="/login"
-              className="border border-white bg-headerBackground w-full py-2 rounded-md"
-            >
-              Login
-            </Link>
+        {!isLoggedIn && (
+          <div className="flex flex-col w-full space-y-2">
+            <div className="flex w-full justify-center text-center">
+              <Link
+                to="/login"
+                className="border border-white bg-headerBackground w-full py-2 rounded-md"
+              >
+                Login
+              </Link>
+            </div>
+            <div className="flex w-full justify-center text-center">
+              <Link
+                to="/signup"
+                className="border border-black bg-white text-black  w-full py-2 rounded-md"
+              >
+                Signup
+              </Link>
+            </div>
           </div>
-          <div className="flex w-full justify-center text-center">
-            <Link
-              to="/signup"
-              className="border border-black bg-white text-black  w-full py-2 rounded-md"
-            >
-              Signup
-            </Link>
-          </div>
-        </div>
+        )}
 
         {isLoggedIn && (
           <div className="flex w-full justify-center text-center">
             <Link
-              to="/logout"
+              onClick={handleLogout}
               className="border border-black bg-white text-black  w-full py-2 rounded-md"
             >
               Logout

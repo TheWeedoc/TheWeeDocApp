@@ -1,29 +1,35 @@
 import React, { useState, useEffect } from "react";
 import "./uploadShortFilm.css";
 import { Select } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { getGenres } from "../../../store/Home/adhocReducer";
 
-function  UploadDetails({ onNext, formData, setFormData }) {
-  const options = ["Action", "Drama", "Thriller", "Romance", "Comedy"];
+function UploadDetails({ onNext, formData, setFormData }) {
+  const { genres } = useSelector((state) => state.adhoc);
+  // const options = ["Action", "Drama", "Thriller", "Romance", "Comedy"];
 
   const Languagelist = [
-    "Tamil",
-    "English",
-    "Hindi",
-    "Gujarati",
-    "Urdu",
-    "Kannada",
-    "Odia",
-    "Malayalam",
-    "Bengali",
-    "Marathi",
-    "Telugu",
+    "tamil",
+    "english",
+    "eindi",
+    "gujarati",
+    "urdu",
+    "kannada",
+    "odia",
+    "malayalam",
+    "bengali",
+    "marathi",
+    "telugu",
   ];
 
   const [selectedItems, setSelectedItems] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [age, setAge] = useState("");
+  const [language, setLanguage] = useState("");
+
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     // Update the form data in the parent component
@@ -31,18 +37,30 @@ function  UploadDetails({ onNext, formData, setFormData }) {
       ...formData,
       title: title,
       description: description,
-      cast: selectedItems,
+      genere: selectedItems.join(),
+      language: language,
       age: age,
     };
     setFormData(updatedFormData);
-  }, [title, description, selectedItems, age]);
+  }, [title, description, selectedItems, age, language]);
+
+  useEffect(() => {
+    if (genres.length === 0) dispatch(getGenres());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleLanguageChange = (event) => {
+    setLanguage(event.target.value);
+  };
 
   const handleNext = () => {
     // Validate the form fields
     const isTitleValid = !!title;
     const isDescriptionValid = !!description;
-    const isGenreValid = selectedItems.length > 0;
-    const isLanguageValid = !!age;
+    const isGenreValid = selectedItems.length > 1;
+    // const isGenreValid = selectedItems != 0;
+
+    const isLanguageValid = !!language;
     const isAgeValid = !!age;
 
     // If the form is submitted and any of the fields are empty, show the errors
@@ -103,28 +121,43 @@ function  UploadDetails({ onNext, formData, setFormData }) {
         <Select
           mode="multiple"
           placeholder="Inserted are removed"
-          value={selectedItems}
+          // value={selectedItems}
           onChange={setSelectedItems}
           style={{
             width: "100%",
           }}
-          options={options.map((item) => ({
-            value: item,
-            label: item,
+          options={genres.map((item) => ({
+            value: item.id,
+            label: item.name,
           }))}
         />
-        {isFormSubmitted && selectedItems.length === 0 && (
-          <span className="error-message">Genre is required</span>
+        {isFormSubmitted && selectedItems.length < 2 && (
+          <span className="error-message">Minimum 2 Genre is required</span>
         )}
       </div>
 
       <div className="uplod_genre_div">
         <label>Language* </label>
-        <select placeholder="Select your Language">
+        <select
+          placeholder="Select your Language"
+          value={language}
+          onChange={handleLanguageChange}
+        >
+          <option value="">Select an option</option>
+          {Languagelist.map((item, index) => (
+            <option key={index} value={item}>
+              {item}
+            </option>
+          ))}
+        </select>
+        {isFormSubmitted && !language && (
+          <span className="error-message">Language is required</span>
+        )}
+        {/* <select placeholder="Select your Language" onChange={()=>setLanguage()}>
           {Languagelist?.map((item, id) => {
             return <option key={id}>{item}</option>;
           })}
-        </select>
+        </select> */}
       </div>
 
       <div className="uplod_genre_div">

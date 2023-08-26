@@ -1,114 +1,149 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./uploadShortFilm.css";
-import { message, Upload } from "antd";
-import UploadIcon from "../../../Assests/Images/UploadIcon.png";
+import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
+import { AddProduct } from "../../../Api/Fetchclient";
+import { DragZone } from "./DragZone";
 
-function UploadVideo({ current, onNext, onPrev, formData, setFormData }) {
-  const { Dragger } = Upload;
-
+function UploadVideo({
+  current,
+  onNext,
+  onPrev,
+  formData,
+  setResult,
+  resulted,
+}) {
+  const [selectedFiles, setSelectedFiles] = useState({
+    image: null,
+    video: null,
+  });
   const [imageError, setImageError] = useState(false);
   const [videoError, setVideoError] = useState(false);
 
-  useEffect(() => {
-    // Update the form data in the parent component
-    const updatedFormData = {
-      ...formData,
-      video: "",
-      image: "",
-    };
-    setFormData(updatedFormData);
-  }, []);
+  const [load, setLoad] = useState(false);
+  const [errMessage, setErrMessage] = useState("");
 
-  const props = {
-    name: "file",
-    multiple: false,
-    action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
-    onChange(info) {
-      console.log(info?.file, "info");
-      const { status, name, type } = info.file;
-      if (status === "uploading") {
-       
-        // Check if the file is an image
-        if (type.startsWith("image/")) {
-          const updatedFormData = {
-            ...formData,
-            image: info.file.originFileObj, // Store the image file in formData
-          };
-          setFormData(updatedFormData);
-          setImageError(false);
-        }
-        // Check if the file is a video
-        else if (type.startsWith("video/")) {
-          const updatedFormData = {
-            ...formData,
-            video: info.file.originFileObj, // Store the video file in formData
-          };
-          setFormData(updatedFormData);
-          setVideoError(false);
-        }
-      }else{
-        message.success(`${name} file uploaded successfully.`);
-      }
-      //  else if (status === "error") {
-      //   message.error(`${name} file upload failed.`);
-      // }
-    },
-    onDrop(e) {
-      console.log("Dropped files", e.dataTransfer.files);
-    },
+  const antIcon = (
+    <LoadingOutlined
+      style={{
+        fontSize: 14,
+        // color: "black",
+      }}
+      spin
+    />
+  );
+
+  const handleFileUpload = (sfiles, name) => {
+    setSelectedFiles({ ...selectedFiles, [name]: sfiles[0] });
+    // console.log(selectedFiles);
   };
 
-  const handleNext = () => {
+  // API CALL
+
+  const result = async (data) => {
+    try {
+      const response = await AddProduct(data);
+      console.log("Login response", response);
+      setLoad(false);
+      if (response?.status === 200 || response?.status === 201) {
+        console.log("Response Add Prods", response);
+        setResult({
+          ...resulted,
+          id: response.data?.id,
+          name: response.data?.title,
+        });
+        onNext();
+      }
+      if (response?.status === 404) {
+        const errorData = response.data;
+        setErrMessage(errorData);
+        console.log(errorData);
+      }
+      if (response?.status === 401) {
+        setErrMessage(response.data);
+      }
+    } catch (error) {
+      if (error && error.data) {
+        const errorData = error.data;
+        setErrMessage(errorData);
+      }
+    }
+  };
+
+  const handleNext = async () => {
+    // console.log(selectedFiles);
     // Check if both image and video are selected
-    if (!formData.image || !formData.video) {
-      if (!formData.image) setImageError(true);
-      if (!formData.video) setVideoError(true);
+    if (!selectedFiles.image || !selectedFiles.video) {
+      if (!setSelectedFiles.image) setImageError(true);
+      if (!setSelectedFiles.video) setVideoError(true);
       return;
     }
+    setLoad(true);
+    console.log(formData, "fData");
 
-    onNext();
+    const formDataForApi = new FormData();
+    formDataForApi.append("title", formData.title);
+    formDataForApi.append("description", formData.description);
+    formDataForApi.append("genere", formData.genere);
+    formDataForApi.append("language", formData.language);
+    formDataForApi.append("age", formData.age);
+    if (selectedFiles.image) {
+      formDataForApi.append("image", selectedFiles.image);
+    }
+    if (selectedFiles.video) {
+      formDataForApi.append("video", selectedFiles.video);
+    }
+
+    // Call API here using the updatedFormData
+    await result(formDataForApi);
   };
 
   return (
     <div className="upload_popup_inside">
       <b>Images & Videos</b>
 
-      <div className="upld_img">
-        <span className="upload_img_txt">Thumbnail Image*</span>
-        <Dragger {...props} accept="image/*">
-          <p className="ant-upload-drag-icon">
-            <img src={UploadIcon} alt="upload" />
-          </p>
-          <p className="ant-upload-text">Drag and drop image files to upload</p>
-          <ul className="image_upload_instr">
-            <li>Image should be in HD quality.</li>
-            <li>Image Dimension: 210*275</li>
-            <li>
-              Please be sure not to violate others' copyright or privacy rights.
-            </li>
-          </ul>
-        </Dragger>
+      <div className="upld_img space-y-4">
+        <span className="upload_img_txt mb-2">Thumbnail Image*</span>
+        <DragZone
+          name={"image"}
+          onFileChange={handleFileUpload}
+          inst1={"Image should be in HD quality."}
+          inst2={"Image Dimension : 210*275"}
+          inst3={
+            "Please be sure not to violate other’s copyright or privacy rights."
+          }
+          accept={"image/*"}
+        />
         {imageError && (
           <span className="error-message">Please select an image.</span>
         )}
       </div>
-      <div className="upld_img">
-        <span className="upload_img_txt">Video*</span>
-        <Dragger {...props} accept="video/*">
-          <p className="ant-upload-drag-icon">
-            <img src={UploadIcon} alt="upload" />
-          </p>
-          <p className="ant-upload-text">Drag and drop Video files to upload</p>
-        </Dragger>
+      <div className="upld_img space-y-4">
+        <span className="upload_img_txt mb-2">Video*</span>
+        <DragZone
+          name={"video"}
+          onFileChange={handleFileUpload}
+          inst1={"Video should be in HD quality."}
+          inst2={"Video time duration should be 35 - 40 mins maximum "}
+          inst3={
+            "Please be sure not to violate other’s copyright or privacy rights."
+          }
+          accept={"video/*"}
+        />
         {videoError && (
           <span className="error-message">Please select a video.</span>
         )}
       </div>
+      {errMessage && <h1 className="text-red text-center">{errMessage}</h1>}
 
       <div className="uploadpopup_btm">
         {current > 0 && <button onClick={onPrev}>Previous</button>}
 
-        {current === 1 && <button onClick={handleNext}>Next</button>}
+        {current === 1 && (
+          <button onClick={handleNext} className="loginbtn">
+            {load ? <Spin indicator={antIcon} /> : "Next"}
+          </button>
+        )}
       </div>
     </div>
   );

@@ -62,8 +62,9 @@ function Resetpage() {
       </div> */}
       <div className="log_rightside">
         <div className="WeeDocTxt_div">
-          {/* <img src={WeeDoc} alt="TheWeeDoc" /> */}
-          <h1>TheWeedoc</h1>
+          <h1>
+            <Link to="/">TheWeedoc</Link>
+          </h1>
         </div>
 
         <div className="form_Div pad_form">
@@ -80,9 +81,11 @@ function Resetpage() {
             labelCol={{
               span: 8,
             }}
-            wrapperCol={{
-              span: 16,
-            }}
+            wrapperCol={
+              {
+                // span: 16,
+              }
+            }
             style={{
               maxWidth: 600,
             }}
@@ -109,12 +112,12 @@ function Resetpage() {
               help={formErrors.email ? formErrors.email : ""}
             >
               <Input
-                placeholder="Enter your email or phone number"
-                className="form_inputfields"
+                placeholder="Enter your email"
+                className="form_resetinputfields placeholder:text-white"
               />
             </Form.Item>
 
-            <button htmlType="submit" className="loginbtn">
+            <button type="submit" className="loginbtn">
               {load ? <Spin indicator={antIcon} /> : "Send Link"}
             </button>
           </Form>

@@ -1,253 +1,269 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../components/Layout/Header/Header";
 import Videoplayer from "../../components/videplayer/videoplayer";
 import "./indivialpage.css";
 import {
-  savebtn,
-  starbtn,
   sharebtn,
+  Savebtn,
   thumbsup,
+  ThumbsupFilled,
   thumbsdown,
+  ThumbsdownFill,
 } from "../../Assests/Svg/Commonsvg";
-
+import { notification } from "antd";
 import CastAndCrewSlider from "../../components/cards/IndividualVideoPage/CastAndCrewSlider";
-
+import { LoadingOutlined } from "@ant-design/icons";
+import { Spin } from "antd";
 import { Input } from "antd";
+import { useNavigate, useParams } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addReview,
+  disLikeFilm,
+  followUser,
+  getProductCustomer,
+  getProductCustomerSaved,
+  getProductDetails,
+  likeFilm,
+  saveFilm,
+} from "../../store/Home/productReducer";
+import Copylink from "../../components/videplayer/Copylink";
+import {
+  clearNotification,
+  showNotification,
+} from "../../store/Home/notificationReducer";
+import { Link } from "react-router-dom";
 const { TextArea } = Input;
 
 function Indivialpage() {
-  const cardarr = [
-    {
-      id: "1",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-    {
-      id: "2",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-    {
-      id: "3",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-    {
-      id: "4",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-    {
-      id: "5",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-    {
-      id: "6",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-    {
-      id: "7",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-    {
-      id: "8",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-    {
-      id: "9",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-    {
-      id: "10",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-    {
-      id: "11",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-    {
-      id: "12",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-    {
-      id: "200",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-    {
-      id: "13",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-    {
-      id: "14",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-    {
-      id: "15",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-    {
-      id: "16",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-    {
-      id: "17",
-      image:
-        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-      name: "Nirmal",
-      role: "Director",
-    },
-  ];
-  return (
-    <>
-      <Header />
-      <div className="indivialpage-main-Div">
-        <Videoplayer />
-        <div className="vid-topDiv flex flex-col space-y-2 md:space-y-0 md:flex-row">
-          <div className="vid-topleft">
-            <h1>Left Right Left</h1>
-            <div className="options_div">
-              <div>{savebtn}</div>
-              <div>{starbtn}</div>
+  const { id } = useParams();
+  const { isLoading, productDetails, productCustomer, productCustomerSaved } =
+    useSelector((state) => state.products);
+  const { isLoggedIn } = useSelector((state) => state.auth);
+  const { message, type } = useSelector((state) => state.notification);
+  const navigate = useNavigate();
+  const handleNotificationClose = () => {
+    dispatch(clearNotification());
+  };
+
+  const [review, setReview] = useState("");
+  const dispatch = useDispatch();
+  const antIcon = (
+    <LoadingOutlined
+      style={{
+        fontSize: 24,
+      }}
+      spin
+    />
+  );
+  let resultString = "";
+
+  const handleLoginMessage = () => {
+    dispatch(
+      showNotification({
+        type: "warning",
+        message: "Login to continue",
+      })
+    );
+    navigate("/login");
+  };
+
+  // Handles
+  const handleSaveFilm = (e) => {
+    e.preventDefault();
+    if (isLoggedIn) {
+      dispatch(saveFilm(productDetails?.id));
+    } else {
+      handleLoginMessage();
+    }
+  };
+
+  const handleLike = (e) => {
+    e.preventDefault();
+    if (isLoggedIn) {
+      dispatch(likeFilm(productDetails?.id));
+    } else {
+      handleLoginMessage();
+    }
+  };
+
+  const handleDisLike = (e) => {
+    e.preventDefault();
+    if (isLoggedIn) {
+      dispatch(disLikeFilm(productDetails?.id));
+    } else {
+      handleLoginMessage();
+    }
+  };
+
+  const handleReview = (e) => {
+    e.preventDefault();
+    setReview(e.target.value);
+  };
+
+  const handlePostReview = (e) => {
+    e.preventDefault();
+    if (isLoggedIn) {
+      dispatch(addReview({ id: productDetails?.id, review: review }));
+      setReview("");
+    } else {
+      handleLoginMessage();
+    }
+  };
+
+  const handleFollow = (e) => {
+    e.preventDefault();
+    if (isLoggedIn) {
+      dispatch(followUser(productCustomer?.username));
+    } else {
+      handleLoginMessage();
+    }
+  };
+
+  useEffect(() => {
+    if (message) {
+      notification[type]({
+        message: message,
+        duration: 2, // Display time in seconds
+        onClose: handleNotificationClose,
+        placement: "bottomRight",
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [message]);
+
+  if (productDetails) {
+    const genresString = productDetails?.genere
+      ?.map((genre) => genre.name)
+      .join(" | ");
+    const ageString = productDetails?.age?.replace(/\D/g, "");
+    resultString = `${genresString} | ${productDetails?.language} | ${ageString}+`;
+  }
+
+  useEffect(() => {
+    dispatch(getProductDetails(id)).then((action) => {
+      if (
+        action.payload?.customer !== "" ||
+        action.payload?.customer !== null
+      ) {
+        dispatch(getProductCustomer(action.payload?.customer));
+
+        if (isLoggedIn) dispatch(getProductCustomerSaved(action.payload?.id));
+      }
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return isLoading ? (
+    <div className="h-screen w-screen flex justify-center items-center ">
+      <Spin indicator={antIcon} />
+    </div>
+  ) : (
+    productDetails !== "" && (
+      <>
+        <Header />
+        <div className="indivialpage-main-Div">
+          <Videoplayer
+            thumbnail={productDetails?.image}
+            videoUrl={productDetails?.video}
+          />
+          <div className="vid-topDiv flex flex-col space-y-2 md:space-y-0 md:flex-row">
+            <div className="vid-topleft">
+              <h1>{productDetails?.title}</h1>
+              <div
+                onClick={handleSaveFilm}
+                className="options_div border border-[#545455] p-2 rounded-md"
+              >
+                <div>
+                  <Savebtn fill={productCustomerSaved ? "#FFF" : "none"} />
+                </div>
+              </div>
+            </div>
+
+            <div className="vid-topright">
+              <div className="share_text">{sharebtn} Share</div>
+
+              <div className="likesDiv">
+                <div className="cursor-pointer" onClick={handleLike}>
+                  {productDetails?.has_liked ? ThumbsupFilled : thumbsup}
+
+                  {productDetails?.like_count}
+                </div>
+                <hr
+                  style={{ borderRight: "1.4px solid #fff", height: "14px" }}
+                />
+                <div className="cursor-pointer" onClick={handleDisLike}>
+                  {productDetails?.has_disliked ? ThumbsdownFill : thumbsdown}
+                  {productDetails?.dislike_count}
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="vid-topright">
-            <div className="share_text">{sharebtn} Share</div>
-
-            <div className="likesDiv">
-              <div>{thumbsup} 25k</div>
-              <hr style={{ borderRight: "1.4px solid #fff", height: "14px" }} />
-              <div>{thumbsdown} 300</div>
+          <div className="flex flex-col md:flex-row md:justify-between md:items-center text-white">
+            <div className="details-div capitalize">{resultString}</div>
+            <div className="flex justify-center md:items-center">
+              <Copylink />
             </div>
           </div>
-        </div>
-
-        <div className="details-div">
-          <ul>
-            <li style={{ padding: "2px 10px 2px 0px" }}>2022</li>
-            <li>1h 59m</li>
-            <li>Tamil</li>
-            <li>Action</li>
-            <li>Triller</li>
-            <li>Fantasy</li>
-            <li style={{ border: "none" }}>U/A 13+</li>
-          </ul>
-        </div>
-        <div className="flex flex-col w-full py-6 space-y-4">
-          <div className="w-full">
-            <TextArea
-              className="bg-[#0a0a0d] text-white placeholder:text-gray-400"
-              rows={4}
-              placeholder="Write the films's review"
-            />
-          </div>
-          <div className="flex justify-center md:justify-end">
-            <button className="bg-white text-black font-notosans  justify-center rounded-lg px-4 py-1">
-              Post Review
-            </button>
-          </div>
-        </div>
-
-        <div className="userprofileSec">
-          <div className="pro_imgDiv">
-            <img
-              src="https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI="
-              className="profilepic"
-              alt="Nirmal"
-            />
+          <div className="flex flex-col w-full py-6 space-y-4">
+            <div className="w-full">
+              <TextArea
+                className="bg-[#0a0a0d] text-white placeholder:text-gray-400"
+                rows={4}
+                placeholder="Write the films's review"
+                value={review}
+                onChange={handleReview}
+              />
+            </div>
+            <div className="flex justify-center md:justify-end">
+              <button
+                onClick={handlePostReview}
+                className="bg-white text-black font-notosans  justify-center rounded-lg px-4 py-1"
+              >
+                Post Review
+              </button>
+            </div>
           </div>
 
-          <div className="pro_textDiv">
-            <b>Nirmal kumar</b>
-            <small>167 Followers</small>
-          </div>
-          <button className="invid_page_followbtn">Follow</button>
-        </div>
+          {productCustomer !== "" && productCustomer !== undefined && (
+            <Link to={`/profile/${productCustomer?.id}`}>
+              <div className="userprofileSec">
+                <div className="pro_imgDiv">
+                  <img
+                    src={productCustomer?.profile_pic}
+                    className="profilepic"
+                    alt="ProfilePicture"
+                  />
+                </div>
 
-        <div className="indivl_page_cnt py-6">
-          <p>
-            The show is based on Kanchanjunga Military Academy where soldiers
-            are trained to serve the nation. Naveen Singh Ahluwalia, who is the
-            narrator of the show tells his story about how he was framed and
-            labelled as a Traitor. The academy is helmed by Brigadier Chandok
-            and his team of army officers. The story narrates the plot of six
-            youngsters who comes from various backgrounds to take admission in
-            the academy. These youngsters are Naina Singh, Amardeep Huda, Ali
-            Baig, Aalekh Sharma, Yadhuvansh Sahni and Pooja Ghai. Together they
-            join the army and become cadets to serve the nation. They are
-            supported by Captain Rajveer and Dr. Ritu Mishra. It is suggested
-            that Naina Singh Ahluwalia has joined the academy with a mission to
-            conquer. It is revealed that she is the younger sister of Naveen
-            Singh Ahluwalia who was labelled as a traitor. Naina doesn't believe
-            that her brother was a traitor and hence to prove his innocence and
-            avenge the people who wronged him, she joins KMA to fulfill her
-            goal.
-            <br />
-            <br />
-            Also she vows to become the best cadet of the academy just like her
-            brother. But in order to do so, she hides her real identity. Having
-            witnessed atrocities at an early age by the people who insulted her
-            family, Naina develops hate, anger and disgust for the society
-            particularly with the system in the Indian Army. Thus, transforming
-            into a strong willed, anti-social, aggressive, angry young woman
-            from a bubbly girl she once was.
-          </p>
+                <div className="pro_textDiv">
+                  <b>{productDetails?.customer}</b>
+                  <small>167 Followers</small>
+                </div>
+                <button className="invid_page_followbtn" onClick={handleFollow}>
+                  {productCustomer?.is_following ? "Unfollow" : "Follow"}
+                </button>
+              </div>
+            </Link>
+          )}
+
+          <div className="indivl_page_cnt py-6">
+            <p>
+              {productDetails?.description
+                ? productDetails?.description
+                : "No Description"}
+            </p>
+          </div>
+          <div className="flex flex-col justify-center items-center py-6 space-y-6">
+            <h1 className="font-semibold text-white font-notosans text-lg text-left w-full md:px-10">
+              Cast & Crew{" "}
+            </h1>
+            <CastAndCrewSlider castAndCrewData={productDetails?.cast} />
+          </div>
         </div>
-        <div className="flex flex-col justify-center items-center py-6 space-y-6">
-          <h1 className="font-semibold text-white font-notosans text-lg text-left w-full md:px-10">
-            Cast & Crew{" "}
-          </h1>
-          <CastAndCrewSlider castAndCrewData={cardarr} />
-        </div>
-      </div>
-    </>
+      </>
+    )
   );
 }
 

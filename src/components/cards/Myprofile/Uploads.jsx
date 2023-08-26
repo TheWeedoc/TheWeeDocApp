@@ -9,7 +9,7 @@ import {
 
 function Uploads({ item }) {
   return (
-    <div className="jutify-center items-center">
+    <div className="jutify-center items-center" key={item.id}>
       <Card
         hoverable
         className="w-full bg-[#0a0a0d] text-white"
