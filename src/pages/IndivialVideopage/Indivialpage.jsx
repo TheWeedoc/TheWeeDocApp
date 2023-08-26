@@ -180,7 +180,7 @@ function Indivialpage() {
               </div>
             </div>
 
-            <div className="vid-topright">
+            <div className="flex flex-row justify-between md:vid-topright md:space-x-2">
               <div className="share_text">{sharebtn} Share</div>
 
               <div className="likesDiv">

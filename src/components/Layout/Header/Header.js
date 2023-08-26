@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Popover, Button } from "antd";
+import { Popover } from "antd";
 import "./Header.css";
 import Logo from "../../../Assests/Images/theweedocLogo.png";
 import {
@@ -100,17 +100,17 @@ function Header() {
           <div
             className={
               menuOpen
-                ? "block absolute w-screen h-screen z-10 top-0 left-0 bg-headerBackground flex flex-col justify-evenly text-white items-start space-y-2 p-3"
+                ? "block absolute w-screen h-screen z-10 top-0 left-0 bg-headerBackground flex flex-col  text-white items-start space-y-6 p-3"
                 : "hidden"
             }
           >
             <div
-              className=" absolute top-0 right-0 px-8 py-8"
+              className="flex w-full justify-end px-8 py-8"
               onClick={toggleMenu} // change isNavOpen state to false to close the menu
             >
               <CloseButton />
             </div>
-            <div className="flex flex-col w-full space-y-6">
+            <div className="flex flex-col w-full  space-y-6">
               <div className="flex justify-center items-center">
                 {isLoggedIn && (
                   <div className="w-11/12 bg-[#16181f] h-auto rounded-md cointainer">
@@ -140,11 +140,11 @@ function Header() {
                 )}
               </div>
               <div className="flex justify-center items-center">
-                <div className="flex flex-col text-2xl font-semibold space-y-4 w-11/12">
+                <div className="flex flex-col text-2xl font-semibold space-y-3 w-4/5">
                   <div>
                     <Link to="/upload">Upload</Link>
                   </div>
-                  <div className="notifyDiv">
+                  <div className="">
                     <div>
                       <Popover
                         placement="bottom"
@@ -154,7 +154,7 @@ function Header() {
                         Notifications
                       </Popover>
                     </div>
-                    <div className="notifitionCount">2</div>
+                    {/* <div className="notifitionCount">2</div> */}
                   </div>
                   <div>
                     <Link to="/about">About Us</Link>

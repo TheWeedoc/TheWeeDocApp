@@ -35,10 +35,10 @@ const CarouselHomePage = ({ item }) => {
         <div className="bannercontDiv">
           <div className="usernameDiv">
             <img src={defaultProfile} alt="user" className="w-full" />
-            <h4>Wilson Andrew</h4>
+            <h4>{item?.customer}</h4>
             <button>Follow</button>
           </div>
-          <h1 className="titlename">Pen</h1>
+          <h1 className="titlename">{item?.title}</h1>
           {/* <div className="catagoryDiv">
               <div>Action</div>
               <div>Triller</div>
@@ -48,11 +48,7 @@ const CarouselHomePage = ({ item }) => {
           <p className="text-lg text-white">
             <span className="capitalize">{resultString}</span>
           </p>
-          <p className="description">
-            “Billa 2" shows the transformation of a Sri Lankan Tamil refugee,
-            David Billa, to the most feared underworld don. While corruption and
-            bureaucracy... See more
-          </p>
+          <p className="description">{item?.description}</p>
           <div className="playbtnDiv">
             <button>{bannerplayicon} Play</button>
             <div>{bannersave}</div>

@@ -116,6 +116,23 @@ export const GetSearchUsers = async (searchKey, signal) => {
   }
 };
 
+// Get Search Users results
+
+export const GetMyProfileSearch = async (searchKey, signal) => {
+  try {
+    const results = await get(`user/profile/?search=${searchKey}`, { signal });
+    if (Array.isArray(results.data))
+      return results.data.length > 0 ? results.data[0] : null;
+    else if (typeof results === "object" && results !== null) {
+      return results.data;
+    } else {
+      return null;
+    }
+  } catch (err) {
+    throw Error(err.response.data);
+  }
+};
+
 // Get Product Details
 
 export const GetProductDetails = async (id) => {

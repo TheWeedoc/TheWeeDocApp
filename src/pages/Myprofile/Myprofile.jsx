@@ -13,16 +13,34 @@ import {
   getAllReviews,
   getAllSavedFilms,
   getUser,
+  sortReviewsGiven,
 } from "../../store/Home/userReducer";
 import defaultProfile from "../../Assests/Images/Defaultprofile.png";
+import { getMyProfileSearch } from "../../store/Home/Search/searchReducer";
+import SearchReviewsGiven from "../../components/cards/Myprofile/SearchReviewsGiven";
 function Myprofile() {
   const [selectTab, setSelectTab] = useState("uploads");
+  const [filterEnabled, setFilterEnabled] = useState(false);
 
   const { user, reviewsGiven, savedFilms } = useSelector((state) => state.user);
+  const { searchMyProfileResults } = useSelector((state) => state.search);
   const dispatch = useDispatch();
 
   const switchTab = (tabName) => {
     setSelectTab(tabName);
+  };
+
+  const handleSortReviews = (e) => {
+    if (reviewsGiven.length > 0) dispatch(sortReviewsGiven());
+  };
+
+  const handleFilterReviews = (e) => {
+    if (e.target.value === "") {
+      setFilterEnabled(false);
+    } else {
+      setFilterEnabled(true);
+      dispatch(getMyProfileSearch(e.target.value));
+    }
   };
 
   useEffect(() => {
@@ -138,9 +156,13 @@ function Myprofile() {
                 </div>
                 <div className="p-0 container w-32 md:w-52 lg:w-64">
                   <p className="font-bold md:text-md lg:text-lg font-notosans ellipsis">
-                    {user?.first_name} {user?.last_name}
+                    {user?.first_name
+                      ? `${user?.first_name} ${user?.last_name}`
+                      : "No Name"}
                   </p>
-                  <span className="text-gray-400 mt-4">Director</span>
+                  <span className="text-gray-400 mt-4">
+                    {user?.designation ? user?.designation : "No Designation"}
+                  </span>
                 </div>
                 <Link to="/edit_profile">
                   <div>{EditprofileIcon}</div>
@@ -222,6 +244,7 @@ function Myprofile() {
                     <Input
                       placeholder="Search for films review"
                       className="bg-black text-white placeholder:text-gray-400"
+                      onChange={handleFilterReviews}
                     />
                   </div>
                   <div className="flex justify-center md:w-1/3">
@@ -230,6 +253,7 @@ function Myprofile() {
                         placeholder=""
                         defaultValue="newtoold"
                         className="h-9"
+                        onChange={handleSortReviews}
                       >
                         <option value="newtoold">Newest to Oldest</option>;
                         <option value="oldtonew">Oldest to Newest</option>;
@@ -238,9 +262,17 @@ function Myprofile() {
                   </div>
                 </div>
 
-                {reviewsGiven.length > 0 ? (
+                {filterEnabled ? (
+                  searchMyProfileResults.results > 0 && (
+                    <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4 py-6 justify-center items-center">
+                      {searchMyProfileResults.map((i) => (
+                        <SearchReviewsGiven item={i} key={i.id} />
+                      ))}
+                    </div>
+                  )
+                ) : reviewsGiven.length > 0 ? (
                   <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4 py-6 justify-center items-center">
-                    {reviewsGiven.map((i, index) => (
+                    {reviewsGiven.map((i) => (
                       <ReviewsGiven
                         item={i.movie}
                         key={i.id}

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Card } from "antd";
 import { rightArrow } from "../../../Assests/Svg/Commonsvg";
 import { useNavigate } from "react-router";
+import "./ReviewsGiven.css";
 
 function ReviewsGiven({ item, lastUpdate }) {
   const navigate = useNavigate();
@@ -65,8 +66,8 @@ function ReviewsGiven({ item, lastUpdate }) {
               <div className="font-notosans text-lg font-semibold w-36 md:w-48 lg:w-52  truncate">
                 {item?.title}
               </div>
-              <div className="font-notosans text-gray-400 text-lg font-semibold w-36 md:w-48 lg:w-52 ">
-                {item?.description}
+              <div className="font-notosans text-gray-400 text-lg font-semibold w-36 md:w-48 lg:w-52 container">
+                <p className="multiline-ellipsis">{item?.description}</p>
               </div>
             </div>
             <div className="flex flex-row justify-between ">

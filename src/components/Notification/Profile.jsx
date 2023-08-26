@@ -20,10 +20,6 @@ function Profile() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleNavgiation = () => {
-    navigate("/myprofile");
-  };
-
   const handleLogout = () => {
     dispatch(logout()).then(() => {
       navigate("/login");
@@ -34,29 +30,28 @@ function Profile() {
       <div className="flex flex-col w-full">
         {/* Image section */}
         {isLoggedIn ? (
-          <div
-            className="w-full bg-[#16181f] h-auto rounded-md items-center cursor-pointer"
-            onClick={handleNavgiation}
-          >
-            <div className="flex flex-row px-2 py-2 justify-around items-center container">
-              <img
-                src={user?.profile_pic ? user?.profile_pic : defaultProfile}
-                className="w-12 h-12 rounded-full border border-white "
-                alt="profilePic"
-              />
-              <div className="flex flex-col pl-2 justify-center container">
-                <h4 className="text-md font-semibold ellipsis">
-                  {user?.username}
-                </h4>
-                <h5 className="text-md">Director </h5>
-              </div>
-
-              <div className="flex items-center">
-                {" "}
-                <Link to="/edit_profile">{EditprofileIcon}</Link>
+          <Link to="/myprofile" className="hover:text-white">
+            <div className="w-full bg-[#16181f] h-auto rounded-md items-center cursor-pointer">
+              <div className="flex flex-row px-2 py-2 justify-around items-center container">
+                <img
+                  src={user?.profile_pic ? user?.profile_pic : defaultProfile}
+                  className="w-12 h-12 rounded-full border border-white "
+                  alt="profilePic"
+                />
+                <div className="flex flex-col pl-2 justify-center container">
+                  <h4 className="text-md font-semibold ellipsis">
+                    {user?.username}
+                  </h4>
+                  <h5 className="text-md">
+                    {user?.designation ? user?.designation : "No Designation"}{" "}
+                  </h5>
+                </div>
+                <Link to="/edit_profile">
+                  <div className="flex items-center"> {EditprofileIcon}</div>
+                </Link>
               </div>
             </div>
-          </div>
+          </Link>
         ) : (
           <div className="flex flex-row space-x-2  items-center p-4">
             <div>

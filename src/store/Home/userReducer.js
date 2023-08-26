@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import {
+  FollowUser,
   GetAllReviews,
   GetAllSavedFilms,
   GetUser,
@@ -119,11 +120,34 @@ export const otherUserProfile = createAsyncThunk(
   }
 );
 
+export const followUserOthersProfile = createAsyncThunk(
+  "user/followUserOthersProfile",
+  async (id, thunkAPI) => {
+    try {
+      const result = await FollowUser(id);
+      return result;
+    } catch (err) {
+      const message =
+        (err.response && err.response.data && err.response.data.detail) ||
+        err.message ||
+        err.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 const userSlice = createSlice({
   name: "user",
   initialState: INITIAL_STATE,
   reducers: {
     resetUser: () => INITIAL_STATE,
+    sortReviewsGiven: (state) => {
+      if (state.reviewsGiven.length > 0) {
+        const newarray = state.reviewsGiven;
+        state.reviewsGiven = newarray.reverse();
+      }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getUser.pending, (state) => {
@@ -176,26 +200,38 @@ const userSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(updateUser.fulfilled, (state, action) => {
-      if (action.payload.first_name) {
-        state.user.first_name = action.payload.first_name;
+      if (action.payload?.first_name) {
+        state.user.first_name = action.payload?.first_name;
       }
-      if (action.payload.last_name) {
-        state.user.last_name = action.payload.last_name;
+      if (action.payload?.last_name) {
+        state.user.last_name = action.payload?.last_name;
       }
-      if (action.payload.designation) {
-        state.user.designation = action.payload.designation;
+      if (action.payload?.designation) {
+        state.user.designation = action.payload?.designation;
       }
-      if (action.payload.profile_pic) {
-        state.user.profile_pic = action.payload.profile_pic;
+      if (action.payload?.profile_pic) {
+        state.user.profile_pic = action.payload?.profile_pic;
       }
       state.isLoading = false;
     });
     builder.addCase(updateUser.rejected, (state) => {
       state.isLoading = false;
     });
+
+    // Follow User from OtherProfile
+    builder.addCase(followUserOthersProfile.fulfilled, (state, action) => {
+      if (action.payload?.sucess === "unfollowed") {
+        state.otherUser.is_following = false;
+      } else if (action.payload?.sucess === "followed") {
+        state.otherUser.is_following = true;
+      }
+    });
+    builder.addCase(followUserOthersProfile.rejected, (state) => {
+      state.otherUser.is_following = false;
+    });
   },
 });
 
-export const { resetUser } = userSlice.actions;
+export const { resetUser, sortReviewsGiven } = userSlice.actions;
 
 export const userReducer = userSlice.reducer;
