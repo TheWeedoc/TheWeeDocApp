@@ -56,12 +56,12 @@ function Myprofile() {
   }, []);
 
   useEffect(() => {
-    if (reviewsGiven.length === 0) dispatch(getAllReviews());
+    dispatch(getAllReviews());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    if (savedFilms.length === 0) dispatch(getAllSavedFilms());
+    dispatch(getAllSavedFilms());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const cardarr = [
@@ -232,7 +232,7 @@ function Myprofile() {
             </div>
             {/* Uploads */}
             {selectTab === "uploads" && (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 py-6 justify-center items-center">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 py-6 justify-start items-center">
                 {approved?.results?.map((i) => (
                   <Uploads item={i} key={i.id} />
                 ))}
@@ -288,7 +288,7 @@ function Myprofile() {
                     </div>
                   )
                 ) : reviewsGiven.length > 0 ? (
-                  <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4 py-6 justify-center items-center">
+                  <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4 py-6 justify-start items-center">
                     {reviewsGiven.map((i) => (
                       <ReviewsGiven
                         item={i.movie}

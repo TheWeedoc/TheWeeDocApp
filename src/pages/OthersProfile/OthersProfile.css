@@ -1,0 +1,26 @@
+.uploadspagecardimg1{
+    max-height: 225px;
+    height: auto;
+    
+    
+  }
+
+  .ellipsis {
+    text-overflow: ellipsis; /* enables ellipsis */
+    white-space: nowrap; /* keeps the text in a single line */
+    overflow: hidden; /* keeps the element from overflowing its parent */
+   
+  }
+  .container {
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+
+  .followButton{
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 27px;
+    letter-spacing: 0em;
+    text-align: left;
+    
+  }

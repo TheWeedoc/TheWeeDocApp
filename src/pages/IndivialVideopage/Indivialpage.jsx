@@ -10,7 +10,7 @@ import {
   thumbsdown,
   ThumbsdownFill,
 } from "../../Assests/Svg/Commonsvg";
-import { notification } from "antd";
+import { Popover, notification } from "antd";
 import CastAndCrewSlider from "../../components/cards/IndividualVideoPage/CastAndCrewSlider";
 import { LoadingOutlined } from "@ant-design/icons";
 import { Spin } from "antd";
@@ -33,6 +33,7 @@ import {
   showNotification,
 } from "../../store/Home/notificationReducer";
 import { Link } from "react-router-dom";
+import Suggest from "../../components/cards/IndividualVideoPage/Suggest";
 const { TextArea } = Input;
 
 function Indivialpage() {
@@ -41,6 +42,7 @@ function Indivialpage() {
     useSelector((state) => state.products);
   const { isLoggedIn } = useSelector((state) => state.auth);
   const { message, type } = useSelector((state) => state.notification);
+
   const navigate = useNavigate();
   const handleNotificationClose = () => {
     dispatch(clearNotification());
@@ -95,6 +97,8 @@ function Indivialpage() {
       handleLoginMessage();
     }
   };
+
+  const handleSuggest = () => {};
 
   const handleReview = (e) => {
     e.preventDefault();
@@ -181,7 +185,15 @@ function Indivialpage() {
             </div>
 
             <div className="flex flex-row justify-between md:vid-topright md:space-x-2">
-              <div className="share_text">{sharebtn} Share</div>
+              <div className="relative">
+                <Popover
+                  content={<Suggest />}
+                  trigger="click"
+                  placement="bottom"
+                >
+                  <div className="share_text">{sharebtn} suggest</div>
+                </Popover>
+              </div>
 
               <div className="likesDiv">
                 <div className="cursor-pointer" onClick={handleLike}>
@@ -255,7 +267,7 @@ function Indivialpage() {
                 : "No Description"}
             </p>
           </div>
-          <div className="flex flex-col justify-center items-center py-6 space-y-6">
+          <div className="flex flex-col justify-start items-center py-6 space-y-6">
             <h1 className="font-semibold text-white font-notosans text-lg text-left w-full md:px-10">
               Cast & Crew{" "}
             </h1>

@@ -5,7 +5,6 @@ import {
   EditprofileIcon,
   advertisementIcon,
   informationIcon,
-  notificationicon,
   privacyPoliciesIcon,
 } from "../../Assests/Svg/Commonsvg";
 import { useDispatch, useSelector } from "react-redux";
@@ -69,9 +68,9 @@ function Profile() {
             <div> {privacyPoliciesIcon}</div>{" "}
             <Link to="/privacypolicy">Privacy Policies</Link>
           </div>
-          <div className="flex flex-row justify-start items-center space-x-2">
+          {/* <div className="flex flex-row justify-start items-center space-x-2">
             <div> {notificationicon}</div> <Link>Notification</Link>
-          </div>
+          </div> */}
           <div className="flex flex-row justify-start items-center space-x-2">
             <div> {advertisementIcon}</div>{" "}
             <Link to="/uploadads">Upload Advertisement</Link>

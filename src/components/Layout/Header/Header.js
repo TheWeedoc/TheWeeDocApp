@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../../../store/Home/userReducer";
 import { logout } from "../../../store/Home/authReducer";
 import defaultProfile from "../../../Assests/Images/Defaultprofile.png";
+import Suggest from "../../cards/IndividualVideoPage/Suggest";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -51,7 +52,7 @@ function Header() {
             <img src={Logo} className="Logoclass" alt="Theweedoc" />
           </Link>
         </div>
-        <div className="hidden md:flex items-center gap-8 ">
+        <div className="hidden md:flex items-center gap-7 ">
           <div>
             <Link to="/search">{SearchIcon}</Link>
           </div>
