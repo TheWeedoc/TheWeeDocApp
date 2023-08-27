@@ -116,6 +116,23 @@ export const GetSearchUsers = async (searchKey, signal) => {
   }
 };
 
+// Get Search Users results
+
+export const GetMyProfileSearch = async (searchKey, signal) => {
+  try {
+    const results = await get(`user/profile/?search=${searchKey}`, { signal });
+    if (Array.isArray(results.data))
+      return results.data.length > 0 ? results.data[0] : null;
+    else if (typeof results === "object" && results !== null) {
+      return results.data;
+    } else {
+      return null;
+    }
+  } catch (err) {
+    throw Error(err.response.data);
+  }
+};
+
 // Get Product Details
 
 export const GetProductDetails = async (id) => {
@@ -260,6 +277,17 @@ export const GetAllReviews = async () => {
   }
 };
 
+// Get Movie Review List
+
+export const GetMovieReviews = async (id) => {
+  try {
+    const result = await get(`reviews/${id}/`);
+    return result.data;
+  } catch (err) {
+    throw Error(err.response.data);
+  }
+};
+
 // Get All Saved Films
 
 export const GetAllSavedFilms = async () => {
@@ -291,3 +319,37 @@ export const OtherUserProfile = async (id) => {
     throw Error(err.response.data);
   }
 };
+
+// Uploads page
+
+// Approved
+export const UploadsAprroved = async () => {
+  try {
+    const result = await get(`user/products/?search=approved`);
+    return result.data;
+  } catch (err) {
+    throw Error(err.response.data);
+  }
+};
+
+// Pending
+export const UploadsVerification = async () => {
+  try {
+    const result = await get(`user/products/?search=pending`);
+    return result.data;
+  } catch (err) {
+    throw Error(err.response.data);
+  }
+};
+
+// Rejected
+export const UploadsRejected = async () => {
+  try {
+    const result = await get(`user/products/?search=rejected`);
+    return result.data;
+  } catch (err) {
+    throw Error(err.response.data);
+  }
+};
+
+// Uploads Page End

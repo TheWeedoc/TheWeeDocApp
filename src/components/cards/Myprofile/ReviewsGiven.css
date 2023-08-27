@@ -1,0 +1,84 @@
+.homepagecardimg1{
+  max-height: 225px;
+  
+}
+
+.multiline-ellipsis {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5; /* start showing ellipsis when 3rd line is reached */
+    white-space: pre-wrap; /* let the text wrap preserving spaces */
+  }
+  .container {
+    overflow: hidden;
+  }
+
+  .card-title{
+    font-size: 22px;
+    line-height: 29.96px;
+    font-weight: 600;
+  }
+
+ 
+  @media screen and (max-width: 820px) {
+    .multiline-ellipsis {
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2; /* start showing ellipsis when 3rd line is reached */
+      white-space: pre-wrap; /* let the text wrap preserving spaces */
+    }
+  }
+
+
+.request-delete{
+font-size: 16px;
+font-weight: 600;
+line-height: 22px;
+letter-spacing: 0em;
+text-align: left;
+}
+
+.ant-card .ant-card-body{
+  padding: 10px 6px;
+}
+
+.reviewer-name{
+  
+font-size: 16px;
+font-weight: 700;
+line-height: 24px;
+letter-spacing: 0em;
+text-align: left;
+
+}
+
+.reviewer-timeago{
+  font-family: Noto Sans;
+font-size: 12px;
+font-weight: 400;
+line-height: 24px;
+letter-spacing: 0em;
+text-align: left;
+
+}
+
+.review-heading{
+  
+font-size: 18px;
+font-weight: 700;
+line-height: 28px;
+letter-spacing: 0em;
+text-align: left;
+
+}
+
+.review-content{
+font-size: 16px;
+font-weight: 400;
+line-height: 25px;
+letter-spacing: 0em;
+text-align: left;
+
+}

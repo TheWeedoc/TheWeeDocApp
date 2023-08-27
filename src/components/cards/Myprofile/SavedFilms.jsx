@@ -16,12 +16,14 @@ function SavedFilms({ item }) {
   };
 
   return (
-    <div className="jutify-center items-center">
+    <div className="jutify-start items-center">
       <Card
         hoverable
         onClick={handleClick}
         className="w-full bg-[#0a0a0d] text-white"
-        cover={<img alt="poster" src={item?.image} />}
+        cover={
+          <img alt="poster" src={item?.image} className="homepagecardimg1" />
+        }
         bordered={false}
       >
         <div className="flex flex-col justify-between ">

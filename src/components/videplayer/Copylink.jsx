@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import { CopyButton, greenTick } from "../../Assests/Svg/Commonsvg";
+import React from "react";
+import { CopyButton } from "../../Assests/Svg/Commonsvg";
+import { message } from "antd";
 
 function Copylink() {
-  const [copy, setCopy] = useState(false);
   const copyToClipboard = (e) => {
     e.preventDefault();
     const currentUrl = window.location.href;
     navigator.clipboard
       .writeText(currentUrl)
       .then(() => {
-        setCopy(true);
+        message.success("Link Copied", 2);
       })
       .catch(() => {
-        setCopy(false);
+        message.error("Cannot copy the link", 2);
       });
   };
 
@@ -22,9 +22,7 @@ function Copylink() {
       className="flex flex-row space-x-4 text-white items-center py-2 px-4 rounded border border-[#545455] rounded-md"
     >
       Copy Film Link
-      <span className="flex items-center pl-3">
-        {copy ? greenTick : CopyButton}
-      </span>
+      <span className="flex items-center pl-3">{CopyButton}</span>
     </button>
   );
 }

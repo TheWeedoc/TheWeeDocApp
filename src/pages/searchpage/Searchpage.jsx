@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Searchpage.css";
 import { Input, Button } from "antd";
 import { useNavigate, Link } from "react-router-dom";
-import { closeicons, searchicon } from "../../Assests/Svg/Commonsvg";
+import { closeicons } from "../../Assests/Svg/Commonsvg";
 import { useDispatch, useSelector } from "react-redux";
 import { getGenres } from "../../store/Home/adhocReducer";
 import {
@@ -11,6 +11,8 @@ import {
 } from "../../store/Home/Search/searchReducer";
 import SearchCard from "../../components/cards/Search/SearchCard";
 import SearchUserCard from "../../components/cards/Search/SearchUserCard";
+import { SearchOutlined } from "@ant-design/icons";
+
 function Searchpage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -61,9 +63,9 @@ function Searchpage() {
   }, []);
 
   return (
-    <div className="w-full p-4 md:p-10 lg:p-20">
+    <div className="w-full p-4 md:px-10 md:py-3 lg:px-20 lg:py-6">
       <div className="flex flex-row justify-between font-notosans items-center text-white">
-        <h2>What are you seeking for?</h2>
+        <h2 className="searchTopText py-2">What are you seeking for?</h2>
         <div
           onClick={() => navigate(-1)}
           className="flex float-right items-center cursor-pointer "
@@ -78,17 +80,17 @@ function Searchpage() {
           >
             {closeicons}
           </div>
-          <div className="pl-2">Close</div>
+          <div className="pl-2 font-bold">Close</div>
         </div>
       </div>
 
-      <div className="flex flex-col">
+      <div className="flex flex-col pt-5 md:pt-10 ">
         <div className="flex flex-col md:flex-row w-full bg-headerBackground text-white space-y-3 md:space-y-0 py-3">
           <div className="flex justify-center md:w-2/6 md:items-center md:justify-center md:flex">
             {/* <ToggleSwitch /> */}
-            <div className="flex items-center w-4/5 font-notosans border border-[#4a4949] rounded-md">
-              <Button
-                className={`w-full  rounded-r-md border-none  ${
+            <div className="flex items-center w-4/5 font-notosans border border-[#4a4949]  rounded-md">
+              <button
+                className={`w-full button-toggle rounded-r-md border-none py-1 rounded-md ${
                   search.type === "films"
                     ? "bg-[#21222d] text-white "
                     : "text-[#c5c5c5]"
@@ -96,17 +98,17 @@ function Searchpage() {
                 onClick={() => handleToggle("films")}
               >
                 Films
-              </Button>
-              <Button
-                className={`w-full rounded-l-md  border-none hover:text-white ${
+              </button>
+              <button
+                className={`w-full button-toggle rounded-l-md py-1 rounded-md border-none hover:text-white ${
                   search.type === "user"
                     ? "bg-[#21222d] text-white focus:outline-none "
                     : "text-[#c5c5c5]"
                 }`}
                 onClick={() => handleToggle("user")}
               >
-                UserId
-              </Button>
+                User ID
+              </button>
             </div>
           </div>
 
@@ -114,23 +116,23 @@ function Searchpage() {
             <Input
               size="large"
               placeholder="Search short films, uploader’s name, etc...  "
-              prefix={searchicon}
-              className="w-full"
+              prefix={<SearchOutlined />}
+              className="w-full bg-transparent"
               onChange={handleSearch}
             />
           </div>
         </div>
         <div className="flex justify-start items-center py-6">
           {/* <OptionButton options={genres} /> */}
-          <div className="flex flex-wrap gap-2  font-notosans  ">
+          <div className="flex flex-wrap gap-6  font-notosans  ">
             {genres.map((option) => (
               <Button
                 key={option.id}
                 type={search.genre === option ? "default" : "border "}
                 className={` py-1 px-3 rounded-lg ${
                   search.genre === option.id
-                    ? "border bg-white text-black "
-                    : "text-white border border-[#515151]"
+                    ? "border bg-white text-[#212121] text-genre font-semibold"
+                    : "text-[#C5C5C5] border border-[#515151] border-2"
                 }`}
                 onClick={() => handleOptionClick(option)}
               >
@@ -157,7 +159,7 @@ function Searchpage() {
               </div>
             )}
 
-            <div className="flex justify-center py-6">
+            <div className="flex justify-start py-6">
               <div className="grid grid-cols-1 md:grid-cols-2 custom-lg:grid-cols-3 gap-4 custom-lg:gap-x-4 lg:gap-y-8 grid-rows-auto">
                 {searchFilmResults.results?.map((item) => (
                   <SearchCard item={item} key={item.id} />
@@ -185,7 +187,7 @@ function Searchpage() {
               </div>
             )}
 
-            <div className="flex justify-center py-6">
+            <div className="flex justify-start py-6">
               {searchUserResults.count > 0 && (
                 <div className="grid grid-cols-1 md:grid-cols-2 custom-lg:grid-cols-3 gap-4 custom-lg:gap-x-4 lg:gap-y-8 grid-rows-auto">
                   {searchUserResults.results?.map((item) => (

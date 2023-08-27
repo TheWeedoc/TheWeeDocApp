@@ -5,8 +5,9 @@
  }
  
  .verifycardimg{
-    max-width: 380px;
-    height: auto;
+    max-width: 360px;
+   max-height: 225px;
+   height: auto;
     border-radius: 10px;
  }
  
@@ -107,3 +108,15 @@
     font-weight: 700;
     line-height: normal;
 }
+
+
+.ellipsis {
+    text-overflow: ellipsis; /* enables ellipsis */
+    white-space: nowrap; /* keeps the text in a single line */
+    overflow: hidden; /* keeps the element from overflowing its parent */
+   
+  }
+  .container {
+    overflow: hidden;
+    margin-bottom: 10px;
+  }

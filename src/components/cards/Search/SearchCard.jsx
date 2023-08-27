@@ -8,7 +8,7 @@ function SearchCard({ item }) {
   const resultString = `${genresString} | ${item?.language} | ${ageString}+`;
   return (
     <div className="homepagecardDiv w-full md:w-[360-px]" key={item.id}>
-      <Link to={`/video/${1}/${item?.title}`}>
+      <Link to={`/video/${item?.id}`}>
         <img className="homepagecardimg" src={item?.image} alt={item?.title} />
       </Link>
       <div className=" d-flex align-items-center justify-content-between my-2">

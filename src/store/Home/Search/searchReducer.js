@@ -1,5 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { GetSearchFilms, GetSearchUsers } from "../../../Api/Fetchclient";
+import {
+  GetMyProfileSearch,
+  GetSearchFilms,
+  GetSearchUsers,
+} from "../../../Api/Fetchclient";
 
 const INITIAL_STATE = {
   isLoading: false,
@@ -16,6 +20,9 @@ const INITIAL_STATE = {
     previous: null,
     results: [],
     message: "",
+  },
+  searchMyProfileResults: {
+    results: [],
   },
 };
 
@@ -53,6 +60,28 @@ export const getSearchUsers = createAsyncThunk(
     const signal = controller.signal;
     try {
       const result = await GetSearchUsers(query, signal);
+      return result;
+    } catch (err) {
+      const message =
+        (err.response && err.response.data && err.response.data.detail) ||
+        err.message ||
+        err.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const getMyProfileSearch = createAsyncThunk(
+  "search/getMyProfileSearch",
+  async (query, thunkAPI) => {
+    if (controller) {
+      controller.abort();
+    }
+    controller = new AbortController();
+    const signal = controller.signal;
+    try {
+      const result = await GetMyProfileSearch(query, signal);
       return result;
     } catch (err) {
       const message =
@@ -105,6 +134,17 @@ const searchSlice = createSlice({
     builder.addCase(getSearchUsers.rejected, (state) => {
       state.isLoading = false;
       state.searchUserResults.message = "";
+    });
+
+    // Get Search Results for Myprofile page
+    builder.addCase(getMyProfileSearch.fulfilled, (state, action) => {
+      //   state.searchFilmResults = action.payload;
+      if (action.payload?.user_filims?.length > 0)
+        state.searchMyProfileResults.results = action.payload?.user_filims;
+      state.isLoading = false;
+    });
+    builder.addCase(getMyProfileSearch.rejected, (state) => {
+      state.isLoading = false;
     });
   },
 });

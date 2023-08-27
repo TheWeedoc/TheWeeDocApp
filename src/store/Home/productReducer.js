@@ -229,9 +229,9 @@ const productSlice = createSlice({
 
     builder.addCase(saveFilm.fulfilled, (state, action) => {
       if (action.payload.sucess === "movie saved sucessfully")
-        state.productCustomer.isSaved = true;
+        state.productCustomerSaved = true;
       if (action.payload.sucess === "movie removed sucessfully")
-        state.productCustomer.isSaved = false;
+        state.productCustomerSaved = false;
     });
     builder.addCase(likeFilm.fulfilled, (state, action) => {
       state.productDetails.has_liked = action.payload.has_liked;
@@ -251,6 +251,9 @@ const productSlice = createSlice({
       } else if (action.payload?.sucess === "followed") {
         state.productCustomer.is_following = true;
       }
+    });
+    builder.addCase(followUser.rejected, (state) => {
+      state.productCustomer.is_following = false;
     });
   },
 });

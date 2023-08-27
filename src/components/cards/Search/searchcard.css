@@ -5,10 +5,13 @@
 }
 
 .homepagecardimg{
-   max-width: 360px;
-   height: auto;
-   border-radius: 10px;
-}
+    max-width: 360px;
+    max-height: 225px;
+    height: auto;
+    border-radius: 10px;
+ }
+ 
+ 
 
 
 .homepgecrdTitle{

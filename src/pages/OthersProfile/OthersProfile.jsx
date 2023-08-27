@@ -3,13 +3,15 @@ import Header from "../../components/Layout/Header/Header";
 import OthersProfileUploads from "../../components/cards/OtherProfile/OtherProfileUploads";
 import { useNavigate, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { otherUserProfile } from "../../store/Home/userReducer";
+import {
+  followUserOthersProfile,
+  otherUserProfile,
+} from "../../store/Home/userReducer";
 import defaultProfile from "../../Assests/Images/Defaultprofile.png";
 import {
   clearNotification,
   showNotification,
 } from "../../store/Home/notificationReducer";
-import { followUser } from "../../store/Home/productReducer";
 import { notification } from "antd";
 
 function OthersProfile() {
@@ -42,7 +44,7 @@ function OthersProfile() {
   const handleFollow = (e) => {
     e.preventDefault();
     if (isLoggedIn) {
-      dispatch(followUser(otherUser?.username));
+      dispatch(followUserOthersProfile(otherUser?.username));
     } else {
       handleLoginMessage();
     }

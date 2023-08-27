@@ -15,6 +15,59 @@
     line-height: 28px;
 }
 
+.ant-input {
+        background-color: transparent;
+        color: white;
+        margin-left: 9px;
+        
+}
+
+.ant-input::placeholder {
+        color: white;
+      }
+      .ant-input-prefix{
+        color: white;
+        
+      }
+.button-toggle{
+    
+font-size: 20px;
+font-weight: 500;
+line-height: 35px;
+letter-spacing: 0px;
+text-align: center;
+
+}
+
+.text-genre{
+    
+font-size: 16px;
+font-weight: 600;
+line-height: 22px;
+letter-spacing: 0em;
+
+
+}
+
+.searchTopText {
+font-size: 30px;
+font-weight: 700;
+line-height: 28px;
+letter-spacing: 0em;
+text-align: left;
+
+}
+
+@media screen and (max-width:820px) {
+    .searchTopText {
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 28px;
+        letter-spacing: 0em;
+        text-align: left;
+        
+        }
+}
 .searchTop-Div div{
 color: #C5C5C5;
 font-size: 20px;
