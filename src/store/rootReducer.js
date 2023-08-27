@@ -5,6 +5,7 @@ import { searchReducer } from "./Home/Search/searchReducer";
 import notificationReducer from "./Home/notificationReducer";
 import { userReducer } from "./Home/userReducer";
 import { authReducer } from "./Home/authReducer";
+import { uploadsReducer } from "./Home/uploadsReducer";
 
 export const rootReducer = combineReducers({
   products: productsReducer,
@@ -13,4 +14,5 @@ export const rootReducer = combineReducers({
   notification: notificationReducer,
   user: userReducer,
   auth: authReducer,
+  uploads: uploadsReducer,
 });

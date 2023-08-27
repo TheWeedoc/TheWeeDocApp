@@ -4,7 +4,7 @@ import { rightArrow } from "../../../Assests/Svg/Commonsvg";
 import { useNavigate } from "react-router";
 import "./ReviewsGiven.css";
 
-function ReviewsGiven({ item, lastUpdate }) {
+function ReviewsGiven({ item, lastUpdate, reviewContent }) {
   const navigate = useNavigate();
   const handleClick = (e) => {
     e.preventDefault();
@@ -59,15 +59,15 @@ function ReviewsGiven({ item, lastUpdate }) {
       >
         <div className="flex flex-row space-x-3">
           <div className="w-1/2">
-            <img alt="example" src={item?.image} className="" />
+            <img alt="example" src={item?.image} className="homepagecardimg1" />
           </div>
           <div className="flex flex-col w-1/2 justify-between py-4">
-            <div className="">
+            <div className="w-full">
               <div className="font-notosans text-lg font-semibold w-36 md:w-48 lg:w-52  truncate">
                 {item?.title}
               </div>
-              <div className="font-notosans text-gray-400 text-lg font-semibold w-36 md:w-48 lg:w-52 container">
-                <p className="multiline-ellipsis">{item?.description}</p>
+              <div className="font-notosans text-gray-400 text-md md:text-lg font-semibold w-36 md:w-48 lg:w-52 container">
+                <p className="multiline-ellipsis">{reviewContent}</p>
               </div>
             </div>
             <div className="flex flex-row justify-between ">

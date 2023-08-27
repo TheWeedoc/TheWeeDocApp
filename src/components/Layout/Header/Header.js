@@ -43,7 +43,7 @@ function Header() {
   };
 
   return (
-    <div className="bg-headerBackground py-2 px-4 sticky top-0 z-10">
+    <div className="bg-headerBackground py-2 px-2 md:px-12 sticky top-0 z-10">
       <nav className="flex justify-between px-2">
         <div>
           <Link to="/">
@@ -51,7 +51,7 @@ function Header() {
             <img src={Logo} className="Logoclass" alt="Theweedoc" />
           </Link>
         </div>
-        <div className="hidden md:flex items-center gap-3 ">
+        <div className="hidden md:flex items-center gap-8 ">
           <div>
             <Link to="/search">{SearchIcon}</Link>
           </div>

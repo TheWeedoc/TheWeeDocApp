@@ -11,7 +11,7 @@ function SearchReviewsGiven({ item }) {
   };
 
   return (
-    <div className="flex justify-center w-full">
+    <div className="flex justify-start w-full">
       <Card
         onClick={handleClick}
         className="w-full bg-[#0a0a0d] text-white !p-0 cursor-pointer"

@@ -1,7 +1,7 @@
 import React from "react";
 import { bannerplayicon, bannersave } from "../../Assests/Svg/Commonsvg";
 import { useNavigate } from "react-router";
-import defaultProfile from "../../Assests/Images/Defaultprofile.png";
+import "./homepage.css";
 
 const CarouselHomePage = ({ item }) => {
   const genresString = item?.genere?.map((genre) => genre.name).join(" | ");
@@ -16,7 +16,11 @@ const CarouselHomePage = ({ item }) => {
   return (
     <>
       <div className="BannerDiv md:hidden" onClick={handleClick}>
-        <img src={item?.image} alt={item?.title} className="w-full h-auto" />
+        <img
+          src={item?.image}
+          alt={item?.title}
+          className="w-full carouselimg"
+        />
 
         <div className="mobileMask " />
         <div className="mobileMask1"></div>
@@ -33,11 +37,11 @@ const CarouselHomePage = ({ item }) => {
         <img src={item?.image} alt={item?.title} width="100" height="100" />
         <div className="mask"></div>
         <div className="bannercontDiv">
-          <div className="usernameDiv">
+          {/* <div className="usernameDiv">
             <img src={defaultProfile} alt="user" className="w-full" />
             <h4>{item?.customer}</h4>
             <button>Follow</button>
-          </div>
+          </div> */}
           <h1 className="titlename">{item?.title}</h1>
           {/* <div className="catagoryDiv">
               <div>Action</div>

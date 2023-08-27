@@ -140,7 +140,7 @@ function Videoplayer({
     <div style={{ position: "relative" }}>
       <div data-vjs-player style={{ width: "100%", height: "100%" }}>
         <video
-          style={{ width: "100%", height: "auto", position: "relative" }}
+          style={{ width: "100%", height: "600px", position: "relative" }}
           ref={videoRef}
           // onEnded={onVideoEnd}
           onLoadedMetadata={(e, px) => {
