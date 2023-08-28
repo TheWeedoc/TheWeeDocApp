@@ -88,11 +88,11 @@ function OthersProfile() {
                   />
                 </div>
                 <div className="flex flex-col p-0 container w-40 md:w-52 lg:w-64">
-                  <h1 className="font-bold md:py-6 md:text-xl lg:text-4xl/7 font-notosans ellipsis">
+                  <h1 className="font-bold md:py-6 md:text-xl lg:text-3xl/7 font-notosans ellipsis">
                     {otherUser?.first_name ? otherUser?.first_name : "No Name"}{" "}
                     {otherUser?.last_name}
                   </h1>
-                  <span className="text-[#bdbdbd] font-medium md:pb-4 md:text-xl lg:text-3xl/7">
+                  <span className="text-[#bdbdbd] font-medium md:pb-4 md:text-xl lg:text-2xl/7">
                     {otherUser?.designation
                       ? otherUser?.designation
                       : "No Designation"}
@@ -112,18 +112,18 @@ function OthersProfile() {
             {/* Followers */}
             <div className="flex flex-row items-center justify-center space-x-6 py-2 pl-2 md:w-1/3 font-notosans">
               <div className="flex flex-col space-y-2 justify-center items-center">
-                <h1 className="leading-7 font-semibold text-xl lg:text-3xl/7">
+                <h1 className="leading-7 font-semibold text-xl lg:text-2xl/7">
                   {otherUser?.followers_count}
                 </h1>
-                <h1 className="md:text-2xl lg:text-3xl/7 text-[#bbbbbb] font-normal">
+                <h1 className="md:text-2xl lg:text-2xl/7 text-[#bbbbbb] font-normal">
                   Followers
                 </h1>
               </div>
               <div className="flex flex-col space-y-2 justify-center items-center">
-                <h1 className="leading-7 font-semibold text-xl lg:text-3xl/7">
+                <h1 className="leading-7 font-semibold text-xl lg:text-2xl/7">
                   {otherUser?.following_count}
                 </h1>
-                <h1 className="md:text-2xl lg:text-3xl/7 text-[#bbbbbb] font-normal">
+                <h1 className="md:text-2xl lg:text-2xl/7 text-[#bbbbbb] font-normal">
                   Following
                 </h1>
               </div>
@@ -133,9 +133,9 @@ function OthersProfile() {
           <div className="flex flex-col py-12 w-full">
             <div className="flex flex-row justify-start space-x-4 md:space-x-8 pb-12 font-notosans">
               <h1
-                className={`text-[#9f9fa0] text-lg md:md:text-2xl lg:text-3xl/7 font-semibold  cursor-pointer ${
+                className={`text-[#9f9fa0] text-lg md:text-2xl font-semibold  cursor-pointer ${
                   selectTab === "uploads" &&
-                  "!text-white underline md:underline-offset-[16px] decoration-[5px] decoration-white text-lg/7 md:text-2xl underline-offset-[12px] lg:text-3xl/7 font-bold"
+                  "!text-white underline md:underline-offset-[16px] decoration-[5px] decoration-white text-lg/7 md:text-2xl underline-offset-[12px]  font-bold"
                 }`}
                 onClick={() => switchTab("uploads")}
               >

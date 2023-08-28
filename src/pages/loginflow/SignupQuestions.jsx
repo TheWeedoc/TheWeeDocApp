@@ -33,13 +33,16 @@ function SignupQuestions() {
 
   const handleNext = (e) => {
     e.preventDefault();
-    setStep(step + 1);
+    if (step < 4) setStep(step + 1);
   };
 
   const handlePrevious = (e) => {
     e.preventDefault();
+    if (step > 1) setStep(step - 1);
+  };
 
-    setStep(step - 1);
+  const handleSubmit = (e) => {
+    e.preventDefault();
   };
 
   const indianStates = [
@@ -317,7 +320,10 @@ function SignupQuestions() {
             )}
 
             {step === 4 && (
-              <button className="flex flex-row items-center space-x-2 bg-white rounded-lg px-10 py-1 text-black ">
+              <button
+                className="flex flex-row items-center space-x-2 bg-white rounded-lg px-10 py-1 text-black "
+                onClick={handleSubmit}
+              >
                 Submit
               </button>
             )}

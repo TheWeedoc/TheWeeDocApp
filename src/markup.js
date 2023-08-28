@@ -99,7 +99,7 @@ function Markup() {
                   path="/change_password"
                   element={<NewPasswordPage />}
                 />
-                <Route exact path="/Verify_mail" element={<VerifyPage />} />
+                <Route exact path="/Verify" element={<VerifyPage />} />
                 <Route
                   exact
                   path="/reset_mail_sent"

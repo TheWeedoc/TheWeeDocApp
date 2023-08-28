@@ -4,8 +4,8 @@ import { Form, Input } from "antd";
 import { Link } from "react-router-dom";
 import { LoadingOutlined } from "@ant-design/icons";
 import { Spin } from "antd";
-import { getlogin } from "../../Api/Fetchclient";
 import { useNavigate } from "react-router-dom";
+import LogoImage from "../../Assests/Images/theweedocLogo.png";
 
 import { useDispatch } from "react-redux";
 import { postLogin } from "../../store/Home/authReducer";
@@ -108,7 +108,15 @@ function Loginpage() {
       <div className="log_rightside">
         <div className="WeeDocTxt_div">
           <h1>
-            <Link to="/">TheWeedoc </Link>
+            <Link to="/" className="flex flex-row items-center">
+              {" "}
+              <img
+                src={LogoImage}
+                alt="TheWeeDocLogo"
+                className="w-20 h-20"
+              />{" "}
+              TheWeedoc
+            </Link>
           </h1>
         </div>
 

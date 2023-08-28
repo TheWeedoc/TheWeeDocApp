@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Searchpage.css";
 import { Input, Button } from "antd";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { closeicons } from "../../Assests/Svg/Commonsvg";
 import { useDispatch, useSelector } from "react-redux";
 import { getGenres } from "../../store/Home/adhocReducer";
