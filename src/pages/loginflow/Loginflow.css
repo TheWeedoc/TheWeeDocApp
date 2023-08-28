@@ -142,6 +142,7 @@ color: #FAFBFF;
     line-height: 24px;
     text-align: center;
     color: #8C8E8F;
+    padding-bottom: 20px;
 }
 
 .log_btm-sec p b{
@@ -153,7 +154,7 @@ color: #FAFBFF;
 
     .log_rightside{
         width: 100%;
-        display: flex;
+        display: flex; 
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
@@ -171,6 +172,7 @@ color: #FAFBFF;
       line-height: 20px;
     text-align: center;
     color: #8C8E8F;
+    padding-bottom: 20px;
 
       
     }
@@ -298,3 +300,83 @@ color: #FAFBFF;
 .reset_input{
     width: 32vw;
 }
+
+.otp-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 10px;
+    gap: 12px;
+  }
+  
+  .otp-input {
+    width: 40px;
+    height: 40px;
+    border: 0.75px solid #D9D9D9CC;
+    background: transparent;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    outline: none;
+    caret-color: white; /* Cursor color */
+  }
+
+
+  /* Signup questions */
+
+.signupquesImg{
+    width: 183px;
+height: 183px;
+
+
+}
+
+.signupQuesHeading{
+    
+font-size: 24px;
+font-weight: 600;
+line-height: 33px;
+}
+
+.signupQuesStep{
+    font-family: Noto Sans;
+font-size: 18px;
+font-weight: 600;
+line-height: 25px;
+text-align: left;
+
+}
+
+.signupImgaPagetext{
+
+font-size: 22px;
+font-weight: 400;
+line-height: 16px;
+letter-spacing: 0px;
+text-align: left;}
+
+.signupQuesuploadImg{
+    font-family: Noto Sans;
+font-size: 20px;
+font-weight: 500;
+line-height: 28px;
+letter-spacing: 0em;
+
+
+}
+
+.signupQuesGender{
+    font-family: Noto Sans;
+font-size: 18px;
+font-weight: 400;
+line-height: 16px;
+letter-spacing: 0px;
+text-align: left;
+
+}
+
+input[type="radio"]::before {
+    width: 18px; /* Adjust width */
+    height: 18px; /* Adjust height */
+  }
+

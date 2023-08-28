@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getlogin } from "../../Api/Fetchclient";
+import { VerifyOTP, getlogin } from "../../Api/Fetchclient";
 import { resetAllState } from "./resetReducer";
 
 const INITIAL_STATE = {
@@ -42,6 +42,23 @@ export const postLogin = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       const result = await getlogin(data);
+      return result;
+    } catch (err) {
+      const message =
+        (err.response && err.response.data && err.response.data.detail) ||
+        err.message ||
+        err.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const verifyOtp = createAsyncThunk(
+  "auth/verifyOtp",
+  async (otp, thunkAPI) => {
+    try {
+      const result = await VerifyOTP(otp);
       return result;
     } catch (err) {
       const message =
@@ -97,6 +114,17 @@ const authSlice = createSlice({
     builder.addCase(postLogin.rejected, (state) => {
       state.isLoading = false;
       state.isLoggedIn = false;
+    });
+    // VerifyOTP
+    builder.addCase(verifyOtp.pending, (state) => {
+      state.isLoading = true;
+    });
+
+    builder.addCase(verifyOtp.fulfilled, (state) => {
+      state.isLoading = false;
+    });
+    builder.addCase(verifyOtp.rejected, (state) => {
+      state.isLoading = false;
     });
     // Check Auth
     builder.addCase(checkAuth.fulfilled, (state, action) => {

@@ -53,13 +53,17 @@ function ReviewsGiven({ item, lastUpdate, reviewContent }) {
     <div className="flex justify-center w-full">
       <Card
         onClick={handleClick}
-        className="w-full bg-[#0a0a0d] text-white !p-0 cursor-pointer"
+        className="w-full bg-[#0a0a0d] text-white !p-0 cursor-pointer hidden md:block "
         bordered={false}
         bodyStyle={{ padding: "0" }}
       >
         <div className="flex flex-row space-x-3">
           <div className="w-1/2">
-            <img alt="example" src={item?.image} className="homepagecardimg1" />
+            <img
+              alt={item?.title}
+              src={item?.image}
+              className="homepagecardimg1"
+            />
           </div>
           <div className="flex flex-col w-1/2 justify-between py-4">
             <div className="w-full">
@@ -71,10 +75,40 @@ function ReviewsGiven({ item, lastUpdate, reviewContent }) {
               </div>
             </div>
             <div className="flex flex-row justify-between ">
-              <div>{timeAgo}</div>
+              <div className="text-sm">{timeAgo}</div>
               <div>{rightArrow}</div>
             </div>
           </div>
+        </div>
+      </Card>
+
+      <Card
+        onClick={handleClick}
+        className="w-full bg-[#0a0a0d] text-white !p-0 cursor-pointer md:hidden cardBottomBorder rounded-none"
+        bordered={false}
+        bodyStyle={{ padding: "0" }}
+      >
+        <div className="flex flex-col pt-3">
+          <div className="flex flex-row">
+            <img
+              alt={item?.title}
+              src={item?.image}
+              className="cardImgMobile"
+            />
+
+            <div className="flex flex-row w-full items-start pl-4 justify-between">
+              <div className="font-notosans cardReviewMobile  w-36 md:w-48 lg:w-52  truncate">
+                {item?.title}
+              </div>
+              <div className="flex items-center">{rightArrow}</div>
+            </div>
+          </div>
+          <div className="flex flex-row justify-between pt-3 items-start">
+            <div className="font-notosans text-gray-400 text-md md:text-lg font-semibold w-36 md:w-48 lg:w-52 container">
+              <p className="multiline-ellipsis">{reviewContent}</p>
+            </div>
+          </div>
+          <div className="cardReviewTime">{timeAgo}</div>
         </div>
       </Card>
     </div>

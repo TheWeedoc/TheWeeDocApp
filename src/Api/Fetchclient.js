@@ -12,6 +12,18 @@ export const signup = async (data) => {
   return signup;
 };
 
+export const sendOTP = async (email) => {
+  const sendResult = await post("otp/send/", email)
+    .then((resp) => {
+      return resp;
+    })
+    .catch((error) => {
+      return error.response;
+    });
+
+  return sendResult;
+};
+
 export const getlogin = async (data) => {
   const login = await post("login/", data)
     .then((resp) => {
@@ -120,14 +132,15 @@ export const GetSearchUsers = async (searchKey, signal) => {
 
 export const GetMyProfileSearch = async (searchKey, signal) => {
   try {
-    const results = await get(`user/profile/?search=${searchKey}`, { signal });
-    if (Array.isArray(results.data))
-      return results.data.length > 0 ? results.data[0] : null;
-    else if (typeof results === "object" && results !== null) {
-      return results.data;
-    } else {
-      return null;
-    }
+    const results = await get(`reviews/given/?search=${searchKey}`, { signal });
+    // if (Array.isArray(results.data))
+    //   return results.data.length > 0 ? results.data[0] : null;
+    // else if (typeof results === "object" && results !== null) {
+    //   return results.data;
+    // } else {
+    //   return null;
+    // }
+    return results.data;
   } catch (err) {
     throw Error(err.response.data);
   }
@@ -304,8 +317,10 @@ export const GetAllSavedFilms = async () => {
 export const UpdateUser = async (data) => {
   try {
     const result = await put(`user/update/`, data);
+    console.log(result, "jshdbhjubdskh");
     return result;
   } catch (err) {
+    console.log(" errrrrrrrrrr", err);
     throw Error(err.response.data);
   }
 };
@@ -353,3 +368,13 @@ export const UploadsRejected = async () => {
 };
 
 // Uploads Page End
+
+// OTP Verify
+export const VerifyOTP = async (otp) => {
+  try {
+    const result = await get(`otp/verify/?otp=${otp}`);
+    return result.data;
+  } catch (err) {
+    throw Error(err.response.data);
+  }
+};

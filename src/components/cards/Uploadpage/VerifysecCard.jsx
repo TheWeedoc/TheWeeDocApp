@@ -45,15 +45,14 @@ function Verifyseccard({ item, lastUpdate }) {
   }
   return (
     <div className="verifycardDiv w-full">
-      <Link to={`/video/${item?.id}`}>
-        <img className="verifycardimg" src={item?.image} alt={item?.title} />
-      </Link>
+      <img className="verifycardimg" src={item?.image} alt={item?.title} />
+
       <div className=" d-flex align-items-center justify-content-between my-2 container">
         <div className="">
           <span className="verifycrdTitle ellipsis">{item?.title}</span>
         </div>
 
-        <div>{timeAgo}</div>
+        <div className="text-sm">{timeAgo}</div>
       </div>
       <span className="crdbtmsec-text capitalize">{resultString}</span>
     </div>

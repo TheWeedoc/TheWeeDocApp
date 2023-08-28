@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./Myprofile.css";
-import { EditprofileIcon } from "../../Assests/Svg/Commonsvg";
+import { EditprofileIcon, SwitchVeritcal } from "../../Assests/Svg/Commonsvg";
+import { SearchOutlined } from "@ant-design/icons";
 import Uploads from "../../components/cards/Myprofile/Uploads";
 import SavedFilms from "../../components/cards/Myprofile/SavedFilms";
-import { Input } from "antd";
-
+import { Input, Switch } from "antd";
 import ReviewsGiven from "../../components/cards/Myprofile/ReviewsGiven";
 import Header from "../../components/Layout/Header/Header";
 import { Link } from "react-router-dom";
@@ -163,12 +163,12 @@ function Myprofile() {
                 </div>
                 <div className="flex flex-row space-x-3 ">
                   <div className="flex flex-col p-0 container w-40 md:w-52 lg:w-64">
-                    <p className="font-bold md:py-6 md:text-xl lg:text-4xl/7 font-notosans ellipsis">
+                    <p className="font-bold md:py-6 md:text-xl lg:text-3xl/7 font-notosans ellipsis">
                       {user?.first_name
                         ? `${user?.first_name} ${user?.last_name}`
                         : "No Name"}
                     </p>
-                    <span className="text-[#bdbdbd] font-medium md:pb-4 md:text-xl lg:text-3xl/7">
+                    <span className="text-[#bdbdbd] font-medium md:pb-4 md:text-xl lg:text-2xl/7">
                       {user?.designation ? user?.designation : "No Designation"}
                     </span>
                   </div>
@@ -182,18 +182,18 @@ function Myprofile() {
             {/* Followers */}
             <div className="flex flex-row items-center justify-center space-x-6 py-2 pl-2 md:w-1/3 font-notosans">
               <div className="flex flex-col space-y-2 justify-center items-center">
-                <h1 className="leading-7 font-semibold text-xl lg:text-3xl/7">
+                <h1 className="leading-7 font-semibold text-xl lg:text-2xl/7">
                   {user?.followers_count}
                 </h1>
-                <h1 className="md:text-2xl lg:text-3xl/7 text-[#bbbbbb] font-normal">
+                <h1 className="md:text-2xl lg:text-2xl/7 text-[#bbbbbb] font-normal">
                   Followers
                 </h1>
               </div>
               <div className="flex flex-col space-y-2 justify-center items-center">
-                <h1 className="leading-7 font-semibold text-xl lg:text-3xl/7">
+                <h1 className="leading-7 font-semibold text-xl lg:text-2xl/7">
                   {user?.following_count}
                 </h1>
-                <h1 className="md:text-2xl lg:text-3xl/7 text-[#bbbbbb] font-normal">
+                <h1 className="md:text-2xl lg:text-2xl/7 text-[#bbbbbb] font-normal">
                   Following
                 </h1>
               </div>
@@ -203,27 +203,27 @@ function Myprofile() {
           <div className="flex flex-col py-12 w-full ">
             <div className="flex flex-row justify-start space-x-4 md:space-x-8 pb-12 font-notosans">
               <h1
-                className={`text-[#9f9fa0] text-lg md:md:text-2xl lg:text-3xl/7 font-semibold cursor-pointer ${
+                className={`text-[#9f9fa0] text-lg md:md:text-2xl  font-semibold cursor-pointer ${
                   selectTab === "uploads" &&
-                  "!text-white underline md:underline-offset-[16px] decoration-[5px] decoration-white text-lg/7 md:text-2xl underline-offset-[12px] lg:text-3xl/7 font-bold"
+                  "!text-white underline md:underline-offset-[16px] decoration-[5px] decoration-white text-lg/7 md:text-2xl underline-offset-[12px]  font-bold"
                 }`}
                 onClick={() => switchTab("uploads")}
               >
                 Uploads
               </h1>
               <h1
-                className={`text-[#9f9fa0] cursor-pointer  text-lg/7 md:text-2xl lg:text-3xl/7 font-semibold ${
+                className={`text-[#9f9fa0] cursor-pointer  text-lg/7 md:text-2xl  font-semibold ${
                   selectTab === "savedfilms" &&
-                  "!text-white underline md:underline-offset-[16px] decoration-[5px] decoration-white text-lg/7 md:text-2xl underline-offset-[12px] lg:text-3xl/7 font-bold"
+                  "!text-white underline md:underline-offset-[16px] decoration-[5px] decoration-white text-lg/7 md:text-2xl underline-offset-[12px]  font-bold"
                 }`}
                 onClick={() => switchTab("savedfilms")}
               >
                 Saved Films
               </h1>
               <h1
-                className={`text-[#9f9fa0] text-lg/7 md:text-2xl lg:text-3xl/7  font-semibold cursor-pointer ${
+                className={`text-[#9f9fa0] text-lg/7 md:text-2xl   font-semibold cursor-pointer ${
                   selectTab === "reviews" &&
-                  "!text-white underline md:underline-offset-[16px] decoration-[5px] decoration-white text-lg/7 underline-offset-[12px] md:text-2xl lg:text-3xl/7 font-bold"
+                  "!text-white underline md:underline-offset-[16px] decoration-[5px] decoration-white text-lg/7 underline-offset-[12px] md:text-2xl  font-bold"
                 }`}
                 onClick={() => switchTab("reviews")}
               >
@@ -255,21 +255,25 @@ function Myprofile() {
 
             {/* Reviews Given */}
             {selectTab === "reviews" && (
-              <div className="flex flex-col py-6">
-                <div className="flex flex-col md:flex-row md:justify-between space-y-2 md:space-y-0">
+              <div className="flex flex-col  md:py-6">
+                <div className="flex flex-row  md:justify-between space-x-4 md:space-y-0">
                   <div className="md:w-2/3">
                     <Input
                       placeholder="Search for films review"
-                      className="bg-black text-white placeholder:text-gray-400"
+                      prefix={<SearchOutlined />}
+                      className="bg-black text-white placeholder:text-gray-400 inputboxSearch"
                       onChange={handleFilterReviews}
                     />
                   </div>
                   <div className="flex justify-center md:w-1/3">
-                    <div className="uplod_genre_div">
+                    <div className="relative uplod_genre_div w-full ">
+                      <div className="iconplacement py-3  inline-block">
+                        {SwitchVeritcal}
+                      </div>
                       <select
                         placeholder=""
                         defaultValue="newtoold"
-                        className="h-9"
+                        className="inputboxSearch w-full "
                         onChange={handleSortReviews}
                       >
                         <option value="newtoold">Newest to Oldest</option>;
@@ -278,17 +282,29 @@ function Myprofile() {
                     </div>
                   </div>
                 </div>
+                {/* <SearchReviewsGiven item={i} key={i.id} /> */}
 
                 {filterEnabled ? (
-                  searchMyProfileResults.results > 0 && (
-                    <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4 py-6 justify-start items-center">
-                      {searchMyProfileResults.map((i) => (
-                        <SearchReviewsGiven item={i} key={i.id} />
+                  searchMyProfileResults.results.length > 0 ? (
+                    <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4 py-8 md:py-6 justify-start items-center">
+                      {searchMyProfileResults.results.map((i) => (
+                        <ReviewsGiven
+                          item={i.movie}
+                          key={i.id}
+                          reviewContent={i.review_content}
+                          lastUpdate={i.updated_at}
+                        />
                       ))}
+                    </div>
+                  ) : (
+                    <div className="py-6">
+                      <h1 className="text-white text-center">
+                        No Results Found
+                      </h1>
                     </div>
                   )
                 ) : reviewsGiven.length > 0 ? (
-                  <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4 py-6 justify-start items-center">
+                  <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 md:gap-4 py-8 md:py-6 justify-start items-center">
                     {reviewsGiven.map((i) => (
                       <ReviewsGiven
                         item={i.movie}

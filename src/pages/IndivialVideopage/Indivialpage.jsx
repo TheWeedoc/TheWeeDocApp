@@ -171,7 +171,7 @@ function Indivialpage() {
             thumbnail={productDetails?.image}
             videoUrl={productDetails?.video}
           />
-          <div className="vid-topDiv flex flex-col space-y-2 md:space-y-0 md:flex-row">
+          <div className="vid-topDiv flex flex-col space-y-2 pb-6 md:pb-0 md:space-y-0 md:flex-row">
             <div className="vid-topleft">
               <h1>{productDetails?.title}</h1>
               <div
@@ -184,21 +184,22 @@ function Indivialpage() {
               </div>
             </div>
 
-            <div className="flex flex-row justify-between md:vid-topright md:space-x-2">
+            <div className="flex flex-row-reverse md:flex-row justify-between  md:vid-topright md:space-x-2">
               <div className="relative">
                 <Popover
                   content={<Suggest />}
                   trigger="click"
                   placement="bottom"
                 >
-                  <div className="share_text">{sharebtn} suggest</div>
+                  <div className="share_text border border-[#85858599] border-2 rounded-md p-2 md:p-0  md:border-none">
+                    {sharebtn} suggest
+                  </div>
                 </Popover>
               </div>
 
               <div className="likesDiv">
                 <div className="cursor-pointer" onClick={handleLike}>
                   {productDetails?.has_liked ? ThumbsupFilled : thumbsup}
-
                   {productDetails?.like_count}
                 </div>
                 <hr
@@ -213,52 +214,62 @@ function Indivialpage() {
           </div>
 
           <div className="flex flex-col md:flex-row md:justify-between md:items-center text-white">
-            <div className="details-div capitalize">{resultString}</div>
-            <div className="flex justify-center md:items-center">
+            <div className="details-div capitalize hidden md:block">
+              {resultString}
+            </div>
+            <div className="flex justify-center md:items-center hidden md:block">
               <Copylink />
             </div>
           </div>
-          <div className="flex flex-col w-full py-6 space-y-4">
-            <div className="w-full">
-              <TextArea
-                className="bg-[#0a0a0d] text-white placeholder:text-gray-400"
-                rows={4}
-                placeholder="Write the films's review"
-                value={review}
-                onChange={handleReview}
-              />
-            </div>
-            <div className="flex justify-center md:justify-end">
-              <button
-                onClick={handlePostReview}
-                className="bg-white text-black font-notosans  justify-center rounded-lg px-4 py-1"
-              >
-                Post Review
-              </button>
-            </div>
-          </div>
-
-          {productCustomer !== "" && productCustomer !== undefined && (
-            <Link to={`/profile/${productCustomer?.id}`}>
-              <div className="userprofileSec">
-                <div className="pro_imgDiv">
-                  <img
-                    src={productCustomer?.profile_pic}
-                    className="profilepic"
-                    alt="ProfilePicture"
-                  />
-                </div>
-
-                <div className="pro_textDiv">
-                  <b>{productDetails?.customer}</b>
-                  <small>167 Followers</small>
-                </div>
-                <button className="invid_page_followbtn" onClick={handleFollow}>
-                  {productCustomer?.is_following ? "Unfollow" : "Follow"}
+          <div className="flex flex-col">
+            <div className="flex flex-col w-full pt-6 pb-2 md:pt-0 md:pb-0 md:py-6 space-y-4">
+              <div className="w-full">
+                <TextArea
+                  className="bg-[#0a0a0d] text-white placeholder:text-gray-400"
+                  rows={4}
+                  placeholder="Write the films's review"
+                  value={review}
+                  onChange={handleReview}
+                />
+              </div>
+              <div className="flex justify-center md:justify-end">
+                <button
+                  onClick={handlePostReview}
+                  className="bg-white text-black font-notosans  justify-center rounded-lg px-4 py-1"
+                >
+                  Post Review
                 </button>
               </div>
-            </Link>
-          )}
+            </div>
+
+            {productCustomer !== "" && productCustomer !== undefined && (
+              <Link to={`/profile/${productCustomer?.id}`}>
+                <div className="userprofileSec">
+                  <div className="pro_imgDiv">
+                    <img
+                      src={productCustomer?.profile_pic}
+                      className="profilepic"
+                      alt="ProfilePicture"
+                    />
+                  </div>
+
+                  <div className="pro_textDiv">
+                    <b>{productDetails?.customer}</b>
+                    <small>167 Followers</small>
+                  </div>
+                  <button
+                    className="invid_page_followbtn"
+                    onClick={handleFollow}
+                  >
+                    {productCustomer?.is_following ? "Unfollow" : "Follow"}
+                  </button>
+                </div>
+              </Link>
+            )}
+          </div>
+          <div className="details-div capitalize text-white font-notosans md:hidden pb-5">
+            {resultString}
+          </div>
 
           <div className="indivl_page_cnt py-6">
             <p>

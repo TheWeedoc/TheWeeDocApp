@@ -774,3 +774,21 @@ export const leftArrow = (
     <path d="M19 12H6M12 5l-7 7 7 7" />
   </svg>
 );
+
+export const SwitchVeritcal = (
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M8.11111 15V6M8.11111 6L5 9M8.11111 6L11.2222 9M15.8889 9V18M15.8889 18L19 15M15.8889 18L12.7778 15"
+      stroke="#FAFBFF"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);

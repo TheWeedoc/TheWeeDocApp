@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import "./Loginflow.css";
 import { Form, Input } from "antd";
 import { Link, useNavigate } from "react-router-dom";
-import { signup } from "../../Api/Fetchclient";
+import { sendOTP, signup } from "../../Api/Fetchclient";
 import { LoadingOutlined } from "@ant-design/icons";
 import { Spin } from "antd";
+import LogoImage from "../../Assests/Images/LogoImage.png";
+
 function Signuppage() {
   const [form] = Form.useForm();
   const [formErrors, setFormErrors] = useState({});
@@ -32,14 +34,30 @@ function Signuppage() {
     };
 
     const response = await signup(data);
-    setLoad(false);
     if (response?.status === 201 || response?.status === 200) {
-      navigate("/Verify_mail");
-      form.resetFields();
+      console.log("first Signup", response.data);
+      const email = response?.data?.email;
+      // Send OTP
+      const otpVerification = await sendOTP({ email });
+      console.log("Second OTP", otpVerification.data);
+
+      if (otpVerification?.status === 201 || otpVerification?.status === 200) {
+        setLoad(false);
+        navigate("/Verify");
+        form.resetFields();
+      } else if (otpVerification?.status === 400) {
+        const errorData = otpVerification.data;
+        setFormErrors(errorData);
+      }
+      // End SEND OTP
     }
     if (response?.status === 400) {
       const errorData = response.data;
       setFormErrors(errorData);
+      setLoad(false);
+    } else {
+      console.log(response, "signup");
+      setLoad(false);
     }
   };
 
@@ -63,7 +81,15 @@ function Signuppage() {
       <div className="log_rightside">
         <div className="WeeDocTxt_div">
           <h1>
-            <Link to="/">TheWeedoc </Link>
+            <Link to="/" className="flex flex-row items-center">
+              {" "}
+              <img
+                src={LogoImage}
+                alt="TheWeeDocLogo"
+                className="w-20 h-20"
+              />{" "}
+              TheWeedoc
+            </Link>
           </h1>
         </div>
 

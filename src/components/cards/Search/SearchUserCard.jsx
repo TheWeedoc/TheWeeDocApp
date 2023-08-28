@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { followUser } from "../../../store/Home/productReducer";
 import defaultProfile from "../../../Assests/Images/Defaultprofile.png";
+import { followUserSearch } from "../../../store/Home/Search/searchReducer";
 
 function SearchUserCard({ item, refreshHandle }) {
   const { isLoggedIn } = useSelector((state) => state.auth);
@@ -13,7 +13,7 @@ function SearchUserCard({ item, refreshHandle }) {
   const handleFollow = (e) => {
     e.preventDefault();
     if (isLoggedIn) {
-      dispatch(followUser(item?.username)).then(() => {
+      dispatch(followUserSearch(item?.username)).then(() => {
         refreshHandle();
       });
     } else {
