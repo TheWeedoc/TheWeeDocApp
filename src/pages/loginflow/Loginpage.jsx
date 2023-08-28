@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { LoadingOutlined } from "@ant-design/icons";
 import { Spin } from "antd";
 import { useNavigate } from "react-router-dom";
-import LogoImage from "../../Assests/Images/theweedocLogo.png";
+import LogoImage from "../../Assests/Images/LogoImage.png";
 
 import { useDispatch } from "react-redux";
 import { postLogin } from "../../store/Home/authReducer";

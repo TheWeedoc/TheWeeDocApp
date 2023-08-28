@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Popover } from "antd";
 import "./Header.css";
-import Logo from "../../../Assests/Images/theweedocLogo.png";
+import Logo from "../../../Assests/Images/LogoImage.png";
 import {
   notificationicon,
   uploadicon,

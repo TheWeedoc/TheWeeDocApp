@@ -4,7 +4,7 @@ import { Form, Input, Spin } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { LoadingOutlined } from "@ant-design/icons";
 import { resetpassword } from "../../Api/Fetchclient";
-import LogoImage from "../../Assests/Images/theweedocLogo.png";
+import LogoImage from "../../Assests/Images/LogoImage.png";
 
 function Resetpage() {
   const [formErrors, setFormErrors] = useState({});

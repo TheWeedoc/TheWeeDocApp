@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { LoadingOutlined } from "@ant-design/icons";
 import { Spin } from "antd";
 import { verifyOtp } from "../../store/Home/authReducer";
-import LogoImage from "../../Assests/Images/theweedocLogo.png";
+import LogoImage from "../../Assests/Images/LogoImage.png";
 
 function VerifyPage() {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);

@@ -4,7 +4,7 @@ import "./Loginflow.css";
 import { Form, Input } from "antd";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { resetUpdatePassword } from "../../Api/Fetchclient";
-import LogoImage from "../../Assests/Images/theweedocLogo.png";
+import LogoImage from "../../Assests/Images/LogoImage.png";
 
 function NewPasswordPage() {
   const [formErrors, setFormErrors] = useState({});

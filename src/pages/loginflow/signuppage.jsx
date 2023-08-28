@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { sendOTP, signup } from "../../Api/Fetchclient";
 import { LoadingOutlined } from "@ant-design/icons";
 import { Spin } from "antd";
-import LogoImage from "../../Assests/Images/theweedocLogo.png";
+import LogoImage from "../../Assests/Images/LogoImage.png";
 
 function Signuppage() {
   const [form] = Form.useForm();

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import LogoImage from "../../Assests/Images/theweedocLogo.png";
+import LogoImage from "../../Assests/Images/LogoImage.png";
 
 function ResetChange() {
   return (

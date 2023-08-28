@@ -27,8 +27,11 @@ function Uploads({ item }) {
   };
 
   const handleReviews = () => {
-    setReviews(true);
-    dispatch(getMovieReview(item.id));
+    dispatch(getMovieReview(item.id)).then((action) => {
+      if (action.payload.length > 0) {
+        setReviews(true);
+      }
+    });
   };
 
   const handleBack = () => {
@@ -62,7 +65,7 @@ function Uploads({ item }) {
                 className="flex flex-row space-x-1 items-center "
                 onClick={handleReviews}
               >
-                {commentIcon} <span>20 Reviews</span>
+                {commentIcon} <span>{item?.review_count} Reviews</span>
               </h1>
 
               {reviews ? (
