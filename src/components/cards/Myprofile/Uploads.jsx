@@ -65,7 +65,7 @@ function Uploads({ item }) {
               </h1>
 
               {reviews ? (
-                <div className="absolute top-5 right-0 bg-gray-900 py-2 w-80 z-50 rounded-md font-nanosans">
+                <div className="absolute top-5 right-0 bg-[#0F1015] py-2 w-80 z-50 rounded-md font-notosans">
                   <div
                     className="flex flex-row w-full items-center pb-6"
                     onClick={handleBack}

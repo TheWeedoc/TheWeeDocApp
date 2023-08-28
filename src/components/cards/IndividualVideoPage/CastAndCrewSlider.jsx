@@ -41,7 +41,7 @@ const CastAndCrewCarousel = ({ castAndCrewData }) => {
   };
 
   return (
-    <div className="relative ">
+    <div className="relative w-full">
       <div className="flex flex-row items-center space-x-4 overflow-x-auto">
         {castAndCrewData
           .slice(startIndex, startIndex + itemsPerPage)

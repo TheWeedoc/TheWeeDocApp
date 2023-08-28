@@ -6,10 +6,13 @@ import {
   thumbsdown,
   thumbsup,
 } from "../../../Assests/Svg/Commonsvg";
-import { disLikeFilm, likeFilm } from "../../../store/Home/productReducer";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import {
+  disLikeFilmOthersProfile,
+  likeFilmOthersProfile,
+} from "../../../store/Home/userReducer";
 
 function OthersProfileUploads({ item }) {
   const { isLoggedIn } = useSelector((state) => state.auth);
@@ -23,7 +26,7 @@ function OthersProfileUploads({ item }) {
   const handleLike = (e) => {
     e.preventDefault();
     if (isLoggedIn) {
-      dispatch(likeFilm(item?.id));
+      dispatch(likeFilmOthersProfile(item?.id));
     } else {
       handleLoginMessage();
     }
@@ -32,19 +35,25 @@ function OthersProfileUploads({ item }) {
   const handleDisLike = (e) => {
     e.preventDefault();
     if (isLoggedIn) {
-      dispatch(disLikeFilm(item?.id));
+      dispatch(disLikeFilmOthersProfile(item?.id));
     } else {
       handleLoginMessage();
     }
   };
 
   return (
-    <div className="jutify-center items-center" key={item.id}>
-      <Link to={`/video/${item.id}`}>
+    <div className="flex flex-col w-full md:w-[360-px]" key={item.id}>
+      <Link to={`/video/${item.id}`} className="w-full">
         <Card
           hoverable
-          className="w-full bg-[#0a0a0d] text-white"
-          cover={<img alt="poster" src={item?.image} />}
+          className=" bg-[#0a0a0d] text-white"
+          cover={
+            <img
+              alt="poster"
+              src={item?.image}
+              className="w-full uploadspagecardimg1"
+            />
+          }
           bordered={false}
         >
           <div className="flex flex-col justify-between ">

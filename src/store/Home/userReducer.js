@@ -1,9 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import {
+  DisikeFilm,
   FollowUser,
   GetAllReviews,
   GetAllSavedFilms,
   GetUser,
+  LikeFilm,
   OtherUserProfile,
   UpdateUser,
 } from "../../Api/Fetchclient";
@@ -137,6 +139,40 @@ export const followUserOthersProfile = createAsyncThunk(
   }
 );
 
+export const likeFilmOthersProfile = createAsyncThunk(
+  "user/likeFilmOthersProfile",
+  async (id, thunkAPI) => {
+    try {
+      const result = await LikeFilm(id);
+      return result;
+    } catch (err) {
+      const message =
+        (err.response && err.response.data && err.response.data.detail) ||
+        err.message ||
+        err.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const disLikeFilmOthersProfile = createAsyncThunk(
+  "user/disLikeFilmOthersProfile",
+  async (id, thunkAPI) => {
+    try {
+      const result = await DisikeFilm(id);
+      return result;
+    } catch (err) {
+      const message =
+        (err.response && err.response.data && err.response.data.detail) ||
+        err.message ||
+        err.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 const userSlice = createSlice({
   name: "user",
   initialState: INITIAL_STATE,
@@ -228,6 +264,36 @@ const userSlice = createSlice({
     });
     builder.addCase(followUserOthersProfile.rejected, (state) => {
       state.otherUser.is_following = false;
+    });
+
+    // Like from cards other profile
+    builder.addCase(likeFilmOthersProfile.fulfilled, (state, action) => {
+      const targetIndex = state.otherUser.user_filims.findIndex(
+        (item) => item.id === action.payload?.id
+      );
+
+      const targetFilm = state.otherUser.user_filims[targetIndex];
+
+      if (targetFilm) {
+        targetFilm.has_liked = action.payload.has_liked;
+        targetFilm.has_disliked = action.payload.has_disliked;
+        targetFilm.like_count = action.payload.like_count;
+        targetFilm.dislike_count = action.payload.dislike_count;
+      }
+    });
+    builder.addCase(disLikeFilmOthersProfile.fulfilled, (state, action) => {
+      const targetIndex = state.otherUser.user_filims.findIndex(
+        (item) => item.id === action.payload?.id
+      );
+
+      const targetFilm = state.otherUser.user_filims[targetIndex];
+
+      if (targetFilm) {
+        targetFilm.has_liked = action.payload.has_liked;
+        targetFilm.has_disliked = action.payload.has_disliked;
+        targetFilm.like_count = action.payload.like_count;
+        targetFilm.dislike_count = action.payload.dislike_count;
+      }
     });
   },
 });

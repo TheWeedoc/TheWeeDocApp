@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../store/Home/userReducer";
 import { clearNotification } from "../../store/Home/notificationReducer";
 import defaultProfile from "../../Assests/Images/Defaultprofile.png";
+import "./Editprofile.css";
 
 function Editprofile() {
   const { user } = useSelector((state) => state.user);
@@ -104,7 +105,7 @@ function Editprofile() {
       <Header />
       <div className="flex flex-col justify-center items-center w-full">
         <div className="flex p-3 w-full justify-center md:w-10/12">
-          <div className="flex flex-col justify-between bg-[#14161c] rounded-md border border-[#4A4949] w-full p-3 space-y-4  md:px-3 md:py-6 md:w-10/12">
+          <div className="flex flex-col justify-between bg-[#14161c] rounded-md border border-[#4A4949] w-full p-3 space-y-4  md:px-3 md:py-6">
             <div className="flex flex-row justify-between items-center">
               <Link to="/myprofile">
                 <div className="flex flex-row space-x-3 items-center">
@@ -119,7 +120,7 @@ function Editprofile() {
                   >
                     {backIcon}
                   </div>{" "}
-                  <span className="font-notosans font-semibold text-lg text-white">
+                  <span className="font-notosans editprofileText text-white">
                     Edit Profile
                   </span>
                 </div>
@@ -127,14 +128,14 @@ function Editprofile() {
 
               <div className="full">
                 <button
-                  className="bg-white px-6 rounded-lg py-2"
+                  className="bg-white px-6 rounded-lg py-2 savetxt"
                   onClick={handleSave}
                 >
                   Save
                 </button>
               </div>
             </div>
-            <div className="text-white w-full ">
+            <div className="text-white w-full pt-10">
               <div className="flex flex-col md:flex-row items-center justify-between md:space-x-8 ">
                 <div className="flex flex-col justify-center space-y-4 items-center md:w-3/6">
                   <div className="w-26">
@@ -147,7 +148,7 @@ function Editprofile() {
                           : defaultProfile
                       }
                       alt="profile"
-                      className="w-24 h-24 rounded-full border border-white border-4"
+                      className="editImage rounded-full border border-white border-4"
                     />
                   </div>
                   <label htmlFor="profilePicInput" className="cursor-pointer">
@@ -173,40 +174,40 @@ function Editprofile() {
                     </div>
                   </label>
                 </div>
-                <div className="flex flex-col w-full md:3/6 ">
-                  <div className="flex flex-col w-full md:w-3/6 justify-center ">
-                    <label htmlFor="firstname" className="text-gray-400 w-full">
+                <div className="flex flex-col w-full md:3/6 pt-10 md:pt-0 space-y-6">
+                  <div className="flex flex-col w-full md:w-3/6 justify-center space-y-2 ">
+                    <label htmlFor="firstname" className="userlabels">
                       Firstname:
                     </label>
                     <Input
                       id="firstname"
                       value={userDetails.first_name}
                       onChange={handleFirstname}
-                      className="bg-black text-white placeholder:text-gray-400"
+                      className="userinputs bg-transparent text-white placeholder:text-gray-400  "
                     />
                   </div>
 
-                  <div className="flex flex-col w-full md:w-3/6 justify-center ">
-                    <label htmlFor="lastname" className="text-gray-400 w-full">
+                  <div className="flex flex-col w-full md:w-3/6 justify-center space-y-2">
+                    <label htmlFor="lastname" className="userlabels">
                       Lastname:
                     </label>
                     <Input
                       id="lastname"
                       value={userDetails.last_name}
                       onChange={handleLastname}
-                      className="bg-black text-white placeholder:text-gray-400"
+                      className="userinputs bg-transparent text-white placeholder:text-gray-400"
                     />
                   </div>
 
-                  <div className="flex flex-col w-full md:w-3/6 ">
-                    <label htmlFor="role" className="text-gray-400">
+                  <div className="flex flex-col w-full md:w-3/6 space-y-2">
+                    <label htmlFor="role" className="userlablerole">
                       your role or position or occupation:
                     </label>
                     <Input
                       id="role"
                       value={userDetails.designation}
                       onChange={handleDesignation}
-                      className="bg-black text-white placeholder:text-gray-400"
+                      className="userinputs bg-transparent text-white placeholder:text-gray-400"
                     />
                   </div>
                 </div>

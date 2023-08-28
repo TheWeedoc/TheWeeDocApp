@@ -1,0 +1,26 @@
+.ant-input::placeholder{
+    color: #C5C5C5;
+}
+
+/* For WebKit browsers (Chrome, Safari) */
+/* Customize the scrollbar width and color */
+::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #0F1015;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #14161c;
+  }
+  
+  /* For Firefox */
+  /* Use scrollbar-color to customize the thumb and track */
+  /* Scrollbar width is controlled by scrollbar-width */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #14161c #0F1015;
+  }
+  

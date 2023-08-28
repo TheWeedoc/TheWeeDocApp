@@ -53,7 +53,6 @@ function Searchpage() {
   };
 
   const handleRefreshSearch = () => {
-    console.log("Refresh Hit1");
     if (textValue) dispatch(getSearchUsers(textValue));
   };
 
@@ -122,32 +121,36 @@ function Searchpage() {
             />
           </div>
         </div>
-        <div className="flex justify-start items-center py-6">
-          {/* <OptionButton options={genres} /> */}
-          <div className="flex flex-wrap gap-6  font-notosans  ">
-            {genres.map((option) => (
-              <Button
-                key={option.id}
-                type={search.genre === option ? "default" : "border "}
-                className={` py-1 px-3 rounded-lg ${
-                  search.genre === option.id
-                    ? "border bg-white text-[#212121] text-genre font-semibold"
-                    : "text-[#C5C5C5] border border-[#515151] border-2"
-                }`}
-                onClick={() => handleOptionClick(option)}
-              >
-                {option.name}
-              </Button>
-            ))}
+        {search.type === "films" && (
+          <div className="flex justify-start items-center py-6">
+            {/* <OptionButton options={genres} /> */}
+            <div className="flex flex-wrap gap-6  font-notosans  ">
+              {genres.map((option) => (
+                <Button
+                  key={option.id}
+                  type={search.genre === option ? "default" : "border "}
+                  className={` py-1 px-3 rounded-lg ${
+                    search.genre === option.id
+                      ? "border bg-white text-[#212121] text-genre font-semibold"
+                      : "text-[#C5C5C5] border border-[#515151] border-2"
+                  }`}
+                  onClick={() => handleOptionClick(option)}
+                >
+                  {option.name}
+                </Button>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
         {/* Films Search component */}
         {search.type === "films" && (
           <div className="">
             {searchFilmResults.count > 0 && (
               <h1 className="font-bold text-lg text-white py-6">
-                {searchFilmResults.count} Results found{" "}
-                {search.genre !== "" && `for "${search.genreName}"`}
+                {searchFilmResults.count} Results found for{" "}
+                {textValue !== "" && `"${textValue}"`}{" "}
+                {textValue !== "" && search.genre !== "" && `and `}
+                {search.genre !== "" && `"${search.genreName}"`}
               </h1>
             )}
 
