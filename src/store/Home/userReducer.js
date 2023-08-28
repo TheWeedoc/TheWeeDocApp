@@ -236,6 +236,7 @@ const userSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(updateUser.fulfilled, (state, action) => {
+      console.log(action.payload);
       if (action.payload?.first_name) {
         state.user.first_name = action.payload?.first_name;
       }
@@ -248,6 +249,20 @@ const userSlice = createSlice({
       if (action.payload?.profile_pic) {
         state.user.profile_pic = action.payload?.profile_pic;
       }
+      if (action.payload?.gender) {
+        state.user.gender = action.payload?.gender;
+      }
+      if (action.payload?.location) {
+        state.user.location = action.payload?.location;
+      }
+      if (action.payload?.postal_code) {
+        state.user.postal_code = action.payload?.postal_code;
+      }
+      if (action.payload?.dob) {
+        state.user.dob = action.payload?.dob;
+        state.user.is_signup_question_answered = true;
+      }
+
       state.isLoading = false;
     });
     builder.addCase(updateUser.rejected, (state) => {

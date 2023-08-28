@@ -18,7 +18,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../../../store/Home/userReducer";
 import { logout } from "../../../store/Home/authReducer";
 import defaultProfile from "../../../Assests/Images/Defaultprofile.png";
-import Suggest from "../../cards/IndividualVideoPage/Suggest";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -33,7 +32,12 @@ function Header() {
   };
 
   useEffect(() => {
-    if (user === "" && isLoggedIn) dispatch(getUser());
+    if (user === "" && isLoggedIn)
+      dispatch(getUser()).then((action) => {
+        if (!action.payload?.is_signup_question_answered) {
+          navigate("/signupques");
+        }
+      });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn]);
 
@@ -123,7 +127,7 @@ function Header() {
                               ? user?.profile_pic
                               : defaultProfile
                           }
-                          className="w-16 pb-3"
+                          className="w-16 h-16  rounded-full"
                           alt="ProfilePic"
                         />
                         <div className="flex flex-col pl-2 justify-center container">

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { LoadingOutlined } from "@ant-design/icons";
 import { Spin } from "antd";
 import { verifyOtp } from "../../store/Home/authReducer";
+import LogoImage from "../../Assests/Images/theweedocLogo.png";
 
 function VerifyPage() {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
@@ -75,7 +76,15 @@ function VerifyPage() {
       <div className="log_rightside">
         <div className="WeeDocTxt_div">
           <h1>
-            <Link to="/">TheWeedoc</Link>
+            <Link to="/" className="flex flex-row items-center">
+              {" "}
+              <img
+                src={LogoImage}
+                alt="TheWeeDocLogo"
+                className="w-20 h-20"
+              />{" "}
+              TheWeedoc
+            </Link>
           </h1>
         </div>
 

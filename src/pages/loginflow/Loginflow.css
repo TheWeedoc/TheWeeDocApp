@@ -320,3 +320,63 @@ color: #FAFBFF;
     outline: none;
     caret-color: white; /* Cursor color */
   }
+
+
+  /* Signup questions */
+
+.signupquesImg{
+    width: 183px;
+height: 183px;
+
+
+}
+
+.signupQuesHeading{
+    
+font-size: 24px;
+font-weight: 600;
+line-height: 33px;
+}
+
+.signupQuesStep{
+    font-family: Noto Sans;
+font-size: 18px;
+font-weight: 600;
+line-height: 25px;
+text-align: left;
+
+}
+
+.signupImgaPagetext{
+
+font-size: 22px;
+font-weight: 400;
+line-height: 16px;
+letter-spacing: 0px;
+text-align: left;}
+
+.signupQuesuploadImg{
+    font-family: Noto Sans;
+font-size: 20px;
+font-weight: 500;
+line-height: 28px;
+letter-spacing: 0em;
+
+
+}
+
+.signupQuesGender{
+    font-family: Noto Sans;
+font-size: 18px;
+font-weight: 400;
+line-height: 16px;
+letter-spacing: 0px;
+text-align: left;
+
+}
+
+input[type="radio"]::before {
+    width: 18px; /* Adjust width */
+    height: 18px; /* Adjust height */
+  }
+

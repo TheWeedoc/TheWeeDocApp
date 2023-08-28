@@ -56,6 +56,7 @@ function Markup() {
                 <Route exact path="/uploadads" element={<Uploadpageads />} />
                 <Route exact path="/myprofile" element={<Myprofile />} />
                 <Route exact path="/edit_profile" element={<Editprofile />} />
+                <Route exact path="/signupques" element={<SignupQuestions />} />
               </>
             ) : (
               <>
@@ -92,7 +93,6 @@ function Markup() {
               <>
                 <Route exact path="/signup" element={<Signuppage />} />
                 <Route exact path="/login" element={<Loginpage />} />
-                <Route path="/signupques/:id" element={<SignupQuestions />} />
                 <Route exact path="/reset_password" element={<Resetpage />} />
                 <Route
                   exact
@@ -109,11 +109,10 @@ function Markup() {
             ) : (
               <>
                 <Route path="/signup" element={<Navigate to="/" />} />
-                <Route path="/signupques/:id" element={<SignupQuestions />} />
                 <Route path="/login" element={<Navigate to="/" />} />
                 <Route path="/reset_password" element={<Navigate to="/" />} />
                 <Route path="/change_password" element={<Navigate to="/" />} />
-                <Route path="/Verify_mail" element={<Navigate to="/" />} />
+                <Route path="/Verify" element={<Navigate to="/" />} />
                 <Route path="/reset_mail_sent" element={<Navigate to="/" />} />
               </>
             )}

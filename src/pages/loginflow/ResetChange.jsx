@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import LogoImage from "../../Assests/Images/theweedocLogo.png";
 
 function ResetChange() {
   return (
@@ -17,7 +18,15 @@ function ResetChange() {
             </div> */}
         <div className="WeeDocTxt_div">
           <h1>
-            <Link to="/">TheWeedoc</Link>
+            <Link to="/" className="flex flex-row items-center">
+              {" "}
+              <img
+                src={LogoImage}
+                alt="TheWeeDocLogo"
+                className="w-20 h-20"
+              />{" "}
+              TheWeedoc
+            </Link>
           </h1>
         </div>
 
