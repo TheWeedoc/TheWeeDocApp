@@ -6,10 +6,12 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { Spin } from "antd";
 import { useNavigate } from "react-router-dom";
 import LogoImage from "../../Assests/Images/LogoImage.png";
+import LogoImageMobile from "../../Assests/Images/LogoImageMobile.png";
 
 import { useDispatch } from "react-redux";
 import { postLogin } from "../../store/Home/authReducer";
 import { setAuthorizationHeader } from "../../Api/Mainclient";
+import { Helmet } from "react-helmet";
 function Loginpage() {
   const navigate = useNavigate();
   const [load, setLoad] = useState(false);
@@ -98,105 +100,122 @@ function Loginpage() {
   };
 
   return (
-    <div className="loginMainDiv">
-      {/* <div className="log_leftside">
+    <>
+      <Helmet>
+        <title>Login - TheWeedoc</title>
+      </Helmet>
+      <div className="loginMainDiv">
+        {/* <div className="log_leftside">
         <div class="text-container">
             <h2>Clumsycloverclowns </h2>
             <h1>Short Film Platform</h1>
         </div>
         </div> */}
-      <div className="log_rightside">
-        <div className="WeeDocTxt_div">
-          <h1>
-            <Link to="/" className="flex flex-row items-center">
-              {" "}
-              <img
-                src={LogoImage}
-                alt="TheWeeDocLogo"
-                className="w-20 h-20"
-              />{" "}
-              TheWeedoc
-            </Link>
-          </h1>
-        </div>
+        <div className="log_rightside">
+          <div className=" hidden md:block flex items-center gap-20 WeeDocTxt_div">
+            <h1>
+              <Link to="/" className="flex flex-row items-center">
+                {" "}
+                <img
+                  src={LogoImage}
+                  alt="TheWeeDocLogo"
+                  className="w-full"
+                />{" "}
+              </Link>
+            </h1>
+          </div>
 
-        <div className="form_Div">
-          <span>Log In</span>
-          <Form
-            name="basic"
-            labelCol={{
-              span: 8,
-            }}
-            wrapperCol={{
-              span: 16,
-            }}
-            style={{
-              maxWidth: 600,
-            }}
-            initialValues={{
-              remember: true,
-            }}
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
-            autoComplete="off"
-          >
-            <Form.Item
-              name="username"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your username!",
-                },
-              ]}
-              validateStatus={formErrors.error ? "error" : ""}
-              help={formErrors.error}
+          <div className="flex items-center gap-20 WeeDocTxt_div md:hidden ">
+            <h1>
+              <Link to="/" className="flex flex-row items-center">
+                {" "}
+                <img
+                  src={LogoImageMobile}
+                  alt="TheWeeDocLogo"
+                  className="w-full"
+                />{" "}
+              </Link>
+            </h1>
+          </div>
+
+          <div className="form_Div">
+            <span>Log In</span>
+            <Form
+              name="basic"
+              labelCol={{
+                span: 8,
+              }}
+              wrapperCol={{
+                span: 16,
+              }}
+              style={{
+                maxWidth: 600,
+              }}
+              initialValues={{
+                remember: true,
+              }}
+              onFinish={onFinish}
+              onFinishFailed={onFinishFailed}
+              autoComplete="off"
             >
-              <Input
-                placeholder="Username *"
-                className="form_inputfields"
-                onFocus={handleUsernameFocus}
-              />
-            </Form.Item>
+              <Form.Item
+                name="username"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your username!",
+                  },
+                ]}
+                validateStatus={formErrors.error ? "error" : ""}
+                help={formErrors.error}
+              >
+                <Input
+                  placeholder="Username *"
+                  className="form_inputfields"
+                  onFocus={handleUsernameFocus}
+                />
+              </Form.Item>
 
-            <Form.Item
-              name="password"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your password!",
-                },
-              ]}
-              validateStatus={formErrors2.error ? "error" : ""}
-              help={formErrors2.error}
-            >
-              <Input.Password
-                placeholder="Password *"
-                onFocus={handlePasswordFocus}
-              />
-            </Form.Item>
+              <Form.Item
+                name="password"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your password!",
+                  },
+                ]}
+                validateStatus={formErrors2.error ? "error" : ""}
+                help={formErrors2.error}
+              >
+                <Input.Password
+                  placeholder="Password *"
+                  onFocus={handlePasswordFocus}
+                />
+              </Form.Item>
 
-            <div className="forgetpswrd">
-              <Link to="/reset_password">Forgot Password?</Link>
-            </div>
-            <button className="loginbtn">
-              {load ? <Spin indicator={antIcon} /> : "Login"}
-            </button>
-          </Form>
-          <p className="newuser_txt py-4">
-            New User? <Link to="/signup">Signup</Link>
-          </p>
-        </div>
-        <div className="log_btm-sec">
-          <p>
-            By logging In, you accept The Wee Doc’s <br />
-            <b>Terms & Conditions</b> and{" "}
-            <b>
-              <Link to="/privacypolicy">Privacy Policy</Link>
-            </b>
-          </p>
+              <div className="forgetpswrd">
+                <Link to="/reset_password">Forgot Password?</Link>
+              </div>
+              <button className="loginbtn">
+                {load ? <Spin indicator={antIcon} /> : "Login"}
+              </button>
+            </Form>
+            <p className="newuser_txt py-4">
+              New User? <Link to="/signup">Signup</Link>
+            </p>
+          </div>
+          <div className="log_btm-sec">
+            <p>
+              By logging In, you accept The Wee Doc’s <br />
+              <b>Terms & Conditions</b> and{" "}
+              <b>
+                <Link to="/privacypolicy">Privacy Policy</Link>
+              </b>
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 export default Loginpage;

@@ -34,6 +34,7 @@ import {
 } from "../../store/Home/notificationReducer";
 import { Link } from "react-router-dom";
 import Suggest from "../../components/cards/IndividualVideoPage/Suggest";
+import { Helmet } from "react-helmet";
 const { TextArea } = Input;
 
 function Indivialpage() {
@@ -166,6 +167,9 @@ function Indivialpage() {
     productDetails !== "" && (
       <>
         <Header />
+        <Helmet>
+          <title>{productDetails?.title} - TheWeedoc</title>
+        </Helmet>
         <div className="indivialpage-main-Div">
           <Videoplayer
             thumbnail={productDetails?.image}

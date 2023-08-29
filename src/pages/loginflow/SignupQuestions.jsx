@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import Logo from "../../Assests/Images/theweedocLogo.png";
+import LogoImage from "../../Assests/Images/LogoImage.png";
+import LogoImageMobile from "../../Assests/Images/LogoImageMobile.png";
+
 import { Link, useNavigate } from "react-router-dom";
 import {
   cameraIcon,
@@ -149,9 +151,26 @@ function SignupQuestions() {
     <div className="flex flex-col h-screen bg-[#030606] text-[#fafbff] font-notosans">
       {/* Header */}
       <header className="p-4">
-        <div className="flex items-center">
-          <img src={Logo} alt="Logo" className="w-10 h-10" />
-          <h1 className="ml-2 text-lg font-semibold">The Wee Doc</h1>
+        {/* <div className="flex items-center">
+          <img src={Logo} alt="Logo" className="" />
+
+        </div> */}
+        <div className=" hidden md:block flex items-center gap-20 ">
+          <h1>
+            <Link to="/" className="flex flex-row items-center">
+              {" "}
+              <img src={LogoImage} alt="TheWeeDocLogo" />{" "}
+            </Link>
+          </h1>
+        </div>
+
+        <div className="flex items-center justify-center gap-20 md:hidden ">
+          <h1>
+            <Link to="/" className="flex flex-row items-center">
+              {" "}
+              <img src={LogoImageMobile} alt="TheWeeDocLogo" />{" "}
+            </Link>
+          </h1>
         </div>
       </header>
 
@@ -170,9 +189,8 @@ function SignupQuestions() {
                   <h2 className="signupQuesStep">Step {step} of 4</h2>
                   <div className="bg-[#d9d9d9] w-full h-2 rounded-lg">
                     <div
-                      className={`${
-                        step > 0 && `w-${step}/4 h-full rounded-lg bg-[#e39724]`
-                      }  `}
+                      style={{ width: `${(step / 4) * 100}%` }}
+                      className=" h-full rounded-lg bg-[#e39724]"
                     ></div>
                   </div>
                 </div>
@@ -391,7 +409,7 @@ function SignupQuestions() {
           )}
 
           {/* Next and Previous buttons */}
-          <div className="flex flex-row justify-center space-x-4 mt-16">
+          <div className="flex flex-row justify-center space-x-4 mt-10 mb-10">
             <button
               className="flex flex-row items-center space-x-2 bg-white rounded-lg px-6 py-1 text-black "
               onClick={handlePrevious}

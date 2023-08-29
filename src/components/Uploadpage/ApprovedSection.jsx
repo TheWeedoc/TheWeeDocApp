@@ -18,7 +18,7 @@ function ApprovedSection() {
           </div>
         </div>
       ) : (
-        <div className="flex text-center py-6 text-white">No results found</div>
+        <div className=" text-center py-6 text-white">No results found</div>
       )}
 
       {/* <h3 className="verifiedHeadin pt-2">Approved Advertisements</h3>

@@ -8,6 +8,7 @@ import { updateUser } from "../../store/Home/userReducer";
 import { clearNotification } from "../../store/Home/notificationReducer";
 import defaultProfile from "../../Assests/Images/Defaultprofile.png";
 import "./Editprofile.css";
+import { Helmet } from "react-helmet";
 
 function Editprofile() {
   const { user } = useSelector((state) => state.user);
@@ -102,6 +103,9 @@ function Editprofile() {
   };
   return (
     <>
+      <Helmet>
+        <title>Edit Profile - TheWeedoc</title>
+      </Helmet>
       <Header />
       <div className="flex flex-col justify-center items-center w-full">
         <div className="flex p-3 w-full justify-center md:w-10/12">

@@ -29,9 +29,12 @@ function Profile() {
       <div className="flex flex-col w-full">
         {/* Image section */}
         {isLoggedIn ? (
-          <Link to="/myprofile" className="hover:text-white">
-            <div className="w-full bg-[#16181f] h-auto rounded-md items-center cursor-pointer">
-              <div className="flex flex-row px-2 py-2 justify-around items-center container">
+          <div className="w-full bg-[#16181f] h-auto rounded-md items-center cursor-pointer">
+            <div className="flex flex-row px-2 py-2 justify-around items-center container">
+              <Link
+                to="/myprofile"
+                className="flex flex-row  justify-around items-center container hover:text-white"
+              >
                 <img
                   src={user?.profile_pic ? user?.profile_pic : defaultProfile}
                   className="w-12 h-12 rounded-full border border-white "
@@ -45,12 +48,13 @@ function Profile() {
                     {user?.designation ? user?.designation : "No Designation"}{" "}
                   </h5>
                 </div>
-                <Link to="/edit_profile">
-                  <div className="flex items-center"> {EditprofileIcon}</div>
-                </Link>
-              </div>
+              </Link>
+
+              <Link to="/edit_profile">
+                <div className="flex items-center"> {EditprofileIcon}</div>
+              </Link>
             </div>
-          </Link>
+          </div>
         ) : (
           <div className="flex flex-row space-x-2  items-center p-4">
             <div>

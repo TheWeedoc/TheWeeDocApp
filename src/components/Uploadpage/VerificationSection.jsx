@@ -48,8 +48,8 @@ function VerificationSection() {
           </div>
         </div>
       ) : (
-        <div className="flex text-center py-6 text-white">
-          No short flims are in verification Pneding
+        <div className=" text-center py-6 text-white">
+          No short flims are in verification Pending
         </div>
       )}
 

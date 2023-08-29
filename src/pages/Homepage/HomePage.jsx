@@ -6,6 +6,7 @@ import Homepagecard from "../../components/cards/Hompage/Homepagecard";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../store/Home/productReducer";
 import CarouselHomePage from "./CarouselHomePage";
+import { Helmet } from "react-helmet";
 function HomePage() {
   const { products } = useSelector((state) => state.products);
   const [carouselPic, setCarouselPic] = useState([]);
@@ -26,6 +27,13 @@ function HomePage() {
   return (
     <>
       <Header />
+      <Helmet>
+        <title>TheWeedoc</title>
+        <meta
+          name="description"
+          content="Enjoy the best Short Films & documentary you wouldn't love, Creators upload their original content and publish it on TheWeedoc."
+        />
+      </Helmet>
       <Carousel autoplay>
         {carouselPic?.map((item) => (
           <CarouselHomePage key={item.id} item={item} />

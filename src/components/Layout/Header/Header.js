@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../../../store/Home/userReducer";
 import { logout } from "../../../store/Home/authReducer";
 import defaultProfile from "../../../Assests/Images/Defaultprofile.png";
+import LogoImageMobile from "../../../Assests/Images/HeaderMobileLogo.png";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -52,8 +53,12 @@ function Header() {
       <nav className="flex justify-between px-2">
         <div>
           <Link to="/">
-            {" "}
-            <img src={Logo} className="Logoclass" alt="Theweedoc" />
+            <img
+              src={Logo}
+              className="Logoclass hidden md:block"
+              alt="Theweedoc"
+            />
+            <img src={LogoImageMobile} className="md:hidden " alt="Theweedoc" />
           </Link>
         </div>
         <div className="hidden md:flex items-center gap-7 ">

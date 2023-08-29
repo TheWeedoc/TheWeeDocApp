@@ -1,6 +1,6 @@
 .loginMainDiv{
     display: flex;
-    /* justify-content: space-between; */
+    justify-content: space-between;
     justify-content: center;
     align-items: center;
     height: 100%;
@@ -23,16 +23,13 @@
 }
 
 .WeeDocTxt_div{
-    display: flex;
-    align-items: center;
-    gap: 20px;
+    /* display: flex; */
+    /* align-items: center; */
+    /* gap: 20px; */
     margin-top: 10vh;
 }
 
-.WeeDocTxt_div img {
-    width: 90px;
-    height: 60px;
-}
+
 
 .WeeDocTxt_div h1 {
     font-family: 'Georgia';

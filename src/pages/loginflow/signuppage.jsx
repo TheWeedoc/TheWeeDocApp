@@ -6,6 +6,8 @@ import { sendOTP, signup } from "../../Api/Fetchclient";
 import { LoadingOutlined } from "@ant-design/icons";
 import { Spin } from "antd";
 import LogoImage from "../../Assests/Images/LogoImage.png";
+import LogoImageMobile from "../../Assests/Images/LogoImageMobile.png";
+import { Helmet } from "react-helmet";
 
 function Signuppage() {
   const [form] = Form.useForm();
@@ -71,121 +73,138 @@ function Signuppage() {
   };
 
   return (
-    <div className="loginMainDiv">
-      {/* <div className="log_leftside">
+    <>
+      <Helmet>
+        <title>Signup - TheWeedoc</title>
+      </Helmet>
+      <div className="loginMainDiv">
+        {/* <div className="log_leftside">
         <div class="text-container">
             <h2>Clumsycloverclowns </h2>
             <h1>Short Film Platform</h1>
         </div>
         </div> */}
-      <div className="log_rightside">
-        <div className="WeeDocTxt_div">
-          <h1>
-            <Link to="/" className="flex flex-row items-center">
-              {" "}
-              <img
-                src={LogoImage}
-                alt="TheWeeDocLogo"
-                className="w-20 h-20"
-              />{" "}
-              TheWeedoc
-            </Link>
-          </h1>
-        </div>
+        <div className="log_rightside">
+          <div className=" hidden md:block flex items-center gap-20 WeeDocTxt_div">
+            <h1>
+              <Link to="/" className="flex flex-row items-center">
+                {" "}
+                <img
+                  src={LogoImage}
+                  alt="TheWeeDocLogo"
+                  className="w-full"
+                />{" "}
+              </Link>
+            </h1>
+          </div>
 
-        <div className="form_Div">
-          <span>Signup</span>
-          <Form
-            name="basic"
-            form={form}
-            labelCol={{
-              span: 8,
-            }}
-            wrapperCol={{
-              span: 16,
-            }}
-            style={{
-              maxWidth: 600,
-            }}
-            initialValues={{
-              remember: true,
-            }}
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
-            autoComplete="off"
-          >
-            <Form.Item
-              name="username"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your username!",
-                },
-              ]}
-              validateStatus={formErrors.username ? "error" : ""}
-              help={formErrors.username}
+          <div className="flex items-center gap-20 WeeDocTxt_div md:hidden ">
+            <h1>
+              <Link to="/" className="flex flex-row items-center">
+                {" "}
+                <img
+                  src={LogoImageMobile}
+                  alt="TheWeeDocLogo"
+                  className="w-full"
+                />{" "}
+              </Link>
+            </h1>
+          </div>
+
+          <div className="form_Div">
+            <span>Signup</span>
+            <Form
+              name="basic"
+              form={form}
+              labelCol={{
+                span: 8,
+              }}
+              wrapperCol={{
+                span: 16,
+              }}
+              style={{
+                maxWidth: 600,
+              }}
+              initialValues={{
+                remember: true,
+              }}
+              onFinish={onFinish}
+              onFinishFailed={onFinishFailed}
+              autoComplete="off"
             >
-              <Input
-                placeholder="Enter your username"
-                className="form_inputfields"
-              />
-            </Form.Item>
+              <Form.Item
+                name="username"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your username!",
+                  },
+                ]}
+                validateStatus={formErrors.username ? "error" : ""}
+                help={formErrors.username}
+              >
+                <Input
+                  placeholder="Enter your username"
+                  className="form_inputfields"
+                />
+              </Form.Item>
 
-            <Form.Item
-              name="email"
-              rules={[
-                {
-                  type: "email",
-                  message: "The input is not a valid email!",
-                },
-                {
-                  required: true,
-                  message: "Please input your email or phone number!",
-                },
-              ]}
-              validateStatus={formErrors.email ? "error" : ""}
-              help={formErrors.email}
-            >
-              <Input
-                placeholder="Enter your email or phone number"
-                className="form_inputfields"
-              />
-            </Form.Item>
+              <Form.Item
+                name="email"
+                rules={[
+                  {
+                    type: "email",
+                    message: "The input is not a valid email!",
+                  },
+                  {
+                    required: true,
+                    message: "Please input your email or phone number!",
+                  },
+                ]}
+                validateStatus={formErrors.email ? "error" : ""}
+                help={formErrors.email}
+              >
+                <Input
+                  placeholder="Enter your email or phone number"
+                  className="form_inputfields"
+                />
+              </Form.Item>
 
-            <Form.Item
-              name="password"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your password!",
-                },
-              ]}
-              validateStatus={formErrors.password ? "error" : ""}
-              help={formErrors.password}
-            >
-              <Input.Password placeholder="Password *" />
-            </Form.Item>
+              <Form.Item
+                name="password"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your password!",
+                  },
+                ]}
+                validateStatus={formErrors.password ? "error" : ""}
+                help={formErrors.password}
+              >
+                <Input.Password placeholder="Password *" />
+              </Form.Item>
 
-            <button className="loginbtn">
-              {load ? <Spin indicator={antIcon} /> : "Signup"}
-            </button>
-          </Form>
-          <p className="newuser_txt py-4">
-            Registered User? <Link to="/login">Login</Link>
-          </p>
-        </div>
+              <button className="loginbtn">
+                {load ? <Spin indicator={antIcon} /> : "Signup"}
+              </button>
+            </Form>
+            <p className="newuser_txt py-4">
+              Registered User? <Link to="/login">Login</Link>
+            </p>
+          </div>
 
-        <div className="log_btm-sec">
-          <p>
-            By logging In, you accept The Wee Doc’s <br />
-            <b>Terms & Conditions</b> and{" "}
-            <b>
-              <Link to="/privacypolicy">Privacy Policy</Link>
-            </b>
-          </p>
+          <div className="log_btm-sec">
+            <p>
+              By logging In, you accept The Wee Doc’s <br />
+              <b>Terms & Conditions</b> and{" "}
+              <b>
+                <Link to="/privacypolicy">Privacy Policy</Link>
+              </b>
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

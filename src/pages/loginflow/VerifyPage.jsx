@@ -6,6 +6,9 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { Spin } from "antd";
 import { verifyOtp } from "../../store/Home/authReducer";
 import LogoImage from "../../Assests/Images/LogoImage.png";
+import LogoImageMobile from "../../Assests/Images/LogoImageMobile.png";
+
+import { Helmet } from "react-helmet";
 
 function VerifyPage() {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
@@ -66,73 +69,90 @@ function VerifyPage() {
   };
 
   return (
-    <div className="loginMainDiv">
-      {/* <div className="log_leftside">
+    <>
+      <Helmet>
+        <title>Verify - TheWeedoc</title>
+      </Helmet>
+      <div className="loginMainDiv">
+        {/* <div className="log_leftside">
         <div class="text-container">
           <h2>Clumsycloverclowns </h2>
           <h1>Short Film Platform</h1>
         </div>
       </div> */}
-      <div className="log_rightside">
-        <div className="WeeDocTxt_div">
-          <h1>
-            <Link to="/" className="flex flex-row items-center">
-              {" "}
-              <img
-                src={LogoImage}
-                alt="TheWeeDocLogo"
-                className="w-20 h-20"
-              />{" "}
-              TheWeedoc
-            </Link>
-          </h1>
-        </div>
-
-        <div className="form_Div pad_form">
-          <span>Signup Verification</span>
-          <div className="reset_desp">
-            <span>
-              Thank you for signing up to TheWeedoc ! Please check your email
-              and enter the verification Code.
-            </span>
+        <div className="log_rightside">
+          <div className=" hidden md:block flex items-center gap-20 WeeDocTxt_div">
+            <h1>
+              <Link to="/" className="flex flex-row items-center">
+                {" "}
+                <img
+                  src={LogoImage}
+                  alt="TheWeeDocLogo"
+                  className="w-full"
+                />{" "}
+              </Link>
+            </h1>
           </div>
 
-          <div className="otp-container">
-            {otp.map((value, index) => (
-              <input
-                key={index}
-                ref={(ref) => (inputRefs[index] = ref)}
-                type="text"
-                maxLength={1}
-                className="otp-input rounded-md"
-                value={value}
-                onChange={(e) => handleInputChange(index, e.target.value)}
-                onKeyDown={(e) => handleKeyDown(index, e)}
-              />
-            ))}
+          <div className="flex items-center gap-20 WeeDocTxt_div md:hidden ">
+            <h1>
+              <Link to="/" className="flex flex-row items-center">
+                {" "}
+                <img
+                  src={LogoImageMobile}
+                  alt="TheWeeDocLogo"
+                  className="w-full"
+                />{" "}
+              </Link>
+            </h1>
           </div>
-          {errorMessage !== "" && (
-            <div className="text-red-600 capitalize text-center pt-2 text-md font-notosans">
-              {errorMessage}
+
+          <div className="form_Div pad_form">
+            <span>Signup Verification</span>
+            <div className="reset_desp">
+              <span>
+                Thank you for signing up to TheWeedoc ! Please check your email
+                and enter the verification Code.
+              </span>
             </div>
-          )}
 
-          <button className="loginbtn" onClick={handleVerify}>
-            {isLoading ? <Spin indicator={antIcon} /> : "Verify"}
-          </button>
-        </div>
+            <div className="otp-container">
+              {otp.map((value, index) => (
+                <input
+                  key={index}
+                  ref={(ref) => (inputRefs[index] = ref)}
+                  type="text"
+                  maxLength={1}
+                  className="otp-input rounded-md"
+                  value={value}
+                  onChange={(e) => handleInputChange(index, e.target.value)}
+                  onKeyDown={(e) => handleKeyDown(index, e)}
+                />
+              ))}
+            </div>
+            {errorMessage !== "" && (
+              <div className="text-red-600 capitalize text-center pt-2 text-md font-notosans">
+                {errorMessage}
+              </div>
+            )}
 
-        <div className="log_btm-sec">
-          <p>
-            By logging In, you accept The Wee Doc’s <br />
-            <b>Terms & Conditions</b> and{" "}
-            <b>
-              <Link to="/privacypolicy">Privacy Policy</Link>
-            </b>
-          </p>
+            <button className="loginbtn" onClick={handleVerify}>
+              {isLoading ? <Spin indicator={antIcon} /> : "Verify"}
+            </button>
+          </div>
+
+          <div className="log_btm-sec">
+            <p>
+              By logging In, you accept The Wee Doc’s <br />
+              <b>Terms & Conditions</b> and{" "}
+              <b>
+                <Link to="/privacypolicy">Privacy Policy</Link>
+              </b>
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
