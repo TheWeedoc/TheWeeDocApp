@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Card } from "antd";
+import { Button, Card, message } from "antd";
 import {
   backIcon,
   commentIcon,
@@ -23,11 +23,15 @@ function Uploads({ item }) {
   };
   const handleButton = (e) => {
     e.preventDefault();
+    message.success("Delete Request sent");
   };
 
   const handleReviews = () => {
-    setReviews(true);
-    dispatch(getMovieReview(item.id));
+    dispatch(getMovieReview(item.id)).then((action) => {
+      if (action.payload.length > 0) {
+        setReviews(true);
+      }
+    });
   };
 
   const handleBack = () => {
@@ -61,18 +65,19 @@ function Uploads({ item }) {
                 className="flex flex-row space-x-1 items-center "
                 onClick={handleReviews}
               >
-                {commentIcon} <span>20 Reviews</span>
+                {commentIcon} <span>{item?.review_count} Reviews</span>
               </h1>
 
               {reviews ? (
-                <div className="absolute top-5 right-0 bg-gray-900 py-2 w-80 z-50 rounded-md font-nanosans">
+                <div className="absolute top-5 right-0 bg-[#0F1015]  py-2 w-80 z-50 rounded-md font-notosans">
                   <div
-                    className="flex flex-row w-full items-center pb-6"
+                    className="flex flex-row w-full items-center pb-6 pl-3"
                     onClick={handleBack}
                   >
-                    {backIcon} <span className="review-heading">Reviews</span>
+                    {backIcon}{" "}
+                    <span className="review-heading pl-3">Reviews</span>
                   </div>
-                  <div className="py-1 px-2 space-y-4 h-96 overflow-scroll divide-y-2 divide-gray-700 ">
+                  <div className="py-1 px-4 space-y-4 h-96 overflow-scroll divide-y-2 divide-gray-700 ">
                     {movieReview.length > 0 &&
                       movieReview.map((i) => (
                         <div className="flex flex-col pt-2" key={i.id}>

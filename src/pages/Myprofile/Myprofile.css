@@ -1,5 +1,5 @@
 .myprofile_page{
-    padding: 2vh 7vw;
+    padding: 2vh 7vw; 
 }
 
 .myprofile_header_div{
@@ -42,7 +42,27 @@
     font-weight: 700;
     line-height: 28px;
     margin: 0px;
-}}
+}
+.inputboxSearch{
+  height: 35px;
+}
+
+}
+
+.ant-input {
+  background-color: transparent;
+  color: white;
+  margin-left: 9px;
+  
+}
+
+.ant-input::placeholder {
+  color: white;
+}
+.ant-input-prefix{
+  color: white;
+  
+}
 
 
 
@@ -52,7 +72,7 @@
     /* height: 45px; */
     border-radius: 5px;
     border: 1px solid lightgrey;
-    padding: 0px 12px;
+    padding: 0px 22px;
     color: #fff;
     font-size: 16px;
    }
@@ -68,6 +88,7 @@
    .uplod_genre_div .ant-select-multiple .ant-select-selection-item{
       background-color: #363A48;
       color: #FFF;
+      padding-right: 25px;
    }
 
 
@@ -84,4 +105,16 @@
 
   .name-size {
     font-size: 30px;
+  }
+
+  .inputboxSearch{
+    height: 50px;
+  }
+
+  .iconplacement{
+    position: absolute;
+    left: 2px; /* Adjust the positioning as needed */
+    top: 50%;
+    transform: translateY(-50%);
+
   }

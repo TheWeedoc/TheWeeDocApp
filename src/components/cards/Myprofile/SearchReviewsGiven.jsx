@@ -7,7 +7,7 @@ function SearchReviewsGiven({ item }) {
   const navigate = useNavigate();
   const handleClick = (e) => {
     e.preventDefault();
-    navigate(`/video/${item.id}`);
+    navigate(`/video/${item?.movie?.id}`);
   };
 
   return (
@@ -20,12 +20,12 @@ function SearchReviewsGiven({ item }) {
       >
         <div className="flex flex-row space-x-3">
           <div className="w-1/2">
-            <img alt="example" src={item?.image} className="" />
+            <img alt="example" src={item?.movie?.image} className="" />
           </div>
           <div className="flex flex-col w-1/2 justify-between py-4">
             <div className="">
               <div className="font-notosans text-lg font-semibold w-36 md:w-48 lg:w-52  truncate">
-                {item?.title}
+                {item?.movie?.title}
               </div>
             </div>
             <div className="flex flex-row justify-between ">

@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import {
+  FollowUser,
   GetMyProfileSearch,
   GetSearchFilms,
   GetSearchUsers,
@@ -94,6 +95,24 @@ export const getMyProfileSearch = createAsyncThunk(
   }
 );
 
+export const followUserSearch = createAsyncThunk(
+  "search/followUserSearch",
+  async (id, thunkAPI) => {
+    try {
+      const result = await FollowUser(id);
+      result.username = id;
+      return result;
+    } catch (err) {
+      const message =
+        (err.response && err.response.data && err.response.data.detail) ||
+        err.message ||
+        err.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 const searchSlice = createSlice({
   name: "search",
   initialState: INITIAL_STATE,
@@ -138,13 +157,26 @@ const searchSlice = createSlice({
 
     // Get Search Results for Myprofile page
     builder.addCase(getMyProfileSearch.fulfilled, (state, action) => {
-      //   state.searchFilmResults = action.payload;
-      if (action.payload?.user_filims?.length > 0)
-        state.searchMyProfileResults.results = action.payload?.user_filims;
+      if (action.payload?.length > 0)
+        state.searchMyProfileResults.results = action.payload;
       state.isLoading = false;
     });
     builder.addCase(getMyProfileSearch.rejected, (state) => {
       state.isLoading = false;
+    });
+    // Follow User
+    builder.addCase(followUserSearch.fulfilled, (state, action) => {
+      const indexValueofID = state.searchUserResults.results.findIndex(
+        (item) => item.username === action.payload.username
+      );
+      if (action.payload?.sucess === "unfollowed") {
+        state.searchUserResults.results[indexValueofID].is_following = false;
+      } else if (action.payload?.sucess === "followed") {
+        state.searchUserResults.results[indexValueofID].is_following = true;
+      }
+    });
+    builder.addCase(followUserSearch.rejected, () => {
+      console.log("Follow Error");
     });
   },
 });

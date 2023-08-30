@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Popover } from "antd";
 import "./Header.css";
-import Logo from "../../../Assests/Images/theweedocLogo.png";
+import Logo from "../../../Assests/Images/LogoImage.png";
 import {
   notificationicon,
   uploadicon,
@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../../../store/Home/userReducer";
 import { logout } from "../../../store/Home/authReducer";
 import defaultProfile from "../../../Assests/Images/Defaultprofile.png";
+import LogoImageMobile from "../../../Assests/Images/HeaderMobileLogo.png";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -32,7 +33,12 @@ function Header() {
   };
 
   useEffect(() => {
-    if (user === "" && isLoggedIn) dispatch(getUser());
+    if (user === "" && isLoggedIn)
+      dispatch(getUser()).then((action) => {
+        if (!action.payload?.is_signup_question_answered) {
+          navigate("/signupques");
+        }
+      });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn]);
 
@@ -47,11 +53,15 @@ function Header() {
       <nav className="flex justify-between px-2">
         <div>
           <Link to="/">
-            {" "}
-            <img src={Logo} className="Logoclass" alt="Theweedoc" />
+            <img
+              src={Logo}
+              className="Logoclass hidden md:block"
+              alt="Theweedoc"
+            />
+            <img src={LogoImageMobile} className="md:hidden " alt="Theweedoc" />
           </Link>
         </div>
-        <div className="hidden md:flex items-center gap-8 ">
+        <div className="hidden md:flex items-center gap-7 ">
           <div>
             <Link to="/search">{SearchIcon}</Link>
           </div>
@@ -122,7 +132,7 @@ function Header() {
                               ? user?.profile_pic
                               : defaultProfile
                           }
-                          className="w-16 pb-3"
+                          className="w-16 h-16  rounded-full"
                           alt="ProfilePic"
                         />
                         <div className="flex flex-col pl-2 justify-center container">

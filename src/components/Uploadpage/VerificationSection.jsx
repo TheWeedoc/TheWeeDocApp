@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Uploadstyle.css";
 import { Addvideoicon } from "../../Assests/Svg/Commonsvg";
-import Homepagecard from "../cards/Hompage/Homepagecard";
 import { Modal } from "antd";
 import UploadShortFlim from "./Uploadshortfilm/UploadShortFlim";
 import AdsUploadShortFlim from "../AdsUpload/Uploadshortfilm/AdsUploadShortFlim";
@@ -31,11 +30,11 @@ function VerificationSection() {
            </div> */}
       </div>
 
-      <h3 className="verifiedHeadin pt-2">Uploaded Films for Verification</h3>
+      <h3 className="verifiedHeadin pt-16">Uploaded Films for Verification</h3>
 
       {/* <div className="verifiy-CardsSection p-2"> */}
       {verification?.results.length > 0 ? (
-        <div className="flex justify-start py-6">
+        <div className="flex justify-start py-9">
           <div className="grid grid-cols-1 md:grid-cols-2 custom-lg:grid-cols-3 gap-8 custom-lg:gap-x-8 lg:gap-y-8 grid-rows-auto">
             {verification?.results?.map((item, i) => {
               return (
@@ -49,8 +48,8 @@ function VerificationSection() {
           </div>
         </div>
       ) : (
-        <div className="flex text-center py-6 text-white">
-          No short flims are in verification Pneding
+        <div className=" text-center py-6 text-white">
+          No short flims are in verification Pending
         </div>
       )}
 

@@ -1,5 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import LogoImage from "../../Assests/Images/LogoImage.png";
+import LogoImageMobile from "../../Assests/Images/LogoImageMobile.png";
+import "./Loginflow.css";
 
 function ResetChange() {
   return (
@@ -11,13 +14,29 @@ function ResetChange() {
         </div>
       </div> */}
       <div className="log_rightside">
-        {/* <div className="WeeDocTxt_div">
-                <img src={WeeDoc} alt="TheWeeDoc" />
-                <h1>TheWeedoc</h1>
-            </div> */}
-        <div className="WeeDocTxt_div">
+        <div className=" hidden md:block flex items-center gap-20 WeeDocTxt_div">
           <h1>
-            <Link to="/">TheWeedoc</Link>
+            <Link to="/" className="flex flex-row items-center">
+              {" "}
+              <img
+                src={LogoImage}
+                alt="TheWeeDocLogo"
+                className="w-full"
+              />{" "}
+            </Link>
+          </h1>
+        </div>
+
+        <div className="flex items-center gap-20 WeeDocTxt_div md:hidden ">
+          <h1>
+            <Link to="/" className="flex flex-row items-center">
+              {" "}
+              <img
+                src={LogoImageMobile}
+                alt="TheWeeDocLogo"
+                className="w-full"
+              />{" "}
+            </Link>
           </h1>
         </div>
 

@@ -1,10 +1,14 @@
 import React from "react";
 import "./PrivacyPolicy.css";
 import Header from "../../components/Layout/Header/Header";
+import { Helmet } from "react-helmet";
 
 function PrivacyPolicy() {
   return (
     <>
+      <Helmet>
+        <title>Privacy Policy - TheWeedoc</title>
+      </Helmet>
       <Header />
       <div className="text-white font-notosans p-4 md:p-24">
         <div className="flex flex-col space-y-2  ">

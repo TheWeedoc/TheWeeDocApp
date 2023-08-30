@@ -27,7 +27,7 @@ function UploadVideo({
     <LoadingOutlined
       style={{
         fontSize: 14,
-        // color: "black",
+        color: "black",
       }}
       spin
     />

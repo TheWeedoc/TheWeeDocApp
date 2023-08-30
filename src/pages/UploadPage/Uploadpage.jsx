@@ -11,6 +11,7 @@ import {
   uploadsRejected,
   uploadsVerification,
 } from "../../store/Home/uploadsReducer";
+import { Helmet } from "react-helmet";
 function Uploadpage() {
   const dispatch = useDispatch();
   const onChange = (key) => {
@@ -60,6 +61,9 @@ function Uploadpage() {
 
   return (
     <>
+      <Helmet>
+        <title>Uploads - TheWeedoc</title>
+      </Helmet>
       <Header />
       <div className="uploadMainDiv  ">
         <h2>Uploads & status</h2>

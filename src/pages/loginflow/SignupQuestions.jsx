@@ -1,23 +1,48 @@
 import React, { useState } from "react";
-import Logo from "../../Assests/Images/theweedocLogo.png";
-import { Link } from "react-router-dom";
+import LogoImage from "../../Assests/Images/LogoImage.png";
+import LogoImageMobile from "../../Assests/Images/LogoImageMobile.png";
+
+import { Link, useNavigate } from "react-router-dom";
 import {
   cameraIcon,
   leftArrow,
   rightArrowBlack,
 } from "../../Assests/Svg/Commonsvg";
 import profileImage from "../../Assests/Images/ProfileImage.png";
+import "./Loginflow.css";
+import { useDispatch } from "react-redux";
+import { updateUser } from "../../store/Home/userReducer";
 
 function SignupQuestions() {
   const [details, setDetails] = useState({
-    dateofbirth: "",
+    day: "",
+    month: "",
+    year: "",
     gender: "",
     location: "",
     postalcode: "",
-    image: "",
+    preview: "",
   });
+  const [profileFile, setProfileFile] = useState(null);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [step, setStep] = useState(1);
   const currentYear = new Date().getFullYear();
+
+  const handleProfilePic = (e) => {
+    e.preventDefault();
+    const file = e.target.files[0];
+
+    if (file) {
+      setProfileFile(file);
+      setDetails({
+        ...details,
+        preview: URL.createObjectURL(file),
+      });
+    }
+  };
 
   const handleGenderChange = (event) => {
     setDetails({ ...details, gender: event.target.value });
@@ -31,15 +56,56 @@ function SignupQuestions() {
     setDetails({ ...details, postalcode: event.target.value });
   };
 
+  const handleDay = (event) => {
+    console.log(event.target.value);
+    setDetails({ ...details, day: event.target.value });
+  };
+  const handleMonth = (event) => {
+    setDetails({ ...details, month: event.target.value });
+  };
+
+  const handleYear = (event) => {
+    setDetails({ ...details, year: event.target.value });
+  };
+
   const handleNext = (e) => {
     e.preventDefault();
-    setStep(step + 1);
+    if (!(step > 4)) setStep(step + 1);
   };
 
   const handlePrevious = (e) => {
     e.preventDefault();
+    if (!(step < 2)) setStep(step - 1);
+  };
 
-    setStep(step - 1);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let dateofbirth = "";
+    if (details.day !== "" && details.month !== "" && details.year !== "") {
+      dateofbirth = `${details?.day}-${details?.month}-${details.year}`;
+    }
+
+    const updatedApiData = new FormData();
+
+    if (dateofbirth !== "") {
+      updatedApiData.append("dob", dateofbirth);
+    }
+    if (details.gender !== "") {
+      updatedApiData.append("gender", details.gender);
+    }
+    if (details.location !== "") {
+      updatedApiData.append("location", details.location);
+    }
+    if (details.preview && profileFile !== null) {
+      updatedApiData.append("profile_pic", profileFile);
+    }
+    if (details.postalcode !== "") {
+      updatedApiData.append("postal_code", details.postalcode);
+    }
+
+    dispatch(updateUser(updatedApiData)).then(() => {
+      navigate("/");
+    });
   };
 
   const indianStates = [
@@ -85,9 +151,26 @@ function SignupQuestions() {
     <div className="flex flex-col h-screen bg-[#030606] text-[#fafbff] font-notosans">
       {/* Header */}
       <header className="p-4">
-        <div className="flex items-center">
-          <img src={Logo} alt="Logo" className="w-10 h-10" />
-          <h1 className="ml-2 text-lg font-semibold">The Wee Doc</h1>
+        {/* <div className="flex items-center">
+          <img src={Logo} alt="Logo" className="" />
+
+        </div> */}
+        <div className=" hidden md:block flex items-center gap-20 ">
+          <h1>
+            <Link to="/" className="flex flex-row items-center">
+              {" "}
+              <img src={LogoImage} alt="TheWeeDocLogo" />{" "}
+            </Link>
+          </h1>
+        </div>
+
+        <div className="flex items-center justify-center gap-20 md:hidden ">
+          <h1>
+            <Link to="/" className="flex flex-row items-center">
+              {" "}
+              <img src={LogoImageMobile} alt="TheWeeDocLogo" />{" "}
+            </Link>
+          </h1>
         </div>
       </header>
 
@@ -95,7 +178,7 @@ function SignupQuestions() {
       <main className="flex flex-col items-center justify-center space-y-6 flex-grow px-3">
         <div className="w-full">
           <div className="w-full">
-            <h1 className="text-center">
+            <h1 className="text-center signupQuesHeading">
               Tell us a little about yourself to personalize the platform for
               you!
             </h1>
@@ -103,12 +186,11 @@ function SignupQuestions() {
             <div className="flex justify-center w-full">
               <div className="flex flex-col py-4 w-full md:w-10/12 justify-center items-center">
                 <div className="w-full space-y-3">
-                  <h2>Step {step} of 4</h2>
+                  <h2 className="signupQuesStep">Step {step} of 4</h2>
                   <div className="bg-[#d9d9d9] w-full h-2 rounded-lg">
                     <div
-                      className={`${
-                        step > 0 && "w-1/4 h-full rounded-lg bg-[#e39724]"
-                      }  `}
+                      style={{ width: `${(step / 4) * 100}%` }}
+                      className=" h-full rounded-lg bg-[#e39724]"
                     ></div>
                   </div>
                 </div>
@@ -120,11 +202,16 @@ function SignupQuestions() {
             <div className="flex flex-col justify-center items-center  py-4">
               <div className="flex flex-col items-center justify-center space-y-4">
                 <div className="w-full">
-                  <h1 className="text-left">Date of Birth</h1>
+                  <h1 className="text-left signupQuesuploadImg">
+                    Date of Birth
+                  </h1>
                 </div>
                 <div className="flex flex-row space-x-2">
                   <div className="relative">
-                    <select className="block w-16 p-2 rounded border border-[#bababa] text-[#fafbff] bg-transparent focus:border-white">
+                    <select
+                      className="block w-16 p-2 rounded border border-[#bababa] text-[#fafbff] bg-transparent focus:border-white"
+                      onChange={handleDay}
+                    >
                       {/* Options for Day */}
                       {Array.from({ length: 31 }, (_, index) => (
                         <option
@@ -138,7 +225,10 @@ function SignupQuestions() {
                     </select>
                   </div>
                   <div className="relative">
-                    <select className="block w-24 p-2 rounded border border-[#bababa] bg-[#030606] text-[#fafbff] bg-transparent focus:border-white">
+                    <select
+                      className="block w-24 p-2 rounded border border-[#bababa] bg-[#030606] text-[#fafbff] bg-transparent focus:border-white"
+                      onChange={handleMonth}
+                    >
                       {/* Options for Month */}
                       {[
                         "January",
@@ -156,7 +246,7 @@ function SignupQuestions() {
                       ].map((month, index) => (
                         <option
                           key={index}
-                          value={month}
+                          value={index + 1}
                           className="bg-slate-900"
                         >
                           {month}
@@ -165,7 +255,10 @@ function SignupQuestions() {
                     </select>
                   </div>
                   <div className="relative">
-                    <select className="block w-20 p-2 rounded border border-[#bababa] text-[#fafbff] bg-transparent focus:border-white">
+                    <select
+                      className="block w-20 p-2 rounded border border-[#bababa] text-[#fafbff] bg-transparent focus:border-white"
+                      onChange={handleYear}
+                    >
                       {/* Options for Year */}
                       {Array.from({ length: 150 }, (_, index) => (
                         <option
@@ -189,7 +282,7 @@ function SignupQuestions() {
             <div className="flex flex-col justify-center items-center  py-4">
               <div className="flex flex-col items-center justify-center space-y-4">
                 <div className="w-full">
-                  <h1 className="text-left">Gender</h1>
+                  <h1 className="text-left signupQuesuploadImg">Gender</h1>
                 </div>
                 <div className="flex flex-row space-x-2">
                   <div className="flex space-x-4">
@@ -201,7 +294,7 @@ function SignupQuestions() {
                         checked={details.gender === "male"}
                         onChange={handleGenderChange}
                       />
-                      <span>Male</span>
+                      <span className="signupQuesGender">Male</span>
                     </label>
                     <label className="flex items-center space-x-2">
                       <input
@@ -211,7 +304,7 @@ function SignupQuestions() {
                         checked={details.gender === "female"}
                         onChange={handleGenderChange}
                       />
-                      <span>Female</span>
+                      <span className="signupQuesGender">Female</span>
                     </label>
                     <label className="flex items-center space-x-2">
                       <input
@@ -221,7 +314,7 @@ function SignupQuestions() {
                         checked={details.gender === "neutral"}
                         onChange={handleGenderChange}
                       />
-                      <span>Neutral</span>
+                      <span className="signupQuesGender">Neutral</span>
                     </label>
                   </div>
                 </div>
@@ -236,7 +329,7 @@ function SignupQuestions() {
                 <div className="flex flex-col space-y-2 md:space-y-0 md:flex-row md:space-x-2 w-full">
                   {/* Location Dropdown */}
                   <div className="flex flex-col space-y-2 md:w-1/2">
-                    <label className="text-sm font-semibold">Location</label>
+                    <label className="signupQuesuploadImg">Location</label>
                     <select
                       className="p-2 rounded  border border-[#bababa] text-[#fafbff] bg-transparent focus:border-white"
                       value={details.location}
@@ -256,7 +349,7 @@ function SignupQuestions() {
 
                   {/* Postal Code Input */}
                   <div className="flex flex-col space-y-2 md:w-1/2">
-                    <label className="text-sm font-semibold">Postal Code</label>
+                    <label className=" signupQuesuploadImg">Postal Code</label>
                     <input
                       name="postal-code"
                       type="text"
@@ -276,30 +369,47 @@ function SignupQuestions() {
               <div className="flex flex-col items-center justify-center space-y-4">
                 <div>
                   {" "}
-                  <h1>Upload Your Profile Picture</h1>{" "}
+                  <h1 className="font-notosans signupImgaPagetext pb-9">
+                    Upload Your Profile Picture
+                  </h1>{" "}
                 </div>
-                <div>
-                  <img src={profileImage} alt="" />
-                </div>
-                <div className="flex flex-row items-center  space-x-2 ">
-                  <div
-                    style={{
-                      display: "inline-block",
-                      borderRadius: "50%",
-                      backgroundColor: "#1e1f21",
-                      padding: "4px",
-                    }}
-                  >
-                    {cameraIcon}
+                <label htmlFor="profilePicInput" className="cursor-pointer">
+                  <input
+                    accept="image/*"
+                    id="profilePicInput"
+                    type="file"
+                    onChange={handleProfilePic}
+                    className="hidden"
+                  />
+                  <div className="flex items-center justify-center">
+                    <img
+                      src={details?.preview ? details?.preview : profileImage}
+                      alt=""
+                      className="signupquesImg rounded-full"
+                    />
                   </div>
-                  <span className="shrink-0">Upload Profile picture</span>
-                </div>
+                  <div className="flex flex-row items-center  space-x-2 py-6">
+                    <div
+                      style={{
+                        display: "inline-block",
+                        borderRadius: "50%",
+                        backgroundColor: "#1e1f21",
+                        padding: "4px",
+                      }}
+                    >
+                      {cameraIcon}
+                    </div>
+                    <span className="shrink-0 signupQuesuploadImg">
+                      Upload Profile picture
+                    </span>
+                  </div>
+                </label>
               </div>
             </div>
           )}
 
           {/* Next and Previous buttons */}
-          <div className="flex flex-row justify-center space-x-4 mt-16">
+          <div className="flex flex-row justify-center space-x-4 mt-10 mb-10">
             <button
               className="flex flex-row items-center space-x-2 bg-white rounded-lg px-6 py-1 text-black "
               onClick={handlePrevious}
@@ -317,7 +427,10 @@ function SignupQuestions() {
             )}
 
             {step === 4 && (
-              <button className="flex flex-row items-center space-x-2 bg-white rounded-lg px-10 py-1 text-black ">
+              <button
+                className="flex flex-row items-center space-x-2 bg-white rounded-lg px-10 py-1 text-black "
+                onClick={handleSubmit}
+              >
                 Submit
               </button>
             )}

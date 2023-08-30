@@ -36,7 +36,7 @@ const CarouselHomePage = ({ item }) => {
       <div className="BannerDiv hidden md:block" onClick={handleClick}>
         <img src={item?.image} alt={item?.title} width="100" height="100" />
         <div className="mask"></div>
-        <div className="bannercontDiv">
+        <div className="bannercontDiv container">
           {/* <div className="usernameDiv">
             <img src={defaultProfile} alt="user" className="w-full" />
             <h4>{item?.customer}</h4>
@@ -52,7 +52,7 @@ const CarouselHomePage = ({ item }) => {
           <p className="text-lg text-white">
             <span className="capitalize">{resultString}</span>
           </p>
-          <p className="description">{item?.description}</p>
+          <p className="description multiline-ellipsis">{item?.description}</p>
           <div className="playbtnDiv">
             <button>{bannerplayicon} Play</button>
             <div>{bannersave}</div>

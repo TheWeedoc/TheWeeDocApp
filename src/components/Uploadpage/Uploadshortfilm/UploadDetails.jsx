@@ -124,7 +124,7 @@ function UploadDetails({ onNext, formData, setFormData }) {
           // value={selectedItems}
           onChange={setSelectedItems}
           style={{
-            width: "100%",
+            width: "95%",
           }}
           options={genres.map((item) => ({
             value: item.id,
@@ -163,28 +163,37 @@ function UploadDetails({ onNext, formData, setFormData }) {
       <div className="uplod_genre_div">
         <label>Age Barrier*</label>
         <div className="div_checkbox">
-          <input
-            type="radio"
-            name="a"
-            onChange={() => setAge("Below 13 years")}
-          />{" "}
-          <span>Below 13 years</span>{" "}
+          <label htmlFor="option3" className="radio-label items-center">
+            <input
+              id="option3"
+              type="radio"
+              name="a"
+              onChange={() => setAge("Below 13 years")}
+            />{" "}
+            <span>Below 13 years</span>{" "}
+          </label>
         </div>
         <div className="div_checkbox">
-          <input
-            type="radio"
-            name="a"
-            onChange={() => setAge("Above 13 years")}
-          />{" "}
-          <span>Above 13 years</span>{" "}
+          <label htmlFor="option2" className="radio-label items-center">
+            <input
+              id="option2"
+              type="radio"
+              name="a"
+              onChange={() => setAge("Above 13 years")}
+            />{" "}
+            <span>Above 13 years</span>{" "}
+          </label>
         </div>
         <div className="div_checkbox">
-          <input
-            type="radio"
-            name="a"
-            onChange={() => setAge("Above 18 years")}
-          />{" "}
-          <span>Above 18 years</span>{" "}
+          <label htmlFor="option1" className="radio-label items-center">
+            <input
+              id="option1"
+              type="radio"
+              name="a"
+              onChange={() => setAge("Above 18 years")}
+            />{" "}
+            <span>Above 18 years</span>
+          </label>
         </div>
       </div>
       {isFormSubmitted && !age && (

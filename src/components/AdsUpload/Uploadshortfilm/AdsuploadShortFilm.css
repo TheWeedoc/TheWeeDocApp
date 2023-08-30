@@ -71,8 +71,8 @@ border-radius: 4px;
 }
 
 .label-float input{
-  border: 1px solid lightgrey;
-  border-radius: 5px;
+   border: 1px solid  #4A4949;
+ border-radius: 5px;
   outline: none;
   width: 95%;
   padding: 15px 20px;
@@ -118,7 +118,7 @@ border-radius: 4px;
 
 /* ======text area======>>>> */
 .label-float textarea{
-  border: 1px solid lightgrey;
+  border: 1px solid  #4A4949;
   border-radius: 5px;
   outline: none;
   min-width: 95%;
