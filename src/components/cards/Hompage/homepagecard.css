@@ -1,13 +1,12 @@
 .homepagecardDiv{
    display: flex;
    flex-direction: column; 
-   /* width: 360px; */
+    width: 360px; 
 }
 
 .homepagecardimg{
-   max-width: 360px;
-   max-height: 225px;
-   height: auto;
+   max-width: 100%;
+   max-height: 245px;
    border-radius: 10px;
 }
 

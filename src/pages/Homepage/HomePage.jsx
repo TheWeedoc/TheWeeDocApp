@@ -43,7 +43,7 @@ function HomePage() {
       {/* <<<<<<=================== Cards Sections ===================>>>>>> */}
 
       {/* <div className="home-CardsSection px-3"> */}
-      <div className="flex justify-start p-3 md:py-6 md:px-16">
+      <div className="p-3 md:py-6 md:px-16">
         <div className="grid grid-cols-1 md:grid-cols-2 custom-lg:grid-cols-3 gap-8 custom-lg:gap-x-12 lg:gap-y-8 grid-rows-auto">
           {products?.map((item) => {
             return <Homepagecard key={item.id} item={item} />;
