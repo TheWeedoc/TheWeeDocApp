@@ -9,17 +9,65 @@ function UploadDetails({ onNext, formData, setFormData }) {
   // const options = ["Action", "Drama", "Thriller", "Romance", "Comedy"];
 
   const Languagelist = [
-    "tamil",
-    "english",
-    "eindi",
-    "gujarati",
-    "urdu",
-    "kannada",
-    "odia",
-    "malayalam",
-    "bengali",
-    "marathi",
-    "telugu",
+    "English",
+    "Mandarin Chinese",
+    "Spanish",
+    "Hindi",
+    "Arabic",
+    "Bengali",
+    "Portuguese",
+    "Russian",
+    "Urdu",
+    "Indonesian",
+    "German",
+    "Japanese",
+    "Swahili",
+    "French",
+    "Telugu",
+    "Marathi",
+    "Turkish",
+    "Tamil",
+    "Vietnamese",
+    "Korean",
+    "Italian",
+    "Cantonese",
+    "Yoruba",
+    "Thai",
+    "Gujarati",
+    "Javanese",
+    "Filipino",
+    "Persian",
+    "Polish",
+    "Sindhi",
+    "Amharic",
+    "Romanian",
+    "Dutch",
+    "Serbo-Croatian",
+    "Nepali",
+    "Odia",
+    "Maithili",
+    "Burmese",
+    "Tagalog",
+    "Farsi",
+    "Malayalam",
+    "Ukrainian",
+    "Igbo",
+    "Uzbek",
+    "Sundanese",
+    "Punjabi",
+    "Malaysian",
+    "Bhojpuri",
+    "Yiddish",
+    "Fula",
+    "Sinhala",
+    "Burundian",
+    "Xhosa",
+    "Akan",
+    "Amharic",
+    "Chichewa",
+    "Tigrinya",
+    "Yoruba",
+    "Zulu"
   ];
 
   const [selectedItems, setSelectedItems] = useState([]);
@@ -162,7 +210,7 @@ function UploadDetails({ onNext, formData, setFormData }) {
 
       <div className="uplod_genre_div">
         <label>Age Barrier*</label>
-        <div className="div_checkbox">
+        {/* <div className="div_checkbox">
           <label htmlFor="option3" className="radio-label items-center">
             <input
               id="option3"
@@ -172,7 +220,7 @@ function UploadDetails({ onNext, formData, setFormData }) {
             />{" "}
             <span>Below 13 years</span>{" "}
           </label>
-        </div>
+        </div> */}
         <div className="div_checkbox">
           <label htmlFor="option2" className="radio-label items-center">
             <input

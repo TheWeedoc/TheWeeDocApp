@@ -124,7 +124,7 @@ function UploadVideo({
           name={"video"}
           onFileChange={handleFileUpload}
           inst1={"Video should be in HD quality."}
-          inst2={"Video time duration should be 35 - 40 mins maximum "}
+          inst2={"Video duration can be maximum of 39 minutes"}
           inst3={
             "Please be sure not to violate other’s copyright or privacy rights."
           }
