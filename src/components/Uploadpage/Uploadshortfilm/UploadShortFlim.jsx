@@ -5,11 +5,10 @@ import UploadDetails from "./UploadDetails";
 import UploadVideo from "./UploadVideo";
 import Uploadcast from "./Uploadcast";
 
-function UploadShortFlim() {
+function UploadShortFlim({formData,setFormData}) {
   const [current, setCurrent] = useState(0);
   const [stepCompletion, setStepCompletion] = useState([false, false, false]);
 
-  const [formData, setFormData] = useState({});
   const [result, setResult] = useState({ id: "", name: "", success: false });
 
   const next = () => {

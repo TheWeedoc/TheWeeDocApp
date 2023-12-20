@@ -10,6 +10,7 @@ function VerificationSection() {
   const [filmopen, setflimOpen] = useState(false);
   const [adsopen, setadsOpen] = useState(false);
   const { verification } = useSelector((state) => state.uploads);
+  const [formData, setFormData] = useState({});
 
   return (
     <div className="mx-2 md:px-0 ">
@@ -71,11 +72,14 @@ function VerificationSection() {
         title="Upload a short film"
         centered
         open={filmopen}
-        onCancel={() => setflimOpen(false)}
+        onCancel={() => {
+          setflimOpen(false);
+          setFormData({});
+        }}
         width={window.innerWidth < 768 ? "100%" : "70%"}
         footer={null}
       >
-        <UploadShortFlim />
+        <UploadShortFlim setFormData={setFormData} formData={formData} />
       </Modal>
 
       <Modal
