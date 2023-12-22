@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "./uploadShortFilm.css";
-import { Spin } from "antd";
+import { Spin, message } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import { AddProduct } from "../../../Api/Fetchclient";
 import { DragZone } from "./DragZone";
-
+import { useDispatch, useSelector } from "react-redux";
+import { startLoading, stopLoading } from "../../../store/Home/Loader";
+import Loader from "../../loader/Loader";
 function UploadVideo({
   current,
   onNext,
@@ -13,6 +15,9 @@ function UploadVideo({
   setResult,
   resulted,
 }) {
+  const dispatch = useDispatch();
+  const isLoading = useSelector((state) => state.common.isLoading);
+
   const [selectedFiles, setSelectedFiles] = useState({
     image: null,
     video: null,
@@ -41,6 +46,7 @@ function UploadVideo({
   // API CALL
 
   const result = async (data) => {
+    dispatch(startLoading());
     try {
       const response = await AddProduct(data);
       console.log("Login response", response);
@@ -53,19 +59,28 @@ function UploadVideo({
           name: response.data?.title,
         });
         onNext();
+        dispatch(stopLoading());
       }
-      if (response?.status === 404) {
+      if (
+        response?.status === 404 ||
+        response?.status === 401 ||
+        response?.status === 400
+      ) {
         const errorData = response.data;
-        setErrMessage(errorData);
+        if (errorData?.title) {
+          setErrMessage(errorData?.title[0]);
+          message.error(errorData?.title[0])
+        }
+        setErrMessage(errorData?.[0]);
+
+        dispatch(stopLoading());
         console.log(errorData);
-      }
-      if (response?.status === 401) {
-        setErrMessage(response.data);
       }
     } catch (error) {
       if (error && error.data) {
         const errorData = error.data;
         setErrMessage(errorData);
+        dispatch(stopLoading());
       }
     }
   };
@@ -99,53 +114,64 @@ function UploadVideo({
   };
 
   return (
-    <div className="upload_popup_inside">
-      <b>Images & Videos</b>
+    <>
+      {isLoading ? (
+        <div className="outer-loader-space">
+          <Loader
+            text="Wait for Sometime. Your video has been uploading... "
+            description="Don't close the popup while uploading the video; otherwise, your data will be lost."
+          />
+        </div>
+      ) : (
+        <div className="upload_popup_inside">
+          <b>Images & Videos</b>
 
-      <div className="upld_img space-y-4">
-        <span className="upload_img_txt mb-2">Thumbnail Image*</span>
-        <DragZone
-          name={"image"}
-          onFileChange={handleFileUpload}
-          inst1={"Image should be in HD quality."}
-          inst2={"Image Dimension : 210*275"}
-          inst3={
-            "Please be sure not to violate other’s copyright or privacy rights."
-          }
-          accept={"image/*"}
-        />
-        {imageError && (
-          <span className="error-message">Please select an image.</span>
-        )}
-      </div>
-      <div className="upld_img space-y-4">
-        <span className="upload_img_txt mb-2">Video*</span>
-        <DragZone
-          name={"video"}
-          onFileChange={handleFileUpload}
-          inst1={"Video should be in HD quality."}
-          inst2={"Video duration can be maximum of 39 minutes"}
-          inst3={
-            "Please be sure not to violate other’s copyright or privacy rights."
-          }
-          accept={"video/*"}
-        />
-        {videoError && (
-          <span className="error-message">Please select a video.</span>
-        )}
-      </div>
-      {errMessage && <h1 className="text-red text-center">{errMessage}</h1>}
+          <div className="upld_img space-y-4">
+            <span className="upload_img_txt mb-2">Thumbnail Image*</span>
+            <DragZone
+              name={"image"}
+              onFileChange={handleFileUpload}
+              inst1={"Image should be in HD quality."}
+              inst2={"Image Dimension : 210*275"}
+              inst3={
+                "Please be sure not to violate other’s copyright or privacy rights."
+              }
+              accept={"image/*"}
+            />
+            {imageError && (
+              <span className="error-message">Please select an image.</span>
+            )}
+          </div>
+          <div className="upld_img space-y-4">
+            <span className="upload_img_txt mb-2">Video*</span>
+            <DragZone
+              name={"video"}
+              onFileChange={handleFileUpload}
+              inst1={"Video should be in HD quality."}
+              inst2={"Video duration can be maximum of 39 minutes"}
+              inst3={
+                "Please be sure not to violate other’s copyright or privacy rights."
+              }
+              accept={"video/*"}
+            />
+            {videoError && (
+              <span className="error-message">Please select a video.</span>
+            )}
+          </div>
+          {errMessage && <h1 className="text-red text-center">{errMessage}</h1>}
 
-      <div className="uploadpopup_btm">
-        {current > 0 && <button onClick={onPrev}>Previous</button>}
+          <div className="uploadpopup_btm">
+            {current > 0 && <button onClick={onPrev}>Previous</button>}
 
-        {current === 1 && (
-          <button onClick={handleNext} className="loginbtn">
-            {load ? <Spin indicator={antIcon} /> : "Next"}
-          </button>
-        )}
-      </div>
-    </div>
+            {current === 1 && (
+              <button onClick={handleNext} className="loginbtn">
+                {load ? <Spin indicator={antIcon} /> : "Next"}
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 

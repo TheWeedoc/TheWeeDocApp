@@ -5,7 +5,7 @@ import { Tabs } from "antd";
 import VerificationSection from "../../components/Uploadpage/VerificationSection";
 import RejectedSection from "../../components/Uploadpage/RejectedSection";
 import ApprovedSection from "../../components/Uploadpage/ApprovedSection";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   uploadsApproved,
   uploadsRejected,
@@ -14,6 +14,7 @@ import {
 import { Helmet } from "react-helmet";
 function Uploadpage() {
   const dispatch = useDispatch();
+
   const onChange = (key) => {
     console.log(key);
   };
@@ -65,10 +66,11 @@ function Uploadpage() {
         <title>Uploads - TheWeedoc</title>
       </Helmet>
       <Header />
-      <div className="uploadMainDiv  ">
-        <h2>Uploads & status</h2>
-        <Tabs defaultActiveKey="1" items={items} onChange={onChange} />;
-      </div>
+ 
+        <div className="uploadMainDiv  ">
+          <h2>Uploads & status</h2>
+          <Tabs defaultActiveKey="1" items={items} onChange={onChange} />;
+        </div>
     </>
   );
 }

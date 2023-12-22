@@ -34,7 +34,7 @@ function Editprofile() {
         message: message,
         duration: 2, // Display time in seconds
         onClose: handleNotificationClose,
-        placement: "bottomRight",
+        placement: "topRight",
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Carousel } from "antd";
+import { Carousel, Spin } from "antd";
 import Header from "../../components/Layout/Header/Header";
 import "./homepage.css";
 import Homepagecard from "../../components/cards/Hompage/Homepagecard";
@@ -10,6 +10,7 @@ import { Helmet } from "react-helmet";
 function HomePage() {
   const { products } = useSelector((state) => state.products);
   const [carouselPic, setCarouselPic] = useState([]);
+  const [Loader,setLoader] = useState(true)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,6 +23,8 @@ function HomePage() {
       let firstFourObjects = products.slice(0, 4);
       setCarouselPic(firstFourObjects);
     }
+
+  setTimeout(setLoader(false),2000)
   }, [products]);
 
   return (
@@ -43,13 +46,15 @@ function HomePage() {
       {/* <<<<<<=================== Cards Sections ===================>>>>>> */}
 
       {/* <div className="home-CardsSection px-3"> */}
-      <div className="p-3 md:py-6 md:px-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 custom-lg:grid-cols-3 gap-8 custom-lg:gap-x-12 lg:gap-y-8 grid-rows-auto">
-          {products?.map((item) => {
-            return <Homepagecard key={item.id} item={item} />;
-          })}
+      <Spin spinning={Loader}>
+        <div className="p-3 md:py-6 md:px-16" style={{minHeight:"75vh"}}>
+          <div className="grid grid-cols-1 md:grid-cols-2 custom-lg:grid-cols-3 gap-8 custom-lg:gap-x-12 lg:gap-y-8 grid-rows-auto">
+            {products?.map((item) => {
+              return <Homepagecard key={item.id} item={item} />;
+            })}
+          </div>
         </div>
-      </div>
+      </Spin>
     </>
   );
 }

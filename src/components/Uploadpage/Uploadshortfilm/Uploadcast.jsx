@@ -91,7 +91,7 @@ function Uploadcast({ current, onNext, onPrev, resulted, setResult }) {
     <div className="h-full w-full flex flex-col justify-center items-center bg-[#16181f] text-white py-10">
       <img src={confetti} alt="confetti" />
       <div>
-        {resulted.name} Short Film has been submitted for verification
+        "<b>{resulted.name}</b>" Short Film has been submitted for verification
         Successfully!
       </div>
     </div>
@@ -146,7 +146,7 @@ function Uploadcast({ current, onNext, onPrev, resulted, setResult }) {
         ))}
       </div>
       <div className="uploadpopup_btm">
-        {current > 0 && <button onClick={onPrev}>Previous</button>}
+        {/* {current > 0 && <button onClick={onPrev}>Previous</button>} */}
 
         <button onClick={handleSubmit} className="loginbtn">
           Submit

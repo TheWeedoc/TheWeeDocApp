@@ -5,7 +5,7 @@ import { Modal } from "antd";
 import UploadShortFlim from "./Uploadshortfilm/UploadShortFlim";
 import AdsUploadShortFlim from "../AdsUpload/Uploadshortfilm/AdsUploadShortFlim";
 import Verifyseccard from "../cards/Uploadpage/VerifysecCard";
-import { useSelector } from "react-redux";
+import {useSelector } from "react-redux";
 function VerificationSection() {
   const [filmopen, setflimOpen] = useState(false);
   const [adsopen, setadsOpen] = useState(false);
@@ -74,14 +74,13 @@ function VerificationSection() {
         open={filmopen}
         onCancel={() => {
           setflimOpen(false);
-          setFormData({});
+          // setFormData({});
         }}
         width={window.innerWidth < 768 ? "100%" : "70%"}
         footer={null}
       >
-        <UploadShortFlim setFormData={setFormData} formData={formData} />
+          <UploadShortFlim setFormData={setFormData} formData={formData} />
       </Modal>
-
       <Modal
         title="Upload a Advertisement"
         centered
