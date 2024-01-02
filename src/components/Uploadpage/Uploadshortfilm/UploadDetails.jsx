@@ -143,7 +143,7 @@ function UploadDetails({ onNext, formData, setFormData }) {
           onChange={(e) => setTitle(e.target.value)}
           required
         />
-        <label>Title Name*</label>
+        <label>Title Name*</label><br/>
         {isFormSubmitted && !title && (
           <span className="error-message">Title is required</span>
         )}

@@ -5,6 +5,7 @@ import { AddCast } from "../../../Api/Fetchclient";
 import { getSearchUsers } from "../../../store/Home/Search/searchReducer";
 import { useDispatch, useSelector } from "react-redux";
 import confetti from "../../../Assests/Images/confetti.png";
+import { Table } from "antd";
 
 function Uploadcast({ current, onNext, onPrev, resulted, setResult }) {
   const [load, setLoad] = useState(false);
@@ -19,6 +20,24 @@ function Uploadcast({ current, onNext, onPrev, resulted, setResult }) {
 
   const dispatch = useDispatch();
 
+  const columns = [
+    {
+      title: "User ID",
+      dataIndex: "user",
+      key: "user",
+    },
+    {
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
+    },
+    {
+      title: "Role",
+      dataIndex: "role",
+      key: "role",
+    },
+  ];
+
   const handleAdd = async (e) => {
     e.preventDefault();
 
@@ -31,7 +50,6 @@ function Uploadcast({ current, onNext, onPrev, resulted, setResult }) {
       formDataForApi.append("role", role);
 
       await apiResult(formDataForApi);
-
       const newData = [...data, { user: userId, name: username, role }];
       setData(newData);
       setUserId("");
@@ -108,7 +126,7 @@ function Uploadcast({ current, onNext, onPrev, resulted, setResult }) {
             placeholder="User ID"
           />
           {searchUserResults.count > 0 && suggestion && (
-            <div className="absolute h-24 overflow-y-scroll border border-gray-400 top-10 left-0 text-white bg-black ">
+            <div className="dropdown-options absolute h-24 overflow-y-scroll border border-gray-400 top-10 left-0 text-white bg-black ">
               {searchUserResults.results?.map((item) => (
                 <div
                   className="p-2 hover:bg-[#16181f] hover:font-semibold cursor-pointer"
@@ -139,11 +157,19 @@ function Uploadcast({ current, onNext, onPrev, resulted, setResult }) {
       {load && <h1 className="text-white">Loading...</h1>}
 
       <div type="1" className="upld_rolecast_list py-4 space-y-4 text-white ">
-        {data.map((item, index) => (
+        {/* {data.map((item, index) => (
           <div key={item.user} className="flex flex-row items-center">
             User ID: {item.user}, Name: {item.name} , Role: {item.role}{" "}
           </div>
-        ))}
+        ))} */}
+        {data?.length !== 0 && (
+          <Table
+            dataSource={data}
+            columns={columns}
+            pagination={false}
+            bordered
+          />
+        )}
       </div>
       <div className="uploadpopup_btm">
         {/* {current > 0 && <button onClick={onPrev}>Previous</button>} */}

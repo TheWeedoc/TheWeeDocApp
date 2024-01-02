@@ -378,3 +378,15 @@ export const VerifyOTP = async (otp) => {
     throw Error(err.response.data);
   }
 };
+
+
+// api/notifications/ 
+
+export const Notifications = async () => {
+  try {
+    const result = await get(`notifications/`);
+    return result.data;
+  } catch (err) {
+    throw Error(err.response.data);
+  }
+};

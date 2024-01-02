@@ -183,6 +183,23 @@
     flex-wrap: wrap;
   }
 
+  .dropdown-options{
+    width: 100%;
+    border-radius: 5px;
+  }
+
+  .dropdown-options::-webkit-scrollbar {
+    width: 4px;
+    border-radius: 4px;
+  }
+  
+  .dropdown-options::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+  
+  .dropdown-options::-webkit-scrollbar-thumb {
+    background: #4c4c4c;
+  }
 
   .uplod_genre_div select{
    background-color: transparent;

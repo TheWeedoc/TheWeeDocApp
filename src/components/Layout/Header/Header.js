@@ -19,9 +19,11 @@ import { getUser } from "../../../store/Home/userReducer";
 import { logout } from "../../../store/Home/authReducer";
 import defaultProfile from "../../../Assests/Images/Defaultprofile.png";
 import LogoImageMobile from "../../../Assests/Images/HeaderMobileLogo.png";
+import { Notifications } from "../../../Api/Fetchclient";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [notify, setNotify] = useState();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -32,6 +34,12 @@ function Header() {
     setMenuOpen(!menuOpen);
   };
 
+  const notification = async () => {
+    const resp = await Notifications().then((res) => {
+      setNotify(res);
+    });
+  };
+
   useEffect(() => {
     if (user === "" && isLoggedIn)
       dispatch(getUser()).then((action) => {
@@ -39,6 +47,9 @@ function Header() {
           navigate("/signupques");
         }
       });
+    if (isLoggedIn) {
+      notification();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn]);
 
@@ -68,18 +79,22 @@ function Header() {
           <div>
             <Link to="/upload">{uploadicon}</Link>
           </div>
-          <div className="notifyDiv">
-            <div>
-              <Popover
-                placement="bottom"
-                content={<Notification />}
-                trigger="click"
-              >
-                {notificationicon}
-              </Popover>
+          {isLoggedIn && (
+            <div className="notifyDiv">
+              <div>
+                <Popover
+                  placement="bottom"
+                  content={<Notification notify={notify} />}
+                  trigger="click"
+                >
+                  {notificationicon}
+                </Popover>
+              </div>
+              {notify?.length !== 0 && (
+                <div className="notifitionCount">{notify?.length}</div>
+              )}
             </div>
-            <div className="notifitionCount">2</div>
-          </div>
+          )}
           <Popover placement="bottom" content={<Profile />} trigger="click">
             <img
               src={user?.profile_pic ? user?.profile_pic : defaultProfile}

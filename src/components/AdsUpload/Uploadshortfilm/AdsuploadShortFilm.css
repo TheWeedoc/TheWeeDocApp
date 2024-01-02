@@ -19,6 +19,7 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  margin-top: 6px;
 }
 
 .uploadSec_popup .ant-steps .ant-steps-item-finish .ant-steps-item-icon >.ant-steps-icon {
