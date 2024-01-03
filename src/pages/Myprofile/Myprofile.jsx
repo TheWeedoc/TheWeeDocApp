@@ -110,7 +110,7 @@ function Myprofile() {
               <div className="flex flex-row items-center justify-center space-x-6 py-2 pl-2 md:w-1/3 font-notosans">
                 <div className="flex flex-col space-y-2 justify-center items-center">
                   <h1 className="leading-7 font-semibold text-xl lg:text-2xl/7">
-                    {user?.followers_count}
+                    {user?.following_count}
                   </h1>
                   <h1 className="md:text-2xl lg:text-2xl/7 text-[#bbbbbb] font-normal">
                     Followers
@@ -118,7 +118,7 @@ function Myprofile() {
                 </div>
                 <div className="flex flex-col space-y-2 justify-center items-center">
                   <h1 className="leading-7 font-semibold text-xl lg:text-2xl/7">
-                    {user?.following_count}
+                    {user?.followers_count}
                   </h1>
                   <h1 className="md:text-2xl lg:text-2xl/7 text-[#bbbbbb] font-normal">
                     Following
