@@ -39,9 +39,29 @@ function UploadVideo({
   );
 
   const handleFileUpload = (sfiles, name) => {
-    setSelectedFiles({ ...selectedFiles, [name]: sfiles[0] });
-    // console.log(selectedFiles);
+    const file = sfiles[0];
+
+    if (file) {
+
+      const fileSizeInBytes = file.size;
+      const fileSizeInGB = fileSizeInBytes / (1024 * 1024 * 1024);
+  
+      // Check if file size is above 2 GB
+      if (fileSizeInGB > 2) {
+        message.error('File size exceeds 2 GB. Please choose a smaller file.')
+        // Show warning message or handle it as needed
+        console.log("File size exceeds 2 GB. Please choose a smaller file.");
+        return;
+      }
+  
+      // Set the selected file
+      setSelectedFiles({ ...selectedFiles, [name]: file });
+      // Reset any previous error messages
+      if (name === "image") setImageError(false);
+      if (name === "video") setVideoError(false);
+    }
   };
+  
 
   // API CALL
 
@@ -109,7 +129,6 @@ function UploadVideo({
       formDataForApi.append("video", selectedFiles.video);
     }
 
-    // Call API here using the updatedFormData
     await result(formDataForApi);
   };
 
