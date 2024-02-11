@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://theweedoc.info/api/",
+  baseURL: "https://theweedoc.live/api/",
 });
 
 function getCookie(cname) {
