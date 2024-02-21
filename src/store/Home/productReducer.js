@@ -191,7 +191,7 @@ const productSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(getProducts.fulfilled, (state, action) => {
-      state.products = action.payload.results;
+      state.products = action.payload;       /*<<<=====I removed for API not working=====>>> state.products = action.payload.results; */ 
       state.count = action.payload.count;
       state.next = action.payload.next;
       state.previous = action.payload.previous;

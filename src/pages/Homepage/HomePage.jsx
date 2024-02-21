@@ -14,12 +14,12 @@ function HomePage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (products.length === 0) dispatch(getProducts());
+    if (products?.length === 0) dispatch(getProducts());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    if (products.length > 0) {
+    if (products?.length > 0) {
       let firstFourObjects = products.slice(0, 4);
       setCarouselPic(firstFourObjects);
     }
