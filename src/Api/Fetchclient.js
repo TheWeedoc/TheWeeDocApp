@@ -65,7 +65,7 @@ export const AddProduct = async (data) => {
   //   "content-type":
   // }
 
-  const add = await post("products/create/", data)
+  const add = await post("products/create/upload/", data)
     .then((resp) => {
       return resp;
     })
