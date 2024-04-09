@@ -80,7 +80,7 @@ function Profile() {
             <Link to="/uploadads">Upload Advertisement</Link>
           </div>
           <div className="flex flex-row justify-start items-center space-x-2">
-            <div> {informationIcon}</div> <Link>About </Link>
+            <div> {informationIcon}</div> <Link to="/aboutus">About </Link>
           </div>
         </div>
       </div>

@@ -10,7 +10,7 @@ import { Helmet } from "react-helmet";
 function HomePage() {
   const { products } = useSelector((state) => state.products);
   const [carouselPic, setCarouselPic] = useState([]);
-  const [Loader,setLoader] = useState(true)
+  const [Loader, setLoader] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,12 +24,11 @@ function HomePage() {
       setCarouselPic(firstFourObjects);
     }
 
-  setTimeout(setLoader(false),2000)
+    setTimeout(setLoader(false), 2000);
   }, [products]);
 
   return (
     <>
-      <Header />
       <Helmet>
         <title>TheWeedoc</title>
         <meta
@@ -37,6 +36,7 @@ function HomePage() {
           content="Enjoy the best Short Films & documentary you wouldn't love, Creators upload their original content and publish it on TheWeedoc."
         />
       </Helmet>
+      <Header />
       <Carousel autoplay>
         {carouselPic?.map((item) => (
           <CarouselHomePage key={item.id} item={item} />
@@ -47,7 +47,7 @@ function HomePage() {
 
       {/* <div className="home-CardsSection px-3"> */}
       <Spin spinning={Loader}>
-        <div className="p-3 md:py-6 md:px-16" style={{minHeight:"75vh"}}>
+        <div className="p-3 md:py-6 md:px-16" style={{ minHeight: "75vh" }}>
           <div className="grid grid-cols-1 md:grid-cols-2 custom-lg:grid-cols-3 gap-8 custom-lg:gap-x-12 lg:gap-y-8 grid-rows-auto">
             {products?.map((item) => {
               return <Homepagecard key={item.id} item={item} />;

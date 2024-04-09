@@ -182,7 +182,7 @@ function Header() {
                     {/* <div className="notifitionCount">2</div> */}
                   </div>
                   <div>
-                    <Link to="/about">About Us</Link>
+                    <Link to="/aboutus">About Us</Link>
                   </div>
                   <div>
                     <Link to="/privacypolicy">Privacy Policy</Link>

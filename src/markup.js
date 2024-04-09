@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
 import { useSelector } from "react-redux";
+import AboutUs from "./pages/aboutus/AboutUs";
 
 // Use dynamic imports for route components
 const HomePage = React.lazy(() => import("./pages/Homepage/HomePage"));
@@ -47,6 +48,7 @@ function Markup() {
             <Route exact path="/privacypolicy" element={<PrivacyPolicy />} />
             <Route exact path="/search" element={<Searchpage />} />
             <Route exact path="/profile/:id" element={<OthersProfile />} />
+            <Route exact path="/aboutus" element={<AboutUs />} />
 
             {/* Protected Routes */}
 
