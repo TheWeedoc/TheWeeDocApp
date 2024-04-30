@@ -317,7 +317,6 @@ export const GetAllSavedFilms = async () => {
 export const UpdateUser = async (data) => {
   try {
     const result = await put(`user/update/`, data);
-    console.log(result, "jshdbhjubdskh");
     return result;
   } catch (err) {
     console.log(" errrrrrrrrrr", err);

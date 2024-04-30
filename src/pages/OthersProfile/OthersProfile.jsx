@@ -25,6 +25,9 @@ function OthersProfile() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+
+  console.log(otherUser,"otherUser");
+
   const handleNotificationClose = () => {
     dispatch(clearNotification());
   };
@@ -96,7 +99,7 @@ function OthersProfile() {
                     <h1 className="font-bold md:py-6 md:text-xl lg:text-3xl/7 font-notosans ellipsis">
                       {otherUser?.first_name
                         ? otherUser?.first_name
-                        : "No Name"}{" "}
+                        : otherUser?.username || "No Name"}{" "}
                       {otherUser?.last_name}
                     </h1>
                     <span className="text-[#bdbdbd] font-medium md:pb-4 md:text-xl lg:text-2xl/7">
