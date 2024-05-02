@@ -171,3 +171,12 @@
   font-weight: 400;
   line-height: 28px;
 }
+
+
+@media screen and (max-width:560px) {
+ 
+  .indivialpage-main-Div {
+    padding: 2vh 4vw;
+  }
+  
+}

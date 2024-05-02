@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Popover } from "antd";
 import "./Header.css";
-import Logo from "../../../Assests/Images/LogoImage.png";
+import Logo from "../../../Assests/Images/TheWeedoc.png";
 import {
   notificationicon,
   uploadicon,
@@ -125,7 +125,7 @@ function Header() {
           <div
             className={
               menuOpen
-                ? "block absolute w-screen h-screen z-10 top-0 left-0 bg-headerBackground flex flex-col  text-white items-start space-y-6 p-3"
+                ? "block absolute w-screen h-screen z-10 top-0 left-0 bg-headerBackground flex flex-col text-white items-start space-y-6 p-3"
                 : "hidden"
             }
           >

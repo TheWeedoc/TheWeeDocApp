@@ -153,3 +153,7 @@ code {
 .ant-table-wrapper .ant-table-tbody>tr>td{
   padding:8px 10px; 
 }
+
+.ant-carousel .slick-dots {
+  z-index: 0;
+}
