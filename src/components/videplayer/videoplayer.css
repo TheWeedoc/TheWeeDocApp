@@ -113,4 +113,8 @@
   .video-js {
     height: 225px !important;
   }
+
+  .video-js .vjs-tech {
+    height: 100% !important;
+  }
 }

@@ -69,7 +69,7 @@ function Header() {
               className="Logoclass hidden md:block"
               alt="Theweedoc"
             />
-            <img src={LogoImageMobile} className="md:hidden " alt="Theweedoc" />
+            <img src={Logo} className="md:hidden mob_Logoclass" alt="Theweedoc" />
           </Link>
         </div>
         <div className="hidden md:flex items-center gap-7 ">

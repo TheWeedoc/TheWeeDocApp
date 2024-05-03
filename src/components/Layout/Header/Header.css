@@ -1,59 +1,63 @@
-.headerDiv{
-background: #0A0A0D;
-padding: 12px 6vw;
-position: sticky;
-top: 0;
-z-index: 10;
+.headerDiv {
+  background: #0a0a0d;
+  padding: 12px 6vw;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
-.HeadermainDivMob{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.HeadermainDivMob {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.Logoclass{
+.Logoclass {
+  width: auto;
+  height: 65px;
+}
+
+.HeaderOptionsDiv {
+  display: flex;
+  align-items: center;
+}
+
+.profilePictureDiv {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+
+.profiledrpdwnDiv {
+  padding: 12px;
+}
+
+.notifyDiv {
+  display: flex;
+  position: relative;
+  margin: 0px 5px;
+}
+
+.mob_Logoclass {
     width: auto;
-    height: 65px;
-}
+    height: 40px;
+  }
 
-.HeaderOptionsDiv{
+@media (min-width: 768px) {
+  .HeaderOptionsDiv {
     display: flex;
     align-items: center;
-}
+  }
 
-.profilePictureDiv{
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-}
-
-.profiledrpdwnDiv{
-    padding: 12px;
-}
-
-.notifyDiv{
+  .HeaderOptionsDiv {
+    gap: 25px;
+  }
+  .notifyDiv {
     display: flex;
     position: relative;
     margin: 0px 5px;
- }
-
-
-@media (min-width: 768px) {
-.HeaderOptionsDiv{
-    display: flex;
-    align-items: center;
-}
-
-.HeaderOptionsDiv{
-    gap: 25px;
-}
-.notifyDiv{
-   display: flex;
-   position: relative;
-   margin: 0px 5px;
-}
-.notifitionCount{
+  }
+  .notifitionCount {
     position: absolute;
     width: 15px;
     height: 15px;
@@ -61,45 +65,44 @@ z-index: 10;
     justify-content: center;
     align-items: center;
     padding: 2px;
-    background-color: #FF6464;
+    background-color: #ff6464;
     color: white;
     border-radius: 50%;
     top: -10px;
     left: 20px;
     font-size: 16px;
-}
+  }
 
-.Loginbtn{
+  .Loginbtn {
     width: 100px;
     height: 40px;
-    background: #FFFFFF;
+    background: #ffffff;
     border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0px 0px 0px 5px;
-    font-family: 'Noto Sans';
+    font-family: "Noto Sans";
     font-style: normal;
     font-weight: 700;
     font-size: 18px;
     border: none;
-}
+  }
 
+  .ant-popover .ant-popover-inner {
+    background-color: #16181f;
+  }
+  .ant-popover .ant-popover-arrow:before {
+    background-color: #16181f;
+  }
 
-.ant-popover .ant-popover-inner{
-    background-color: #16181F;
-}
-.ant-popover .ant-popover-arrow:before{
-    background-color: #16181F;
-}
-
-.profilePictureDiv{
+  .profilePictureDiv {
     width: 45px;
     height: 45px;
     border-radius: 50%;
-}
+  }
 
-.profiledrpdwnDiv{
+  .profiledrpdwnDiv {
     padding: 12px;
-}
+  }
 }
