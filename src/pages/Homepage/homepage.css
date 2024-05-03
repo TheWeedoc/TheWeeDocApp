@@ -184,6 +184,13 @@
   
 }
 
+.loaderDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 65vh;
+}
+
 @media screen and (max-width: 820px) {
   .BannerDiv {
     width: 100%;
