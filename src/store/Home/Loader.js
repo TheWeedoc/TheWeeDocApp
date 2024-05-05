@@ -5,7 +5,7 @@ const INITIAL_STATE = {
   isLoading: false,
 };
 
-const commonSlice = createSlice({
+const loaderSlice = createSlice({
   name: "common",
   initialState: INITIAL_STATE,
   reducers: {
@@ -18,5 +18,5 @@ const commonSlice = createSlice({
   },
 });
 
-export const { startLoading, stopLoading } = commonSlice.actions;
-export const commonReducer = commonSlice.reducer;
+export const { startLoading, stopLoading } = loaderSlice.actions;
+export const loaderReducer = loaderSlice.reducer;

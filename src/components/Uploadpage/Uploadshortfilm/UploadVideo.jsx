@@ -120,7 +120,7 @@ function UploadVideo({
     formDataForApi.append("title", formData.title);
     formDataForApi.append("description", formData.description);
     formDataForApi.append("genere", formData.genere);
-    formDataForApi.append("language", formData.language);
+    formDataForApi.append("languages", formData.languages);
     formDataForApi.append("age", formData.age);
     if (selectedFiles.image) {
       formDataForApi.append("image", selectedFiles.image);
@@ -128,7 +128,6 @@ function UploadVideo({
     if (selectedFiles.video) {
       formDataForApi.append("video", selectedFiles.video);
     }
-
     await result(formDataForApi);
   };
 

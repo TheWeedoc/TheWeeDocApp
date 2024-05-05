@@ -158,6 +158,15 @@ code {
   z-index: 0;
 }
 
+.ant-select-selector {
+ color: white !important;
+}
+
+.ant-select-single.ant-select-show-arrow .ant-select-selection-item {
+ color: white !important;
+
+}
+
 /* HTML: <div class="loader"></div> */
 /* HTML: <div class="loader"></div> */
 .loader {

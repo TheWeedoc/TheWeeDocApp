@@ -389,3 +389,14 @@ export const Notifications = async () => {
     throw Error(err.response.data);
   }
 };
+
+
+export const GetLanuages = async()=>{
+  try {
+      const lanuage = await get('all/languages/list/')
+      return lanuage?.data
+  } catch (error) {
+    throw Error(error.response.data);
+    
+  }
+}
