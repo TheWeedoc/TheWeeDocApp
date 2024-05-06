@@ -14,13 +14,13 @@ function HomePage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (products?.length === 0) dispatch(getProducts());
+   dispatch(getProducts());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    if (products?.length > 0) {
-      let firstFourObjects = products.slice(0, 4);
+    if (products?.results?.length > 0) {
+      let firstFourObjects = products?.results?.slice(0, 4);
       setCarouselPic(firstFourObjects);
     }
   }, [products]);
@@ -54,7 +54,7 @@ function HomePage() {
 
           <div className="p-3 md:py-6 md:px-16" style={{ minHeight: "75vh" }}>
             <div className="grid grid-cols-1 md:grid-cols-2 custom-lg:grid-cols-3 gap-8 custom-lg:gap-x-12 lg:gap-y-8 grid-rows-auto">
-              {products?.map((item) => {
+              {products?.results?.map((item) => {
                 return <Homepagecard key={item.id} item={item} />;
               })}
             </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import LogoImage from "../../Assests/Images/LogoImage.png";
 import LogoImageMobile from "../../Assests/Images/LogoImageMobile.png";
 
@@ -12,6 +12,9 @@ import profileImage from "../../Assests/Images/ProfileImage.png";
 import "./Loginflow.css";
 import { useDispatch } from "react-redux";
 import { updateUser } from "../../store/Home/userReducer";
+import { GetLanuages, preferedLanguages } from "../../Api/Fetchclient";
+import { Select } from "antd";
+const { Option } = Select;
 
 function SignupQuestions() {
   const [details, setDetails] = useState({
@@ -22,14 +25,20 @@ function SignupQuestions() {
     location: "",
     postalcode: "",
     preview: "",
+    languages:[]
   });
   const [profileFile, setProfileFile] = useState(null);
+  const [lang, setlang] = useState();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [step, setStep] = useState(1);
   const currentYear = new Date().getFullYear();
+
+  useEffect(() => {
+    getlang();
+  }, []);
 
   const handleProfilePic = (e) => {
     e.preventDefault();
@@ -42,6 +51,16 @@ function SignupQuestions() {
         preview: URL.createObjectURL(file),
       });
     }
+  };
+
+  const getlang = async () => {
+    const reps = await GetLanuages().then((resp) => {
+      setlang(resp);
+    });
+  };
+
+  const handleLanguageChange = (selectedLanguages) => {
+    setDetails({ ...details, languages: selectedLanguages });
   };
 
   const handleGenderChange = (event) => {
@@ -70,7 +89,7 @@ function SignupQuestions() {
 
   const handleNext = (e) => {
     e.preventDefault();
-    if (!(step > 4)) setStep(step + 1);
+    if (!(step > 5)) setStep(step + 1);
   };
 
   const handlePrevious = (e) => {
@@ -84,9 +103,9 @@ function SignupQuestions() {
     if (details.day !== "" && details.month !== "" && details.year !== "") {
       dateofbirth = `${details?.day}-${details?.month}-${details.year}`;
     }
-
+  
     const updatedApiData = new FormData();
-
+  
     if (dateofbirth !== "") {
       updatedApiData.append("dob", dateofbirth);
     }
@@ -102,11 +121,17 @@ function SignupQuestions() {
     if (details.postalcode !== "") {
       updatedApiData.append("postal_code", details.postalcode);
     }
-
+  
+    const sendlanguage = async () => {
+      await preferedLanguages({ languages: details?.languages });
+    };
+    sendlanguage();
+  
     dispatch(updateUser(updatedApiData)).then(() => {
       navigate("/");
     });
   };
+  
 
   const indianStates = [
     "Andhra Pradesh",
@@ -186,10 +211,10 @@ function SignupQuestions() {
             <div className="flex justify-center w-full">
               <div className="flex flex-col py-4 w-full md:w-10/12 justify-center items-center">
                 <div className="w-full space-y-3">
-                  <h2 className="signupQuesStep">Step {step} of 4</h2>
+                  <h2 className="signupQuesStep">Step {step} of 5</h2>
                   <div className="bg-[#d9d9d9] w-full h-2 rounded-lg">
                     <div
-                      style={{ width: `${(step / 4) * 100}%` }}
+                      style={{ width: `${(step / 5) * 100}%` }}
                       className=" h-full rounded-lg bg-[#e39724]"
                     ></div>
                   </div>
@@ -363,8 +388,37 @@ function SignupQuestions() {
             </div>
           )}
 
-          {/* Step 4 Select Location and Postal code */}
           {step === 4 && (
+            <div className="flex flex-col justify-center items-center py-4">
+              <div className="flex flex-col items-center justify-center space-y-4">
+                <div className="w-full">
+                  <h1 className="text-left signupQuesuploadImg">
+                    Select Your Preferred Languages
+                  </h1>
+                </div>
+                <div className="w-full">
+                  <Select
+                    mode="multiple"
+                    showSearch
+                    placeholder="Select languages"
+                    value={details.languages || []}
+                    onChange={handleLanguageChange}
+                    style={{ width: "100%" }}
+                  >
+                    {lang &&
+                      lang.map((language) => (
+                        <Option key={language.id} value={language.id}>
+                          {language.name}
+                        </Option>
+                      ))}
+                  </Select>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Step 5 Select Location and Postal code */}
+          {step === 5 && (
             <div className="flex flex-col justify-center items-center  py-4">
               <div className="flex flex-col items-center justify-center space-y-4">
                 <div>
@@ -417,7 +471,7 @@ function SignupQuestions() {
               {leftArrow} Previous
             </button>
 
-            {step < 4 && (
+            {step < 5 && (
               <button
                 className="flex flex-row items-center space-x-2 bg-white rounded-lg px-10 py-1 text-black "
                 onClick={handleNext}
@@ -426,7 +480,7 @@ function SignupQuestions() {
               </button>
             )}
 
-            {step === 4 && (
+            {step === 5 && (
               <button
                 className="flex flex-row items-center space-x-2 bg-white rounded-lg px-10 py-1 text-black "
                 onClick={handleSubmit}

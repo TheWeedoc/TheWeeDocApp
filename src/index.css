@@ -167,8 +167,11 @@ code {
 
 }
 
-/* HTML: <div class="loader"></div> */
-/* HTML: <div class="loader"></div> */
+.ant-select-multiple .ant-select-selection-item-content {
+   color: #000 !important;
+}
+
+/* loader for home page  */
 .loader {
   width: 80px;
   padding: 8px;

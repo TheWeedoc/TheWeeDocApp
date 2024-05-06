@@ -400,3 +400,15 @@ export const GetLanuages = async()=>{
     
   }
 }
+
+export const preferedLanguages = async (data) => {
+  const lang = await post("/select/preffered/languages/", data)
+    .then((resp) => {
+      return resp.data;
+    })
+    .catch((error) => {
+      return error.response;
+    });
+
+  return lang;
+};
