@@ -9,23 +9,31 @@ function Homepagecard({ item }) {
   return (
     <div className="homepagecardDiv w-full md:w-[360-px] " key={item.id}>
       {/* <Link to={`/video/${1}/${item?.title}`}> */}
-      <Link to={`/video/${item.id}`}>
-        <img className="homepagecardimg" src={item?.image} alt={item?.title} />
-      </Link>
-      <div className=" d-flex align-items-center justify-content-between my-2">
-        <div>
-          <span className="homepgecrdTitle">{item?.title}</span>
-        </div>
-        <div className="thumbsDiv">
-          <div>
-            {thumbsup} {item?.likes[0] ? item?.likes[0] : 0}
-          </div>
-          <div>
-            {thumbsdown} {item?.dislikes[0] ? item?.dislikes[0] : 0}
-          </div>
-        </div>
+      <div className="video-img-div">
+        <Link to={`/video/${item.id}`}>
+          <img
+            className="homepagecardimg"
+            src={item?.image}
+            alt={item?.title}
+          />
+        </Link>
       </div>
-      <span className="crdbtmsec-text capitalize">{resultString}</span>
+      <div>
+        <div className=" d-flex align-items-center justify-content-between my-2">
+          <div>
+            <span className="homepgecrdTitle">{item?.title}</span>
+          </div>
+          <div className="thumbsDiv">
+            <div>
+              {thumbsup} {item?.likes[0] ? item?.likes[0] : 0}
+            </div>
+            <div>
+              {thumbsdown} {item?.dislikes[0] ? item?.dislikes[0] : 0}
+            </div>
+          </div>
+        </div>
+        <span className="crdbtmsec-text capitalize">{resultString}</span>
+      </div>
     </div>
   );
 }

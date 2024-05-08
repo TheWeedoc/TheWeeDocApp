@@ -76,14 +76,16 @@ export const AddProduct = async (data) => {
 };
 
 // Get All products
-export const GetProduct = async () => {
+export const GetProduct = async (page = 1, page_size = 20) => {
   try {
-    const products = await get("products/");
+    // Pass the page and page_size as query parameters to the API
+    const products = await get(`products/?page=${page}&page_size=${page_size}`);
     return products.data;
   } catch (err) {
     throw Error(err.response.data);
   }
 };
+
 
 // Get All Genres
 

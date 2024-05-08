@@ -1,51 +1,59 @@
-.homepagecardDiv{
-   display: flex;
-   flex-direction: column; 
-    width: 360px; 
+.homepagecardDiv {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
+  padding: 8px;
+  cursor: pointer;
+  transition: box-shadow .1s ease-in-out 0.2s;
+}
+.homepagecardDiv:hover {
+  box-shadow: rgba(237, 237, 237, 0.25) 0px 30px 60px -12px,
+    rgba(184, 184, 184, 0.318) 0px 18px 36px -18px;
 }
 
-.homepagecardimg{
-   max-width: 100%;
-   max-height: 245px;
-   border-radius: 10px;
+.homepagecardimg {
+  width: 100%;
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
-
-.homepgecrdTitle{
-    font-family: 'Noto Sans';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 22px;
-    line-height: 30px;
-    display: flex;
-    align-items: center;
-    color: #FFFFFF;
+.homepgecrdTitle {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  color: #ffffff;
 }
 
-.thumbsDiv{
-    display: flex;
-    align-items: center;
-    gap: 25px;
+.thumbsDiv {
+  display: flex;
+  align-items: center;
+  gap: 25px;
 }
 
 .thumbsDiv div {
-    font-family: 'Noto Sans';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    color: rgba(225, 230, 240, 0.9);
-    gap: 10px;
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  color: rgba(225, 230, 240, 0.9);
+  gap: 10px;
 }
-.crdbtmsec-text{
-    font-family: 'Noto Sans';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    color: #E1E6F0;
+.crdbtmsec-text {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  color: #e1e6f0;
 }

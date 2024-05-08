@@ -1,29 +1,53 @@
 import React, { useEffect, useState } from "react";
-import { Carousel, Spin } from "antd";
+import { Carousel, Spin, Skeleton } from "antd";
 import Header from "../../components/Layout/Header/Header";
-import "./homepage.css";
 import Homepagecard from "../../components/cards/Hompage/Homepagecard";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../store/Home/productReducer";
+import { getMoreProducts, getProducts } from "../../store/Home/productReducer";
 import CarouselHomePage from "./CarouselHomePage";
 import { Helmet } from "react-helmet";
+import { debounce } from "lodash";
+
 function HomePage() {
-  const { products, isLoading } = useSelector((state) => state.products);
-  const [carouselPic, setCarouselPic] = useState([]);
-  const [Loader, setLoader] = useState(true);
   const dispatch = useDispatch();
+  const { products, isLoading, next, isLoadingMore } = useSelector(
+    (state) => state.products
+  );
 
   useEffect(() => {
-   dispatch(getProducts());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    dispatch(getProducts({ page: 1, page_size: 20 }));
+  }, [dispatch]);
 
   useEffect(() => {
-    if (products?.results?.length > 0) {
-      let firstFourObjects = products?.results?.slice(0, 4);
-      setCarouselPic(firstFourObjects);
+    if (products?.length > 0) {
+      setCarouselPic(products.slice(0, 4));
     }
   }, [products]);
+
+  // Handle infinite scrolling
+  const handleScroll = debounce(() => {
+    // Calculate if the user has scrolled to the bottom of the page
+    const scrolledToBottom =
+      window.innerHeight + document.documentElement.scrollTop >=
+      document.documentElement.offsetHeight - 100;
+
+    // If scrolled to the bottom and there is a next page, load more products
+    if (scrolledToBottom && next) {
+      dispatch(getMoreProducts());
+    }
+  }, 300); // Adjust debounce delay time as needed
+
+  useEffect(() => {
+    // Add the scroll event listener
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup function to remove the event listener
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [handleScroll]);
+
+  const [carouselPic, setCarouselPic] = useState([]);
 
   return (
     <>
@@ -47,19 +71,18 @@ function HomePage() {
             ))}
           </Carousel>
 
-          {/* <<<<<<=================== Cards Sections ===================>>>>>> */}
-
-          {/* <div className="home-CardsSection px-3"> */}
-          {/* <Spin spinning={isLoading}> */}
-
           <div className="p-3 md:py-6 md:px-16" style={{ minHeight: "75vh" }}>
-            <div className="grid grid-cols-1 md:grid-cols-2 custom-lg:grid-cols-3 gap-8 custom-lg:gap-x-12 lg:gap-y-8 grid-rows-auto">
-              {products?.results?.map((item) => {
-                return <Homepagecard key={item.id} item={item} />;
-              })}
+            <div className="list_videos">
+              {products.map((item) => (
+                <Homepagecard key={item.id} item={item} />
+              ))}
             </div>
+            {isLoadingMore && next && (
+                <div style={{display:"flex",justifyContent:"center"}} className="w-100" >
+                  <div className="loader"></div>
+                </div>
+              )}
           </div>
-          {/* </Spin> */}
         </>
       )}
     </>

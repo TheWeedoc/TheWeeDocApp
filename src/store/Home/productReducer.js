@@ -14,6 +14,7 @@ import { showNotification } from "./notificationReducer";
 
 const INITIAL_STATE = {
   isLoading: false,
+  isLoadingMore: false,
   productDetails: "",
   productCustomer: "",
   productCustomerSaved: false,
@@ -25,9 +26,36 @@ const INITIAL_STATE = {
 
 export const getProducts = createAsyncThunk(
   "products/getProducts",
-  async (_, thunkAPI) => {
+  async ({ page = 1, page_size = 20 } = {}, thunkAPI) => {
     try {
-      const result = await GetProduct();
+      const result = await GetProduct(page, page_size);
+      return result;
+    } catch (err) {
+      const message =
+        (err.response && err.response.data && err.response.data.detail) ||
+        err.message ||
+        err.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+export const getMoreProducts = createAsyncThunk(
+  "products/getMoreProducts",
+  async (_, thunkAPI) => {
+    const { next } = thunkAPI.getState().products;
+    if (!next) {
+      // If there's no next page, just return an empty array to avoid unnecessary API calls.
+      return [];
+    }
+
+    try {
+      // Parse the next URL to extract the page and page_size parameters
+      const url = new URL(next);
+      const page = url.searchParams.get("page");
+      const page_size = url.searchParams.get("page_size");
+
+      const result = await GetProduct(page, page_size);
       return result;
     } catch (err) {
       const message =
@@ -186,19 +214,33 @@ export const followUser = createAsyncThunk(
 const productSlice = createSlice({
   name: "products",
   initialState: INITIAL_STATE,
+  reducers: {
+    loadingMore: (state, action) => {
+      state.isLoadingMore = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getProducts.pending, (state) => {
       state.isLoading = true;
     });
     builder.addCase(getProducts.fulfilled, (state, action) => {
-      state.products = action.payload;       /*<<<=====I removed for API not working=====>>> state.products = action.payload.results; */ 
+      state.isLoading = false;
+      state.products = action.payload.results;
       state.count = action.payload.count;
       state.next = action.payload.next;
       state.previous = action.payload.previous;
-      state.isLoading = false;
     });
     builder.addCase(getProducts.rejected, (state) => {
       state.isLoading = false;
+    });
+    builder.addCase(getMoreProducts.fulfilled, (state, action) => {
+      state.isLoadingMore = false;
+      state.products = [...state.products, ...action.payload.results];
+      state.next = action.payload.next;
+    });
+
+    builder.addCase(getMoreProducts.pending, (state) => {
+      state.isLoadingMore = true;
     });
     builder.addCase(getProductDetails.pending, (state) => {
       state.isLoading = true;
