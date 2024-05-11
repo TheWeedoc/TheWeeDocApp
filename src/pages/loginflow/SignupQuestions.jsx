@@ -11,7 +11,7 @@ import {
 import profileImage from "../../Assests/Images/ProfileImage.png";
 import "./Loginflow.css";
 import { useDispatch } from "react-redux";
-import { updateUser } from "../../store/Home/userReducer";
+import { getUser, updateUser } from "../../store/Home/userReducer";
 import { GetLanuages, preferedLanguages } from "../../Api/Fetchclient";
 import { Select } from "antd";
 const { Option } = Select;
@@ -129,6 +129,7 @@ function SignupQuestions() {
   
     dispatch(updateUser(updatedApiData)).then(() => {
       navigate("/");
+      dispatch(getUser())
     });
   };
   

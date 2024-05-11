@@ -17,9 +17,7 @@
 
 .ant-input {
         background-color: transparent;
-        color: white;
-        margin-left: 9px;
-        
+        color: white
 }
 
 .ant-input::placeholder {
