@@ -275,7 +275,7 @@ export const AddCast = async (id, data) => {
 export const GetUser = async () => {
   try {
     const result = await get(`user/profile/`);
-    return result.data;
+    return result?.data;
   } catch (err) {
     throw Error(err.response.data);
   }

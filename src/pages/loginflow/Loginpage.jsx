@@ -2,8 +2,6 @@ import { useState } from "react";
 import "./Loginflow.css";
 import { Form, Input } from "antd";
 import { Link } from "react-router-dom";
-import { LoadingOutlined } from "@ant-design/icons";
-import { Spin } from "antd";
 import { useNavigate } from "react-router-dom";
 import LogoImage from "../../Assests/Images/LogoImage.png";
 import LogoImageMobile from "../../Assests/Images/LogoImageMobile.png";
@@ -12,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { postLogin } from "../../store/Home/authReducer";
 import { setAuthorizationHeader } from "../../Api/Mainclient";
 import { Helmet } from "react-helmet";
+import { getUser } from "../../store/Home/userReducer";
 function Loginpage() {
   const navigate = useNavigate();
   const [load, setLoad] = useState(false);
@@ -19,16 +18,6 @@ function Loginpage() {
   const [formErrors2, setFormErrors2] = useState({});
 
   const dispatch = useDispatch();
-
-  const antIcon = (
-    <LoadingOutlined
-      style={{
-        fontSize: 20,
-        color: "black",
-      }}
-      spin
-    />
-  );
 
   const onFinish = async (values) => {
     setLoad(true);
@@ -42,6 +31,7 @@ function Loginpage() {
         if (action.payload.status === 200) {
           setAuthorizationHeader();
           navigate("/");
+          dispatch(getUser())
         }
         if (action.payload.status === 404) {
           const errorData = action.payload.data;
@@ -196,8 +186,8 @@ function Loginpage() {
               <div className="forgetpswrd">
                 <Link to="/reset_password">Forgot Password?</Link>
               </div>
-              <button className="loginbtn">
-                {load ? <Spin indicator={antIcon} /> : "Login"}
+              <button className="loginbtn" type="submit">
+                {load ? <div className="loader-login"></div> : "Login"}
               </button>
             </Form>
             <p className="newuser_txt py-4">

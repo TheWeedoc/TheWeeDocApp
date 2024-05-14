@@ -43,7 +43,10 @@ function Header() {
   useEffect(() => {
     if (user === "" && isLoggedIn)
       dispatch(getUser()).then((action) => {
-        if (!action.payload?.is_signup_question_answered) {
+        if (
+          action?.status === 200 &&
+          !action.payload?.is_signup_question_answered
+        ) {
           navigate("/signupques");
         }
       });
@@ -69,7 +72,11 @@ function Header() {
               className="Logoclass hidden md:block"
               alt="Theweedoc"
             />
-            <img src={Logo} className="md:hidden mob_Logoclass" alt="Theweedoc" />
+            <img
+              src={Logo}
+              className="md:hidden mob_Logoclass"
+              alt="Theweedoc"
+            />
           </Link>
         </div>
         <div className="hidden md:flex items-center gap-7 ">
