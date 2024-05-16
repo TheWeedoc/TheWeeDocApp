@@ -157,7 +157,7 @@ function Indivialpage() {
       }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [id]);
 
   return isLoading ? (
     <div className="h-screen w-screen flex justify-center items-center ">
@@ -189,7 +189,7 @@ function Indivialpage() {
             </div>
 
             <div className="flex flex-row-reverse md:flex-row justify-between  md:vid-topright md:space-x-2">
-              <div className="relative">
+              {/* <div className="relative">
                 <Popover
                   content={<Suggest />}
                   trigger="click"
@@ -199,7 +199,7 @@ function Indivialpage() {
                     {sharebtn} suggest
                   </div>
                 </Popover>
-              </div>
+              </div> */}
 
               <div className="likesDiv">
                 <div className="cursor-pointer" onClick={handleLike}>
