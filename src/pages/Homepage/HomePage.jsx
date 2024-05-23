@@ -52,7 +52,7 @@ function HomePage() {
   return (
     <>
       <Helmet>
-        <title>TheWeedoc</title>
+        <title>TheWeedoc - Short film platform</title>
         <meta
           name="description"
           content="Enjoy the best Short Films & documentary you would love, Creators upload their original content and publish it on TheWeedoc."
