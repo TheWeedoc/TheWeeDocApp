@@ -55,7 +55,7 @@ function HomePage() {
         <title>TheWeedoc</title>
         <meta
           name="description"
-          content="Enjoy the best Short Films & documentary you wouldn't love, Creators upload their original content and publish it on TheWeedoc."
+          content="Enjoy the best Short Films & documentary you would love, Creators upload their original content and publish it on TheWeedoc."
         />
       </Helmet>
       <Header />
