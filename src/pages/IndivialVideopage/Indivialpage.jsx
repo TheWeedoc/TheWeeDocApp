@@ -161,7 +161,9 @@ function Indivialpage() {
 
   return isLoading ? (
     <div className="h-screen w-screen flex justify-center items-center ">
-      <Spin indicator={antIcon} />
+      <div className="loaderDiv">
+          <div className="loader"></div>
+        </div>
     </div>
   ) : (
     productDetails !== "" && (
