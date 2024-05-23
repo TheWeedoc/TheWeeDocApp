@@ -214,6 +214,19 @@ function Editprofile() {
                       className="userinputs bg-transparent text-white placeholder:text-gray-400"
                     />
                   </div>
+
+                  <div className="flex flex-col w-full md:w-3/6 space-y-2">
+                    <label htmlFor="role" className="userlablerole">
+                      your social link:
+                    </label>
+                    <Input
+                      id="link"
+                      // value={userDetails.designation}
+                      // onChange={handleDesignation}
+                      className="userinputs bg-transparent text-white placeholder:text-gray-400"
+                    />
+                  </div>
+
                 </div>
               </div>
             </div>

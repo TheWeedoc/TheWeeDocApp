@@ -171,6 +171,9 @@ code {
    color: #000 !important;
 }
 
+.ant-input-outlined:focus {
+   background-color: transparent !important;
+}
 /* loader for home page  */
 .loader {
   width: 80px;
