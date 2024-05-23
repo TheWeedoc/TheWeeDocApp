@@ -4,9 +4,10 @@ import _ from "videojs-contrib-quality-levels";
 import "video.js/dist/video-js.css";
 import "./videoplayer.css";
 import "videojs-hotkeys";
-import {PlayCircleFilled} from '@ant-design/icons';
-import Plyr from "plyr-react";
-import "plyr-react/plyr.css";
+import { PlayCircleFilled } from "@ant-design/icons";
+import Plyr from "plyr";
+import "plyr/dist/plyr.css";
+import useIsClient from "../hooks/useIsClient";
 
 // import { playiconloader } from "../../asset/svg/CommonIcons";
 function Videoplayer({
@@ -139,6 +140,48 @@ function Videoplayer({
   //     //   player?.hlsQualitySelector({ displayCurrentQuality: true });
   //   }
   // }, [player]);
+  const isClient = useIsClient();
+
+  useEffect(() => {
+    if (isClient && videoRef.current) {
+      const plyr = new Plyr(videoRef.current, {
+        autoplay: true,
+        controls: [
+          'play-large', // The large play button in the center
+          'restart', // Restart playback
+          'rewind', // Rewind by the seek time (default 10 seconds)
+          'play', // Play/pause playback
+          'fast-forward', // Fast forward by the seek time (default 10 seconds)
+          'progress', // The progress bar and scrubber for playback and buffering
+          'current-time', // The current time of playback
+          'duration', // The full duration of the media
+          'mute', // Toggle mute
+          'volume', // Volume control
+          'captions', // Toggle captions
+           // Settings menu
+          'pip', // Picture-in-picture (currently Safari only)
+          'airplay', // Airplay (currently Safari only)
+           // Show a download button with a link to either the current source or a custom URL you specify in your options
+          'fullscreen' // Toggle fullscreen
+        ],
+      });
+
+      setPlayer(plyr);
+
+      plyr.on('ended', onVideoEnd);
+
+      return () => {
+        if (plyr) {
+          plyr.destroy();
+        }
+      };
+    }
+  }, [isClient, videoRef, videoUrl, onVideoEnd]);
+
+  if (!isClient) {
+    return null; // Render nothing on the server
+  }
+
 
   return (
     <div style={{ position: "relative" }}>
@@ -153,38 +196,14 @@ function Videoplayer({
           className="vidPlayer video-js vjs-default-skin vjs-big-play-centered"
         ></video>
       </div> */}
-
-<Plyr
-        options={{
-          autoplay: true,
-          controls: [
-            'play-large', // The large play button in the center
-            'restart', // Restart playback
-            'rewind', // Rewind by the seek time (default 10 seconds)
-            'play', // Play/pause playback
-            'fast-forward', // Fast forward by the seek time (default 10 seconds)
-            'progress', // The progress bar and scrubber for playback and buffering
-            'current-time', // The current time of playback
-            'duration', // The full duration of the media
-            'mute', // Toggle mute
-            'volume', // Volume control
-            'settings', // Settings menu
-            'pip', // Picture-in-picture (currently Safari only)
-            'airplay', // Airplay (currently Safari only)
-            'fullscreen' // Toggle fullscreen
-          ],
-          iconUrl: <PlayCircleFilled />, // Provide the path to your custom icons
-        }}
-        source={{
-          type: "video",
-          sources: [
-            {
-              src: liveURL,
-              provider: "html5",
-            },
-          ],
-        }}
-      />
+     <video
+        ref={videoRef}
+        className="plyr-react plyr"
+        poster={thumbnail}
+        style={{ width: "100%", height: "600px", position: "relative" }}
+      >
+        <source src={videoUrl} type="video/mp4" />
+      </video>
     </div>
   );
 }
