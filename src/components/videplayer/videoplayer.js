@@ -198,7 +198,7 @@ function Videoplayer({
       </div> */}
      <video
         ref={videoRef}
-        className="plyr-react plyr videoplay-comp-class"
+        className="plyr-react plyr"
         poster={thumbnail}
         style={{ width: "100%",position: "relative" }}
       >
