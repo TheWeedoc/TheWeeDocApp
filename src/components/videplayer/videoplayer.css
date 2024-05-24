@@ -136,4 +136,8 @@
     height: 100% !important;
  }
 
+ .plyr video {
+  height: 100% !important;
+}
+
 }
