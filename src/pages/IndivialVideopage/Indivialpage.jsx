@@ -35,7 +35,6 @@ import {
 import { Link } from "react-router-dom";
 import Suggest from "../../components/cards/IndividualVideoPage/Suggest";
 import { Helmet } from "react-helmet";
-import useIsClient from "../../components/hooks/useIsClient";
 const { TextArea } = Input;
 
 function Indivialpage() {
@@ -174,12 +173,10 @@ function Indivialpage() {
           <title>{productDetails?.title} - TheWeedoc</title>
         </Helmet>
         <div className="indivialpage-main-Div">
-          {useIsClient && (
-            <Videoplayer
-              thumbnail={productDetails?.image}
-              videoUrl={productDetails?.video}
-            />
-          )}
+          <Videoplayer
+            thumbnail={productDetails?.image}
+            videoUrl={productDetails?.video}
+          />
           <div className="vid-topDiv flex flex-col space-y-2 pb-6 md:pb-0 md:space-y-0 md:flex-row">
             <div className="vid-topleft">
               <h1>{productDetails?.title}</h1>
