@@ -5,6 +5,8 @@ import "video.js/dist/video-js.css";
 import "./videoplayer.css";
 import "videojs-hotkeys";
 import { PlayCircleFilled } from "@ant-design/icons";
+import Plyr from "plyr";
+import "plyr/dist/plyr.css";
 import useIsClient from "../hooks/useIsClient";
 
 // import { playiconloader } from "../../asset/svg/CommonIcons";
