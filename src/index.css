@@ -191,3 +191,9 @@ code {
   animation: l3 1s infinite linear;
 }
 @keyframes l3 {to{transform: rotate(1turn)}}
+
+
+.weblink_contain:hover{
+  color: rgb(0, 183, 255);
+  text-decoration: underline;
+}

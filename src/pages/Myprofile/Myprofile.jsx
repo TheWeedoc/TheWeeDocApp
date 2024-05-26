@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Myprofile.css";
 import { EditprofileIcon, SwitchVeritcal } from "../../Assests/Svg/Commonsvg";
-import { SearchOutlined } from "@ant-design/icons";
+import { SearchOutlined,GlobalOutlined } from "@ant-design/icons";
 import Uploads from "../../components/cards/Myprofile/Uploads";
 import SavedFilms from "../../components/cards/Myprofile/SavedFilms";
 import { Input } from "antd";
@@ -76,7 +76,7 @@ function Myprofile() {
           <div className="flex flex-col justify-center items-center w-full">
             <div className="flex flex-col md:flex-row justify-between bg-[#14161c]  ellipsis rounded-md border border-[#4A4949] w-full p-2  md:px-6 md:py-9">
               <div className="flex w-full justify-start">
-                <div className="flex flex-row items-center space-x-6 md:max-w-40">
+                <div className="flex flex-row items-center space-x-6">
                   <div className="w-20 md:w-32 lg:w-[183px] ">
                     <img
                       src={
@@ -88,20 +88,25 @@ function Myprofile() {
                   </div>
                   <div className="flex flex-row space-x-3 ">
                     <div className="flex flex-col p-0 container w-40 md:w-52 lg:w-64">
-                      <p className="font-bold md:py-6 md:text-xl lg:text-3xl/7 font-notosans ellipsis">
-                        {user?.first_name
-                          ? `${user?.first_name} ${user?.last_name}`
-                          : "No Name"}
-                      </p>
+                      <Link to="/edit_profile" className="flex flex-row items-center ">
+                        <p className="font-bold md:py-6 md:text-xl lg:text-3xl/7 font-notosans ellipsis">
+                          {user?.first_name
+                            ? `${user?.first_name} ${user?.last_name}`
+                            : "No Name"}{" "}
+                        </p>
+                        <span>{EditprofileIcon}</span>
+                      </Link>
                       <span className="text-[#bdbdbd] font-medium md:pb-4 md:text-xl lg:text-2xl/7">
                         {user?.designation
                           ? user?.designation
                           : "No Designation"}
                       </span>
+
+                      <div className="weblink_contain">
+                      <GlobalOutlined /> {" "}
+                       <a href={user?.weblink} target="_blank" >{user?.weblink}</a>
+                      </div>
                     </div>
-                    <Link to="/edit_profile" className="md:py-6">
-                      <div>{EditprofileIcon}</div>
-                    </Link>
                   </div>
                 </div>
               </div>

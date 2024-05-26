@@ -13,17 +13,19 @@ import { Helmet } from "react-helmet";
 function Editprofile() {
   const { user } = useSelector((state) => state.user);
   const [userDetails, setUserDetails] = useState({
-    first_name: user?.first_name,
-    last_name: user?.last_name,
-    designation: user?.designation,
+    first_name: user?.first_name || '',
+    last_name: user?.last_name || '',
+    designation: user?.designation || '',
     preview: "",
     profilePicChange: false,
+    weblink: user?.weblink || ''
   });
 
   const [profileFile, setProfileFile] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { message, type } = useSelector((state) => state.notification);
+
   const handleNotificationClose = () => {
     dispatch(clearNotification());
   };
@@ -37,28 +39,15 @@ function Editprofile() {
         placement: "topRight",
       });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [message]);
 
-  const handleDesignation = (e) => {
-    e.preventDefault();
-    setUserDetails({ ...userDetails, designation: e.target.value });
-  };
-
-  const handleFirstname = (e) => {
-    e.preventDefault();
-    setUserDetails({ ...userDetails, first_name: e.target.value });
-  };
-
-  const handleLastname = (e) => {
-    e.preventDefault();
-    setUserDetails({ ...userDetails, last_name: e.target.value });
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setUserDetails({ ...userDetails, [name]: value });
   };
 
   const handleProfilePic = (e) => {
-    e.preventDefault();
     const file = e.target.files[0];
-
     if (file) {
       setProfileFile(file);
       setUserDetails({
@@ -71,36 +60,29 @@ function Editprofile() {
 
   const handleSave = (e) => {
     e.preventDefault();
-
     const updatedApiData = new FormData();
 
-    if (
-      userDetails.first_name !== user.first_name &&
-      userDetails.first_name !== ""
-    ) {
+    if (userDetails.first_name !== user.first_name && userDetails.first_name !== "") {
       updatedApiData.append("first_name", userDetails.first_name);
     }
-    if (
-      userDetails.last_name !== user.last_name &&
-      userDetails.last_name !== ""
-    ) {
+    if (userDetails.last_name !== user.last_name && userDetails.last_name !== "") {
       updatedApiData.append("last_name", userDetails.last_name);
     }
-    if (
-      userDetails.designation !== user?.designation &&
-      userDetails.designation !== ""
-    ) {
+    if (userDetails.designation !== user?.designation && userDetails.designation !== "") {
       updatedApiData.append("designation", userDetails.designation);
     }
     if (userDetails.profilePicChange && profileFile !== null) {
       updatedApiData.append("profile_pic", profileFile);
     }
+    if (userDetails.weblink && userDetails.weblink !== user?.weblink) {
+      updatedApiData.append("weblink", userDetails.weblink);
+    }
 
-    // console.log(updatedApiData);
     dispatch(updateUser(updatedApiData)).then(() => {
       navigate("/myprofile");
     });
   };
+
   return (
     <>
       <Helmet>
@@ -109,38 +91,22 @@ function Editprofile() {
       <Header />
       <div className="flex flex-col justify-center items-center w-full">
         <div className="flex p-3 w-full justify-center md:w-10/12">
-          <div className="flex flex-col justify-between bg-[#14161c] rounded-md border border-[#4A4949] w-full p-3 space-y-4  md:px-3 md:py-6">
+          <div className="flex flex-col justify-between bg-[#14161c] rounded-md border border-[#4A4949] w-full p-3 space-y-4 md:px-3 md:py-6">
             <div className="flex flex-row justify-between items-center">
               <Link to="/myprofile">
                 <div className="flex flex-row space-x-3 items-center">
-                  {" "}
-                  <div
-                    style={{
-                      display: "inline-block",
-                      borderRadius: "50%",
-                      backgroundColor: "#1e1f21",
-                      padding: "4px",
-                    }}
-                  >
+                  <div style={{ display: "inline-block", borderRadius: "50%", backgroundColor: "#1e1f21", padding: "4px" }}>
                     {backIcon}
-                  </div>{" "}
-                  <span className="font-notosans editprofileText text-white">
-                    Edit Profile
-                  </span>
+                  </div>
+                  <span className="font-notosans editprofileText text-white">Edit Profile</span>
                 </div>
               </Link>
-
               <div className="full">
-                <button
-                  className="bg-white px-6 rounded-lg py-2 savetxt"
-                  onClick={handleSave}
-                >
-                  Save
-                </button>
+                <button className="bg-white px-6 rounded-lg py-2 savetxt" onClick={handleSave}>Save</button>
               </div>
             </div>
             <div className="text-white w-full pt-10">
-              <div className="flex flex-col md:flex-row items-center justify-between md:space-x-8 ">
+              <div className="flex flex-col md:flex-row items-center justify-between md:space-x-8">
                 <div className="flex flex-col justify-center space-y-4 items-center md:w-3/6">
                   <div className="w-26">
                     <img
@@ -148,8 +114,8 @@ function Editprofile() {
                         userDetails.preview !== ""
                           ? userDetails.preview
                           : user?.profile_pic
-                          ? user?.profile_pic
-                          : defaultProfile
+                            ? user?.profile_pic
+                            : defaultProfile
                       }
                       alt="profile"
                       className="editImage rounded-full border border-white border-4"
@@ -164,14 +130,7 @@ function Editprofile() {
                         id="profilePicInput"
                         accept="image/*"
                       />
-                      <div
-                        style={{
-                          display: "inline-block",
-                          borderRadius: "50%",
-                          backgroundColor: "#1e1f21",
-                          padding: "4px",
-                        }}
-                      >
+                      <div style={{ display: "inline-block", borderRadius: "50%", backgroundColor: "#1e1f21", padding: "4px" }}>
                         {cameraIcon}
                       </div>
                       <span className="shrink-0">Change Profile picture</span>
@@ -179,54 +138,46 @@ function Editprofile() {
                   </label>
                 </div>
                 <div className="flex flex-col w-full md:3/6 pt-10 md:pt-0 space-y-6">
-                  <div className="flex flex-col w-full md:w-3/6 justify-center space-y-2 ">
-                    <label htmlFor="firstname" className="userlabels">
-                      Firstname:
-                    </label>
+                  <div className="flex flex-col w-full md:w-3/6 justify-center space-y-2">
+                    <label htmlFor="firstname" className="userlabels">Firstname:</label>
                     <Input
                       id="firstname"
+                      name="first_name"
                       value={userDetails.first_name}
-                      onChange={handleFirstname}
-                      className="userinputs bg-transparent text-white placeholder:text-gray-400  "
+                      onChange={handleInputChange}
+                      className="userinputs bg-transparent text-white placeholder:text-gray-400"
                     />
                   </div>
-
                   <div className="flex flex-col w-full md:w-3/6 justify-center space-y-2">
-                    <label htmlFor="lastname" className="userlabels">
-                      Lastname:
-                    </label>
+                    <label htmlFor="lastname" className="userlabels">Lastname:</label>
                     <Input
                       id="lastname"
+                      name="last_name"
                       value={userDetails.last_name}
-                      onChange={handleLastname}
+                      onChange={handleInputChange}
                       className="userinputs bg-transparent text-white placeholder:text-gray-400"
                     />
                   </div>
-
                   <div className="flex flex-col w-full md:w-3/6 space-y-2">
-                    <label htmlFor="role" className="userlablerole">
-                      your role or position or occupation:
-                    </label>
+                    <label htmlFor="role" className="userlablerole">Your role or position or occupation:</label>
                     <Input
                       id="role"
+                      name="designation"
                       value={userDetails.designation}
-                      onChange={handleDesignation}
+                      onChange={handleInputChange}
                       className="userinputs bg-transparent text-white placeholder:text-gray-400"
                     />
                   </div>
-
                   <div className="flex flex-col w-full md:w-3/6 space-y-2">
-                    <label htmlFor="role" className="userlablerole">
-                      your social link:
-                    </label>
+                    <label htmlFor="weblink" className="userlablerole">Your social link:</label>
                     <Input
-                      id="link"
-                      // value={userDetails.designation}
-                      // onChange={handleDesignation}
+                      id="weblink"
+                      name="weblink"
+                      value={userDetails.weblink}
+                      onChange={handleInputChange}
                       className="userinputs bg-transparent text-white placeholder:text-gray-400"
                     />
                   </div>
-
                 </div>
               </div>
             </div>
