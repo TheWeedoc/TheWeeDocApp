@@ -14,6 +14,7 @@ function HomePage() {
     (state) => state.products
   );
 
+
   useEffect(() => {
     dispatch(getProducts({ page: 1, page_size: 20 }));
   }, [dispatch]);
