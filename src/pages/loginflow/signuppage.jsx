@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { sendOTP, signup } from "../../Api/Fetchclient";
 import { LoadingOutlined } from "@ant-design/icons";
 import { Spin } from "antd";
-import LogoImage from "../../Assests/Images/LogoImage.png";
+import LogoImage from "../../Assests/Images/TheWeedoc.png";
 import LogoImageMobile from "../../Assests/Images/LogoImageMobile.png";
 import { Helmet } from "react-helmet";
 

@@ -3,7 +3,7 @@ import "./Loginflow.css";
 import { Form, Input } from "antd";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import LogoImage from "../../Assests/Images/LogoImage.png";
+import LogoImage from "../../Assests/Images/TheWeedoc.png";
 import LogoImageMobile from "../../Assests/Images/LogoImageMobile.png";
 
 import { useDispatch } from "react-redux";
@@ -196,7 +196,7 @@ function Loginpage() {
           </div>
           <div className="log_btm-sec">
             <p>
-              By logging In, you accept The Wee Doc’s <br />
+              By logging In, you accept The WeeDoc <br />
               <b>Terms & Conditions</b> and{" "}
               <b>
                 <Link to="/privacypolicy">Privacy Policy</Link>
