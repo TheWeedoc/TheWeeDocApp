@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import LogoImage from "../../Assests/Images/LogoImage.png";
+import LogoImage from "../../Assests/Images/TheWeedoc.png";
 import LogoImageMobile from "../../Assests/Images/LogoImageMobile.png";
 import "./Loginflow.css";
 
@@ -21,7 +21,7 @@ function ResetChange() {
               <img
                 src={LogoImage}
                 alt="TheWeeDocLogo"
-                className="w-full"
+                 className="logo-auth-page"
               />{" "}
             </Link>
           </h1>
@@ -32,9 +32,9 @@ function ResetChange() {
             <Link to="/" className="flex flex-row items-center">
               {" "}
               <img
-                src={LogoImageMobile}
+                src={LogoImage}
                 alt="TheWeeDocLogo"
-                className="w-full"
+                 className="logo-auth-page"
               />{" "}
             </Link>
           </h1>

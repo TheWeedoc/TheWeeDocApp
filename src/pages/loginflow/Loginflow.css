@@ -14,7 +14,7 @@
 }
 
 .log_rightside{
-    width: 11vw;
+    /* width: 11vw; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -146,6 +146,10 @@ color: #FAFBFF;
     color: #FAFBFF;
 }
 
+.logo-auth-page {
+    width: 180px;
+    height: auto;
+}
 /* Media Query for Mobile */
 @media (max-width: 767px) {
 

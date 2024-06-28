@@ -4,7 +4,7 @@ import "./Loginflow.css";
 import { Form, Input } from "antd";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { resetUpdatePassword } from "../../Api/Fetchclient";
-import LogoImage from "../../Assests/Images/LogoImage.png";
+import LogoImage from "../../Assests/Images/TheWeedoc.png";
 import LogoImageMobile from "../../Assests/Images/LogoImageMobile.png";
 
 function NewPasswordPage() {
@@ -77,7 +77,7 @@ function NewPasswordPage() {
               <img
                 src={LogoImage}
                 alt="TheWeeDocLogo"
-                className="w-full"
+                 className="logo-auth-page"
               />{" "}
             </Link>
           </h1>
@@ -88,9 +88,9 @@ function NewPasswordPage() {
             <Link to="/" className="flex flex-row items-center">
               {" "}
               <img
-                src={LogoImageMobile}
+                src={LogoImage}
                 alt="TheWeeDocLogo"
-                className="w-full"
+                 className="logo-auth-page"
               />{" "}
             </Link>
           </h1>

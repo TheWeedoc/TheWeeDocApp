@@ -4,7 +4,7 @@ import { Form, Input, Spin } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { LoadingOutlined } from "@ant-design/icons";
 import { resetpassword } from "../../Api/Fetchclient";
-import LogoImage from "../../Assests/Images/LogoImage.png";
+import LogoImage from "../../Assests/Images/TheWeedoc.png";
 import LogoImageMobile from "../../Assests/Images/LogoImageMobile.png";
 
 function Resetpage() {
@@ -70,7 +70,7 @@ function Resetpage() {
               <img
                 src={LogoImage}
                 alt="TheWeeDocLogo"
-                className="w-full"
+                 className="logo-auth-page"
               />{" "}
             </Link>
           </h1>
@@ -81,9 +81,9 @@ function Resetpage() {
             <Link to="/" className="flex flex-row items-center">
               {" "}
               <img
-                src={LogoImageMobile}
+                src={LogoImage}
                 alt="TheWeeDocLogo"
-                className="w-full"
+                 className="logo-auth-page"
               />{" "}
             </Link>
           </h1>

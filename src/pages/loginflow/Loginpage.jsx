@@ -109,7 +109,7 @@ function Loginpage() {
                 <img
                   src={LogoImage}
                   alt="TheWeeDocLogo"
-                  className="w-full"
+                  className="logo-auth-page"
                 />{" "}
               </Link>
             </h1>
@@ -120,9 +120,9 @@ function Loginpage() {
               <Link to="/" className="flex flex-row items-center">
                 {" "}
                 <img
-                  src={LogoImageMobile}
+                  src={LogoImage}
                   alt="TheWeeDocLogo"
-                  className="w-full"
+                  className="logo-auth-page"
                 />{" "}
               </Link>
             </h1>
