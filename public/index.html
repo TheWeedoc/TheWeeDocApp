@@ -13,9 +13,13 @@
     <!-- <link rel="manifest" href="/site.webmanifest"> -->
 
     <!-- google adsence  -->
-    <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4879844496822236"
-     crossorigin="anonymous"></script>
-     <ins class="adsbygoogle"
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4879844496822236"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- <ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-4879844496822236"
      data-ad-slot="2222222"
@@ -29,6 +33,24 @@
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
+
+    <!-- Google tag (gtag.js) Analytics-->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-XCQ0QPMGDP"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-XCQ0QPMGDP");
+    </script>
+    <!-- Google tag (gtag.js) Analytics -->
+
+
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
