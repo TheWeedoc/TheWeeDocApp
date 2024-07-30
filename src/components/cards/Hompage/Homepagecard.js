@@ -25,10 +25,10 @@ function Homepagecard({ item }) {
           </div>
           <div className="thumbsDiv">
             <div>
-              {thumbsup} {item?.likes[0] ? item?.likes[0] : 0}
+              {thumbsup} {item?.like_count ? item?.like_count : 0}
             </div>
             <div>
-              {thumbsdown} {item?.dislikes[0] ? item?.dislikes[0] : 0}
+              {thumbsdown} {item?.dislike_count ? item?.dislike_count : 0}
             </div>
           </div>
         </div>
