@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import { Tooltip } from "antd";
 // const castAndCrewData = [
 //   // Sample cast and crew data
 //   { id: 1, name: 'Actor 1', role: 'Lead Actor', image: '/path-to-image.jpg' },
@@ -40,25 +40,41 @@ const CastAndCrewCarousel = ({ castAndCrewData }) => {
     setStartIndex(startIndex - itemsPerPage);
   };
 
+  let defaultUser =
+    "https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg";
+
   return (
     <div className="relative w-full">
       <div className="flex flex-row items-center space-x-4 overflow-x-auto">
         {castAndCrewData
           .slice(startIndex, startIndex + itemsPerPage)
           .map((member) => (
-            <div key={member.id} className="flex flex-col items-center">
-              <img
-                src={member?.cast_member?.profile_pic}
-                alt={member?.cast_member?.first_name}
-                className="w-20 h-20 rounded-full"
-              />
-              <p className="text-sm font-semibold mt-1 text-white w-20 text-center font-notosans truncate">
-                {member?.cast_member?.first_name}
-              </p>
-              <p className="text-xs text-gray-500 font-notosans">
-                {member?.role}
-              </p>
-            </div>
+            <Tooltip
+              key={member.id}
+              title={
+                member?.cast_member?.username ||
+                member?.cast_member?.first_name ||
+                "No Name"
+              }
+            >
+              <div className="flex flex-col items-center cursor-pointer">
+                <img
+                  src={
+                    member?.cast_member?.profile_pic === null
+                      ? defaultUser
+                      : member?.cast_member?.profile_pic
+                  }
+                  alt={member?.cast_member?.first_name}
+                  className="w-20 h-20 rounded-full"
+                />
+                <p className="text-sm font-semibold mt-1 text-white w-20 text-center font-notosans truncate">
+                  {member?.cast_member?.first_name}
+                </p>
+                <p className="text-xs text-gray-500 font-notosans">
+                  {member?.role}
+                </p>
+              </div>
+            </Tooltip>
           ))}
       </div>
       <div className="h-full">

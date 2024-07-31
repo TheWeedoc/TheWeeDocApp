@@ -49,6 +49,11 @@ function Indivialpage() {
     dispatch(clearNotification());
   };
 
+  let defaultUser =
+    "https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg";
+
+  console.log(productCustomer, "ProductCustomer");
+
   const [review, setReview] = useState("");
   const dispatch = useDispatch();
   const antIcon = (
@@ -253,7 +258,11 @@ function Indivialpage() {
                 <div className="userprofileSec">
                   <div className="pro_imgDiv">
                     <img
-                      src={productCustomer?.profile_pic}
+                      src={
+                        productCustomer?.profile_pic === null
+                          ? defaultUser
+                          : productCustomer?.profile_pic
+                      }
                       className="profilepic"
                       alt="ProfilePicture"
                     />

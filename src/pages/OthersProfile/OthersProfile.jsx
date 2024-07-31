@@ -15,6 +15,7 @@ import {
 import { notification } from "antd";
 import "./OthersProfile.css";
 import { Helmet } from "react-helmet";
+import { isEmpty } from "lodash";
 
 function OthersProfile() {
   const [selectTab, setSelectTab] = useState("uploads");
@@ -25,8 +26,10 @@ function OthersProfile() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  let defaultUser =
+    "https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg";
 
-  console.log(otherUser,"otherUser");
+  console.log(otherUser, "otherUser");
 
   const handleNotificationClose = () => {
     dispatch(clearNotification());
@@ -87,17 +90,17 @@ function OthersProfile() {
                   <div className="w-20 md:w-32 lg:w-[183px]">
                     <img
                       src={
-                        otherUser?.profile_pic
-                          ? otherUser?.profile_pic
-                          : defaultProfile
+                        isEmpty(otherUser?.profile_pic)
+                          ? defaultUser
+                          : otherUser?.profile_pic
                       }
-                      alt="profile"
+                      alt={otherUser?.first_name || otherUser?.username}
                       className="w-20 h-20 md:w-32 md:h-32 lg:w-[183px] lg:h-[183px] rounded-full border border-white border-2"
                     />
                   </div>
                   <div className="flex flex-col p-0 container w-40 md:w-52 lg:w-64">
                     <h1 className="font-bold md:py-6 md:text-xl lg:text-3xl/7 font-notosans ellipsis">
-                      {otherUser?.first_name
+                      {!isEmpty(otherUser?.first_name)
                         ? otherUser?.first_name
                         : otherUser?.username || "No Name"}{" "}
                       {otherUser?.last_name}
