@@ -19,9 +19,9 @@ function Copylink() {
   return (
     <button
       onClick={copyToClipboard}
-      className="flex flex-row space-x-4 text-white items-center py-2 px-4 rounded border border-[#545455] rounded-md"
+      className="flex flex-row  text-white items-center py-2 px-2 rounded border border-[#545455] rounded-md"
     >
-      Copy Film Link
+      <a className="copy-text">Copy Film Link</a>
       <span className="flex items-center pl-3">{CopyButton}</span>
     </button>
   );

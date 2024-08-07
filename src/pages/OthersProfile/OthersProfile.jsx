@@ -3,6 +3,7 @@ import Header from "../../components/Layout/Header/Header";
 import OthersProfileUploads from "../../components/cards/OtherProfile/OtherProfileUploads";
 import { useNavigate, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
+import { GlobalOutlined } from "@ant-design/icons";
 import {
   followUserOthersProfile,
   otherUserProfile,
@@ -86,8 +87,8 @@ function OthersProfile() {
           <div className="flex flex-col justify-center items-center w-full">
             <div className="flex flex-col md:flex-row justify-between bg-[#14161c] rounded-md border border-[#4A4949] w-full p-2  md:px-6 md:py-9 ">
               <div className="flex w-full justify-start">
-                <div className="flex flex-row items-center md:items-start w-full space-x-4 md:space-x-8 md:max-w-40 ">
-                  <div className="w-20 md:w-32 lg:w-[183px]">
+                <div className="flex flex-row items-center w-full space-x-3 ">
+                  <div className="other-profile-img-cont">
                     <img
                       src={
                         isEmpty(otherUser?.profile_pic)
@@ -95,21 +96,29 @@ function OthersProfile() {
                           : otherUser?.profile_pic
                       }
                       alt={otherUser?.first_name || otherUser?.username}
-                      className="w-20 h-20 md:w-32 md:h-32 lg:w-[183px] lg:h-[183px] rounded-full border border-white border-2"
+                      className="other-profile-img rounded-full border border-white border-2"
                     />
                   </div>
                   <div className="flex flex-col p-0 container w-40 md:w-52 lg:w-64">
-                    <h1 className="font-bold md:py-6 md:text-xl lg:text-3xl/7 font-notosans ellipsis">
+                    <h1 className="font-bold md:py-4 md:text-xl lg:text-3xl/7 font-notosans ellipsis">
                       {!isEmpty(otherUser?.first_name)
                         ? otherUser?.first_name
                         : otherUser?.username || "No Name"}{" "}
                       {otherUser?.last_name}
                     </h1>
-                    <span className="text-[#bdbdbd] font-medium md:pb-4 md:text-xl lg:text-2xl/7">
+                    <span className="text-[#bdbdbd] font-medium md:pb-4 md:text-xl lg:text-xl/7">
                       {otherUser?.designation
                         ? otherUser?.designation
                         : "No Designation"}
                     </span>
+                    {otherUser?.weblink && (
+                      <div className="weblink_contain">
+                        <GlobalOutlined />{" "}
+                        <a href={otherUser?.weblink} target="_blank">
+                          {otherUser?.weblink}
+                        </a>
+                      </div>
+                    )}
                   </div>
                   <div className="flex items-start md:py-6">
                     <button

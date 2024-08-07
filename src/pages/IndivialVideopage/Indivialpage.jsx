@@ -208,6 +208,10 @@ function Indivialpage() {
                 </Popover>
               </div> */}
 
+              <div className="flex justify-center mob-copy-link-btn">
+                <Copylink />
+              </div>
+
               <div className="likesDiv">
                 <div className="cursor-pointer" onClick={handleLike}>
                   {productDetails?.has_liked ? ThumbsupFilled : thumbsup}
@@ -270,7 +274,7 @@ function Indivialpage() {
 
                   <div className="pro_textDiv">
                     <b>{productDetails?.customer}</b>
-                    <small>167 Followers</small>
+                    <small>{productCustomer?.followers} Followers</small>
                   </div>
                   <button
                     className="invid_page_followbtn"

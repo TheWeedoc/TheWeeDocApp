@@ -123,6 +123,23 @@ function Header() {
         </div>
 
         <div className="md:hidden flex items-center gap-3 z-10">
+          {isLoggedIn && (
+            <div className="notifyDiv">
+              <div>
+                <Popover
+                  placement="bottom"
+                  content={<Notification notify={notify} />}
+                  trigger="click"
+                >
+                  {notificationicon}
+                </Popover>
+              </div>
+              {notify?.length !== 0 && (
+                <div className="notifitionCount">{notify?.length}</div>
+              )}
+            </div>
+          )}
+
           <div>
             <Link to="/search">{SearchIcon}</Link>
           </div>
@@ -175,18 +192,6 @@ function Header() {
                 <div className="flex flex-col text-2xl font-semibold space-y-3 w-4/5">
                   <div>
                     <Link to="/upload">Upload</Link>
-                  </div>
-                  <div className="">
-                    <div>
-                      <Popover
-                        placement="bottom"
-                        content={<Notification />}
-                        trigger="click"
-                      >
-                        Notifications
-                      </Popover>
-                    </div>
-                    {/* <div className="notifitionCount">2</div> */}
                   </div>
                   <div>
                     <Link to="/aboutus">About Us</Link>

@@ -147,7 +147,7 @@ function Resetpage() {
 
         <div className="log_btm-sec">
           <p>
-            By logging In, you accept The Wee Doc’s <br />
+            By logging In, you accept TheWeedoc’s <br />
             <b>Terms & Conditions</b> and{" "}
             <b>
               <Link to="/privacypolicy">Privacy Policy</Link>

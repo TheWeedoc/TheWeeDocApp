@@ -196,7 +196,7 @@ function Loginpage() {
           </div>
           <div className="log_btm-sec">
             <p>
-              By logging In, you accept The WeeDoc <br />
+              By logging In, you accept TheWeedoc <br />
               <b>Terms & Conditions</b> and{" "}
               <b>
                 <Link to="/privacypolicy">Privacy Policy</Link>

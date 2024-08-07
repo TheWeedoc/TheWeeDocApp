@@ -496,7 +496,7 @@ function SignupQuestions() {
       <footer>
         <div className="flex items-center justify-center py-2">
           <p>
-            By logging In, you accept The Wee Doc’s <br />
+            By logging In, you accept TheWeedoc’s <br />
             <b>Terms & Conditions</b> and{" "}
             <b>
               <Link to="/privacypolicy">Privacy Policy</Link>

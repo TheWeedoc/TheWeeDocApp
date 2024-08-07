@@ -24,3 +24,24 @@
     text-align: left;
     
   }
+
+  .other-profile-img{
+    width: 120px;
+    height: 120px;
+  }
+
+  .other-profile-img-cont{ 
+    width: 180px;
+  }
+
+  @media screen and (max-width:540px) {
+    .other-profile-img{
+      width: 65px;
+      height: 65px;
+    }
+
+    .other-profile-img-cont{ 
+      width: 25%;
+    }
+  
+  }
