@@ -9,9 +9,11 @@ import { clearNotification } from "../../store/Home/notificationReducer";
 import defaultProfile from "../../Assests/Images/Defaultprofile.png";
 import "./Editprofile.css";
 import { Helmet } from "react-helmet";
+import Loader from "../../components/loader/Loader";
 
 function Editprofile() {
   const { user } = useSelector((state) => state.user);
+  const[isLoading,setIsLoading]= useState(false)
   const [userDetails, setUserDetails] = useState({
     first_name: user?.first_name || '',
     last_name: user?.last_name || '',
@@ -29,6 +31,8 @@ function Editprofile() {
   const handleNotificationClose = () => {
     dispatch(clearNotification());
   };
+ 
+
 
   useEffect(() => {
     if (message) {
@@ -40,6 +44,12 @@ function Editprofile() {
       });
     }
   }, [message]);
+
+  if(isLoading){
+    return(
+      <Loader/>
+    ) 
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -58,7 +68,9 @@ function Editprofile() {
     }
   };
 
+
   const handleSave = (e) => {
+    setIsLoading(true);
     e.preventDefault();
     const updatedApiData = new FormData();
 
@@ -78,9 +90,12 @@ function Editprofile() {
       updatedApiData.append("weblink", userDetails.weblink);
     }
 
-    dispatch(updateUser(updatedApiData)).then(() => {
+    try {
+       dispatch(updateUser(updatedApiData));
       navigate("/myprofile");
-    });
+    }  finally {
+      setIsLoading(false); 
+    }
   };
 
   return (
