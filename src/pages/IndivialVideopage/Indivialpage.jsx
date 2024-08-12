@@ -12,8 +12,6 @@ import {
 } from "../../Assests/Svg/Commonsvg";
 import { Popover, notification } from "antd";
 import CastAndCrewSlider from "../../components/cards/IndividualVideoPage/CastAndCrewSlider";
-import { LoadingOutlined } from "@ant-design/icons";
-import { Spin } from "antd";
 import { Input } from "antd";
 import { useNavigate, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
@@ -35,6 +33,7 @@ import {
 import { Link } from "react-router-dom";
 import Suggest from "../../components/cards/IndividualVideoPage/Suggest";
 import { Helmet } from "react-helmet";
+import {EyeOutlined} from '@ant-design/icons';
 const { TextArea } = Input;
 
 function Indivialpage() {
@@ -56,14 +55,7 @@ function Indivialpage() {
 
   const [review, setReview] = useState("");
   const dispatch = useDispatch();
-  const antIcon = (
-    <LoadingOutlined
-      style={{
-        fontSize: 24,
-      }}
-      spin
-    />
-  );
+ 
   let resultString = "";
 
   const handleLoginMessage = () => {
@@ -211,7 +203,12 @@ function Indivialpage() {
               <div className="flex justify-center mob-copy-link-btn">
                 <Copylink />
               </div>
+              <div className="flex justify-center items-center">
 
+                <EyeOutlined style={{color:"white",fontSize:"22px"}}/> 
+
+                <h1 style={{color:"white",fontSize:"18px",marginLeft:"6px"}}>{productDetails?.views}</h1>
+              </div>
               <div className="likesDiv">
                 <div className="cursor-pointer" onClick={handleLike}>
                   {productDetails?.has_liked ? ThumbsupFilled : thumbsup}

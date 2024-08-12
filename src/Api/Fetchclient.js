@@ -414,3 +414,12 @@ export const preferedLanguages = async (data) => {
 
   return lang;
 };
+
+export const AddViewsCount = async (id) => {
+  try {
+    const result = await post(`/fetch/update/views-count/`, { product_id: id, count:1});
+    return result;
+  } catch (err) {
+    throw Error(err.response.data);
+  }
+};

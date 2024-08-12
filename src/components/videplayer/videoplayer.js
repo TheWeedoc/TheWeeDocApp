@@ -8,6 +8,8 @@ import { PlayCircleFilled } from "@ant-design/icons";
 import Plyr from "plyr";
 import "plyr/dist/plyr.css";
 import useIsClient from "../hooks/useIsClient";
+import { AddViewsCount } from "../../Api/Fetchclient";
+import { useParams } from "react-router";
 
 // import { playiconloader } from "../../asset/svg/CommonIcons";
 function Videoplayer({
@@ -23,12 +25,12 @@ function Videoplayer({
 }) {
   // console.log(showModal,"VIDEO PLAYER MODAL STATUS")
   const videoRef = useRef();
+  const { id } = useParams();
   const [player, setPlayer] = useState(undefined);
-  const [callFinishVideoAPI, setCallFinishVideoAPI] = useState(false);
-  const [vidDuration, setVidDuration] = useState(50000);
+
+  const [halfwayReached, setHalfwayReached] = useState(false);
+  const hasHalfwayReached = useRef(false);
   const videoId = "e2280eeb-4cdb-43e7-a34f-36868326b8cb";
-  const thumbnailURL = thumbnail;
-  // "https://vz-a2adf92d-b24.b-cdn.net/e2280eeb-4cdb-43e7-a34f-36868326b8cb/thumbnail.jpg";
   const liveURL = videoUrl;
   // "https://storage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4";
   // videoFile
@@ -169,6 +171,22 @@ function Videoplayer({
       setPlayer(plyr);
 
       plyr.on("ended", onVideoEnd);
+      plyr.on("timeupdate", () => {
+        const currentTime = plyr.currentTime;
+        const duration = plyr.duration;
+
+        // Check if video is halfway completed
+        if (duration > 0 && currentTime >= duration / 2 && !hasHalfwayReached.current) {
+          hasHalfwayReached.current = true; // Set the flag to true to prevent further calls
+          AddViewsCount(id) // Call your API here
+            .then(response => {
+              console.log("Views count updated:", response);
+            })
+            .catch(error => {
+              console.error("Error updating views count:", error);
+            });
+        }
+      });
 
       return () => {
         if (plyr) {
@@ -176,7 +194,7 @@ function Videoplayer({
         }
       };
     }
-  }, [isClient, videoRef, videoUrl, onVideoEnd]);
+  }, [isClient, videoRef, videoUrl, onVideoEnd,id]);
 
   if (!isClient) {
     return null; // Render nothing on the server
