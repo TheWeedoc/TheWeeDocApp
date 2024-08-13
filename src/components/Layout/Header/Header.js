@@ -35,10 +35,11 @@ function Header() {
   };
 
   const notification = async () => {
-    const resp = await Notifications().then((res) => {
-      setNotify(res);
+    const resp = await Notifications().then((resp) => {
+      setNotify(resp);
     });
   };
+  
 
   useEffect(() => {
     if (user === "" && isLoggedIn)
