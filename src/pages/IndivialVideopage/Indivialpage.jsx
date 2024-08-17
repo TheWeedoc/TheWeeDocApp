@@ -203,12 +203,12 @@ function Indivialpage() {
               <div className="flex justify-center mob-copy-link-btn">
                 <Copylink />
               </div>
-              <div className="flex justify-center items-center">
+              {/* <div className="flex justify-center items-center">
 
                 <EyeOutlined style={{color:"white",fontSize:"22px"}}/> 
 
                 <h1 style={{color:"white",fontSize:"18px",marginLeft:"6px"}}>{productDetails?.views}</h1>
-              </div>
+              </div> */}
               <div className="likesDiv">
                 <div className="cursor-pointer" onClick={handleLike}>
                   {productDetails?.has_liked ? ThumbsupFilled : thumbsup}

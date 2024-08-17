@@ -179,6 +179,17 @@ code {
   background-color: transparent !important;
 }
 
+.ant-input-outlined {
+  background: transparent;
+}
+
+.ant-input {
+  background-color: transparent;
+  color: white !important;
+}
+
+
+
 /* loader for home page  */
 .loader {
   width: 80px;

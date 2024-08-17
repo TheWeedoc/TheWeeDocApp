@@ -8,7 +8,7 @@ import {
   thumbsup,
 } from "../../../Assests/Svg/Commonsvg";
 import "./ReviewsGiven.css";
-
+import {EyeOutlined} from '@ant-design/icons';
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { getMovieReview } from "../../../store/Home/uploadsReducer";
@@ -115,9 +115,13 @@ function Uploads({ item }) {
             <div className="flex flex-row items-center space-x-2 pr-2 border-r-[0.3px] border-[#cbd0d9]">
               {thumbsdown} <span>{item?.dislike_count}</span>
             </div>
-            <div className="flex flex-row items-center space-x-2">
-              {sharebtn} <span>20</span>
+            <div className="flex justify-center items-center space-x-2 pr-2">
+              <EyeOutlined style={{ color: "white", fontSize: "22px" }} />
+              <span>{item?.views}</span>
             </div>
+            {/* <div className="flex flex-row items-center space-x-2">
+              {sharebtn} <span>20</span>
+            </div> */}
           </div>
           {!reviews && (
             <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity ">
