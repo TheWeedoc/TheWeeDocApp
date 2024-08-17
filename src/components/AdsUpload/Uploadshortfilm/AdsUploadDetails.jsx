@@ -67,6 +67,7 @@ function AdsUploadDetails({ onNext, formData, setFormData }) {
           type="text"
           placeholder="Write a description about the Advertisement..."
           value={description}
+          maxLength={200}
           onChange={(e) => setDescription(e.target.value)}
           required
         />
