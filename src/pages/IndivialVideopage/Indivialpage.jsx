@@ -234,7 +234,7 @@ function Indivialpage() {
             </div>
           </div>
           <div className="flex flex-col">
-            <div className="flex flex-col w-full pt-6 pb-2 md:pt-0 md:pb-0 md:py-6 space-y-4">
+            <div className="flex flex-col w-full pt-6 pb-2 md:pt-0 md:pb-0 md:py-6 space-y-4:">
               <div className="w-full">
                 <TextArea
                   className="bg-[#0a0a0d] text-white placeholder:text-gray-400"
@@ -244,7 +244,7 @@ function Indivialpage() {
                   onChange={handleReview}
                 />
               </div>
-              <div className="flex justify-center md:justify-end">
+              <div className="flex justify-center md:justify-end pt-3">
                 <button
                   onClick={handlePostReview}
                   className="bg-white text-black font-notosans  justify-center rounded-lg px-4 py-1"
@@ -287,7 +287,7 @@ function Indivialpage() {
             {resultString}
           </div>
 
-          <div className="indivl_page_cnt py-6">
+          <div className="indivl_page_cnt py-6 ">
             <p>
               {productDetails?.description
                 ? productDetails?.description

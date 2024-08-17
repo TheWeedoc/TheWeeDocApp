@@ -35,10 +35,11 @@ function Header() {
   };
 
   const notification = async () => {
-    const resp = await Notifications().then((res) => {
-      setNotify(res);
+    const resp = await Notifications().then((resp) => {
+      setNotify(resp);
     });
   };
+  
 
   useEffect(() => {
     if (user === "" && isLoggedIn)
@@ -144,7 +145,18 @@ function Header() {
             <Link to="/search">{SearchIcon}</Link>
           </div>
           <div onClick={toggleMenu}>
-            <HamburgerMenu />
+            {isLoggedIn ?(
+             <img
+             src={user?.profile_pic ? user?.profile_pic : defaultProfile}
+             alt="Profile_Picture"
+             className="profilePictureDiv"
+           />
+            ):(
+              <div className="pr-4">
+              <HamburgerMenu/>
+              </div>
+            )}
+         
           </div>
           <div
             className={
@@ -232,7 +244,6 @@ function Header() {
                 </Link>
               </div>
             )}
-
             {/* {isLoggedIn ? (
             <div >
               <img src={userpro} alt="Profile Picture" className="profilePictureDiv" />
