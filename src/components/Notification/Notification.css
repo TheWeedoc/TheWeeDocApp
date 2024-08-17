@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     gap: 16px;
-    width: 320px;
+    width: 340px;
 }
 
 .noti_tabs_div div{
@@ -36,3 +36,14 @@
     overflow: hidden;
   }
 
+  .notification-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    width: 335px;
+    padding: 5px;
+    border: .5px solid grey;
+    border-radius: 10px;
+
+  }

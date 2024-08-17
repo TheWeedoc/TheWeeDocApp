@@ -188,6 +188,21 @@ code {
   color: white !important;
 }
 
+.ant-input-outlined:hover{
+  border-color: white !important;
+}
+
+.ant-input-outlined:focus{
+  border-color: white !important;
+}
+.label-float input:focus {
+  border-color: white !important;
+}
+.label-float textarea:focus {
+  border-color: white !important;
+
+}
+
 
 
 /* loader for home page  */

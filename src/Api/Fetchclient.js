@@ -423,3 +423,16 @@ export const AddViewsCount = async (id) => {
     throw Error(err.response.data);
   }
 };
+
+
+// update notification
+
+export const UpdateNotification = async (data) => {
+  try {
+    const result = await put(`/update/notification/status/`, data);
+    return result;
+  } catch (err) {
+    console.log(" err", err);
+    throw Error(err.response.data);
+  }
+};
