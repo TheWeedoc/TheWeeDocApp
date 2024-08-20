@@ -69,6 +69,11 @@ function Header() {
     });
   };
 
+  const unreadCount = notify.filter((item) => !item.is_read).length;
+
+  console.log(unreadCount,"unreadCount");
+  
+
   return (
     <div className="bg-headerBackground py-2 px-2 md:px-12 sticky top-0 z-10">
       <nav className="flex justify-between px-2">
@@ -104,8 +109,8 @@ function Header() {
                   {notificationicon}
                 </Popover>
               </div>
-              {notify?.length !== 0 && (
-                <div className="notifitionCount">{notify?.length}</div>
+              {unreadCount !== 0 && (
+                <div className="notifitionCount">{unreadCount}</div>
               )}
             </div>
           )}
@@ -141,8 +146,8 @@ function Header() {
                   {notificationicon}
                 </Popover>
               </div>
-              {notify?.length !== 0 && (
-                <div className="notifitionCount">{notify?.length}</div>
+              {unreadCount !== 0 && (
+                <div className="notifitionCount">{unreadCount}</div>
               )}
             </div>
           )}

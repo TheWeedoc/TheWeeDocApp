@@ -28,12 +28,13 @@ function Notification({ notify }) {
                     width: "10px",
                     height: "10px",
                     borderRadius: "50%",
+                    display:item.is_read ? "none" : "block"
                   }}
                 ></div>
                 <p style={{ color: item.is_read ? "gray" : "steelblue" }}>
                   {item.content}
                 </p>
-                <small>{item.is_read ? "[ seen ]" : "[ Unseen ]"}</small>
+                {/* <small>{item.is_read ? "[ seen ]" : "[ Unseen ]"}</small> */}
               </div>
               <small style={{ fontSize: "12px" }}>
                 {new Date(item.timestamp).toLocaleString()}
