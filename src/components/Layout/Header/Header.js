@@ -39,6 +39,12 @@ function Header() {
       setNotify(resp);
     });
   };
+
+  
+  const handleNotificationClick = async () => {
+      notification(); 
+  };
+  
   
 
   useEffect(() => {
@@ -89,7 +95,7 @@ function Header() {
           </div>
           {isLoggedIn && (
             <div className="notifyDiv">
-              <div>
+              <div onClick={handleNotificationClick}>
                 <Popover
                   placement="bottom"
                   content={<Notification notify={notify} />}
@@ -126,7 +132,7 @@ function Header() {
         <div className="md:hidden flex items-center gap-3 z-10">
           {isLoggedIn && (
             <div className="notifyDiv">
-              <div>
+              <div onClick={handleNotificationClick}>
                 <Popover
                   placement="bottom"
                   content={<Notification notify={notify} />}
