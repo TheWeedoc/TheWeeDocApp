@@ -69,7 +69,7 @@ function Header() {
     });
   };
 
-  const unreadCount = notify.filter((item) => !item.is_read).length;
+  const unreadCount = notify?.filter((item) => !item.is_read).length;
 
   console.log(unreadCount,"unreadCount");
   
