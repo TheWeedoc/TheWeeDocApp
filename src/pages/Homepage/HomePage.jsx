@@ -7,13 +7,17 @@ import { getMoreProducts, getProducts } from "../../store/Home/productReducer";
 import CarouselHomePage from "./CarouselHomePage";
 import { Helmet } from "react-helmet";
 import { debounce } from "lodash";
+import { BannerListing } from "../../Api/Fetchclient";
 
 function HomePage() {
   const dispatch = useDispatch();
   const { products, isLoading, next, isLoadingMore } = useSelector(
     (state) => state.products
   );
+  const [carouselPic, setCarouselPic] = useState([]);
 
+
+console.log(carouselPic,"carouselPic");
 
   useEffect(() => {
     dispatch(getProducts({ page: 1, page_size: 20 }));
@@ -24,6 +28,22 @@ function HomePage() {
       setCarouselPic(products.slice(0, 4));
     }
   }, [products]);
+
+
+  useEffect(() => {
+
+    const BannerList = async()=>{
+       const reponse = await BannerListing().then((resp)=>{
+        setCarouselPic(resp?.data);
+       })
+    }
+    if (products?.length > 0) {
+      BannerList();
+    }
+  }, [products])
+
+
+  
 
   // Handle infinite scrolling
   const handleScroll = debounce(() => {
@@ -48,7 +68,6 @@ function HomePage() {
     };
   }, [handleScroll]);
 
-  const [carouselPic, setCarouselPic] = useState([]);
 
   return (
     <>
@@ -68,7 +87,7 @@ function HomePage() {
         <>
           <Carousel autoplay>
             {carouselPic?.map((item) => (
-              <CarouselHomePage key={item.id} item={item} />
+              <CarouselHomePage key={item?.id} item={item} />
             ))}
           </Carousel>
 

@@ -436,3 +436,18 @@ export const UpdateNotification = async (data) => {
     throw Error(err.response.data);
   }
 };
+
+
+// banner listing Api
+
+export const BannerListing = async() =>{
+    try {
+      const response = await get('/products/banners/')
+      return response;
+  
+    } catch (err) {
+      console.log(err,'err');
+      throw Error(err.response.data);
+    }
+  }
+   
